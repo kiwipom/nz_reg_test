@@ -167,17 +167,9 @@ class TestDatabaseStack:
         )
         template.has_resource_properties(
             "AWS::RDS::DBCluster",
-            {
-                "Tags": Match.array_with(
-                    [{"Key": "Environment", "Value": "Production"}]
-                )
-            },
+            {"Tags": Match.array_with([{"Key": "Environment", "Value": "Production"}])},
         )
         template.has_resource_properties(
             "AWS::RDS::DBCluster",
-            {
-                "Tags": Match.array_with(
-                    [{"Key": "Component", "Value": "Database"}]
-                )
-            },
+            {"Tags": Match.array_with([{"Key": "Component", "Value": "Database"}])},
         )

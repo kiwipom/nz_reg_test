@@ -180,19 +180,11 @@ class TestStorageStack:
         )
         template.has_resource_properties(
             "AWS::S3::Bucket",
-            {
-                "Tags": Match.array_with(
-                    [{"Key": "Environment", "Value": "Production"}]
-                )
-            },
+            {"Tags": Match.array_with([{"Key": "Environment", "Value": "Production"}])},
         )
         template.has_resource_properties(
             "AWS::S3::Bucket",
-            {
-                "Tags": Match.array_with(
-                    [{"Key": "Component", "Value": "Storage"}]
-                )
-            },
+            {"Tags": Match.array_with([{"Key": "Component", "Value": "Storage"}])},
         )
 
     def test_security_best_practices(self, template):

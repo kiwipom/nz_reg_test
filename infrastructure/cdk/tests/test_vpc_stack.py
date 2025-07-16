@@ -111,19 +111,11 @@ class TestVpcStack:
         )
         template.has_resource_properties(
             "AWS::EC2::VPC",
-            {
-                "Tags": Match.array_with(
-                    [{"Key": "Environment", "Value": "Production"}]
-                )
-            },
+            {"Tags": Match.array_with([{"Key": "Environment", "Value": "Production"}])},
         )
         template.has_resource_properties(
             "AWS::EC2::VPC",
-            {
-                "Tags": Match.array_with(
-                    [{"Key": "Component", "Value": "Networking"}]
-                )
-            },
+            {"Tags": Match.array_with([{"Key": "Component", "Value": "Networking"}])},
         )
 
     def test_availability_zones(self, template):
