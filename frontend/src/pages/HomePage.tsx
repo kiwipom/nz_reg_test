@@ -1,16 +1,29 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { CompanySearch } from '../components/CompanySearch';
 import { ProtectedRoute } from '../components/ProtectedRoute';
-import { Building2, Search, Shield, Users, FileText, TrendingUp, Plus } from 'lucide-react';
+import { Building2, Search, Shield, Users, FileText, TrendingUp, Plus, CheckCircle } from 'lucide-react';
 
 export const HomePage: React.FC = () => {
+  const location = useLocation();
+  const successMessage = location.state?.message;
+
   return (
     <>
       {/* Hero Section */}
       <section className="relative py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center">
+            {/* Success Message */}
+            {successMessage && (
+              <div className="mb-8 max-w-4xl mx-auto">
+                <div className="bg-green-50 border border-green-200 rounded-lg p-6 flex items-center justify-center">
+                  <CheckCircle className="h-6 w-6 text-green-600 mr-3" />
+                  <p className="text-green-800 font-medium">{successMessage}</p>
+                </div>
+              </div>
+            )}
+            
             <h2 className="text-4xl font-bold text-gray-900 mb-6">
               Find Company Information
             </h2>

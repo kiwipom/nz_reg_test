@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Building2, Check, AlertCircle, Loader2 } from 'lucide-react';
+import { useAuth } from '../auth/useAuth';
+import { registrationService } from '../services/registrationService';
 
 interface CompanyRegistrationData {
   companyName: string;
@@ -18,6 +21,9 @@ interface NameAvailabilityStatus {
 }
 
 export const CompanyRegistration: React.FC = () => {
+  const navigate = useNavigate();
+  const { getAccessTokenSilently } = useAuth();
+  
   const [formData, setFormData] = useState<CompanyRegistrationData>({
     companyName: '',
     companyType: 'LTD',
@@ -55,10 +61,7 @@ export const CompanyRegistration: React.FC = () => {
     });
 
     try {
-      const response = await fetch(
-        `http://localhost:8080/api/v1/companies/check-name?name=${encodeURIComponent(name)}`
-      );
-      const data = await response.json();
+      const data = await registrationService.checkNameAvailability(name);
       
       setNameAvailability({
         isChecking: false,
@@ -142,15 +145,35 @@ export const CompanyRegistration: React.FC = () => {
     setIsSubmitting(true);
     
     try {
-      // TODO: Implement actual API call to register company
-      await new Promise(resolve => setTimeout(resolve, 2000)); // Simulate API call
+      // Get authentication token
+      const token = await getAccessTokenSilently();
       
-      // Success - redirect or show success message
-      alert('Company registered successfully!');
+      // Generate company number
+      const companyNumber = registrationService.generateCompanyNumber();
+      
+      // Prepare registration data
+      const registrationData = {
+        companyNumber,
+        companyName: formData.companyName,
+        companyType: formData.companyType,
+        incorporationDate: formData.incorporationDate,
+        nzbn: formData.nzbn || undefined,
+      };
+      
+      // Register company
+      const result = await registrationService.registerCompany(registrationData, token);
+      
+      // Success - redirect to home page with success message
+      navigate('/', { 
+        state: { 
+          message: `Company "${result.companyName}" registered successfully! Company Number: ${result.companyNumber}` 
+        } 
+      });
       
     } catch (error) {
       console.error('Error registering company:', error);
-      alert('Error registering company. Please try again.');
+      const errorMessage = error instanceof Error ? error.message : 'Error registering company. Please try again.';
+      alert(errorMessage);
     } finally {
       setIsSubmitting(false);
     }
