@@ -57,7 +57,9 @@ class TestDatabaseStack:
         template.has_resource_properties(
             "AWS::RDS::DBSubnetGroup",
             {
-                "DBSubnetGroupDescription": "Subnet group for NZ Companies Register database",
+                "DBSubnetGroupDescription": (
+                    "Subnet group for NZ Companies Register database"
+                ),
                 "DBSubnetGroupName": "nz-companies-db-subnet-group",
             },
         )
