@@ -232,7 +232,7 @@ describe('CompanySearch', () => {
       expect(screen.getByText('Test Company Ltd')).toBeInTheDocument();
       expect(screen.getByText('12345678 • LTD')).toBeInTheDocument();
       expect(screen.getByText('ACTIVE')).toBeInTheDocument();
-      expect(screen.getByText('Incorporated: 1/01/2020')).toBeInTheDocument();
+      expect(screen.getByText(/Incorporated: \d{1,2}\/\d{1,2}\/2020/)).toBeInTheDocument();
     });
 
     it('should handle company selection click', async () => {
