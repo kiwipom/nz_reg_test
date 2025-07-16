@@ -42,7 +42,8 @@ export const useAuth = () => {
   const getUserRoles = async (): Promise<string[]> => {
     try {
       const claims = await getIdTokenClaims();
-      const rolesClaim = claims?.['https://api.companies-register.govt.nz/roles'];
+      const rolesNamespace = import.meta.env.VITE_AUTH0_ROLES_NAMESPACE || 'https://api.nzco.test.nz/';
+      const rolesClaim = claims?.[`${rolesNamespace}roles`];
       return Array.isArray(rolesClaim) ? rolesClaim : [];
     } catch (error) {
       console.error('Error getting user roles:', error);
