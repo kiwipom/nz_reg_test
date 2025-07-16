@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 import aws_cdk as cdk
-from constructs import Construct
 from stacks.vpc_stack import VpcStack
 from stacks.database_stack import DatabaseStack
 from stacks.storage_stack import StorageStack
@@ -18,7 +17,9 @@ env = cdk.Environment(
 # Core infrastructure
 vpc_stack = VpcStack(app, "NzCompaniesVpc", env=env)
 security_stack = SecurityStack(app, "NzCompaniesSecurity", env=env)
-database_stack = DatabaseStack(app, "NzCompaniesDatabase", vpc=vpc_stack.vpc, env=env)
+database_stack = DatabaseStack(
+    app, "NzCompaniesDatabase", vpc=vpc_stack.vpc, env=env
+)
 storage_stack = StorageStack(app, "NzCompaniesStorage", env=env)
 
 # Application infrastructure

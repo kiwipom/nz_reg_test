@@ -248,10 +248,13 @@ jobs:
       with:
         sarif_file: 'trivy-results.sarif'
 
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v2
+      with:
+        languages: java,javascript,python
+        
     - name: Run CodeQL Analysis
       uses: github/codeql-action/analyze@v2
-      with:
-        languages: 'java,javascript,python'
 
   # Build Validation
   build-validation:

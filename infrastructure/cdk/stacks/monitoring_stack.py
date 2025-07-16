@@ -1,10 +1,8 @@
 from aws_cdk import (
     Stack,
     aws_cloudwatch as cloudwatch,
-    aws_logs as logs,
     aws_sns as sns,
     aws_cloudwatch_actions as cw_actions,
-    aws_applicationautoscaling as appscaling,
     Duration,
     Tags,
 )
@@ -14,7 +12,11 @@ from .compute_stack import ComputeStack
 
 class MonitoringStack(Stack):
     def __init__(
-        self, scope: Construct, construct_id: str, compute_stack: ComputeStack, **kwargs
+        self,
+        scope: Construct,
+        construct_id: str,
+        compute_stack: ComputeStack,
+        **kwargs
     ) -> None:
         super().__init__(scope, construct_id, **kwargs)
 

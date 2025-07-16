@@ -67,7 +67,9 @@ class VpcStack(Stack):
             security_group_name="nz-companies-ecs-sg",
         )
         self.ecs_security_group.add_ingress_rule(
-            self.alb_security_group, ec2.Port.tcp(8080), "Allow traffic from ALB"
+            self.alb_security_group,
+            ec2.Port.tcp(8080),
+            "Allow traffic from ALB",
         )
 
         self.database_security_group = ec2.SecurityGroup(
@@ -78,7 +80,9 @@ class VpcStack(Stack):
             security_group_name="nz-companies-db-sg",
         )
         self.database_security_group.add_ingress_rule(
-            self.ecs_security_group, ec2.Port.tcp(5432), "Allow PostgreSQL from ECS"
+            self.ecs_security_group,
+            ec2.Port.tcp(5432),
+            "Allow PostgreSQL from ECS",
         )
 
         # Add tags

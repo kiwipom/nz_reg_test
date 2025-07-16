@@ -8,8 +8,6 @@ from aws_cdk import (
     aws_iam as iam,
     aws_rds as rds,
     aws_s3 as s3,
-    aws_certificatemanager as acm,
-    aws_route53 as route53,
     Duration,
     RemovalPolicy,
     Tags,

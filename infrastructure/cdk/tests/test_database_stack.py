@@ -10,7 +10,9 @@ class TestDatabaseStack:
     def template(self):
         app = App()
         vpc_stack = VpcStack(app, "TestVpcStack")
-        database_stack = DatabaseStack(app, "TestDatabaseStack", vpc=vpc_stack.vpc)
+        database_stack = DatabaseStack(
+            app, "TestDatabaseStack", vpc=vpc_stack.vpc
+        )
         return Template.from_stack(database_stack)
 
     def test_database_secret_created(self, template):
@@ -113,7 +115,10 @@ class TestDatabaseStack:
                         "IndexName": "CompanyIdIndex",
                         "KeySchema": [
                             {"AttributeName": "company_id", "KeyType": "HASH"},
-                            {"AttributeName": "created_at", "KeyType": "RANGE"},
+                            {
+                                "AttributeName": "created_at",
+                                "KeyType": "RANGE",
+                            },
                         ],
                     }
                 ],
