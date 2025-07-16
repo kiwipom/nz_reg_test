@@ -11,8 +11,6 @@ import jakarta.persistence.Id
 import jakarta.persistence.JoinColumn
 import jakarta.persistence.ManyToOne
 import jakarta.persistence.Table
-import java.math.BigDecimal
-import java.time.LocalDate
 import java.time.LocalDateTime
 
 @Entity
@@ -26,24 +24,29 @@ class Shareholder(
     @JoinColumn(name = "company_id", nullable = false)
     var company: Company,
 
-    @Column(name = "shareholder_name", nullable = false)
-    var shareholderName: String,
+    @Column(name = "full_name", nullable = false)
+    var fullName: String,
 
-    @Column(name = "shareholder_address", nullable = false)
-    var shareholderAddress: String,
+    @Column(name = "address_line_1", nullable = false)
+    var addressLine1: String,
 
-    @Column(name = "number_of_shares", nullable = false)
-    var numberOfShares: BigDecimal,
+    @Column(name = "address_line_2")
+    var addressLine2: String? = null,
 
-    @Column(name = "share_class", nullable = false)
-    var shareClass: String = "ORDINARY",
+    @Column(name = "city", nullable = false)
+    var city: String,
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "shareholder_type", nullable = false)
-    var shareholderType: ShareholderType,
+    @Column(name = "region")
+    var region: String? = null,
 
-    @Column(name = "holding_date", nullable = false)
-    var holdingDate: LocalDate,
+    @Column(name = "postcode")
+    var postcode: String? = null,
+
+    @Column(name = "country", nullable = false)
+    var country: String = "NZ",
+
+    @Column(name = "is_individual", nullable = false)
+    var isIndividual: Boolean = true,
 
     @Column(name = "created_at", nullable = false)
     val createdAt: LocalDateTime = LocalDateTime.now(),
@@ -51,12 +54,16 @@ class Shareholder(
     @Column(name = "updated_at", nullable = false)
     var updatedAt: LocalDateTime = LocalDateTime.now(),
 ) {
-    fun getSharePercentage(totalShares: BigDecimal): BigDecimal {
-        return if (totalShares > BigDecimal.ZERO) {
-            numberOfShares.divide(totalShares, 4, BigDecimal.ROUND_HALF_UP)
-        } else {
-            BigDecimal.ZERO
-        }
+    fun getFullAddress(): String {
+        val parts = listOfNotNull(
+            addressLine1,
+            addressLine2,
+            city,
+            region,
+            postcode,
+            if (country != "NZ") country else null,
+        )
+        return parts.joinToString(", ")
     }
 
     override fun equals(other: Any?): Boolean {
@@ -68,10 +75,8 @@ class Shareholder(
     override fun hashCode(): Int = id.hashCode()
 
     override fun toString(): String {
-        return "Shareholder(id=$id, name='$shareholderName', shares=$numberOfShares, type=$shareholderType)"
+        return "Shareholder(id=$id, name='$fullName', individual=$isIndividual)"
     }
 }
 
-enum class ShareholderType {
-    INDIVIDUAL, COMPANY, TRUST, PARTNERSHIP
-}
+// Note: ShareholderType moved to isIndividual boolean field to match database schema
