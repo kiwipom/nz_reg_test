@@ -48,6 +48,21 @@ const renderComponent = () => {
   );
 };
 
+// Helper to set up name availability for validation tests
+const setupNameAvailabilityForValidation = async (user: any) => {
+  const mockCheckNameAvailability = vi.mocked(registrationService.checkNameAvailability);
+  mockCheckNameAvailability.mockResolvedValue({ available: true });
+  
+  const companyNameInput = screen.getByLabelText(/company name/i);
+  await user.type(companyNameInput, 'Test Company');
+  
+  await waitFor(() => {
+    expect(screen.getByText('✓ Name is available')).toBeInTheDocument();
+  });
+  
+  return { companyNameInput, mockCheckNameAvailability };
+};
+
 // Mock fetch
 const mockFetch = vi.fn();
 global.fetch = mockFetch;
@@ -105,6 +120,10 @@ describe('CompanyRegistration', () => {
     const user = userEvent.setup();
     renderComponent();
     
+    // Set up name availability and then clear the field
+    const { companyNameInput } = await setupNameAvailabilityForValidation(user);
+    await user.clear(companyNameInput);
+    
     const submitButton = screen.getByRole('button', { name: /register company/i });
     await user.click(submitButton);
     
@@ -116,13 +135,13 @@ describe('CompanyRegistration', () => {
     const user = userEvent.setup();
     renderComponent();
     
+    // Set up name availability first
+    await setupNameAvailabilityForValidation(user);
+    
     // Set share capital to 200, but keep numberOfShares (100) and shareValue (1) as defaults
     const shareCapitalInput = screen.getByLabelText(/share capital/i);
     await user.clear(shareCapitalInput);
     await user.type(shareCapitalInput, '200');
-    
-    const companyNameInput = screen.getByLabelText(/company name/i);
-    await user.type(companyNameInput, 'Test Company');
     
     const incorporationDateInput = screen.getByLabelText(/incorporation date/i);
     await user.type(incorporationDateInput, '2024-01-01');

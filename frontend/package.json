@@ -13,8 +13,10 @@
     "typecheck": "tsc --noEmit",
     "preview": "vite preview",
     "test": "vitest",
-    "test:ui": "vitest --ui",
     "test:run": "vitest run",
+    "test:ci": "vitest run --reporter=verbose",
+    "precommit": "npm run lint && npm run typecheck && npm run test:run",
+    "test:ui": "vitest --ui",
     "test:coverage": "vitest run --coverage",
     "test:integration": "vitest run --config vitest.integration.config.ts"
   },
