@@ -37,8 +37,8 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: ${JWT_ISSUER_URI:}
-          jwk-set-uri: ${JWT_JWK_SET_URI:}
+          issuer-uri: ${AUTH0_ISSUER:https://nz-companies-register.au.auth0.com/}
+          jwk-set-uri: ${AUTH0_JWKS_URI:https://nz-companies-register.au.auth0.com/.well-known/jwks.json}
   
   cache:
     type: simple
@@ -86,6 +86,11 @@ logging:
   pattern:
     console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
     file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+
+auth0:
+  domain: ${AUTH0_DOMAIN:nz-companies-register.au.auth0.com}
+  audience: ${AUTH0_AUDIENCE:https://api.companies-register.govt.nz}
+  issuer: ${AUTH0_ISSUER:https://nz-companies-register.au.auth0.com/}
 
 app:
   aws:

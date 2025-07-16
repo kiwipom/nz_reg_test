@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites name="vitest tests" tests="22" failures="0" errors="0" time="3.460483059">
+    <testsuite name="src/components/__tests__/CompanySearch.integration.test.tsx" timestamp="2025-07-16T07:50:15.879Z" hostname="FMNZ-C02D5HB1ML7H.local" tests="2" failures="0" errors="0" skipped="0" time="0.57937471">
+        <testcase classname="src/components/__tests__/CompanySearch.integration.test.tsx" name="CompanySearch Integration Tests &gt; should integrate with store and service for end-to-end search flow" time="0.209262939">
+        </testcase>
+        <testcase classname="src/components/__tests__/CompanySearch.integration.test.tsx" name="CompanySearch Integration Tests &gt; should handle full search workflow with error recovery" time="0.364437279">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/__tests__/CompanySearch.test.tsx" timestamp="2025-07-16T07:50:15.881Z" hostname="FMNZ-C02D5HB1ML7H.local" tests="20" failures="0" errors="0" skipped="0" time="2.881108349">
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Rendering &gt; should render search input with placeholder" time="0.033153861">
+        </testcase>
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Rendering &gt; should render search icon initially" time="0.055661982">
+        </testcase>
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Rendering &gt; should render with proper accessibility attributes" time="0.010729003">
+        </testcase>
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; User Interaction &gt; should update input value when user types" time="0.089100711">
+        </testcase>
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; User Interaction &gt; should show clear button when input has value" time="0.038989954">
+        </testcase>
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; User Interaction &gt; should clear input when clear button is clicked" time="0.065911122">
+        </testcase>
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; User Interaction &gt; should not show clear button when input is empty" time="0.003242109">
+        </testcase>
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Search Functionality &gt; should trigger search after debounce delay" time="0.358132223">
+        </testcase>
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Search Functionality &gt; should not trigger search for queries less than 2 characters" time="0.321353655">
+        </testcase>
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Search Functionality &gt; should clear search when input is empty" time="0.353832118">
+        </testcase>
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Search Functionality &gt; should show loading state during search" time="0.076080505">
+        </testcase>
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Search Results Display &gt; should display search results when available" time="0.030198695">
+        </testcase>
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Search Results Display &gt; should display singular result text for single result" time="0.004216964">
+        </testcase>
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Search Results Display &gt; should display company details correctly" time="0.006436438">
+        </testcase>
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Search Results Display &gt; should handle company selection click" time="0.016847214">
+        </testcase>
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Search Results Display &gt; should display different status styles" time="0.005361389">
+        </testcase>
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Error Handling &gt; should handle search errors gracefully" time="0.33375106">
+        </testcase>
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Error Handling &gt; should handle network errors" time="0.370936765">
+        </testcase>
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Performance &gt; should debounce search requests" time="0.35244242">
+        </testcase>
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Performance &gt; should cancel previous search when new search is triggered" time="0.346401854">
+        </testcase>
+    </testsuite>
+</testsuites>

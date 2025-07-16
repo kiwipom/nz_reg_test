@@ -8,8 +8,6 @@ from aws_cdk import (
     aws_iam as iam,
     aws_rds as rds,
     aws_s3 as s3,
-    aws_certificatemanager as acm,
-    aws_route53 as route53,
     Duration,
     RemovalPolicy,
     Tags,
@@ -31,7 +29,8 @@ class ComputeStack(Stack):
 
         # ECR repositories
         self.backend_repository = ecr.Repository(
-            self, "BackendRepository",
+            self,
+            "BackendRepository",
             repository_name="nz-companies-register/backend",
             image_scan_on_push=True,
             lifecycle_rules=[
@@ -43,7 +42,8 @@ class ComputeStack(Stack):
         )
 
         self.frontend_repository = ecr.Repository(
-            self, "FrontendRepository",
+            self,
+            "FrontendRepository",
             repository_name="nz-companies-register/frontend",
             image_scan_on_push=True,
             lifecycle_rules=[
@@ -56,7 +56,8 @@ class ComputeStack(Stack):
 
         # ECS cluster
         self.cluster = ecs.Cluster(
-            self, "Cluster",
+            self,
+            "Cluster",
             cluster_name="nz-companies-register-cluster",
             vpc=vpc,
             enable_fargate_capacity_providers=True,
@@ -65,7 +66,8 @@ class ComputeStack(Stack):
 
         # Application Load Balancer
         self.alb = elbv2.ApplicationLoadBalancer(
-            self, "ALB",
+            self,
+            "ALB",
             load_balancer_name="nz-companies-register-alb",
             vpc=vpc,
             internet_facing=True,
@@ -74,7 +76,8 @@ class ComputeStack(Stack):
 
         # Target groups
         self.backend_target_group = elbv2.ApplicationTargetGroup(
-            self, "BackendTargetGroup",
+            self,
+            "BackendTargetGroup",
             target_group_name="nz-companies-backend-tg",
             port=8080,
             protocol=elbv2.ApplicationProtocol.HTTP,
@@ -91,7 +94,8 @@ class ComputeStack(Stack):
         )
 
         self.frontend_target_group = elbv2.ApplicationTargetGroup(
-            self, "FrontendTargetGroup",
+            self,
+            "FrontendTargetGroup",
             target_group_name="nz-companies-frontend-tg",
             port=80,
             protocol=elbv2.ApplicationProtocol.HTTP,
@@ -151,14 +155,16 @@ class ComputeStack(Stack):
 
         # CloudWatch Log Groups
         self.backend_log_group = logs.LogGroup(
-            self, "BackendLogGroup",
+            self,
+            "BackendLogGroup",
             log_group_name="/ecs/nz-companies-register-backend",
             retention=logs.RetentionDays.ONE_MONTH,
             removal_policy=RemovalPolicy.DESTROY,
         )
 
         self.frontend_log_group = logs.LogGroup(
-            self, "FrontendLogGroup",
+            self,
+            "FrontendLogGroup",
             log_group_name="/ecs/nz-companies-register-frontend",
             retention=logs.RetentionDays.ONE_MONTH,
             removal_policy=RemovalPolicy.DESTROY,
@@ -166,27 +172,32 @@ class ComputeStack(Stack):
 
         # ECS Task Definitions
         self.backend_task_definition = ecs.FargateTaskDefinition(
-            self, "BackendTaskDefinition",
+            self,
+            "BackendTaskDefinition",
             family="nz-companies-register-backend",
             memory_limit_mib=2048,
             cpu=1024,
             execution_role=iam.Role.from_role_name(
-                self, "BackendExecutionRole",
+                self,
+                "BackendExecutionRole",
                 "nz-companies-register-ecs-execution-role",
             ),
             task_role=iam.Role.from_role_name(
-                self, "BackendTaskRole",
+                self,
+                "BackendTaskRole",
                 "nz-companies-register-ecs-task-role",
             ),
         )
 
         self.frontend_task_definition = ecs.FargateTaskDefinition(
-            self, "FrontendTaskDefinition",
+            self,
+            "FrontendTaskDefinition",
             family="nz-companies-register-frontend",
             memory_limit_mib=512,
             cpu=256,
             execution_role=iam.Role.from_role_name(
-                self, "FrontendExecutionRole",
+                self,
+                "FrontendExecutionRole",
                 "nz-companies-register-ecs-execution-role",
             ),
         )
@@ -219,7 +230,10 @@ class ComputeStack(Stack):
                 log_group=self.backend_log_group,
             ),
             health_check=ecs.HealthCheck(
-                command=["CMD-SHELL", "curl -f http://localhost:8080/api/actuator/health || exit 1"],
+                command=[
+                    "CMD-SHELL",
+                    "curl -f http://localhost:8080/api/actuator/health || exit 1",
+                ],
                 interval=Duration.seconds(30),
                 timeout=Duration.seconds(5),
                 retries=3,
@@ -262,7 +276,8 @@ class ComputeStack(Stack):
 
         # ECS Services
         self.backend_service = ecs.FargateService(
-            self, "BackendService",
+            self,
+            "BackendService",
             service_name="nz-companies-register-backend",
             cluster=self.cluster,
             task_definition=self.backend_task_definition,
@@ -279,7 +294,8 @@ class ComputeStack(Stack):
         )
 
         self.frontend_service = ecs.FargateService(
-            self, "FrontendService",
+            self,
+            "FrontendService",
             service_name="nz-companies-register-frontend",
             cluster=self.cluster,
             task_definition=self.frontend_task_definition,

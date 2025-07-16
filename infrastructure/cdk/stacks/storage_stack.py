@@ -16,7 +16,8 @@ class StorageStack(Stack):
 
         # KMS key for encryption
         self.kms_key = kms.Key(
-            self, "StorageKey",
+            self,
+            "StorageKey",
             description="KMS key for NZ Companies Register storage encryption",
             enable_key_rotation=True,
             removal_policy=RemovalPolicy.RETAIN,
@@ -24,7 +25,8 @@ class StorageStack(Stack):
 
         # S3 bucket for document storage
         self.document_bucket = s3.Bucket(
-            self, "DocumentBucket",
+            self,
+            "DocumentBucket",
             bucket_name="nz-companies-register-documents",
             versioned=True,
             encryption=s3.BucketEncryption.KMS,
@@ -51,7 +53,8 @@ class StorageStack(Stack):
 
         # S3 bucket for application logs
         self.logs_bucket = s3.Bucket(
-            self, "LogsBucket",
+            self,
+            "LogsBucket",
             bucket_name="nz-companies-register-logs",
             versioned=False,
             encryption=s3.BucketEncryption.KMS,
@@ -69,7 +72,8 @@ class StorageStack(Stack):
 
         # SNS topic for notifications
         self.notification_topic = sns.Topic(
-            self, "NotificationTopic",
+            self,
+            "NotificationTopic",
             topic_name="nz-companies-register-notifications",
             display_name="NZ Companies Register Notifications",
             master_key=self.kms_key,
@@ -77,7 +81,8 @@ class StorageStack(Stack):
 
         # SQS queue for processing notifications
         self.notification_queue = sqs.Queue(
-            self, "NotificationQueue",
+            self,
+            "NotificationQueue",
             queue_name="nz-companies-register-notifications",
             visibility_timeout_seconds=300,
             message_retention_period_seconds=1209600,  # 14 days
@@ -87,7 +92,8 @@ class StorageStack(Stack):
 
         # Dead letter queue for failed notifications
         self.notification_dlq = sqs.Queue(
-            self, "NotificationDLQ",
+            self,
+            "NotificationDLQ",
             queue_name="nz-companies-register-notifications-dlq",
             visibility_timeout_seconds=300,
             message_retention_period_seconds=1209600,  # 14 days
@@ -105,7 +111,8 @@ class StorageStack(Stack):
 
         # SQS queue for annual return reminders
         self.reminder_queue = sqs.Queue(
-            self, "ReminderQueue",
+            self,
+            "ReminderQueue",
             queue_name="nz-companies-register-reminders",
             visibility_timeout_seconds=300,
             message_retention_period_seconds=1209600,  # 14 days
@@ -115,7 +122,8 @@ class StorageStack(Stack):
 
         # Dead letter queue for failed reminders
         self.reminder_dlq = sqs.Queue(
-            self, "ReminderDLQ",
+            self,
+            "ReminderDLQ",
             queue_name="nz-companies-register-reminders-dlq",
             visibility_timeout_seconds=300,
             message_retention_period_seconds=1209600,  # 14 days
