@@ -65,7 +65,8 @@ describe('CompanySearch Integration Tests', () => {
     });
     
     // Verify search results display
-    expect(screen.getByText('12345678 • LTD')).toBeInTheDocument();
+    expect(screen.getByText('12345678')).toBeInTheDocument();
+    expect(screen.getByText('LTD')).toBeInTheDocument();
     expect(screen.getByText('ACTIVE')).toBeInTheDocument();
     expect(screen.getByText(/Incorporated: \d{1,2}\/\d{1,2}\/2020/)).toBeInTheDocument();
     

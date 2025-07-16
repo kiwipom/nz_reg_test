@@ -34,7 +34,7 @@ describe('CompanySearch', () => {
     it('should render search input with placeholder', () => {
       render(<CompanySearch />);
       
-      expect(screen.getByPlaceholderText('Search companies by name or number...')).toBeInTheDocument();
+      expect(screen.getByPlaceholderText('Search companies by name, company number, or NZBN...')).toBeInTheDocument();
     });
 
     it('should render search icon initially', () => {
@@ -230,7 +230,8 @@ describe('CompanySearch', () => {
       render(<CompanySearch />);
       
       expect(screen.getByText('Test Company Ltd')).toBeInTheDocument();
-      expect(screen.getByText('12345678 • LTD')).toBeInTheDocument();
+      expect(screen.getByText('12345678')).toBeInTheDocument();
+      expect(screen.getByText('LTD')).toBeInTheDocument();
       expect(screen.getByText('ACTIVE')).toBeInTheDocument();
       expect(screen.getByText(/Incorporated: \d{1,2}\/\d{1,2}\/2020/)).toBeInTheDocument();
     });
