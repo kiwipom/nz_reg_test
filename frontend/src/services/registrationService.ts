@@ -1,4 +1,4 @@
-import { Company } from '../types/company';
+import type { Company } from '../types/company';
 
 export interface CompanyRegistrationRequest {
   companyNumber: string;

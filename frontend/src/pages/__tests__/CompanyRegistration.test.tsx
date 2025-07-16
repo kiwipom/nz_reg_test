@@ -1,4 +1,3 @@
-import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
@@ -58,7 +57,7 @@ describe('CompanyRegistration', () => {
     vi.clearAllMocks();
     mockFetch.mockClear();
     mockUseAuth.mockReturnValue({
-      getAccessTokenSilently: vi.fn().mockResolvedValue('mock-token'),
+      getAccessToken: vi.fn().mockResolvedValue('mock-token'),
     } as any);
   });
 

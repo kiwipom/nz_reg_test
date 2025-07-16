@@ -23,7 +23,7 @@ interface NameAvailabilityStatus {
 
 export const CompanyRegistration: React.FC = () => {
   const navigate = useNavigate();
-  const { getAccessTokenSilently } = useAuth();
+  const { getAccessToken } = useAuth();
   
   const [formData, setFormData] = useState<CompanyRegistrationData>({
     companyName: '',
@@ -174,7 +174,7 @@ export const CompanyRegistration: React.FC = () => {
     
     try {
       // Get authentication token
-      const token = await getAccessTokenSilently();
+      const token = await getAccessToken();
       
       // Generate company number
       const companyNumber = registrationService.generateCompanyNumber();
