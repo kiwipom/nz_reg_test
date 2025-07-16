@@ -1,5 +1,6 @@
 package nz.govt.companiesoffice.register.entity
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import jakarta.persistence.CascadeType
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
@@ -52,12 +53,15 @@ class Company(
     var version: Int = 1,
 ) {
     @OneToMany(mappedBy = "company", cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
+    @JsonIgnore
     val addresses: MutableList<Address> = mutableListOf()
 
     @OneToMany(mappedBy = "company", cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
+    @JsonIgnore
     val directors: MutableList<Director> = mutableListOf()
 
     @OneToMany(mappedBy = "company", cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
+    @JsonIgnore
     val shareholders: MutableList<Shareholder> = mutableListOf()
 
     // Note: Additional entities (shareAllocations, annualReturns, documents)
@@ -78,14 +82,17 @@ class Company(
         shareholder.company = this
     }
 
+    @JsonIgnore
     fun getActiveDirectors(): List<Director> {
         return directors.filter { it.status == DirectorStatus.ACTIVE }
     }
 
+    @JsonIgnore
     fun getResidentDirectors(): List<Director> {
         return getActiveDirectors().filter { it.isNzResident || it.isAustralianResident }
     }
 
+    @JsonIgnore
     fun getCurrentAddress(addressType: AddressType): Address? {
         return addresses.find {
             it.addressType == addressType &&

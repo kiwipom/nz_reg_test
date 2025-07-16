@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController
 import java.time.LocalDate
 
 @RestController
-@RequestMapping("/api/v1/directors")
+@RequestMapping("/v1/directors")
 @Tag(name = "Directors", description = "Director management operations")
 class DirectorController(
     private val directorService: DirectorService,

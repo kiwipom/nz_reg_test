@@ -88,9 +88,10 @@ logging:
     file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
 
 auth0:
-  domain: ${AUTH0_DOMAIN:nz-companies-register.au.auth0.com}
-  audience: ${AUTH0_AUDIENCE:https://api.companies-register.govt.nz}
-  issuer: ${AUTH0_ISSUER:https://nz-companies-register.au.auth0.com/}
+  domain: ${AUTH0_DOMAIN:dev-qj27erqk8q2n6uoa.us.auth0.com}
+  audience: ${AUTH0_AUDIENCE:https://api.nzco.test.nz}
+  issuer: ${AUTH0_ISSUER:https://dev-qj27erqk8q2n6uoa.us.auth0.com/}
+  roles-namespace: ${AUTH0_ROLES_NAMESPACE:https://api.nzco.test.nz/}
 
 app:
   aws:

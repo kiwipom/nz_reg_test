@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/api/v1/docs")
+@RequestMapping("/v1/docs")
 @Tag(name = "API Documentation", description = "API documentation and metadata")
 class ApiDocumentationController {
 
