@@ -1,5 +1,5 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import userEvent, { type UserEvent } from '@testing-library/user-event';
+import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
 import { BrowserRouter } from 'react-router-dom';
 import { CompanyRegistration } from '../CompanyRegistration';
@@ -48,20 +48,6 @@ const renderComponent = () => {
   );
 };
 
-// Helper to set up name availability for validation tests
-const setupNameAvailabilityForValidation = async (user: UserEvent) => {
-  const mockCheckNameAvailability = vi.mocked(registrationService.checkNameAvailability);
-  mockCheckNameAvailability.mockResolvedValue({ available: true });
-  
-  const companyNameInput = screen.getByLabelText(/company name/i);
-  await user.type(companyNameInput, 'Test Company');
-  
-  await waitFor(() => {
-    expect(screen.getByText('✓ Name is available')).toBeInTheDocument();
-  });
-  
-  return { companyNameInput, mockCheckNameAvailability };
-};
 
 // Mock fetch
 const mockFetch = vi.fn();
@@ -117,71 +103,82 @@ describe('CompanyRegistration', () => {
   });
 
   it('validates required fields', async () => {
-    const user = userEvent.setup();
     renderComponent();
     
-    // Set up name availability and then clear the field
-    const { companyNameInput } = await setupNameAvailabilityForValidation(user);
-    await user.clear(companyNameInput);
+    // Submit form without filling any required fields
+    const form = document.querySelector('form');
+    if (form) {
+      fireEvent.submit(form);
+    } else {
+      // Fallback to button click
+      const submitButton = screen.getByRole('button', { name: /register company/i });
+      fireEvent.click(submitButton);
+    }
     
-    const submitButton = screen.getByRole('button', { name: /register company/i });
-    await user.click(submitButton);
-    
-    expect(screen.getByText('Company name is required')).toBeInTheDocument();
-    expect(screen.getByText('Incorporation date is required')).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByText('Company name is required')).toBeInTheDocument();
+      expect(screen.getByText('Incorporation date is required')).toBeInTheDocument();
+    });
   });
 
   it('validates share capital calculation', async () => {
     const user = userEvent.setup();
     renderComponent();
     
-    // Set up name availability first
-    await setupNameAvailabilityForValidation(user);
+    // Set company name to enable form submission
+    const companyNameInput = screen.getByLabelText(/company name/i);
+    await user.type(companyNameInput, 'Test Company');
     
     // Set share capital to 200, but keep numberOfShares (100) and shareValue (1) as defaults
     const shareCapitalInput = screen.getByLabelText(/share capital/i);
-    await user.clear(shareCapitalInput);
-    await user.type(shareCapitalInput, '200');
+    fireEvent.change(shareCapitalInput, { target: { name: 'shareCapital', value: '200' } });
     
     const incorporationDateInput = screen.getByLabelText(/incorporation date/i);
     await user.type(incorporationDateInput, '2024-01-01');
     
-    const submitButton = screen.getByRole('button', { name: /register company/i });
-    await user.click(submitButton);
+    const form = document.querySelector('form');
+    if (form) {
+      fireEvent.submit(form);
+    }
     
-    expect(screen.getByText('Share capital must equal number of shares × share value')).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByText('Share capital must equal number of shares × share value')).toBeInTheDocument();
+    });
   });
 
   it('validates positive values for share-related fields', async () => {
     const user = userEvent.setup();
     renderComponent();
     
+    // Set company name to enable form submission
+    const companyNameInput = screen.getByLabelText(/company name/i);
+    await user.type(companyNameInput, 'Test Company');
+    
     const shareCapitalInput = screen.getByLabelText(/share capital/i);
-    await user.clear(shareCapitalInput);
-    await user.type(shareCapitalInput, '0');
+    fireEvent.change(shareCapitalInput, { target: { name: 'shareCapital', value: '0' } });
     
     const numberOfSharesInput = screen.getByLabelText(/number of shares/i);
-    await user.clear(numberOfSharesInput);
-    await user.type(numberOfSharesInput, '0');
+    fireEvent.change(numberOfSharesInput, { target: { name: 'numberOfShares', value: '0' } });
     
     const shareValueInput = screen.getByLabelText(/value per share/i);
-    await user.clear(shareValueInput);
-    await user.type(shareValueInput, '0');
+    fireEvent.change(shareValueInput, { target: { name: 'shareValue', value: '0' } });
     
-    const submitButton = screen.getByRole('button', { name: /register company/i });
-    await user.click(submitButton);
+    const form = document.querySelector('form');
+    if (form) {
+      fireEvent.submit(form);
+    }
     
-    expect(screen.getByText('Share capital must be greater than 0')).toBeInTheDocument();
-    expect(screen.getByText('Number of shares must be greater than 0')).toBeInTheDocument();
-    expect(screen.getByText('Value per share must be greater than 0')).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByText('Share capital must be greater than 0')).toBeInTheDocument();
+      expect(screen.getByText('Number of shares must be greater than 0')).toBeInTheDocument();
+      expect(screen.getByText('Value per share must be greater than 0')).toBeInTheDocument();
+    });
   });
 
   it('checks name availability when typing company name', async () => {
     const user = userEvent.setup();
-    mockFetch.mockResolvedValueOnce({
-      ok: true,
-      json: async () => ({ available: true })
-    });
+    const mockCheckNameAvailability = vi.mocked(registrationService.checkNameAvailability);
+    mockCheckNameAvailability.mockResolvedValueOnce({ available: true });
     
     renderComponent();
     
@@ -190,9 +187,7 @@ describe('CompanyRegistration', () => {
     
     // Wait for debounced API call
     await waitFor(() => {
-      expect(mockFetch).toHaveBeenCalledWith(
-        'http://localhost:8080/api/v1/companies/check-name?name=Test%20Company%20Ltd'
-      );
+      expect(mockCheckNameAvailability).toHaveBeenCalledWith('Test Company Ltd');
     });
     
     // Check that the availability indicator shows
@@ -203,10 +198,8 @@ describe('CompanyRegistration', () => {
 
   it('shows error when company name is not available', async () => {
     const user = userEvent.setup();
-    mockFetch.mockResolvedValueOnce({
-      ok: true,
-      json: async () => ({ available: false })
-    });
+    const mockCheckNameAvailability = vi.mocked(registrationService.checkNameAvailability);
+    mockCheckNameAvailability.mockResolvedValueOnce({ available: false });
     
     renderComponent();
     
@@ -215,30 +208,30 @@ describe('CompanyRegistration', () => {
     
     // Wait for debounced API call
     await waitFor(() => {
-      expect(mockFetch).toHaveBeenCalledWith(
-        'http://localhost:8080/api/v1/companies/check-name?name=Existing%20Company'
-      );
+      expect(mockCheckNameAvailability).toHaveBeenCalledWith('Existing Company');
     });
     
     // Try to submit
     const incorporationDateInput = screen.getByLabelText(/incorporation date/i);
     await user.type(incorporationDateInput, '2024-01-01');
     
-    const submitButton = screen.getByRole('button', { name: /register company/i });
-    await user.click(submitButton);
+    const form = document.querySelector('form');
+    if (form) {
+      fireEvent.submit(form);
+    }
     
-    expect(screen.getByText('Company name is not available')).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByText('Company name is not available')).toBeInTheDocument();
+    });
   });
 
   it('shows loading state while checking name availability', async () => {
     const user = userEvent.setup();
     
     // Mock a delayed response
-    mockFetch.mockImplementationOnce(() => 
-      new Promise(resolve => setTimeout(() => resolve({
-        ok: true,
-        json: async () => ({ available: true })
-      }), 100))
+    const mockCheckNameAvailability = vi.mocked(registrationService.checkNameAvailability);
+    mockCheckNameAvailability.mockImplementationOnce(() => 
+      new Promise(resolve => setTimeout(() => resolve({ available: true }), 100))
     );
     
     renderComponent();
@@ -254,7 +247,8 @@ describe('CompanyRegistration', () => {
 
   it('handles API errors gracefully', async () => {
     const user = userEvent.setup();
-    mockFetch.mockRejectedValueOnce(new Error('Network error'));
+    const mockCheckNameAvailability = vi.mocked(registrationService.checkNameAvailability);
+    mockCheckNameAvailability.mockRejectedValueOnce(new Error('Network error'));
     
     // Mock console.error to avoid test noise
     const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
@@ -266,7 +260,7 @@ describe('CompanyRegistration', () => {
     
     // Wait for debounced API call
     await waitFor(() => {
-      expect(mockFetch).toHaveBeenCalled();
+      expect(mockCheckNameAvailability).toHaveBeenCalled();
     });
     
     // Should not show availability status on error
@@ -318,10 +312,14 @@ describe('CompanyRegistration', () => {
     renderComponent();
     
     // Trigger validation error
-    const submitButton = screen.getByRole('button', { name: /register company/i });
-    await user.click(submitButton);
+    const form = document.querySelector('form');
+    if (form) {
+      fireEvent.submit(form);
+    }
     
-    expect(screen.getByText('Company name is required')).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByText('Company name is required')).toBeInTheDocument();
+    });
     
     // Start typing in company name field
     const companyNameInput = screen.getByLabelText(/company name/i);
@@ -333,10 +331,8 @@ describe('CompanyRegistration', () => {
 
   it('disables submit button when name is not available', async () => {
     const user = userEvent.setup();
-    mockFetch.mockResolvedValueOnce({
-      ok: true,
-      json: async () => ({ available: false })
-    });
+    const mockCheckNameAvailability = vi.mocked(registrationService.checkNameAvailability);
+    mockCheckNameAvailability.mockResolvedValueOnce({ available: false });
     
     renderComponent();
     
@@ -344,7 +340,7 @@ describe('CompanyRegistration', () => {
     await user.type(companyNameInput, 'Existing Company');
     
     await waitFor(() => {
-      expect(mockFetch).toHaveBeenCalled();
+      expect(mockCheckNameAvailability).toHaveBeenCalled();
     });
     
     const submitButton = screen.getByRole('button', { name: /register company/i });
@@ -358,10 +354,8 @@ describe('CompanyRegistration', () => {
     const user = userEvent.setup();
     
     // Mock name availability check
-    mockFetch.mockResolvedValueOnce({
-      ok: true,
-      json: async () => ({ available: true })
-    });
+    const mockCheckNameAvailability = vi.mocked(registrationService.checkNameAvailability);
+    mockCheckNameAvailability.mockResolvedValueOnce({ available: true });
     
     renderComponent();
     
@@ -657,8 +651,10 @@ describe('CompanyRegistration', () => {
       });
       
       // Try to submit form with invalid data (should trigger validation)
-      const submitButton = screen.getByRole('button', { name: /register company/i });
-      fireEvent.click(submitButton);
+      const form = document.querySelector('form');
+      if (form) {
+        fireEvent.submit(form);
+      }
       
       // File should still be selected
       expect(screen.getByText('constitution.pdf')).toBeInTheDocument();

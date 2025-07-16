@@ -152,7 +152,7 @@ export const CompanyRegistration: React.FC = () => {
     }
 
     if (formData.shareValue <= 0) {
-      newErrors.shareValue = 'Share value must be greater than 0';
+      newErrors.shareValue = 'Value per share must be greater than 0';
     }
 
     if (formData.shareCapital !== formData.numberOfShares * formData.shareValue) {
@@ -398,7 +398,7 @@ export const CompanyRegistration: React.FC = () => {
                     name="shareCapital"
                     value={formData.shareCapital}
                     onChange={handleInputChange}
-                    min="1"
+                    min="0"
                     step="0.01"
                     className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors ${
                       errors.shareCapital ? 'border-red-500' : 'border-gray-300'
@@ -420,7 +420,7 @@ export const CompanyRegistration: React.FC = () => {
                     name="numberOfShares"
                     value={formData.numberOfShares}
                     onChange={handleInputChange}
-                    min="1"
+                    min="0"
                     className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors ${
                       errors.numberOfShares ? 'border-red-500' : 'border-gray-300'
                     }`}
@@ -441,7 +441,7 @@ export const CompanyRegistration: React.FC = () => {
                     name="shareValue"
                     value={formData.shareValue}
                     onChange={handleInputChange}
-                    min="0.01"
+                    min="0"
                     step="0.01"
                     className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors ${
                       errors.shareValue ? 'border-red-500' : 'border-gray-300'
@@ -459,9 +459,9 @@ export const CompanyRegistration: React.FC = () => {
             <div className="pt-6">
               <button
                 type="submit"
-                disabled={isSubmitting || !nameAvailability.isAvailable}
+                disabled={isSubmitting || (nameAvailability.hasChecked && !nameAvailability.isAvailable)}
                 className={`w-full py-3 px-6 rounded-lg font-medium text-white transition-all duration-200 ${
-                  isSubmitting || !nameAvailability.isAvailable
+                  isSubmitting || (nameAvailability.hasChecked && !nameAvailability.isAvailable)
                     ? 'bg-gray-400 cursor-not-allowed'
                     : 'bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 shadow-lg hover:shadow-xl'
                 }`}
