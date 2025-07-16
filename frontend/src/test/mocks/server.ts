@@ -123,7 +123,7 @@ export const handlers = [
 
   // Create company
   http.post(`${API_BASE_URL}/v1/companies`, async ({ request }) => {
-    const company = await request.json();
+    const company = await request.json() as Record<string, any>;
     
     return HttpResponse.json({
       id: 3,
@@ -134,7 +134,7 @@ export const handlers = [
   // Update company
   http.put(`${API_BASE_URL}/v1/companies/:id`, async ({ params, request }) => {
     const { id } = params;
-    const updates = await request.json();
+    const updates = await request.json() as Record<string, any>;
     
     if (id === '1') {
       return HttpResponse.json({
