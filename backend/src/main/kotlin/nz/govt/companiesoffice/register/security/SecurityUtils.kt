@@ -5,11 +5,11 @@ import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.oauth2.jwt.Jwt
 
 object SecurityUtils {
-    
+
     fun getCurrentAuthentication(): Authentication? {
         return SecurityContextHolder.getContext().authentication
     }
-    
+
     fun getCurrentUserSubject(): String? {
         val authentication = getCurrentAuthentication()
         return when (val principal = authentication?.principal) {
@@ -17,7 +17,7 @@ object SecurityUtils {
             else -> null
         }
     }
-    
+
     fun getCurrentUserEmail(): String? {
         val authentication = getCurrentAuthentication()
         return when (val principal = authentication?.principal) {
@@ -25,7 +25,7 @@ object SecurityUtils {
             else -> null
         }
     }
-    
+
     fun getCurrentUserRoles(): List<UserRole> {
         val authentication = getCurrentAuthentication()
         return when (val principal = authentication?.principal) {
@@ -36,28 +36,28 @@ object SecurityUtils {
             else -> emptyList()
         }
     }
-    
+
     fun hasRole(role: UserRole): Boolean {
         return getCurrentUserRoles().contains(role)
     }
-    
+
     fun hasAnyRole(roles: List<UserRole>): Boolean {
         val userRoles = getCurrentUserRoles()
         return roles.any { userRoles.contains(it) }
     }
-    
+
     fun hasManagementAccess(): Boolean {
         return hasAnyRole(UserRole.getManagementRoles())
     }
-    
+
     fun hasInternalAccess(): Boolean {
         return hasAnyRole(UserRole.getInternalRoles())
     }
-    
+
     fun canAccessCompanyData(): Boolean {
         return hasInternalAccess() || hasRole(UserRole.PUBLIC)
     }
-    
+
     fun canModifyCompanyData(): Boolean {
         return hasManagementAccess()
     }

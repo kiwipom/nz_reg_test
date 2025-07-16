@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites name="vitest tests" tests="20" failures="0" errors="0" time="2.918773811">
+    <testsuite name="src/components/__tests__/CompanySearch.test.tsx" timestamp="2025-07-16T07:20:53.101Z" hostname="FMNZ-C02D5HB1ML7H.local" tests="20" failures="0" errors="0" skipped="0" time="2.918773811">
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Rendering &gt; should render search input with placeholder" time="0.033983245">
+        </testcase>
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Rendering &gt; should render search icon initially" time="0.046725026">
+        </testcase>
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Rendering &gt; should render with proper accessibility attributes" time="0.008108461">
+        </testcase>
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; User Interaction &gt; should update input value when user types" time="0.092315997">
+        </testcase>
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; User Interaction &gt; should show clear button when input has value" time="0.040737551">
+        </testcase>
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; User Interaction &gt; should clear input when clear button is clicked" time="0.067717601">
+        </testcase>
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; User Interaction &gt; should not show clear button when input is empty" time="0.002565136">
+        </testcase>
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Search Functionality &gt; should trigger search after debounce delay" time="0.363831229">
+        </testcase>
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Search Functionality &gt; should not trigger search for queries less than 2 characters" time="0.331798073">
+        </testcase>
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Search Functionality &gt; should clear search when input is empty" time="0.353510466">
+        </testcase>
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Search Functionality &gt; should show loading state during search" time="0.068820428">
+        </testcase>
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Search Results Display &gt; should display search results when available" time="0.031394986">
+        </testcase>
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Search Results Display &gt; should display singular result text for single result" time="0.003223175">
+        </testcase>
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Search Results Display &gt; should display company details correctly" time="0.004161662">
+        </testcase>
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Search Results Display &gt; should handle company selection click" time="0.016272895">
+        </testcase>
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Search Results Display &gt; should display different status styles" time="0.007056622">
+        </testcase>
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Error Handling &gt; should handle search errors gracefully" time="0.340766564">
+        </testcase>
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Error Handling &gt; should handle network errors" time="0.373264613">
+        </testcase>
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Performance &gt; should debounce search requests" time="0.373705707">
+        </testcase>
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Performance &gt; should cancel previous search when new search is triggered" time="0.351574608">
+        </testcase>
+    </testsuite>
+</testsuites>

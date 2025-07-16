@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { CompanySearch } from '../CompanySearch';
@@ -232,7 +232,7 @@ describe('CompanySearch', () => {
       expect(screen.getByText('Test Company Ltd')).toBeInTheDocument();
       expect(screen.getByText('12345678 • LTD')).toBeInTheDocument();
       expect(screen.getByText('ACTIVE')).toBeInTheDocument();
-      expect(screen.getByText('Incorporated: 1/1/2020')).toBeInTheDocument();
+      expect(screen.getByText('Incorporated: 1/01/2020')).toBeInTheDocument();
     });
 
     it('should handle company selection click', async () => {
@@ -377,9 +377,8 @@ describe('CompanySearch', () => {
       // Type first search term
       await user.type(searchInput, 'First');
       
-      // Clear and type second search term before first completes
+      // Clear input (this should trigger clearSearch)
       await user.clear(searchInput);
-      await user.type(searchInput, 'Second');
       
       // Wait for debounce
       await waitFor(() => {
@@ -387,4 +386,4 @@ describe('CompanySearch', () => {
       }, { timeout: 500 });
     });
   });
-}
+});

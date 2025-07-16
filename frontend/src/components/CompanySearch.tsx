@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Search, Loader2 } from 'lucide-react';
 import { useCompanyStore } from '../stores/useCompanyStore';
 import { companyService } from '../services/companyService';
@@ -16,19 +16,7 @@ export const CompanySearch: React.FC = () => {
     setError
   } = useCompanyStore();
 
-  useEffect(() => {
-    const delayedSearch = setTimeout(() => {
-      if (inputValue.trim()) {
-        performSearch(inputValue.trim());
-      } else {
-        clearSearch();
-      }
-    }, 300);
-
-    return () => clearTimeout(delayedSearch);
-  }, [inputValue]);
-
-  const performSearch = async (query: string) => {
+  const performSearch = useCallback(async (query: string) => {
     if (query.length < 2) {
       clearSearch();
       return;
@@ -47,7 +35,19 @@ export const CompanySearch: React.FC = () => {
     } finally {
       setIsSearching(false);
     }
-  };
+  }, [setSearchQuery, setSearchResults, setError, clearSearch]);
+
+  useEffect(() => {
+    const delayedSearch = setTimeout(() => {
+      if (inputValue.trim()) {
+        performSearch(inputValue.trim());
+      } else {
+        clearSearch();
+      }
+    }, 300);
+
+    return () => clearTimeout(delayedSearch);
+  }, [inputValue, performSearch, clearSearch]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);

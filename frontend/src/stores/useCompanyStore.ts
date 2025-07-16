@@ -34,7 +34,7 @@ interface CompanyState {
 
 export const useCompanyStore = create<CompanyState>()(
   devtools(
-    (set, get) => ({
+    (set) => ({
       companies: [],
       selectedCompany: null,
       loading: false,

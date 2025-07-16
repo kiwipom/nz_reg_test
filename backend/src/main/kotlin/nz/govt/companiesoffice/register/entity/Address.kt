@@ -1,6 +1,16 @@
 package nz.govt.companiesoffice.register.entity
 
-import jakarta.persistence.*
+import jakarta.persistence.Column
+import jakarta.persistence.Entity
+import jakarta.persistence.EnumType
+import jakarta.persistence.Enumerated
+import jakarta.persistence.FetchType
+import jakarta.persistence.GeneratedValue
+import jakarta.persistence.GenerationType
+import jakarta.persistence.Id
+import jakarta.persistence.JoinColumn
+import jakarta.persistence.ManyToOne
+import jakarta.persistence.Table
 import java.time.LocalDate
 import java.time.LocalDateTime
 
@@ -53,7 +63,7 @@ class Address(
     val createdAt: LocalDateTime = LocalDateTime.now(),
 
     @Column(name = "updated_at", nullable = false)
-    var updatedAt: LocalDateTime = LocalDateTime.now()
+    var updatedAt: LocalDateTime = LocalDateTime.now(),
 ) {
     fun isEffective(date: LocalDate = LocalDate.now()): Boolean {
         return date >= effectiveFrom && (effectiveTo == null || date <= effectiveTo)
@@ -66,18 +76,18 @@ class Address(
             city,
             region,
             postcode,
-            if (country != "NZ") country else null
+            if (country != "NZ") country else null,
         )
         return parts.joinToString(", ")
     }
 
     fun isSameAddress(other: Address): Boolean {
         return addressLine1 == other.addressLine1 &&
-               addressLine2 == other.addressLine2 &&
-               city == other.city &&
-               region == other.region &&
-               postcode == other.postcode &&
-               country == other.country
+            addressLine2 == other.addressLine2 &&
+            city == other.city &&
+            region == other.region &&
+            postcode == other.postcode &&
+            country == other.country
     }
 
     override fun equals(other: Any?): Boolean {

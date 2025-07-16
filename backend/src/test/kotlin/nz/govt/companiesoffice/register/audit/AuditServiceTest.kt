@@ -4,19 +4,16 @@ import io.mockk.every
 import io.mockk.mockk
 import io.mockk.mockkObject
 import io.mockk.unmockkObject
-import io.mockk.verify
+import jakarta.servlet.http.HttpServletRequest
 import nz.govt.companiesoffice.register.security.SecurityUtils
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
-import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.Test
 import org.slf4j.Logger
 import org.springframework.web.context.request.RequestContextHolder
 import org.springframework.web.context.request.ServletRequestAttributes
-import jakarta.servlet.http.HttpServletRequest
-import kotlin.test.assertEquals
-import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 
 class AuditServiceTest {
@@ -31,13 +28,13 @@ class AuditServiceTest {
         auditService = AuditService()
         mockkObject(SecurityUtils)
         mockkObject(RequestContextHolder)
-        
+
         // Mock request context
         every { RequestContextHolder.getRequestAttributes() } returns mockRequestAttributes
         every { mockRequestAttributes.request } returns mockRequest
         every { mockRequest.remoteAddr } returns "127.0.0.1"
         every { mockRequest.getHeader("User-Agent") } returns "Mozilla/5.0 Test Browser"
-        
+
         // Mock security context
         every { SecurityUtils.getCurrentUserSubject() } returns "auth0|user123"
         every { SecurityUtils.getCurrentUserEmail() } returns "user@example.com"
@@ -86,7 +83,7 @@ class AuditServiceTest {
                 resourceType = resourceType,
                 resourceId = resourceId,
                 success = false,
-                errorMessage = errorMessage
+                errorMessage = errorMessage,
             )
 
             // Then
@@ -165,7 +162,7 @@ class AuditServiceTest {
             val companyId = 123L
             val changes = mapOf(
                 "companyName" to "Updated Company Name",
-                "status" to "INACTIVE"
+                "status" to "INACTIVE",
             )
 
             // When
@@ -252,7 +249,7 @@ class AuditServiceTest {
         fun `createAuditEvent should create event with all required fields`() {
             // This would test the private createAuditEvent method
             // For now, we test through the public interface
-            
+
             // Given
             val action = AuditAction.CREATE
             val resourceType = "Company"
@@ -323,7 +320,7 @@ class AuditServiceTest {
             // Given
             val detailsWithNull = mapOf(
                 "validKey" to "validValue",
-                "nullKey" to null
+                "nullKey" to null,
             )
 
             // When & Then

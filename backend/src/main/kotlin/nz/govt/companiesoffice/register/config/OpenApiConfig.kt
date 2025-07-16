@@ -25,19 +25,19 @@ class OpenApiConfig {
                         Contact()
                             .name("Companies Office")
                             .url("https://companies.govt.nz")
-                            .email("info@companies.govt.nz")
+                            .email("info@companies.govt.nz"),
                     )
                     .license(
                         License()
                             .name("Crown Copyright")
-                            .url("https://www.govt.nz/about/copyright/")
-                    )
+                            .url("https://www.govt.nz/about/copyright/"),
+                    ),
             )
             .servers(
                 listOf(
                     Server().url("http://localhost:8080/api").description("Local development server"),
-                    Server().url("https://api.companies.govt.nz").description("Production server")
-                )
+                    Server().url("https://api.companies.govt.nz").description("Production server"),
+                ),
             )
             .addSecurityItem(SecurityRequirement().addList("Bearer Authentication"))
             .components(
@@ -48,8 +48,8 @@ class OpenApiConfig {
                             .type(SecurityScheme.Type.HTTP)
                             .scheme("bearer")
                             .bearerFormat("JWT")
-                            .description("JWT token obtained from authentication endpoint")
-                    )
+                            .description("JWT token obtained from authentication endpoint"),
+                    ),
             )
     }
 }

@@ -14,7 +14,7 @@ data class AuditEvent(
     val ipAddress: String?,
     val userAgent: String?,
     val success: Boolean = true,
-    val errorMessage: String? = null
+    val errorMessage: String? = null,
 )
 
 enum class AuditAction(val description: String) {
@@ -26,5 +26,5 @@ enum class AuditAction(val description: String) {
     LOGIN("User logged in"),
     LOGOUT("User logged out"),
     PERMISSION_DENIED("Permission denied"),
-    SYSTEM_ERROR("System error occurred");
+    SYSTEM_ERROR("System error occurred"),
 }

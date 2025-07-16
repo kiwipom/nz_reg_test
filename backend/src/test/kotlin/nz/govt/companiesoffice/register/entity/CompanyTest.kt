@@ -1,9 +1,8 @@
 package nz.govt.companiesoffice.register.entity
 
-import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.assertThrows
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
 import java.time.LocalDate
 
 class CompanyTest {
@@ -18,7 +17,7 @@ class CompanyTest {
             companyNumber = "12345678",
             companyName = "Test Company Ltd",
             companyType = CompanyType.LTD,
-            incorporationDate = LocalDate.of(2020, 1, 1)
+            incorporationDate = LocalDate.of(2020, 1, 1),
         )
 
         director = Director(
@@ -28,7 +27,7 @@ class CompanyTest {
             residentialCity = "Auckland",
             isNzResident = true,
             isAustralianResident = false,
-            appointedDate = LocalDate.of(2020, 1, 1)
+            appointedDate = LocalDate.of(2020, 1, 1),
         )
 
         address = Address(
@@ -36,7 +35,7 @@ class CompanyTest {
             addressType = AddressType.REGISTERED,
             addressLine1 = "456 Company Street",
             city = "Auckland",
-            effectiveFrom = LocalDate.of(2020, 1, 1)
+            effectiveFrom = LocalDate.of(2020, 1, 1),
         )
     }
 
@@ -53,7 +52,7 @@ class CompanyTest {
     @Test
     fun `should add director to company`() {
         company.addDirector(director)
-        
+
         assertThat(company.directors).hasSize(1)
         assertThat(company.directors[0]).isEqualTo(director)
         assertThat(director.company).isEqualTo(company)
@@ -62,7 +61,7 @@ class CompanyTest {
     @Test
     fun `should add address to company`() {
         company.addAddress(address)
-        
+
         assertThat(company.addresses).hasSize(1)
         assertThat(company.addresses[0]).isEqualTo(address)
         assertThat(address.company).isEqualTo(company)
@@ -74,14 +73,14 @@ class CompanyTest {
         val resignedDirector = director.copy(
             id = 2,
             fullName = "Jane Doe",
-            status = DirectorStatus.RESIGNED
+            status = DirectorStatus.RESIGNED,
         )
-        
+
         company.addDirector(activeDirector)
         company.addDirector(resignedDirector)
-        
+
         val activeDirectors = company.getActiveDirectors()
-        
+
         assertThat(activeDirectors).hasSize(1)
         assertThat(activeDirectors[0].status).isEqualTo(DirectorStatus.ACTIVE)
     }
@@ -93,21 +92,21 @@ class CompanyTest {
             id = 2,
             fullName = "Jane Doe",
             isNzResident = false,
-            isAustralianResident = true
+            isAustralianResident = true,
         )
         val nonResident = director.copy(
             id = 3,
             fullName = "Bob Smith",
             isNzResident = false,
-            isAustralianResident = false
+            isAustralianResident = false,
         )
-        
+
         company.addDirector(nzResident)
         company.addDirector(auResident)
         company.addDirector(nonResident)
-        
+
         val residentDirectors = company.getResidentDirectors()
-        
+
         assertThat(residentDirectors).hasSize(2)
         assertThat(residentDirectors.map { it.fullName })
             .containsExactlyInAnyOrder("John Doe", "Jane Doe")
@@ -117,33 +116,33 @@ class CompanyTest {
     fun `should get current address by type`() {
         val currentAddress = address.copy(
             effectiveFrom = LocalDate.now().minusDays(1),
-            effectiveTo = null
+            effectiveTo = null,
         )
         val expiredAddress = address.copy(
             id = 2,
             effectiveFrom = LocalDate.now().minusDays(10),
-            effectiveTo = LocalDate.now().minusDays(2)
+            effectiveTo = LocalDate.now().minusDays(2),
         )
-        
+
         company.addAddress(currentAddress)
         company.addAddress(expiredAddress)
-        
+
         val current = company.getCurrentAddress(AddressType.REGISTERED)
-        
+
         assertThat(current).isEqualTo(currentAddress)
     }
 
     @Test
     fun `should return null for non-existent address type`() {
         val current = company.getCurrentAddress(AddressType.SERVICE)
-        
+
         assertThat(current).isNull()
     }
 
     @Test
     fun `should check if company is active`() {
         assertThat(company.isActive()).isTrue()
-        
+
         company.status = "REMOVED"
         assertThat(company.isActive()).isFalse()
     }
@@ -155,23 +154,23 @@ class CompanyTest {
             companyNumber = "12345678",
             companyName = "Test Company Ltd",
             companyType = CompanyType.LTD,
-            incorporationDate = LocalDate.of(2020, 1, 1)
+            incorporationDate = LocalDate.of(2020, 1, 1),
         )
         val company2 = Company(
             id = 1,
             companyNumber = "87654321",
             companyName = "Other Company Ltd",
             companyType = CompanyType.OVERSEAS,
-            incorporationDate = LocalDate.of(2021, 1, 1)
+            incorporationDate = LocalDate.of(2021, 1, 1),
         )
         val company3 = Company(
             id = 2,
             companyNumber = "12345678",
             companyName = "Test Company Ltd",
             companyType = CompanyType.LTD,
-            incorporationDate = LocalDate.of(2020, 1, 1)
+            incorporationDate = LocalDate.of(2020, 1, 1),
         )
-        
+
         assertThat(company1).isEqualTo(company2) // Same ID
         assertThat(company1).isNotEqualTo(company3) // Different ID
         assertThat(company1.hashCode()).isEqualTo(company2.hashCode())
@@ -185,11 +184,11 @@ class CompanyTest {
             companyNumber = "12345678",
             companyName = "Test Company Ltd",
             companyType = CompanyType.LTD,
-            incorporationDate = LocalDate.of(2020, 1, 1)
+            incorporationDate = LocalDate.of(2020, 1, 1),
         )
-        
+
         val toString = company.toString()
-        
+
         assertThat(toString).contains("Company")
         assertThat(toString).contains("id=1")
         assertThat(toString).contains("companyNumber='12345678'")
@@ -202,14 +201,14 @@ class CompanyTest {
         assertThat(CompanyType.values()).containsExactly(
             CompanyType.LTD,
             CompanyType.OVERSEAS,
-            CompanyType.UNLIMITED
+            CompanyType.UNLIMITED,
         )
     }
 
     @Test
     fun `should handle nzbn field`() {
         assertThat(company.nzbn).isNull()
-        
+
         company.nzbn = "1234567890123"
         assertThat(company.nzbn).isEqualTo("1234567890123")
     }
@@ -217,7 +216,7 @@ class CompanyTest {
     @Test
     fun `should handle status changes`() {
         assertThat(company.status).isEqualTo("ACTIVE")
-        
+
         company.status = "REMOVED"
         assertThat(company.status).isEqualTo("REMOVED")
         assertThat(company.isActive()).isFalse()
@@ -226,7 +225,7 @@ class CompanyTest {
     @Test
     fun `should track version for optimistic locking`() {
         assertThat(company.version).isEqualTo(1)
-        
+
         company.version = 2
         assertThat(company.version).isEqualTo(2)
     }
@@ -237,9 +236,9 @@ class CompanyTest {
             companyNumber = "11111111",
             companyName = "New Company",
             companyType = CompanyType.LTD,
-            incorporationDate = LocalDate.now()
+            incorporationDate = LocalDate.now(),
         )
-        
+
         assertThat(newCompany.addresses).isEmpty()
         assertThat(newCompany.directors).isEmpty()
         assertThat(newCompany.shareholders).isEmpty()

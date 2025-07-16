@@ -16,7 +16,7 @@ class GlobalExceptionHandler {
             status = HttpStatus.NOT_FOUND.value(),
             error = "Resource Not Found",
             message = ex.message ?: "Resource not found",
-            path = ex.resource
+            path = ex.resourceType,
         )
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse)
     }
@@ -28,7 +28,7 @@ class GlobalExceptionHandler {
             status = HttpStatus.BAD_REQUEST.value(),
             error = "Validation Error",
             message = ex.message ?: "Validation failed",
-            path = ex.field
+            path = ex.field,
         )
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse)
     }
@@ -40,7 +40,7 @@ class GlobalExceptionHandler {
             status = HttpStatus.CONFLICT.value(),
             error = "Business Rule Violation",
             message = ex.message ?: "Business rule violation",
-            path = ex.context
+            path = ex.context,
         )
         return ResponseEntity.status(HttpStatus.CONFLICT).body(errorResponse)
     }
@@ -52,7 +52,7 @@ class GlobalExceptionHandler {
             status = HttpStatus.INTERNAL_SERVER_ERROR.value(),
             error = "Internal Server Error",
             message = "An unexpected error occurred",
-            path = null
+            path = null,
         )
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse)
     }
@@ -63,9 +63,9 @@ data class ErrorResponse(
     val status: Int,
     val error: String,
     val message: String,
-    val path: String?
+    val path: String?,
 )
 
-class ResourceNotFoundException(val resource: String, message: String) : RuntimeException(message)
+class ResourceNotFoundException(val resourceType: String, message: String) : RuntimeException(message)
 class ValidationException(val field: String, message: String) : RuntimeException(message)
 class BusinessException(val context: String, message: String) : RuntimeException(message)

@@ -1,6 +1,17 @@
 package nz.govt.companiesoffice.register.entity
 
-import jakarta.persistence.*
+import jakarta.persistence.CascadeType
+import jakarta.persistence.Column
+import jakarta.persistence.Entity
+import jakarta.persistence.EnumType
+import jakarta.persistence.Enumerated
+import jakarta.persistence.FetchType
+import jakarta.persistence.GeneratedValue
+import jakarta.persistence.GenerationType
+import jakarta.persistence.Id
+import jakarta.persistence.OneToMany
+import jakarta.persistence.Table
+import jakarta.persistence.Version
 import java.time.LocalDate
 import java.time.LocalDateTime
 
@@ -38,7 +49,7 @@ class Company(
 
     @Column(name = "version", nullable = false)
     @Version
-    var version: Int = 1
+    var version: Int = 1,
 ) {
     @OneToMany(mappedBy = "company", cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
     val addresses: MutableList<Address> = mutableListOf()
@@ -49,14 +60,8 @@ class Company(
     @OneToMany(mappedBy = "company", cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
     val shareholders: MutableList<Shareholder> = mutableListOf()
 
-    @OneToMany(mappedBy = "company", cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
-    val shareAllocations: MutableList<ShareAllocation> = mutableListOf()
-
-    @OneToMany(mappedBy = "company", cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
-    val annualReturns: MutableList<AnnualReturn> = mutableListOf()
-
-    @OneToMany(mappedBy = "company", cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
-    val documents: MutableList<Document> = mutableListOf()
+    // Note: Additional entities (shareAllocations, annualReturns, documents) 
+    // will be added in future phases
 
     fun addAddress(address: Address) {
         addresses.add(address)
@@ -82,9 +87,9 @@ class Company(
     }
 
     fun getCurrentAddress(addressType: AddressType): Address? {
-        return addresses.find { 
-            it.addressType == addressType && 
-            it.isEffective()
+        return addresses.find {
+            it.addressType == addressType &&
+                it.isEffective()
         }
     }
 

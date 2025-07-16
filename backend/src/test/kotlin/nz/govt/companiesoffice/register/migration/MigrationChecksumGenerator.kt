@@ -7,7 +7,7 @@ import java.security.MessageDigest
 /**
  * Helper class to generate checksums for migration files.
  * Run this to get the correct checksums for your approval tests.
- * 
+ *
  * Usage:
  * 1. Run this class as a main method
  * 2. Copy the generated checksums into your MigrationApprovalTest
@@ -22,43 +22,43 @@ object MigrationChecksumGenerator {
     fun main(args: Array<String>) {
         println("🔍 Generating checksums for migration files...")
         println("=" * 60)
-        
+
         try {
             val migrationFiles = getAllMigrationFiles().sorted()
-            
+
             if (migrationFiles.isEmpty()) {
                 println("⚠️  No migration files found!")
                 return
             }
-            
+
             println("Found ${migrationFiles.size} migration files:")
             println()
-            
+
             migrationFiles.forEach { migrationFile ->
                 val checksum = calculateMigrationChecksum(migrationFile)
                 val content = getMigrationContent(migrationFile)
                 val lineCount = content.lines().size
-                
+
                 println("📄 Migration: $migrationFile")
                 println("   Checksum: $checksum")
                 println("   Lines: $lineCount")
                 println("   Size: ${content.length} characters")
                 println()
             }
-            
+
             println("=" * 60)
             println("📝 Copy these checksums into your MigrationApprovalTest:")
             println()
-            
+
             migrationFiles.forEach { migrationFile ->
                 val checksum = calculateMigrationChecksum(migrationFile)
                 val testMethodName = migrationFile.replace(".", "_").replace("-", "_")
-                
+
                 println("// Expected checksum for $migrationFile")
                 println("val expectedChecksum = \"$checksum\"")
                 println()
             }
-            
+
             println("=" * 60)
             println("⚠️  IMPORTANT REMINDERS:")
             println("- These checksums should NEVER change once deployed")
@@ -66,7 +66,6 @@ object MigrationChecksumGenerator {
             println("- Only update checksums during development before first deployment")
             println("- Always review migration changes with the team")
             println("=" * 60)
-            
         } catch (e: Exception) {
             println("❌ Error generating checksums: ${e.message}")
             e.printStackTrace()

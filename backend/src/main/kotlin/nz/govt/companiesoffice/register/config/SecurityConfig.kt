@@ -43,13 +43,11 @@ class SecurityConfig {
                     .requestMatchers("/api/v1/companies/number/*/public").permitAll()
                     .requestMatchers("/api/v1/companies/check-name").permitAll()
                     .requestMatchers("/api/v1/companies/check-number").permitAll()
-                    
                     // Protected endpoints
                     .requestMatchers("/api/v1/companies/**").authenticated()
                     .requestMatchers("/api/v1/directors/**").authenticated()
                     .requestMatchers("/api/v1/shareholders/**").authenticated()
                     .requestMatchers("/api/v1/admin/**").hasRole("ADMIN")
-                    
                     .anyRequest().authenticated()
             }
             .oauth2ResourceServer { oauth2 ->
@@ -72,11 +70,11 @@ class SecurityConfig {
     fun jwtAuthenticationConverter(): JwtAuthenticationConverter {
         val converter = JwtAuthenticationConverter()
         val authoritiesConverter = JwtGrantedAuthoritiesConverter()
-        
+
         // Configure to extract roles from custom claim
         authoritiesConverter.setAuthoritiesClaimName("https://api.companies-register.govt.nz/roles")
         authoritiesConverter.setAuthorityPrefix("ROLE_")
-        
+
         converter.setJwtGrantedAuthoritiesConverter(authoritiesConverter)
         return converter
     }
@@ -89,7 +87,7 @@ class SecurityConfig {
         configuration.allowedHeaders = listOf("*")
         configuration.allowCredentials = true
         configuration.exposedHeaders = listOf("Authorization")
-        
+
         val source = UrlBasedCorsConfigurationSource()
         source.registerCorsConfiguration("/**", configuration)
         return source

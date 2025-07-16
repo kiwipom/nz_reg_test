@@ -1,20 +1,28 @@
 package nz.govt.companiesoffice.register.controller
 
+import io.swagger.v3.oas.annotations.Operation
+import io.swagger.v3.oas.annotations.security.SecurityRequirement
+import io.swagger.v3.oas.annotations.tags.Tag
 import nz.govt.companiesoffice.register.entity.Company
 import nz.govt.companiesoffice.register.service.CompanyService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.security.access.prepost.PreAuthorize
-import org.springframework.web.bind.annotation.*
-import io.swagger.v3.oas.annotations.Operation
-import io.swagger.v3.oas.annotations.tags.Tag
-import io.swagger.v3.oas.annotations.security.SecurityRequirement
+import org.springframework.web.bind.annotation.DeleteMapping
+import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.PutMapping
+import org.springframework.web.bind.annotation.RequestBody
+import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestParam
+import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/api/v1/companies")
 @Tag(name = "Companies", description = "Company management operations")
 class CompanyController(
-    private val companyService: CompanyService
+    private val companyService: CompanyService,
 ) {
 
     @GetMapping("/{id}")
@@ -49,7 +57,7 @@ class CompanyController(
     @PreAuthorize("hasRole('ADMIN') or hasRole('REGISTRAR')")
     @Operation(
         summary = "Create new company",
-        security = [SecurityRequirement(name = "Bearer Authentication")]
+        security = [SecurityRequirement(name = "Bearer Authentication")],
     )
     fun createCompany(@RequestBody company: Company): ResponseEntity<Company> {
         val createdCompany = companyService.createCompany(company)
@@ -60,11 +68,11 @@ class CompanyController(
     @PreAuthorize("hasRole('ADMIN') or hasRole('REGISTRAR')")
     @Operation(
         summary = "Update company",
-        security = [SecurityRequirement(name = "Bearer Authentication")]
+        security = [SecurityRequirement(name = "Bearer Authentication")],
     )
     fun updateCompany(
         @PathVariable id: Long,
-        @RequestBody company: Company
+        @RequestBody company: Company,
     ): ResponseEntity<Company> {
         val updatedCompany = companyService.updateCompany(id, company)
         return ResponseEntity.ok(updatedCompany)
@@ -74,7 +82,7 @@ class CompanyController(
     @PreAuthorize("hasRole('ADMIN')")
     @Operation(
         summary = "Delete company",
-        security = [SecurityRequirement(name = "Bearer Authentication")]
+        security = [SecurityRequirement(name = "Bearer Authentication")],
     )
     fun deleteCompany(@PathVariable id: Long): ResponseEntity<Void> {
         companyService.deleteCompany(id)

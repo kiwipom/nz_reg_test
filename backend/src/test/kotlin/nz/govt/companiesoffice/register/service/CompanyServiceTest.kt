@@ -1,20 +1,19 @@
 package nz.govt.companiesoffice.register.service
 
 import io.mockk.every
+import io.mockk.justRun
 import io.mockk.mockk
 import io.mockk.verify
-import io.mockk.slot
-import io.mockk.justRun
 import nz.govt.companiesoffice.register.audit.AuditService
 import nz.govt.companiesoffice.register.entity.Company
 import nz.govt.companiesoffice.register.entity.CompanyType
 import nz.govt.companiesoffice.register.exception.ResourceNotFoundException
 import nz.govt.companiesoffice.register.exception.ValidationException
 import nz.govt.companiesoffice.register.repository.CompanyRepository
-import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.springframework.boot.test.context.SpringBootTest
 import java.time.LocalDate
@@ -36,7 +35,7 @@ class CompanyServiceTest {
     @BeforeEach
     fun setUp() {
         companyService = CompanyService(companyRepository, auditService)
-        
+
         testCompany = Company(
             id = 1L,
             companyNumber = "12345678",
@@ -44,9 +43,9 @@ class CompanyServiceTest {
             companyType = CompanyType.LTD,
             incorporationDate = LocalDate.of(2020, 1, 1),
             nzbn = "9429000000000",
-            status = "ACTIVE"
+            status = "ACTIVE",
         )
-        
+
         testCompanyList = listOf(
             testCompany,
             Company(
@@ -56,8 +55,8 @@ class CompanyServiceTest {
                 companyType = CompanyType.LTD,
                 incorporationDate = LocalDate.of(2021, 1, 1),
                 nzbn = "9429000000001",
-                status = "ACTIVE"
-            )
+                status = "ACTIVE",
+            ),
         )
     }
 
@@ -71,7 +70,7 @@ class CompanyServiceTest {
             // Given
             val newCompany = testCompany.copy(id = null)
             val savedCompany = testCompany.copy()
-            
+
             every { companyRepository.existsByCompanyNameIgnoreCase(newCompany.companyName) } returns false
             every { companyRepository.existsByCompanyNumber(newCompany.companyNumber) } returns false
             every { companyRepository.save(newCompany) } returns savedCompany
@@ -99,7 +98,7 @@ class CompanyServiceTest {
             val exception = assertThrows<ValidationException> {
                 companyService.createCompany(newCompany)
             }
-            
+
             assertEquals("companyName", exception.field)
             assertEquals("Company name already exists", exception.message)
             verify { companyRepository.existsByCompanyNameIgnoreCase(newCompany.companyName) }
@@ -118,7 +117,7 @@ class CompanyServiceTest {
             val exception = assertThrows<ValidationException> {
                 companyService.createCompany(newCompany)
             }
-            
+
             assertEquals("companyNumber", exception.field)
             assertEquals("Company number already exists", exception.message)
             verify { companyRepository.existsByCompanyNameIgnoreCase(newCompany.companyName) }
@@ -159,7 +158,7 @@ class CompanyServiceTest {
             val exception = assertThrows<ResourceNotFoundException> {
                 companyService.getCompanyById(companyId)
             }
-            
+
             assertEquals("company", exception.resourceType)
             assertTrue(exception.message!!.contains("Company not found with id: $companyId"))
             verify { companyRepository.findById(companyId) }
@@ -192,7 +191,7 @@ class CompanyServiceTest {
             val exception = assertThrows<ResourceNotFoundException> {
                 companyService.getCompanyByNumber(companyNumber)
             }
-            
+
             assertEquals("company", exception.resourceType)
             assertTrue(exception.message!!.contains("Company not found with number: $companyNumber"))
             verify { companyRepository.findByCompanyNumber(companyNumber) }
@@ -283,14 +282,14 @@ class CompanyServiceTest {
             val updatedData = testCompany.copy(
                 companyName = "Updated Company Name",
                 nzbn = "9429000000002",
-                status = "INACTIVE"
+                status = "INACTIVE",
             )
             val savedCompany = existingCompany.copy(
                 companyName = updatedData.companyName,
                 nzbn = updatedData.nzbn,
-                status = updatedData.status
+                status = updatedData.status,
             )
-            
+
             every { companyRepository.findById(companyId) } returns Optional.of(existingCompany)
             every { companyRepository.save(existingCompany) } returns savedCompany
             justRun { auditService.logCompanyAccess(companyId) }
@@ -320,7 +319,7 @@ class CompanyServiceTest {
             val exception = assertThrows<ResourceNotFoundException> {
                 companyService.updateCompany(companyId, updatedData)
             }
-            
+
             assertEquals("company", exception.resourceType)
             assertTrue(exception.message!!.contains("Company not found with id: $companyId"))
             verify { companyRepository.findById(companyId) }
@@ -361,7 +360,7 @@ class CompanyServiceTest {
             val exception = assertThrows<ResourceNotFoundException> {
                 companyService.deleteCompany(companyId)
             }
-            
+
             assertEquals("company", exception.resourceType)
             assertTrue(exception.message!!.contains("Company not found with id: $companyId"))
             verify { companyRepository.findById(companyId) }

@@ -2,26 +2,29 @@ package nz.govt.companiesoffice.register.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.mockk.every
-import io.mockk.mockk
 import io.mockk.verify
 import nz.govt.companiesoffice.register.entity.Company
 import nz.govt.companiesoffice.register.entity.CompanyType
 import nz.govt.companiesoffice.register.exception.ResourceNotFoundException
 import nz.govt.companiesoffice.register.exception.ValidationException
 import nz.govt.companiesoffice.register.service.CompanyService
-import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
+import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.http.MediaType
-import org.springframework.security.test.context.support.WithMockUser
 import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.jwt
 import org.springframework.test.web.servlet.MockMvc
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers.*
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers.content
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 import java.time.LocalDate
 
 @WebMvcTest(CompanyController::class)
@@ -48,7 +51,7 @@ class CompanyControllerTest {
             companyType = CompanyType.LTD,
             incorporationDate = LocalDate.of(2020, 1, 1),
             nzbn = "9429000000000",
-            status = "ACTIVE"
+            status = "ACTIVE",
         )
 
         testCompanyList = listOf(
@@ -60,8 +63,8 @@ class CompanyControllerTest {
                 companyType = CompanyType.LTD,
                 incorporationDate = LocalDate.of(2021, 1, 1),
                 nzbn = "9429000000001",
-                status = "ACTIVE"
-            )
+                status = "ACTIVE",
+            ),
         )
     }
 
@@ -79,7 +82,7 @@ class CompanyControllerTest {
             // When & Then
             mockMvc.perform(
                 get("/api/v1/companies/search")
-                    .param("query", query)
+                    .param("query", query),
             )
                 .andExpect(status().isOk)
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -100,7 +103,7 @@ class CompanyControllerTest {
             // When & Then
             mockMvc.perform(
                 get("/api/v1/companies/check-name")
-                    .param("name", companyName)
+                    .param("name", companyName),
             )
                 .andExpect(status().isOk)
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -119,7 +122,7 @@ class CompanyControllerTest {
             // When & Then
             mockMvc.perform(
                 get("/api/v1/companies/check-number")
-                    .param("number", companyNumber)
+                    .param("number", companyNumber),
             )
                 .andExpect(status().isOk)
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -138,7 +141,7 @@ class CompanyControllerTest {
             // When & Then
             mockMvc.perform(
                 get("/api/v1/companies/search")
-                    .param("query", query)
+                    .param("query", query),
             )
                 .andExpect(status().isOk)
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -170,7 +173,7 @@ class CompanyControllerTest {
             // When & Then
             mockMvc.perform(
                 get("/api/v1/companies/$companyId")
-                    .with(jwt().jwt { it.subject("auth0|user123") })
+                    .with(jwt().jwt { it.subject("auth0|user123") }),
             )
                 .andExpect(status().isOk)
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -186,12 +189,14 @@ class CompanyControllerTest {
         fun `GET company by ID should handle not found`() {
             // Given
             val companyId = 999L
-            every { companyService.getCompanyById(companyId) } throws ResourceNotFoundException("company", "Company not found")
+            every { companyService.getCompanyById(companyId) } throws ResourceNotFoundException(
+                "company", "Company not found",
+            )
 
             // When & Then
             mockMvc.perform(
                 get("/api/v1/companies/$companyId")
-                    .with(jwt().jwt { it.subject("auth0|user123") })
+                    .with(jwt().jwt { it.subject("auth0|user123") }),
             )
                 .andExpect(status().isNotFound)
 
@@ -208,7 +213,7 @@ class CompanyControllerTest {
             // When & Then
             mockMvc.perform(
                 get("/api/v1/companies/number/$companyNumber")
-                    .with(jwt().jwt { it.subject("auth0|user123") })
+                    .with(jwt().jwt { it.subject("auth0|user123") }),
             )
                 .andExpect(status().isOk)
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -226,7 +231,7 @@ class CompanyControllerTest {
             // When & Then
             mockMvc.perform(
                 get("/api/v1/companies")
-                    .with(jwt().jwt { it.subject("auth0|user123") })
+                    .with(jwt().jwt { it.subject("auth0|user123") }),
             )
                 .andExpect(status().isOk)
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -251,10 +256,12 @@ class CompanyControllerTest {
             // When & Then
             mockMvc.perform(
                 post("/api/v1/companies")
-                    .with(jwt().jwt { it.subject("auth0|admin123") }
-                        .authorities(listOf("ROLE_ADMIN")))
+                    .with(
+                        jwt().jwt { it.subject("auth0|admin123") }
+                            .authorities(listOf("ROLE_ADMIN")),
+                    )
                     .contentType(MediaType.APPLICATION_JSON)
-                    .content(objectMapper.writeValueAsString(newCompany))
+                    .content(objectMapper.writeValueAsString(newCompany)),
             )
                 .andExpect(status().isCreated)
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -275,10 +282,12 @@ class CompanyControllerTest {
             // When & Then
             mockMvc.perform(
                 post("/api/v1/companies")
-                    .with(jwt().jwt { it.subject("auth0|registrar123") }
-                        .authorities(listOf("ROLE_REGISTRAR")))
+                    .with(
+                        jwt().jwt { it.subject("auth0|registrar123") }
+                            .authorities(listOf("ROLE_REGISTRAR")),
+                    )
                     .contentType(MediaType.APPLICATION_JSON)
-                    .content(objectMapper.writeValueAsString(newCompany))
+                    .content(objectMapper.writeValueAsString(newCompany)),
             )
                 .andExpect(status().isCreated)
 
@@ -294,10 +303,12 @@ class CompanyControllerTest {
             // When & Then
             mockMvc.perform(
                 post("/api/v1/companies")
-                    .with(jwt().jwt { it.subject("auth0|public123") }
-                        .authorities(listOf("ROLE_PUBLIC")))
+                    .with(
+                        jwt().jwt { it.subject("auth0|public123") }
+                            .authorities(listOf("ROLE_PUBLIC")),
+                    )
                     .contentType(MediaType.APPLICATION_JSON)
-                    .content(objectMapper.writeValueAsString(newCompany))
+                    .content(objectMapper.writeValueAsString(newCompany)),
             )
                 .andExpect(status().isForbidden)
 
@@ -315,10 +326,12 @@ class CompanyControllerTest {
             // When & Then
             mockMvc.perform(
                 put("/api/v1/companies/$companyId")
-                    .with(jwt().jwt { it.subject("auth0|admin123") }
-                        .authorities(listOf("ROLE_ADMIN")))
+                    .with(
+                        jwt().jwt { it.subject("auth0|admin123") }
+                            .authorities(listOf("ROLE_ADMIN")),
+                    )
                     .contentType(MediaType.APPLICATION_JSON)
-                    .content(objectMapper.writeValueAsString(updatedCompany))
+                    .content(objectMapper.writeValueAsString(updatedCompany)),
             )
                 .andExpect(status().isOk)
                 .andExpect(jsonPath("$.companyName").value("Updated Company"))
@@ -337,10 +350,12 @@ class CompanyControllerTest {
             // When & Then
             mockMvc.perform(
                 put("/api/v1/companies/$companyId")
-                    .with(jwt().jwt { it.subject("auth0|registrar123") }
-                        .authorities(listOf("ROLE_REGISTRAR")))
+                    .with(
+                        jwt().jwt { it.subject("auth0|registrar123") }
+                            .authorities(listOf("ROLE_REGISTRAR")),
+                    )
                     .contentType(MediaType.APPLICATION_JSON)
-                    .content(objectMapper.writeValueAsString(updatedCompany))
+                    .content(objectMapper.writeValueAsString(updatedCompany)),
             )
                 .andExpect(status().isOk)
 
@@ -357,10 +372,12 @@ class CompanyControllerTest {
             // When & Then
             mockMvc.perform(
                 put("/api/v1/companies/$companyId")
-                    .with(jwt().jwt { it.subject("auth0|internal123") }
-                        .authorities(listOf("ROLE_INTERNAL_OPS")))
+                    .with(
+                        jwt().jwt { it.subject("auth0|internal123") }
+                            .authorities(listOf("ROLE_INTERNAL_OPS")),
+                    )
                     .contentType(MediaType.APPLICATION_JSON)
-                    .content(objectMapper.writeValueAsString(updatedCompany))
+                    .content(objectMapper.writeValueAsString(updatedCompany)),
             )
                 .andExpect(status().isForbidden)
 
@@ -377,8 +394,10 @@ class CompanyControllerTest {
             // When & Then
             mockMvc.perform(
                 delete("/api/v1/companies/$companyId")
-                    .with(jwt().jwt { it.subject("auth0|admin123") }
-                        .authorities(listOf("ROLE_ADMIN")))
+                    .with(
+                        jwt().jwt { it.subject("auth0|admin123") }
+                            .authorities(listOf("ROLE_ADMIN")),
+                    ),
             )
                 .andExpect(status().isNoContent)
 
@@ -394,8 +413,10 @@ class CompanyControllerTest {
             // When & Then
             mockMvc.perform(
                 delete("/api/v1/companies/$companyId")
-                    .with(jwt().jwt { it.subject("auth0|registrar123") }
-                        .authorities(listOf("ROLE_REGISTRAR")))
+                    .with(
+                        jwt().jwt { it.subject("auth0|registrar123") }
+                            .authorities(listOf("ROLE_REGISTRAR")),
+                    ),
             )
                 .andExpect(status().isForbidden)
 
@@ -412,15 +433,19 @@ class CompanyControllerTest {
         fun `POST company should handle validation errors`() {
             // Given
             val invalidCompany = testCompany.copy(id = null)
-            every { companyService.createCompany(any()) } throws ValidationException("companyName", "Company name already exists")
+            every { companyService.createCompany(any()) } throws ValidationException(
+                "companyName", "Company name already exists",
+            )
 
             // When & Then
             mockMvc.perform(
                 post("/api/v1/companies")
-                    .with(jwt().jwt { it.subject("auth0|admin123") }
-                        .authorities(listOf("ROLE_ADMIN")))
+                    .with(
+                        jwt().jwt { it.subject("auth0|admin123") }
+                            .authorities(listOf("ROLE_ADMIN")),
+                    )
                     .contentType(MediaType.APPLICATION_JSON)
-                    .content(objectMapper.writeValueAsString(invalidCompany))
+                    .content(objectMapper.writeValueAsString(invalidCompany)),
             )
                 .andExpect(status().isBadRequest)
 
@@ -433,10 +458,12 @@ class CompanyControllerTest {
             // When & Then
             mockMvc.perform(
                 post("/api/v1/companies")
-                    .with(jwt().jwt { it.subject("auth0|admin123") }
-                        .authorities(listOf("ROLE_ADMIN")))
+                    .with(
+                        jwt().jwt { it.subject("auth0|admin123") }
+                            .authorities(listOf("ROLE_ADMIN")),
+                    )
                     .contentType(MediaType.APPLICATION_JSON)
-                    .content("invalid json")
+                    .content("invalid json"),
             )
                 .andExpect(status().isBadRequest)
 
@@ -452,10 +479,12 @@ class CompanyControllerTest {
             // When & Then
             mockMvc.perform(
                 post("/api/v1/companies")
-                    .with(jwt().jwt { it.subject("auth0|admin123") }
-                        .authorities(listOf("ROLE_ADMIN")))
+                    .with(
+                        jwt().jwt { it.subject("auth0|admin123") }
+                            .authorities(listOf("ROLE_ADMIN")),
+                    )
                     .contentType(MediaType.APPLICATION_JSON)
-                    .content(objectMapper.writeValueAsString(incompleteCompany))
+                    .content(objectMapper.writeValueAsString(incompleteCompany)),
             )
                 .andExpect(status().isBadRequest)
 
@@ -477,7 +506,7 @@ class CompanyControllerTest {
             // When & Then
             mockMvc.perform(
                 get("/api/v1/companies/$companyId")
-                    .with(jwt().jwt { it.subject("auth0|user123") })
+                    .with(jwt().jwt { it.subject("auth0|user123") }),
             )
                 .andExpect(status().isInternalServerError)
 
@@ -490,7 +519,7 @@ class CompanyControllerTest {
             // When & Then
             mockMvc.perform(
                 get("/api/v1/companies/invalid-id")
-                    .with(jwt().jwt { it.subject("auth0|user123") })
+                    .with(jwt().jwt { it.subject("auth0|user123") }),
             )
                 .andExpect(status().isBadRequest)
 
@@ -502,7 +531,7 @@ class CompanyControllerTest {
         fun `GET search should handle missing query parameter`() {
             // When & Then
             mockMvc.perform(
-                get("/api/v1/companies/search")
+                get("/api/v1/companies/search"),
                 // Missing query parameter
             )
                 .andExpect(status().isBadRequest)

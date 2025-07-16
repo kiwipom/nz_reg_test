@@ -10,16 +10,16 @@ import java.util.UUID
 
 @Service
 class AuditService {
-    
+
     private val logger: Logger = LoggerFactory.getLogger(AuditService::class.java)
-    
+
     fun logEvent(
         action: AuditAction,
         resourceType: String,
         resourceId: String? = null,
         details: Map<String, Any?> = emptyMap(),
         success: Boolean = true,
-        errorMessage: String? = null
+        errorMessage: String? = null,
     ) {
         val event = createAuditEvent(
             action = action,
@@ -27,22 +27,22 @@ class AuditService {
             resourceId = resourceId,
             details = details,
             success = success,
-            errorMessage = errorMessage
+            errorMessage = errorMessage,
         )
-        
+
         persistAuditEvent(event)
     }
-    
+
     private fun createAuditEvent(
         action: AuditAction,
         resourceType: String,
         resourceId: String?,
         details: Map<String, Any?>,
         success: Boolean,
-        errorMessage: String?
+        errorMessage: String?,
     ): AuditEvent {
         val request = (RequestContextHolder.getRequestAttributes() as? ServletRequestAttributes)?.request
-        
+
         return AuditEvent(
             id = UUID.randomUUID().toString(),
             userId = SecurityUtils.getCurrentUserSubject(),
@@ -54,10 +54,10 @@ class AuditService {
             ipAddress = request?.remoteAddr,
             userAgent = request?.getHeader("User-Agent"),
             success = success,
-            errorMessage = errorMessage
+            errorMessage = errorMessage,
         )
     }
-    
+
     private fun persistAuditEvent(event: AuditEvent) {
         // For now, just log to application logs
         // In production, this should be persisted to a database or audit system
@@ -69,7 +69,7 @@ class AuditService {
                 event.resourceId ?: "N/A",
                 event.action.description,
                 event.userEmail ?: "anonymous",
-                event.userId ?: "unknown"
+                event.userId ?: "unknown",
             )
             false -> logger.warn(
                 "AUDIT: FAILED {} - {} {} {} by user {} ({}) - Error: {}",
@@ -79,51 +79,51 @@ class AuditService {
                 event.action.description,
                 event.userEmail ?: "anonymous",
                 event.userId ?: "unknown",
-                event.errorMessage ?: "Unknown error"
+                event.errorMessage ?: "Unknown error",
             )
         }
-        
+
         // TODO: Implement database persistence
         // auditRepository.save(event)
     }
-    
+
     fun logCompanyAccess(companyId: Long) {
         logEvent(
             action = AuditAction.READ,
             resourceType = "Company",
-            resourceId = companyId.toString()
+            resourceId = companyId.toString(),
         )
     }
-    
+
     fun logCompanyCreation(companyId: Long, companyName: String) {
         logEvent(
             action = AuditAction.CREATE,
             resourceType = "Company",
             resourceId = companyId.toString(),
-            details = mapOf("companyName" to companyName)
+            details = mapOf("companyName" to companyName),
         )
     }
-    
+
     fun logCompanyUpdate(companyId: Long, changes: Map<String, Any?>) {
         logEvent(
             action = AuditAction.UPDATE,
             resourceType = "Company",
             resourceId = companyId.toString(),
-            details = changes
+            details = changes,
         )
     }
-    
+
     fun logCompanySearch(query: String, resultCount: Int) {
         logEvent(
             action = AuditAction.SEARCH,
             resourceType = "Company",
             details = mapOf(
                 "query" to query,
-                "resultCount" to resultCount
-            )
+                "resultCount" to resultCount,
+            ),
         )
     }
-    
+
     fun logPermissionDenied(action: String, resourceType: String, resourceId: String? = null) {
         logEvent(
             action = AuditAction.PERMISSION_DENIED,
@@ -131,7 +131,7 @@ class AuditService {
             resourceId = resourceId,
             details = mapOf("attemptedAction" to action),
             success = false,
-            errorMessage = "Insufficient permissions"
+            errorMessage = "Insufficient permissions",
         )
     }
 }

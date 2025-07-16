@@ -36,35 +36,35 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springframework.boot:spring-boot-starter-cache")
-    
+
     // Database
     implementation("org.postgresql:postgresql")
     implementation("org.flywaydb:flyway-core")
-    
+
     // Kotlin
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
-    
+
     // AWS SDK
     implementation("software.amazon.awssdk:s3:2.21.29")
     implementation("software.amazon.awssdk:dynamodb:2.21.29")
     implementation("software.amazon.awssdk:sns:2.21.29")
     implementation("software.amazon.awssdk:sqs:2.21.29")
-    
+
     // Documentation
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0")
-    
+
     // Monitoring
     implementation("io.micrometer:micrometer-tracing-bridge-otel")
     implementation("io.opentelemetry:opentelemetry-exporter-jaeger")
     implementation("io.micrometer:micrometer-registry-prometheus")
-    
+
     // Development tools
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
-    
+
     // Testing
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.security:spring-security-test")
@@ -72,6 +72,7 @@ dependencies {
     testImplementation("org.testcontainers:postgresql")
     testImplementation("io.mockk:mockk:1.13.8")
     testImplementation("com.ninja-squad:springmockk:4.0.2")
+    testImplementation("org.jetbrains.kotlin:kotlin-test")
 }
 
 tasks.withType<KotlinCompile> {

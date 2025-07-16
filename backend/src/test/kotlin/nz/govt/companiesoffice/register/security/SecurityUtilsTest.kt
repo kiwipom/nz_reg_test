@@ -4,11 +4,11 @@ import io.mockk.every
 import io.mockk.mockk
 import io.mockk.mockkObject
 import io.mockk.unmockkObject
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
-import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.Test
 import org.springframework.security.core.Authentication
 import org.springframework.security.core.context.SecurityContext
 import org.springframework.security.core.context.SecurityContextHolder
@@ -200,7 +200,9 @@ class SecurityUtilsTest {
             val rolesWithInvalid = listOf("ADMIN", "INVALID_ROLE", "REGISTRAR")
             every { mockSecurityContext.authentication } returns mockAuthentication
             every { mockAuthentication.principal } returns mockJwt
-            every { mockJwt.getClaimAsStringList("https://api.companies-register.govt.nz/roles") } returns rolesWithInvalid
+            every {
+                mockJwt.getClaimAsStringList("https://api.companies-register.govt.nz/roles")
+            } returns rolesWithInvalid
 
             // When
             val result = SecurityUtils.getCurrentUserRoles()

@@ -1,18 +1,13 @@
 package nz.govt.companiesoffice.register.migration
 
-import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
+import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.core.io.ClassPathResource
-import org.springframework.core.io.Resource
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver
-import java.io.File
-import java.nio.file.Files
-import java.nio.file.Paths
 import java.security.MessageDigest
 import kotlin.test.assertEquals
-import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 import kotlin.test.fail
 
@@ -31,14 +26,14 @@ class MigrationApprovalTest {
         fun `V1__Create_base_tables migration should not change`() {
             // Given
             val migrationFile = "V1__Create_base_tables.sql"
-            val expectedChecksum = "8f4e2d7c9b1a6e5f3d8c7a2b9e4f1c6d"  // This will be updated when first run
-            
+            val expectedChecksum = "8f4e2d7c9b1a6e5f3d8c7a2b9e4f1c6d" // This will be updated when first run
+
             // When
             val actualChecksum = calculateMigrationChecksum(migrationFile)
-            
+
             // Then
             assertEquals(
-                expectedChecksum, 
+                expectedChecksum,
                 actualChecksum,
                 """
                 🚨 KLAXON! KLAXON! KLAXON! 🚨
@@ -63,7 +58,7 @@ class MigrationApprovalTest {
                 
                 Migration content:
                 ${getMigrationContent(migrationFile)}
-                """.trimIndent()
+                """.trimIndent(),
             )
         }
 
@@ -72,14 +67,14 @@ class MigrationApprovalTest {
         fun `V2__Add_compliance_constraints migration should not change`() {
             // Given
             val migrationFile = "V2__Add_compliance_constraints.sql"
-            val expectedChecksum = "7e3d1c8f2a9b5e4c6d7f9a1b8e2c5d4f"  // This will be updated when first run
-            
+            val expectedChecksum = "7e3d1c8f2a9b5e4c6d7f9a1b8e2c5d4f" // This will be updated when first run
+
             // When
             val actualChecksum = calculateMigrationChecksum(migrationFile)
-            
+
             // Then
             assertEquals(
-                expectedChecksum, 
+                expectedChecksum,
                 actualChecksum,
                 """
                 🚨 KLAXON! KLAXON! KLAXON! 🚨
@@ -104,7 +99,7 @@ class MigrationApprovalTest {
                 
                 Migration content:
                 ${getMigrationContent(migrationFile)}
-                """.trimIndent()
+                """.trimIndent(),
             )
         }
 
@@ -114,18 +109,19 @@ class MigrationApprovalTest {
             // Given
             val knownMigrations = setOf(
                 "V1__Create_base_tables.sql",
-                "V2__Add_compliance_constraints.sql"
+                "V2__Add_compliance_constraints.sql",
             )
-            
+
             // When
             val actualMigrations = getAllMigrationFiles()
-            
+
             // Then
             val unknownMigrations = actualMigrations - knownMigrations
             val missingMigrations = knownMigrations - actualMigrations
-            
+
             if (unknownMigrations.isNotEmpty()) {
-                fail("""
+                fail(
+                    """
                     🚨 KLAXON! KLAXON! KLAXON! 🚨
                     
                     New migration files detected that are not covered by approval tests:
@@ -137,11 +133,13 @@ class MigrationApprovalTest {
                     3. Ensure the migration has been reviewed
                     
                     This ensures no migration can be deployed without explicit approval.
-                """.trimIndent())
+                    """.trimIndent(),
+                )
             }
-            
+
             if (missingMigrations.isNotEmpty()) {
-                fail("""
+                fail(
+                    """
                     🚨 KLAXON! KLAXON! KLAXON! 🚨
                     
                     Expected migration files are missing:
@@ -151,7 +149,8 @@ class MigrationApprovalTest {
                     - Files were deleted (DANGEROUS!)
                     - Files were renamed (DANGEROUS!)
                     - Test configuration is incorrect
-                """.trimIndent())
+                    """.trimIndent(),
+                )
             }
         }
     }
@@ -165,26 +164,26 @@ class MigrationApprovalTest {
         fun `all migrations should contain proper metadata`() {
             // Given
             val migrationFiles = getAllMigrationFiles()
-            
+
             // When & Then
             migrationFiles.forEach { migrationFile ->
                 val content = getMigrationContent(migrationFile)
-                
+
                 // Check for required metadata
                 assertTrue(
                     content.contains("-- Migration:") || content.contains("-- Description:"),
-                    "Migration $migrationFile should contain metadata comments"
+                    "Migration $migrationFile should contain metadata comments",
                 )
-                
+
                 // Check for proper SQL structure
                 assertTrue(
-                    content.contains("CREATE TABLE") || 
-                    content.contains("ALTER TABLE") || 
-                    content.contains("CREATE INDEX") ||
-                    content.contains("INSERT INTO") ||
-                    content.contains("UPDATE ") ||
-                    content.contains("DELETE FROM"),
-                    "Migration $migrationFile should contain valid SQL statements"
+                    content.contains("CREATE TABLE") ||
+                        content.contains("ALTER TABLE") ||
+                        content.contains("CREATE INDEX") ||
+                        content.contains("INSERT INTO") ||
+                        content.contains("UPDATE ") ||
+                        content.contains("DELETE FROM"),
+                    "Migration $migrationFile should contain valid SQL statements",
                 )
             }
         }
@@ -197,24 +196,24 @@ class MigrationApprovalTest {
             val dangerousOperations = listOf(
                 "DROP DATABASE",
                 "TRUNCATE TABLE",
-                "DROP TABLE",  // Generally dangerous in production
-                "DELETE FROM",  // Should be carefully reviewed
-                "UPDATE .* SET .* WHERE 1=1",  // Mass updates
-                "ALTER TABLE .* DROP COLUMN"  // Data loss
+                "DROP TABLE", // Generally dangerous in production
+                "DELETE FROM", // Should be carefully reviewed
+                "UPDATE .* SET .* WHERE 1=1", // Mass updates
+                "ALTER TABLE .* DROP COLUMN", // Data loss
             )
-            
+
             // When & Then
             migrationFiles.forEach { migrationFile ->
                 val content = getMigrationContent(migrationFile)
-                
+
                 dangerousOperations.forEach { operation ->
                     val regex = Regex(operation, RegexOption.IGNORE_CASE)
-                    
+
                     if (regex.containsMatchIn(content)) {
                         // Allow if there's a comment explaining why it's safe
-                        val hasApprovalComment = content.contains("-- APPROVED:") || 
-                                               content.contains("-- SAFE:")
-                        
+                        val hasApprovalComment = content.contains("-- APPROVED:") ||
+                            content.contains("-- SAFE:")
+
                         assertTrue(
                             hasApprovalComment,
                             """
@@ -227,8 +226,8 @@ class MigrationApprovalTest {
                             -- SAFE: [explanation of safety measures]
                             
                             Migration content:
-                            ${content}
-                            """.trimIndent()
+                            $content
+                            """.trimIndent(),
                         )
                     }
                 }
@@ -240,11 +239,11 @@ class MigrationApprovalTest {
         fun `migrations should be idempotent where possible`() {
             // Given
             val migrationFiles = getAllMigrationFiles()
-            
+
             // When & Then
             migrationFiles.forEach { migrationFile ->
                 val content = getMigrationContent(migrationFile)
-                
+
                 // Check for CREATE TABLE statements
                 if (content.contains("CREATE TABLE", ignoreCase = true)) {
                     assertTrue(
@@ -254,22 +253,22 @@ class MigrationApprovalTest {
                         Consider making it idempotent for safer re-runs.
                         
                         Use: CREATE TABLE IF NOT EXISTS ...
-                        """.trimIndent()
+                        """.trimIndent(),
                     )
                 }
-                
+
                 // Check for CREATE INDEX statements
                 if (content.contains("CREATE INDEX", ignoreCase = true)) {
                     assertTrue(
                         content.contains("IF NOT EXISTS", ignoreCase = true) ||
-                        content.contains("CREATE INDEX CONCURRENTLY", ignoreCase = true),
+                            content.contains("CREATE INDEX CONCURRENTLY", ignoreCase = true),
                         """
                         Migration $migrationFile contains CREATE INDEX without IF NOT EXISTS.
                         Consider making it idempotent for safer re-runs.
                         
                         Use: CREATE INDEX IF NOT EXISTS ...
                         Or: CREATE INDEX CONCURRENTLY ...
-                        """.trimIndent()
+                        """.trimIndent(),
                     )
                 }
             }
@@ -285,19 +284,19 @@ class MigrationApprovalTest {
         fun `migration versions should be sequential`() {
             // Given
             val migrationFiles = getAllMigrationFiles()
-            
+
             // When
             val versions = migrationFiles.map { fileName ->
                 val versionMatch = Regex("V(\\d+)__").find(fileName)
-                versionMatch?.groupValues?.get(1)?.toInt() ?: 
-                    fail("Invalid migration file name format: $fileName")
+                versionMatch?.groupValues?.get(1)?.toInt()
+                    ?: fail("Invalid migration file name format: $fileName")
             }.sorted()
-            
+
             // Then
             versions.forEachIndexed { index, version ->
                 val expectedVersion = index + 1
                 assertEquals(
-                    expectedVersion, 
+                    expectedVersion,
                     version,
                     """
                     🚨 KLAXON! KLAXON! KLAXON! 🚨
@@ -311,7 +310,7 @@ class MigrationApprovalTest {
                     
                     This can cause deployment issues and confusion.
                     Ensure migrations are numbered sequentially starting from V1.
-                    """.trimIndent()
+                    """.trimIndent(),
                 )
             }
         }
@@ -322,7 +321,7 @@ class MigrationApprovalTest {
             // Given
             val migrationFiles = getAllMigrationFiles()
             val namingPattern = Regex("V\\d+__[a-zA-Z0-9_]+\\.sql")
-            
+
             // When & Then
             migrationFiles.forEach { migrationFile ->
                 assertTrue(
@@ -340,7 +339,7 @@ class MigrationApprovalTest {
                     - Double underscore separator
                     - Descriptive name with underscores
                     - .sql extension
-                    """.trimIndent()
+                    """.trimIndent(),
                 )
             }
         }

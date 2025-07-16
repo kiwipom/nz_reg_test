@@ -14,23 +14,23 @@ import org.springframework.transaction.annotation.Transactional
 @Transactional
 class CompanyService(
     private val companyRepository: CompanyRepository,
-    private val auditService: AuditService
+    private val auditService: AuditService,
 ) {
     private val logger = LoggerFactory.getLogger(CompanyService::class.java)
 
     fun createCompany(company: Company): Company {
         logger.info("Creating company: ${company.companyName}")
-        
+
         // Validate company name uniqueness
         if (companyRepository.existsByCompanyNameIgnoreCase(company.companyName)) {
             throw ValidationException("companyName", "Company name already exists")
         }
-        
+
         // Validate company number uniqueness
         if (companyRepository.existsByCompanyNumber(company.companyNumber)) {
             throw ValidationException("companyNumber", "Company number already exists")
         }
-        
+
         val savedCompany = companyRepository.save(company)
         auditService.logCompanyCreation(savedCompany.id!!, savedCompany.companyName)
         logger.info("Company created successfully: ${savedCompany.companyNumber}")
@@ -71,12 +71,12 @@ class CompanyService(
 
     fun updateCompany(id: Long, updatedCompany: Company): Company {
         val existingCompany = getCompanyById(id)
-        
+
         // Update mutable fields
         existingCompany.companyName = updatedCompany.companyName
         existingCompany.nzbn = updatedCompany.nzbn
         existingCompany.status = updatedCompany.status
-        
+
         val savedCompany = companyRepository.save(existingCompany)
         logger.info("Company updated successfully: ${savedCompany.companyNumber}")
         return savedCompany
