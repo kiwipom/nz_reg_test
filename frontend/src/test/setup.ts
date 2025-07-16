@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom';
-import { beforeAll, afterEach, afterAll } from 'vitest';
+import { beforeAll, afterEach, afterAll, vi } from 'vitest';
 import { cleanup } from '@testing-library/react';
 import { server } from './mocks/server';
 
@@ -65,4 +65,4 @@ global.console = {
 };
 
 // Global test utilities
-global.mockAuth0 = mockAuth0;
+(global as typeof global & { mockAuth0: typeof mockAuth0 }).mockAuth0 = mockAuth0;

@@ -170,7 +170,7 @@ You are implementing security features for the NZ Companies Register System.
 You are implementing monitoring and observability for the NZ Companies Register System.
 
 **Context:**
-- Structured JSON logging via FluentBit ’ CloudWatch
+- Structured JSON logging via FluentBit ï¿½ CloudWatch
 - Metrics collection with Prometheus + Grafana
 - Distributed tracing with OpenTelemetry + Jaeger
 - Alerting integration with PagerDuty
@@ -189,7 +189,7 @@ You are working with deployment and infrastructure for the NZ Companies Register
 **Context:**
 - AWS EKS with Docker containerization
 - Multi-AZ deployment for high availability
-- CI/CD with GitHub Actions ’ ECR ’ EKS
+- CI/CD with GitHub Actions ï¿½ ECR ï¿½ EKS
 - Infrastructure as Code (Terraform/CloudFormation)
 - Single-tenant Kubernetes namespaces
 
@@ -227,6 +227,17 @@ You are implementing testing strategies for the NZ Companies Register System.
 6. **Accessibility**: Ensure all UI components meet WCAG 2.1 AA standards
 7. **Scalability**: Design for horizontal scaling and high availability
 8. **Monitoring**: Include proper logging, metrics, and alerting in all features
+
+## TODO.md Management - CRITICAL REMINDERS
+
+**ALWAYS update TODO.md after completing tasks. This is essential for project tracking:**
+
+1. **After completing any significant task or phase** - Automatically update TODO.md to mark items as complete
+2. **When starting a new phase or section** - Update the "Current Progress" section at the top
+3. **When adding bonus features or discovering additional work** - Add those as bonus items in TODO.md
+4. **At the end of each work session** - Do a final check to ensure TODO.md reflects the current state
+
+This ensures the TODO.md file is always an accurate reflection of the project's current state without requiring user reminders. It's essential for proper project management and maintaining a clear record of progress.
 
 ## Quick Reference
 

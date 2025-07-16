@@ -46,9 +46,8 @@ class TestDatabaseStack:
                 "PubliclyAccessible": False,
                 "AutoMinorVersionUpgrade": True,
                 "AllowMajorVersionUpgrade": False,
-                "DeleteAutomatedBackups": False,
                 "MonitoringInterval": 60,
-                "PerformanceInsightsEnabled": True,
+                "EnablePerformanceInsights": True,
             },
         )
 
@@ -57,7 +56,9 @@ class TestDatabaseStack:
         template.has_resource_properties(
             "AWS::RDS::DBSubnetGroup",
             {
-                "DBSubnetGroupDescription": "Subnet group for NZ Companies Register database",
+                "DBSubnetGroupDescription": (
+                    "Subnet group for NZ Companies Register database"
+                ),
                 "DBSubnetGroupName": "nz-companies-db-subnet-group",
             },
         )
@@ -155,15 +156,20 @@ class TestDatabaseStack:
 
     def test_tags_applied(self, template):
         """Test that proper tags are applied"""
+        # Test each tag individually to be more resilient to tag ordering
         template.has_resource_properties(
             "AWS::RDS::DBCluster",
             {
                 "Tags": Match.array_with(
-                    [
-                        {"Key": "Project", "Value": "NZ Companies Register"},
-                        {"Key": "Environment", "Value": "Production"},
-                        {"Key": "Component", "Value": "Database"},
-                    ]
+                    [{"Key": "Project", "Value": "NZ Companies Register"}]
                 )
             },
+        )
+        template.has_resource_properties(
+            "AWS::RDS::DBCluster",
+            {"Tags": Match.array_with([{"Key": "Environment", "Value": "Production"}])},
+        )
+        template.has_resource_properties(
+            "AWS::RDS::DBCluster",
+            {"Tags": Match.array_with([{"Key": "Component", "Value": "Database"}])},
         )

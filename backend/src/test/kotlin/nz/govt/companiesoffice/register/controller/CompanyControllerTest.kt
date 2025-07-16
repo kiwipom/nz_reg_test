@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.http.MediaType
+import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.jwt
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete
@@ -249,8 +250,23 @@ class CompanyControllerTest {
         @DisplayName("Should allow ADMIN to create company")
         fun `POST company should allow ADMIN role`() {
             // Given
-            val newCompany = testCompany.copy(id = null)
-            val savedCompany = testCompany.copy()
+            val newCompany = Company(
+                companyNumber = testCompany.companyNumber,
+                companyName = testCompany.companyName,
+                companyType = testCompany.companyType,
+                incorporationDate = testCompany.incorporationDate,
+                nzbn = testCompany.nzbn,
+                status = testCompany.status,
+            )
+            val savedCompany = Company(
+                id = testCompany.id,
+                companyNumber = testCompany.companyNumber,
+                companyName = testCompany.companyName,
+                companyType = testCompany.companyType,
+                incorporationDate = testCompany.incorporationDate,
+                nzbn = testCompany.nzbn,
+                status = testCompany.status,
+            )
             every { companyService.createCompany(any()) } returns savedCompany
 
             // When & Then
@@ -258,7 +274,7 @@ class CompanyControllerTest {
                 post("/api/v1/companies")
                     .with(
                         jwt().jwt { it.subject("auth0|admin123") }
-                            .authorities(listOf("ROLE_ADMIN")),
+                            .authorities(SimpleGrantedAuthority("ROLE_ADMIN")),
                     )
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(objectMapper.writeValueAsString(newCompany)),
@@ -275,8 +291,23 @@ class CompanyControllerTest {
         @DisplayName("Should allow REGISTRAR to create company")
         fun `POST company should allow REGISTRAR role`() {
             // Given
-            val newCompany = testCompany.copy(id = null)
-            val savedCompany = testCompany.copy()
+            val newCompany = Company(
+                companyNumber = testCompany.companyNumber,
+                companyName = testCompany.companyName,
+                companyType = testCompany.companyType,
+                incorporationDate = testCompany.incorporationDate,
+                nzbn = testCompany.nzbn,
+                status = testCompany.status,
+            )
+            val savedCompany = Company(
+                id = testCompany.id,
+                companyNumber = testCompany.companyNumber,
+                companyName = testCompany.companyName,
+                companyType = testCompany.companyType,
+                incorporationDate = testCompany.incorporationDate,
+                nzbn = testCompany.nzbn,
+                status = testCompany.status,
+            )
             every { companyService.createCompany(any()) } returns savedCompany
 
             // When & Then
@@ -284,7 +315,7 @@ class CompanyControllerTest {
                 post("/api/v1/companies")
                     .with(
                         jwt().jwt { it.subject("auth0|registrar123") }
-                            .authorities(listOf("ROLE_REGISTRAR")),
+                            .authorities(SimpleGrantedAuthority("ROLE_REGISTRAR")),
                     )
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(objectMapper.writeValueAsString(newCompany)),
@@ -298,14 +329,21 @@ class CompanyControllerTest {
         @DisplayName("Should deny PUBLIC user to create company")
         fun `POST company should deny PUBLIC role`() {
             // Given
-            val newCompany = testCompany.copy(id = null)
+            val newCompany = Company(
+                companyNumber = testCompany.companyNumber,
+                companyName = testCompany.companyName,
+                companyType = testCompany.companyType,
+                incorporationDate = testCompany.incorporationDate,
+                nzbn = testCompany.nzbn,
+                status = testCompany.status,
+            )
 
             // When & Then
             mockMvc.perform(
                 post("/api/v1/companies")
                     .with(
                         jwt().jwt { it.subject("auth0|public123") }
-                            .authorities(listOf("ROLE_PUBLIC")),
+                            .authorities(SimpleGrantedAuthority("ROLE_PUBLIC")),
                     )
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(objectMapper.writeValueAsString(newCompany)),
@@ -320,7 +358,15 @@ class CompanyControllerTest {
         fun `PUT company should allow ADMIN role`() {
             // Given
             val companyId = 1L
-            val updatedCompany = testCompany.copy(companyName = "Updated Company")
+            val updatedCompany = Company(
+                id = testCompany.id,
+                companyNumber = testCompany.companyNumber,
+                companyName = "Updated Company",
+                companyType = testCompany.companyType,
+                incorporationDate = testCompany.incorporationDate,
+                nzbn = testCompany.nzbn,
+                status = testCompany.status,
+            )
             every { companyService.updateCompany(companyId, any()) } returns updatedCompany
 
             // When & Then
@@ -328,7 +374,7 @@ class CompanyControllerTest {
                 put("/api/v1/companies/$companyId")
                     .with(
                         jwt().jwt { it.subject("auth0|admin123") }
-                            .authorities(listOf("ROLE_ADMIN")),
+                            .authorities(SimpleGrantedAuthority("ROLE_ADMIN")),
                     )
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(objectMapper.writeValueAsString(updatedCompany)),
@@ -344,7 +390,15 @@ class CompanyControllerTest {
         fun `PUT company should allow REGISTRAR role`() {
             // Given
             val companyId = 1L
-            val updatedCompany = testCompany.copy(companyName = "Updated Company")
+            val updatedCompany = Company(
+                id = testCompany.id,
+                companyNumber = testCompany.companyNumber,
+                companyName = "Updated Company",
+                companyType = testCompany.companyType,
+                incorporationDate = testCompany.incorporationDate,
+                nzbn = testCompany.nzbn,
+                status = testCompany.status,
+            )
             every { companyService.updateCompany(companyId, any()) } returns updatedCompany
 
             // When & Then
@@ -352,7 +406,7 @@ class CompanyControllerTest {
                 put("/api/v1/companies/$companyId")
                     .with(
                         jwt().jwt { it.subject("auth0|registrar123") }
-                            .authorities(listOf("ROLE_REGISTRAR")),
+                            .authorities(SimpleGrantedAuthority("ROLE_REGISTRAR")),
                     )
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(objectMapper.writeValueAsString(updatedCompany)),
@@ -367,14 +421,22 @@ class CompanyControllerTest {
         fun `PUT company should deny INTERNAL_OPS role`() {
             // Given
             val companyId = 1L
-            val updatedCompany = testCompany.copy(companyName = "Updated Company")
+            val updatedCompany = Company(
+                id = testCompany.id,
+                companyNumber = testCompany.companyNumber,
+                companyName = "Updated Company",
+                companyType = testCompany.companyType,
+                incorporationDate = testCompany.incorporationDate,
+                nzbn = testCompany.nzbn,
+                status = testCompany.status,
+            )
 
             // When & Then
             mockMvc.perform(
                 put("/api/v1/companies/$companyId")
                     .with(
                         jwt().jwt { it.subject("auth0|internal123") }
-                            .authorities(listOf("ROLE_INTERNAL_OPS")),
+                            .authorities(SimpleGrantedAuthority("ROLE_INTERNAL_OPS")),
                     )
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(objectMapper.writeValueAsString(updatedCompany)),
@@ -396,7 +458,7 @@ class CompanyControllerTest {
                 delete("/api/v1/companies/$companyId")
                     .with(
                         jwt().jwt { it.subject("auth0|admin123") }
-                            .authorities(listOf("ROLE_ADMIN")),
+                            .authorities(SimpleGrantedAuthority("ROLE_ADMIN")),
                     ),
             )
                 .andExpect(status().isNoContent)
@@ -415,7 +477,7 @@ class CompanyControllerTest {
                 delete("/api/v1/companies/$companyId")
                     .with(
                         jwt().jwt { it.subject("auth0|registrar123") }
-                            .authorities(listOf("ROLE_REGISTRAR")),
+                            .authorities(SimpleGrantedAuthority("ROLE_REGISTRAR")),
                     ),
             )
                 .andExpect(status().isForbidden)
@@ -432,7 +494,14 @@ class CompanyControllerTest {
         @DisplayName("Should handle validation errors on create")
         fun `POST company should handle validation errors`() {
             // Given
-            val invalidCompany = testCompany.copy(id = null)
+            val invalidCompany = Company(
+                companyNumber = testCompany.companyNumber,
+                companyName = testCompany.companyName,
+                companyType = testCompany.companyType,
+                incorporationDate = testCompany.incorporationDate,
+                nzbn = testCompany.nzbn,
+                status = testCompany.status,
+            )
             every { companyService.createCompany(any()) } throws ValidationException(
                 "companyName", "Company name already exists",
             )
@@ -442,7 +511,7 @@ class CompanyControllerTest {
                 post("/api/v1/companies")
                     .with(
                         jwt().jwt { it.subject("auth0|admin123") }
-                            .authorities(listOf("ROLE_ADMIN")),
+                            .authorities(SimpleGrantedAuthority("ROLE_ADMIN")),
                     )
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(objectMapper.writeValueAsString(invalidCompany)),
@@ -460,7 +529,7 @@ class CompanyControllerTest {
                 post("/api/v1/companies")
                     .with(
                         jwt().jwt { it.subject("auth0|admin123") }
-                            .authorities(listOf("ROLE_ADMIN")),
+                            .authorities(SimpleGrantedAuthority("ROLE_ADMIN")),
                     )
                     .contentType(MediaType.APPLICATION_JSON)
                     .content("invalid json"),
@@ -481,7 +550,7 @@ class CompanyControllerTest {
                 post("/api/v1/companies")
                     .with(
                         jwt().jwt { it.subject("auth0|admin123") }
-                            .authorities(listOf("ROLE_ADMIN")),
+                            .authorities(SimpleGrantedAuthority("ROLE_ADMIN")),
                     )
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(objectMapper.writeValueAsString(incompleteCompany)),

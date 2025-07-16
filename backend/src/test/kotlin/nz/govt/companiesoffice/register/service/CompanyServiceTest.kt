@@ -68,8 +68,23 @@ class CompanyServiceTest {
         @DisplayName("Should create company successfully with valid data")
         fun `createCompany should create company successfully with valid data`() {
             // Given
-            val newCompany = testCompany.copy(id = null)
-            val savedCompany = testCompany.copy()
+            val newCompany = Company(
+                companyNumber = testCompany.companyNumber,
+                companyName = testCompany.companyName,
+                companyType = testCompany.companyType,
+                incorporationDate = testCompany.incorporationDate,
+                nzbn = testCompany.nzbn,
+                status = testCompany.status,
+            )
+            val savedCompany = Company(
+                id = testCompany.id,
+                companyNumber = testCompany.companyNumber,
+                companyName = testCompany.companyName,
+                companyType = testCompany.companyType,
+                incorporationDate = testCompany.incorporationDate,
+                nzbn = testCompany.nzbn,
+                status = testCompany.status,
+            )
 
             every { companyRepository.existsByCompanyNameIgnoreCase(newCompany.companyName) } returns false
             every { companyRepository.existsByCompanyNumber(newCompany.companyNumber) } returns false
@@ -91,7 +106,14 @@ class CompanyServiceTest {
         @DisplayName("Should throw ValidationException when company name already exists")
         fun `createCompany should throw ValidationException when company name already exists`() {
             // Given
-            val newCompany = testCompany.copy(id = null)
+            val newCompany = Company(
+                companyNumber = testCompany.companyNumber,
+                companyName = testCompany.companyName,
+                companyType = testCompany.companyType,
+                incorporationDate = testCompany.incorporationDate,
+                nzbn = testCompany.nzbn,
+                status = testCompany.status,
+            )
             every { companyRepository.existsByCompanyNameIgnoreCase(newCompany.companyName) } returns true
 
             // When & Then
@@ -109,7 +131,14 @@ class CompanyServiceTest {
         @DisplayName("Should throw ValidationException when company number already exists")
         fun `createCompany should throw ValidationException when company number already exists`() {
             // Given
-            val newCompany = testCompany.copy(id = null)
+            val newCompany = Company(
+                companyNumber = testCompany.companyNumber,
+                companyName = testCompany.companyName,
+                companyType = testCompany.companyType,
+                incorporationDate = testCompany.incorporationDate,
+                nzbn = testCompany.nzbn,
+                status = testCompany.status,
+            )
             every { companyRepository.existsByCompanyNameIgnoreCase(newCompany.companyName) } returns false
             every { companyRepository.existsByCompanyNumber(newCompany.companyNumber) } returns true
 
@@ -278,14 +307,30 @@ class CompanyServiceTest {
         fun `updateCompany should update company successfully`() {
             // Given
             val companyId = 1L
-            val existingCompany = testCompany.copy()
-            val updatedData = testCompany.copy(
+            val existingCompany = Company(
+                id = testCompany.id,
+                companyNumber = testCompany.companyNumber,
+                companyName = testCompany.companyName,
+                companyType = testCompany.companyType,
+                incorporationDate = testCompany.incorporationDate,
+                nzbn = testCompany.nzbn,
+                status = testCompany.status,
+            )
+            val updatedData = Company(
+                id = testCompany.id,
+                companyNumber = testCompany.companyNumber,
                 companyName = "Updated Company Name",
+                companyType = testCompany.companyType,
+                incorporationDate = testCompany.incorporationDate,
                 nzbn = "9429000000002",
                 status = "INACTIVE",
             )
-            val savedCompany = existingCompany.copy(
+            val savedCompany = Company(
+                id = existingCompany.id,
+                companyNumber = existingCompany.companyNumber,
                 companyName = updatedData.companyName,
+                companyType = existingCompany.companyType,
+                incorporationDate = existingCompany.incorporationDate,
                 nzbn = updatedData.nzbn,
                 status = updatedData.status,
             )
@@ -312,7 +357,15 @@ class CompanyServiceTest {
         fun `updateCompany should throw ResourceNotFoundException when company not found`() {
             // Given
             val companyId = 999L
-            val updatedData = testCompany.copy(companyName = "Updated Name")
+            val updatedData = Company(
+                id = testCompany.id,
+                companyNumber = testCompany.companyNumber,
+                companyName = "Updated Name",
+                companyType = testCompany.companyType,
+                incorporationDate = testCompany.incorporationDate,
+                nzbn = testCompany.nzbn,
+                status = testCompany.status,
+            )
             every { companyRepository.findById(companyId) } returns Optional.empty()
 
             // When & Then

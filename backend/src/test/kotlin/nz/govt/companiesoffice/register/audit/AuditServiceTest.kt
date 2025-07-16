@@ -3,7 +3,9 @@ package nz.govt.companiesoffice.register.audit
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.mockkObject
+import io.mockk.mockkStatic
 import io.mockk.unmockkObject
+import io.mockk.unmockkStatic
 import jakarta.servlet.http.HttpServletRequest
 import nz.govt.companiesoffice.register.security.SecurityUtils
 import org.junit.jupiter.api.AfterEach
@@ -27,7 +29,7 @@ class AuditServiceTest {
     fun setUp() {
         auditService = AuditService()
         mockkObject(SecurityUtils)
-        mockkObject(RequestContextHolder)
+        mockkStatic(RequestContextHolder::class)
 
         // Mock request context
         every { RequestContextHolder.getRequestAttributes() } returns mockRequestAttributes
@@ -43,7 +45,7 @@ class AuditServiceTest {
     @AfterEach
     fun tearDown() {
         unmockkObject(SecurityUtils)
-        unmockkObject(RequestContextHolder)
+        unmockkStatic(RequestContextHolder::class)
     }
 
     @Nested

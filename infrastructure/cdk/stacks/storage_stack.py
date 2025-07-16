@@ -2,10 +2,12 @@ from aws_cdk import (
     Stack,
     aws_s3 as s3,
     aws_sns as sns,
+    aws_sns_subscriptions as sns_subscriptions,
     aws_sqs as sqs,
     aws_kms as kms,
     RemovalPolicy,
     Tags,
+    Duration,
 )
 from constructs import Construct
 
@@ -40,11 +42,11 @@ class StorageStack(Stack):
                     transitions=[
                         s3.Transition(
                             storage_class=s3.StorageClass.INFREQUENT_ACCESS,
-                            transition_after=30,
+                            transition_after=Duration.days(30),
                         ),
                         s3.Transition(
                             storage_class=s3.StorageClass.GLACIER,
-                            transition_after=90,
+                            transition_after=Duration.days(90),
                         ),
                     ],
                 ),
@@ -65,7 +67,7 @@ class StorageStack(Stack):
                 s3.LifecycleRule(
                     id="DeleteOldLogs",
                     enabled=True,
-                    expiration=365,  # Keep logs for 1 year
+                    expiration=Duration.days(365),  # Keep logs for 1 year
                 ),
             ],
         )
@@ -84,8 +86,8 @@ class StorageStack(Stack):
             self,
             "NotificationQueue",
             queue_name="nz-companies-register-notifications",
-            visibility_timeout_seconds=300,
-            message_retention_period_seconds=1209600,  # 14 days
+            visibility_timeout=Duration.seconds(300),
+            retention_period=Duration.seconds(1209600),  # 14 days
             encryption=sqs.QueueEncryption.KMS,
             encryption_master_key=self.kms_key,
         )
@@ -95,15 +97,15 @@ class StorageStack(Stack):
             self,
             "NotificationDLQ",
             queue_name="nz-companies-register-notifications-dlq",
-            visibility_timeout_seconds=300,
-            message_retention_period_seconds=1209600,  # 14 days
+            visibility_timeout=Duration.seconds(300),
+            retention_period=Duration.seconds(1209600),  # 14 days
             encryption=sqs.QueueEncryption.KMS,
             encryption_master_key=self.kms_key,
         )
 
         # Subscribe queue to topic
         self.notification_topic.add_subscription(
-            sns.SqsSubscription(
+            sns_subscriptions.SqsSubscription(
                 self.notification_queue,
                 dead_letter_queue=self.notification_dlq,
             )
@@ -114,8 +116,8 @@ class StorageStack(Stack):
             self,
             "ReminderQueue",
             queue_name="nz-companies-register-reminders",
-            visibility_timeout_seconds=300,
-            message_retention_period_seconds=1209600,  # 14 days
+            visibility_timeout=Duration.seconds(300),
+            retention_period=Duration.seconds(1209600),  # 14 days
             encryption=sqs.QueueEncryption.KMS,
             encryption_master_key=self.kms_key,
         )
@@ -125,8 +127,8 @@ class StorageStack(Stack):
             self,
             "ReminderDLQ",
             queue_name="nz-companies-register-reminders-dlq",
-            visibility_timeout_seconds=300,
-            message_retention_period_seconds=1209600,  # 14 days
+            visibility_timeout=Duration.seconds(300),
+            retention_period=Duration.seconds(1209600),  # 14 days
             encryption=sqs.QueueEncryption.KMS,
             encryption_master_key=self.kms_key,
         )

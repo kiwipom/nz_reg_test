@@ -2,8 +2,8 @@ package nz.govt.companiesoffice.register.security
 
 import io.mockk.every
 import io.mockk.mockk
-import io.mockk.mockkObject
-import io.mockk.unmockkObject
+import io.mockk.mockkStatic
+import io.mockk.unmockkStatic
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
@@ -26,13 +26,13 @@ class SecurityUtilsTest {
 
     @BeforeEach
     fun setUp() {
-        mockkObject(SecurityContextHolder)
+        mockkStatic(SecurityContextHolder::class)
         every { SecurityContextHolder.getContext() } returns mockSecurityContext
     }
 
     @AfterEach
     fun tearDown() {
-        unmockkObject(SecurityContextHolder)
+        unmockkStatic(SecurityContextHolder::class)
     }
 
     @Nested

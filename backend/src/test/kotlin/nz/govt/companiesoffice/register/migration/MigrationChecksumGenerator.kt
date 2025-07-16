@@ -21,7 +21,7 @@ object MigrationChecksumGenerator {
     @JvmStatic
     fun main(args: Array<String>) {
         println("🔍 Generating checksums for migration files...")
-        println("=" * 60)
+        println("=".repeat(60))
 
         try {
             val migrationFiles = getAllMigrationFiles().sorted()
@@ -46,7 +46,7 @@ object MigrationChecksumGenerator {
                 println()
             }
 
-            println("=" * 60)
+            println("=".repeat(60))
             println("📝 Copy these checksums into your MigrationApprovalTest:")
             println()
 
@@ -59,13 +59,13 @@ object MigrationChecksumGenerator {
                 println()
             }
 
-            println("=" * 60)
+            println("=".repeat(60))
             println("⚠️  IMPORTANT REMINDERS:")
             println("- These checksums should NEVER change once deployed")
             println("- If you need to modify a migration, create a NEW one instead")
             println("- Only update checksums during development before first deployment")
             println("- Always review migration changes with the team")
-            println("=" * 60)
+            println("=".repeat(60))
         } catch (e: Exception) {
             println("❌ Error generating checksums: ${e.message}")
             e.printStackTrace()
