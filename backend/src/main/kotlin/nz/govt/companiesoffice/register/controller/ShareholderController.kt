@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/api/v1/shareholders")
+@RequestMapping("/v1/shareholders")
 @Tag(name = "Shareholders", description = "Shareholder management operations")
 class ShareholderController(
     private val shareholderService: ShareholderService,

@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.multipart.MultipartFile
 
 @RestController
-@RequestMapping("/api/v1/documents")
+@RequestMapping("/v1/documents")
 @Tag(name = "Documents", description = "Document management operations")
 class DocumentController(
     private val documentService: DocumentService,
