@@ -6,13 +6,18 @@ from aws_cdk import (
     Duration,
     Tags,
 )
+from aws_cdk.aws_cloudwatch import ComparisonOperator
 from constructs import Construct
 from .compute_stack import ComputeStack
 
 
 class MonitoringStack(Stack):
     def __init__(
-        self, scope: Construct, construct_id: str, compute_stack: ComputeStack, **kwargs
+        self,
+        scope: Construct,
+        construct_id: str,
+        compute_stack: ComputeStack,
+        **kwargs
     ) -> None:
         super().__init__(scope, construct_id, **kwargs)
 
@@ -58,7 +63,7 @@ class MonitoringStack(Stack):
             ),
             threshold=80,
             evaluation_periods=2,
-            comparison_operator=cloudwatch.ComparisonOperator.GREATER_THAN_THRESHOLD,
+            comparison_operator=ComparisonOperator.GREATER_THAN_THRESHOLD,
             treat_missing_data=cloudwatch.TreatMissingData.NOT_BREACHING,
         ).add_alarm_action(cw_actions.SnsAction(self.alert_topic))
 
@@ -79,7 +84,7 @@ class MonitoringStack(Stack):
             ),
             threshold=85,
             evaluation_periods=2,
-            comparison_operator=cloudwatch.ComparisonOperator.GREATER_THAN_THRESHOLD,
+            comparison_operator=ComparisonOperator.GREATER_THAN_THRESHOLD,
             treat_missing_data=cloudwatch.TreatMissingData.NOT_BREACHING,
         ).add_alarm_action(cw_actions.SnsAction(self.alert_topic))
 
@@ -101,7 +106,7 @@ class MonitoringStack(Stack):
             ),
             threshold=1,
             evaluation_periods=2,
-            comparison_operator=cloudwatch.ComparisonOperator.LESS_THAN_THRESHOLD,
+            comparison_operator=ComparisonOperator.LESS_THAN_THRESHOLD,
             treat_missing_data=cloudwatch.TreatMissingData.BREACHING,
         ).add_alarm_action(cw_actions.SnsAction(self.alert_topic))
 
@@ -124,7 +129,7 @@ class MonitoringStack(Stack):
             ),
             threshold=1.0,  # 1 second
             evaluation_periods=2,
-            comparison_operator=cloudwatch.ComparisonOperator.GREATER_THAN_THRESHOLD,
+            comparison_operator=ComparisonOperator.GREATER_THAN_THRESHOLD,
             treat_missing_data=cloudwatch.TreatMissingData.NOT_BREACHING,
         ).add_alarm_action(cw_actions.SnsAction(self.alert_topic))
 
@@ -144,7 +149,7 @@ class MonitoringStack(Stack):
             ),
             threshold=10,
             evaluation_periods=2,
-            comparison_operator=cloudwatch.ComparisonOperator.GREATER_THAN_THRESHOLD,
+            comparison_operator=ComparisonOperator.GREATER_THAN_THRESHOLD,
             treat_missing_data=cloudwatch.TreatMissingData.NOT_BREACHING,
         ).add_alarm_action(cw_actions.SnsAction(self.alert_topic))
 
@@ -165,7 +170,7 @@ class MonitoringStack(Stack):
             ),
             threshold=80,
             evaluation_periods=2,
-            comparison_operator=cloudwatch.ComparisonOperator.GREATER_THAN_THRESHOLD,
+            comparison_operator=ComparisonOperator.GREATER_THAN_THRESHOLD,
             treat_missing_data=cloudwatch.TreatMissingData.NOT_BREACHING,
         ).add_alarm_action(cw_actions.SnsAction(self.alert_topic))
 
@@ -188,7 +193,7 @@ class MonitoringStack(Stack):
             ),
             threshold=80,
             evaluation_periods=2,
-            comparison_operator=cloudwatch.ComparisonOperator.GREATER_THAN_THRESHOLD,
+            comparison_operator=ComparisonOperator.GREATER_THAN_THRESHOLD,
             treat_missing_data=cloudwatch.TreatMissingData.NOT_BREACHING,
         ).add_alarm_action(cw_actions.SnsAction(self.alert_topic))
 
@@ -209,7 +214,7 @@ class MonitoringStack(Stack):
             ),
             threshold=160,  # 80% of max_connections (200)
             evaluation_periods=2,
-            comparison_operator=cloudwatch.ComparisonOperator.GREATER_THAN_THRESHOLD,
+            comparison_operator=ComparisonOperator.GREATER_THAN_THRESHOLD,
             treat_missing_data=cloudwatch.TreatMissingData.NOT_BREACHING,
         ).add_alarm_action(cw_actions.SnsAction(self.alert_topic))
 
@@ -230,7 +235,7 @@ class MonitoringStack(Stack):
             ),
             threshold=0,
             evaluation_periods=1,
-            comparison_operator=cloudwatch.ComparisonOperator.GREATER_THAN_THRESHOLD,
+            comparison_operator=ComparisonOperator.GREATER_THAN_THRESHOLD,
             treat_missing_data=cloudwatch.TreatMissingData.NOT_BREACHING,
         ).add_alarm_action(cw_actions.SnsAction(self.alert_topic))
 
@@ -253,7 +258,7 @@ class MonitoringStack(Stack):
             ),
             threshold=5,  # Minimum expected registrations per hour
             evaluation_periods=2,
-            comparison_operator=cloudwatch.ComparisonOperator.LESS_THAN_THRESHOLD,
+            comparison_operator=ComparisonOperator.LESS_THAN_THRESHOLD,
             treat_missing_data=cloudwatch.TreatMissingData.BREACHING,
         ).add_alarm_action(cw_actions.SnsAction(self.alert_topic))
 
@@ -271,7 +276,7 @@ class MonitoringStack(Stack):
             ),
             threshold=500,  # 500ms SLA
             evaluation_periods=2,
-            comparison_operator=cloudwatch.ComparisonOperator.GREATER_THAN_THRESHOLD,
+            comparison_operator=ComparisonOperator.GREATER_THAN_THRESHOLD,
             treat_missing_data=cloudwatch.TreatMissingData.NOT_BREACHING,
         ).add_alarm_action(cw_actions.SnsAction(self.alert_topic))
 
@@ -286,7 +291,9 @@ class MonitoringStack(Stack):
                         namespace="AWS/ECS",
                         metric_name="CPUUtilization",
                         dimensions_map={
-                            "ServiceName": compute_stack.backend_service.service_name,
+                            "ServiceName": (
+                                compute_stack.backend_service.service_name
+                            ),
                             "ClusterName": compute_stack.cluster.cluster_name,
                         },
                         statistic="Average",
@@ -296,7 +303,9 @@ class MonitoringStack(Stack):
                         namespace="AWS/ECS",
                         metric_name="MemoryUtilization",
                         dimensions_map={
-                            "ServiceName": compute_stack.backend_service.service_name,
+                            "ServiceName": (
+                                compute_stack.backend_service.service_name
+                            ),
                             "ClusterName": compute_stack.cluster.cluster_name,
                         },
                         statistic="Average",
@@ -308,7 +317,9 @@ class MonitoringStack(Stack):
                         namespace="AWS/ECS",
                         metric_name="RunningTaskCount",
                         dimensions_map={
-                            "ServiceName": compute_stack.backend_service.service_name,
+                            "ServiceName": (
+                                compute_stack.backend_service.service_name
+                            ),
                             "ClusterName": compute_stack.cluster.cluster_name,
                         },
                         statistic="Average",
@@ -325,7 +336,9 @@ class MonitoringStack(Stack):
                         namespace="AWS/ApplicationELB",
                         metric_name="TargetResponseTime",
                         dimensions_map={
-                            "LoadBalancer": compute_stack.alb.load_balancer_full_name,
+                            "LoadBalancer": (
+                                compute_stack.alb.load_balancer_full_name
+                            ),
                         },
                         statistic="Average",
                         period=Duration.minutes(5),
@@ -336,7 +349,9 @@ class MonitoringStack(Stack):
                         namespace="AWS/ApplicationELB",
                         metric_name="RequestCount",
                         dimensions_map={
-                            "LoadBalancer": compute_stack.alb.load_balancer_full_name,
+                            "LoadBalancer": (
+                                compute_stack.alb.load_balancer_full_name
+                            ),
                         },
                         statistic="Sum",
                         period=Duration.minutes(5),

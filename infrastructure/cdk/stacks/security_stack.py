@@ -18,7 +18,9 @@ class SecurityStack(Stack):
         self.application_key = kms.Key(
             self,
             "ApplicationKey",
-            description="KMS key for NZ Companies Register application encryption",
+            description=(
+                "KMS key for NZ Companies Register application encryption"
+            ),
             enable_key_rotation=True,
             removal_policy=RemovalPolicy.RETAIN,
         )
@@ -86,8 +88,14 @@ class SecurityStack(Stack):
                         "dynamodb:Scan",
                     ],
                     resources=[
-                        "arn:aws:dynamodb:*:*:table/nz-companies-register-documents",
-                        "arn:aws:dynamodb:*:*:table/nz-companies-register-documents/index/*",
+                        (
+                            "arn:aws:dynamodb:*:*:table/"
+                            "nz-companies-register-documents"
+                        ),
+                        (
+                            "arn:aws:dynamodb:*:*:table/"
+                            "nz-companies-register-documents/index/*"
+                        ),
                     ],
                 ),
             ]
@@ -122,7 +130,10 @@ class SecurityStack(Stack):
                         "secretsmanager:DescribeSecret",
                     ],
                     resources=[
-                        "arn:aws:secretsmanager:*:*:secret:nz-companies-register/*",
+                        (
+                            "arn:aws:secretsmanager:*:*:secret:"
+                            "nz-companies-register/*"
+                        ),
                     ],
                 ),
             ]
@@ -173,7 +184,9 @@ class SecurityStack(Stack):
 
         # Add X-Ray permissions for tracing
         self.ecs_task_role.add_managed_policy(
-            iam.ManagedPolicy.from_aws_managed_policy_name("AWSXRayDaemonWriteAccess")
+            iam.ManagedPolicy.from_aws_managed_policy_name(
+                "AWSXRayDaemonWriteAccess"
+            )
         )
 
         # ECS execution role additional permissions
@@ -187,7 +200,10 @@ class SecurityStack(Stack):
                     "kms:Decrypt",
                 ],
                 resources=[
-                    "arn:aws:secretsmanager:*:*:secret:nz-companies-register/*",
+                    (
+                        "arn:aws:secretsmanager:*:*:secret:"
+                        "nz-companies-register/*"
+                    ),
                     "arn:aws:ssm:*:*:parameter/nz-companies-register/*",
                     self.application_key.key_arn,
                 ],
@@ -215,7 +231,9 @@ class SecurityStack(Stack):
             secret_name="nz-companies-register/external-api-keys",
             description="API keys for external services",
             generate_secret_string=secretsmanager.SecretStringGenerator(
-                secret_string_template='{"nz_post_api_key": "", "auth0_client_secret": ""}',
+                secret_string_template=(
+                    '{"nz_post_api_key": "", "auth0_client_secret": ""}'
+                ),
                 generate_string_key="placeholder",
                 exclude_characters=" \"\\/@'",
                 password_length=32,
@@ -251,7 +269,9 @@ class SecurityStack(Stack):
             self,
             "CORSOrigins",
             parameter_name="/nz-companies-register/cors-origins",
-            string_value="https://companies.govt.nz,https://www.companies.govt.nz",
+            string_value=(
+                "https://companies.govt.nz,https://www.companies.govt.nz"
+            ),
             description="Allowed CORS origins",
         )
 

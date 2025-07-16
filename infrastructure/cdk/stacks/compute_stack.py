@@ -71,7 +71,8 @@ class ComputeStack(Stack):
             load_balancer_name="nz-companies-register-alb",
             vpc=vpc,
             internet_facing=True,
-            security_group=vpc.vpc_default_security_group,  # Will be replaced with proper SG
+            # Will be replaced with proper SG
+            security_group=vpc.vpc_default_security_group,
         )
 
         # Target groups
@@ -232,7 +233,8 @@ class ComputeStack(Stack):
             health_check=ecs.HealthCheck(
                 command=[
                     "CMD-SHELL",
-                    "curl -f http://localhost:8080/api/actuator/health || exit 1",
+                    ("curl -f http://localhost:8080/api/actuator/health "
+                     "|| exit 1"),
                 ],
                 interval=Duration.seconds(30),
                 timeout=Duration.seconds(5),
