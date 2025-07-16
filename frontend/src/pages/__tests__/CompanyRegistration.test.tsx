@@ -188,17 +188,22 @@ describe('CompanyRegistration', () => {
     renderComponent();
     
     const companyNameInput = screen.getByLabelText(/company name/i);
+    
+    // Type the company name
     await user.type(companyNameInput, 'Test Company Ltd');
     
-    // Wait for debounced API call with increased timeout
+    // Wait for the debounce timeout (500ms) plus buffer
+    await new Promise(resolve => setTimeout(resolve, 700));
+    
+    // Wait for the API call to have been made
     await waitFor(() => {
       expect(mockCheckNameAvailability).toHaveBeenCalledWith('Test Company Ltd');
-    }, { timeout: 5000 });
+    }, { timeout: 2000 });
     
-    // Check that the availability indicator shows
+    // Wait for the state update to complete and UI to update
     await waitFor(() => {
       expect(screen.getByText('✓ Name is available')).toBeInTheDocument();
-    }, { timeout: 5000 });
+    }, { timeout: 2000 });
   });
 
   it('shows error when company name is not available', async () => {
@@ -211,10 +216,13 @@ describe('CompanyRegistration', () => {
     const companyNameInput = screen.getByLabelText(/company name/i);
     await user.type(companyNameInput, 'Existing Company');
     
+    // Wait for the debounce timeout (500ms) plus buffer
+    await new Promise(resolve => setTimeout(resolve, 700));
+    
     // Wait for debounced API call
     await waitFor(() => {
       expect(mockCheckNameAvailability).toHaveBeenCalledWith('Existing Company');
-    }, { timeout: 5000 });
+    }, { timeout: 2000 });
     
     // Try to submit
     const incorporationDateInput = screen.getByLabelText(/incorporation date/i);
@@ -266,15 +274,18 @@ describe('CompanyRegistration', () => {
     const companyNameInput = screen.getByLabelText(/company name/i);
     await user.type(companyNameInput, 'Test Company');
     
-    // Wait for debounced API call with increased timeout
+    // Wait for the debounce timeout (500ms) plus buffer
+    await new Promise(resolve => setTimeout(resolve, 700));
+    
+    // Wait for debounced API call
     await waitFor(() => {
       expect(mockCheckNameAvailability).toHaveBeenCalled();
-    }, { timeout: 5000 });
+    }, { timeout: 2000 });
     
     // Should not show availability status on error
     await waitFor(() => {
       expect(screen.queryByText('✓ Name is available')).not.toBeInTheDocument();
-    }, { timeout: 5000 });
+    }, { timeout: 2000 });
     
     consoleSpy.mockRestore();
   });
@@ -347,16 +358,19 @@ describe('CompanyRegistration', () => {
     const companyNameInput = screen.getByLabelText(/company name/i);
     await user.type(companyNameInput, 'Existing Company');
     
-    // Wait for debounced API call with increased timeout
+    // Wait for the debounce timeout (500ms) plus buffer
+    await new Promise(resolve => setTimeout(resolve, 700));
+    
+    // Wait for debounced API call
     await waitFor(() => {
       expect(mockCheckNameAvailability).toHaveBeenCalled();
-    }, { timeout: 5000 });
+    }, { timeout: 2000 });
     
     const submitButton = screen.getByRole('button', { name: /register company/i });
     
     await waitFor(() => {
       expect(submitButton).toBeDisabled();
-    }, { timeout: 5000 });
+    }, { timeout: 2000 });
   });
 
   it('shows loading state during form submission', async () => {
@@ -394,10 +408,13 @@ describe('CompanyRegistration', () => {
     const incorporationDateInput = screen.getByLabelText(/incorporation date/i);
     await user.type(incorporationDateInput, '2024-01-01');
     
-    // Wait for name availability check with increased timeout
+    // Wait for the debounce timeout (500ms) plus buffer
+    await new Promise(resolve => setTimeout(resolve, 700));
+    
+    // Wait for name availability check
     await waitFor(() => {
       expect(screen.getByText('✓ Name is available')).toBeInTheDocument();
-    }, { timeout: 5000 });
+    }, { timeout: 2000 });
     
     // Submit form
     const submitButton = screen.getByRole('button', { name: /register company/i });
