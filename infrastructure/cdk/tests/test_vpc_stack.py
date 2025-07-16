@@ -100,15 +100,28 @@ class TestVpcStack:
 
     def test_tags_applied(self, template):
         """Test that proper tags are applied"""
+        # Test each tag individually to be more resilient to tag ordering
         template.has_resource_properties(
             "AWS::EC2::VPC",
             {
                 "Tags": Match.array_with(
-                    [
-                        {"Key": "Project", "Value": "NZ Companies Register"},
-                        {"Key": "Environment", "Value": "Production"},
-                        {"Key": "Component", "Value": "Networking"},
-                    ]
+                    [{"Key": "Project", "Value": "NZ Companies Register"}]
+                )
+            },
+        )
+        template.has_resource_properties(
+            "AWS::EC2::VPC",
+            {
+                "Tags": Match.array_with(
+                    [{"Key": "Environment", "Value": "Production"}]
+                )
+            },
+        )
+        template.has_resource_properties(
+            "AWS::EC2::VPC",
+            {
+                "Tags": Match.array_with(
+                    [{"Key": "Component", "Value": "Networking"}]
                 )
             },
         )

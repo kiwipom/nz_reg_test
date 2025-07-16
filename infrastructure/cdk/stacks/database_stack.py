@@ -5,6 +5,7 @@ from aws_cdk import (
     aws_secretsmanager as secretsmanager,
     RemovalPolicy,
     Tags,
+    Duration,
 )
 from constructs import Construct
 
@@ -78,7 +79,6 @@ class DatabaseStack(Stack):
                 publicly_accessible=False,
                 auto_minor_version_upgrade=True,
                 allow_major_version_upgrade=False,
-                delete_automated_backups=False,
                 enable_performance_insights=True,
                 parameter_group=db_parameter_group,
             ),
@@ -91,18 +91,17 @@ class DatabaseStack(Stack):
                     publicly_accessible=False,
                     auto_minor_version_upgrade=True,
                     allow_major_version_upgrade=False,
-                    delete_automated_backups=False,
                     enable_performance_insights=True,
                     parameter_group=db_parameter_group,
                 ),
             ],
             backup=rds.BackupProps(
-                retention_days=30,
+                retention=Duration.days(30),
                 preferred_window="03:00-04:00",
             ),
             preferred_maintenance_window="sun:04:00-sun:05:00",
             storage_encrypted=True,
-            monitoring_interval=60,
+            monitoring_interval=Duration.seconds(60),
             cloudwatch_logs_exports=["postgresql"],
             deletion_protection=True,
             removal_policy=RemovalPolicy.RETAIN,
