@@ -1,6 +1,6 @@
 import pytest
-from aws_cdk import App, Template
-from aws_cdk.assertions import Match
+from aws_cdk import App
+from aws_cdk.assertions import Template, Match
 from stacks.storage_stack import StorageStack
 
 

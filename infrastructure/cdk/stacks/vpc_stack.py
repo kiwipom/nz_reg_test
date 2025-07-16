@@ -14,7 +14,6 @@ class VpcStack(Stack):
         self.vpc = ec2.Vpc(
             self, "NzCompaniesVpc",
             vpc_name="nz-companies-register-vpc",
-            ip_protocol=ec2.IpProtocol.IPV4_ONLY,
             max_azs=3,
             subnet_configuration=[
                 ec2.SubnetConfiguration(
