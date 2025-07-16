@@ -3,10 +3,6 @@ import { RegistrationService } from '../registrationService';
 
 // Mock fetch
 const mockFetch = vi.fn();
-global.fetch = mockFetch;
-
-// Mock the fetch function properly
-vi.stubGlobal('fetch', mockFetch);
 
 describe('RegistrationService', () => {
   let service: RegistrationService;
@@ -15,6 +11,8 @@ describe('RegistrationService', () => {
     service = new RegistrationService();
     mockFetch.mockClear();
     mockFetch.mockReset();
+    // Set up the mock properly for each test
+    vi.stubGlobal('fetch', mockFetch);
   });
 
   describe('checkNameAvailability', () => {
@@ -238,12 +236,22 @@ describe('RegistrationService', () => {
     it('generates unique company numbers', () => {
       const numbers = new Set();
       
+      // Mock Date.now to return different values and Math.random to be deterministic
+      let mockTime = 1640995200000;
+      let mockRandom = 0;
+      
+      vi.spyOn(Date, 'now').mockImplementation(() => mockTime++);
+      vi.spyOn(Math, 'random').mockImplementation(() => (mockRandom++ % 1000) / 1000);
+      
       // Generate 100 numbers and check for uniqueness
       for (let i = 0; i < 100; i++) {
         numbers.add(service.generateCompanyNumber());
       }
       
       expect(numbers.size).toBe(100);
+      
+      // Restore original functions
+      vi.restoreAllMocks();
     });
 
     it('generates numbers with timestamp component', () => {
