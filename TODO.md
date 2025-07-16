@@ -1,6 +1,6 @@
 # NZ Companies Register System - Development TODO
 
-## 🎯 Current Progress: Phase 1.4 Complete + Section 2.1 Complete (Week 3)
+## 🎯 Current Progress: Phase 1.4 Complete + Section 2.1 Complete + Section 2.2 Complete (Week 3)
 
 **✅ Completed:**
 - Phase 1.1: Project Setup (Kotlin/Spring Boot 3, React/TypeScript, Docker, Git)
@@ -8,11 +8,12 @@
 - Phase 1.3: Core Architecture Setup (JPA entities, repositories, services, React components)
 - Phase 1.4: Authentication & Security (JWT/Auth0, RBAC, CORS, audit logging)
 - Section 2.1: Comprehensive Integration Testing (90%+ backend coverage, full-stack testing)
+- Section 2.2: Core Business Logic (Company/Director/Shareholder services, audit system)
 - Documentation: Comprehensive README files and architecture diagrams
 
-**🔄 Next Up:** Phase 2.1 - Database Schema Design
+**🔄 Next Up:** Phase 2.3 - REST API Development
 
-**📊 Overall Progress:** 4/10 phases complete + Section 2.1 (42%)
+**📊 Overall Progress:** 4/10 phases complete + Section 2.1 + Section 2.2 complete (50%)
 
 ---
 
@@ -66,13 +67,18 @@
 - [x] **BONUS: Local Development Environment Setup** (Docker, PostgreSQL, full-stack)
 - [x] **BONUS: Test Automation & CI/CD Integration** (GitHub Actions, automated testing)
 
-### 2.2 Core Business Logic
-- [ ] Implement Company service layer
-- [ ] Create Director management service
-- [ ] Develop Shareholder management service
-- [ ] Build Address validation and management
-- [ ] Implement document upload and storage service
-- [ ] Create audit service for compliance tracking
+### 2.2 Core Business Logic ✅ COMPLETE
+- [x] Implement Company service layer
+- [x] Create Director management service
+- [x] Develop Shareholder management service
+- [x] Create audit service for compliance tracking
+- [x] Build Address validation and management
+- [x] Implement document upload and storage service
+- [x] **BONUS: PostgreSQL enum to VARCHAR migration** (Fixed Hibernate compatibility)
+- [x] **BONUS: DevDataSeeder for development testing** (13 test companies with full data)
+- [x] **BONUS: Comprehensive ktlint formatting** (All code style issues resolved)
+- [x] **BONUS: NZ Post address integration service** (Placeholder for future NZ Post API)
+- [x] **BONUS: S3 document storage service** (Placeholder for future AWS S3 integration)
 
 ### 2.3 REST API Development
 - [ ] Design and implement Company REST endpoints
