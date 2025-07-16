@@ -12,11 +12,7 @@ from .compute_stack import ComputeStack
 
 class MonitoringStack(Stack):
     def __init__(
-        self,
-        scope: Construct,
-        construct_id: str,
-        compute_stack: ComputeStack,
-        **kwargs
+        self, scope: Construct, construct_id: str, compute_stack: ComputeStack, **kwargs
     ) -> None:
         super().__init__(scope, construct_id, **kwargs)
 

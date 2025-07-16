@@ -253,6 +253,31 @@ jobs:
       with:
         languages: java,javascript,python
         
+    - name: Set up JDK for CodeQL
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        
+    - name: Set up Node.js for CodeQL
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        cache-dependency-path: frontend/package-lock.json
+        
+    - name: Build Java code for CodeQL
+      run: |
+        cd backend
+        chmod +x ./gradlew
+        ./gradlew compileJava compileKotlin -x test
+        
+    - name: Build JavaScript code for CodeQL
+      run: |
+        cd frontend
+        npm ci
+        npm run build
+        
     - name: Run CodeQL Analysis
       uses: github/codeql-action/analyze@v2
 
