@@ -65,4 +65,4 @@ global.console = {
 };
 
 // Global test utilities
-(global as any).mockAuth0 = mockAuth0;
+(global as typeof global & { mockAuth0: typeof mockAuth0 }).mockAuth0 = mockAuth0;
