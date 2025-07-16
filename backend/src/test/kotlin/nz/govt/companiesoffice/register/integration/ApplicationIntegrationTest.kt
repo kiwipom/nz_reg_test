@@ -17,7 +17,6 @@ import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpMethod
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
-import org.springframework.http.ResponseEntity
 import org.springframework.test.context.ActiveProfiles
 import org.springframework.transaction.annotation.Transactional
 import org.testcontainers.containers.PostgreSQLContainer
@@ -65,7 +64,7 @@ class ApplicationIntegrationTest {
             companyType = CompanyType.LTD,
             incorporationDate = LocalDate.of(2020, 1, 1),
             nzbn = "9429000000000",
-            status = "ACTIVE"
+            status = "ACTIVE",
         )
     }
 
@@ -129,7 +128,7 @@ class ApplicationIntegrationTest {
             // When
             val response = restTemplate.getForEntity(
                 "$baseUrl/api/v1/companies/search?query=Test",
-                Array<Company>::class.java
+                Array<Company>::class.java,
             )
 
             // Then
@@ -147,7 +146,7 @@ class ApplicationIntegrationTest {
             // When
             val response = restTemplate.getForEntity(
                 "$baseUrl/api/v1/companies/check-name?name=Test Company Ltd",
-                Map::class.java
+                Map::class.java,
             )
 
             // Then
@@ -164,7 +163,7 @@ class ApplicationIntegrationTest {
             // When
             val response = restTemplate.getForEntity(
                 "$baseUrl/api/v1/companies/check-number?number=12345678",
-                Map::class.java
+                Map::class.java,
             )
 
             // Then
@@ -178,7 +177,7 @@ class ApplicationIntegrationTest {
             // When
             val response = restTemplate.getForEntity(
                 "$baseUrl/api/v1/companies/search?query=NonExistent",
-                Array<Company>::class.java
+                Array<Company>::class.java,
             )
 
             // Then
@@ -192,7 +191,7 @@ class ApplicationIntegrationTest {
             // When
             val response = restTemplate.getForEntity(
                 "$baseUrl/api/v1/companies/search",
-                String::class.java
+                String::class.java,
             )
 
             // Then
@@ -213,7 +212,7 @@ class ApplicationIntegrationTest {
             // When
             val response = restTemplate.getForEntity(
                 "$baseUrl/api/v1/companies/${savedCompany.id}",
-                String::class.java
+                String::class.java,
             )
 
             // Then
@@ -233,7 +232,7 @@ class ApplicationIntegrationTest {
                 "$baseUrl/api/v1/companies/${savedCompany.id}",
                 HttpMethod.GET,
                 HttpEntity<String>(headers),
-                String::class.java
+                String::class.java,
             )
 
             // Then - This will fail with 401 in test environment without Auth0 setup
@@ -254,7 +253,7 @@ class ApplicationIntegrationTest {
                 "$baseUrl/api/v1/companies/${savedCompany.id}",
                 HttpMethod.GET,
                 HttpEntity<String>(headers),
-                String::class.java
+                String::class.java,
             )
 
             // Then
@@ -276,7 +275,7 @@ class ApplicationIntegrationTest {
                 companyType = CompanyType.LTD,
                 incorporationDate = LocalDate.of(2023, 1, 1),
                 nzbn = "9429000000001",
-                status = "ACTIVE"
+                status = "ACTIVE",
             )
 
             val headers = HttpHeaders()
@@ -288,7 +287,7 @@ class ApplicationIntegrationTest {
             val createResponse = restTemplate.postForEntity(
                 "$baseUrl/api/v1/companies",
                 createRequest,
-                String::class.java
+                String::class.java,
             )
 
             // This will fail with 401 in test environment without Auth0 setup
@@ -300,7 +299,7 @@ class ApplicationIntegrationTest {
         fun `should handle validation errors gracefully`() {
             // Given
             val invalidCompany = mapOf(
-                "companyName" to "Test Company"
+                "companyName" to "Test Company",
                 // Missing required fields
             )
 
@@ -314,7 +313,7 @@ class ApplicationIntegrationTest {
             val response = restTemplate.postForEntity(
                 "$baseUrl/api/v1/companies",
                 request,
-                String::class.java
+                String::class.java,
             )
 
             // Then
@@ -336,7 +335,7 @@ class ApplicationIntegrationTest {
                 companyType = CompanyType.LTD,
                 incorporationDate = LocalDate.of(2020, 1, 1),
                 nzbn = "9429000000000",
-                status = "ACTIVE"
+                status = "ACTIVE",
             )
             val company2 = Company(
                 companyNumber = "22222222",
@@ -344,22 +343,22 @@ class ApplicationIntegrationTest {
                 companyType = CompanyType.LTD,
                 incorporationDate = LocalDate.of(2020, 1, 1),
                 nzbn = "9429000000001",
-                status = "ACTIVE"
+                status = "ACTIVE",
             )
-            
+
             companyRepository.save(company1)
             companyRepository.save(company2)
 
             // When - First request
             val response1 = restTemplate.getForEntity(
                 "$baseUrl/api/v1/companies/search?query=Company",
-                Array<Company>::class.java
+                Array<Company>::class.java,
             )
 
             // When - Second request
             val response2 = restTemplate.getForEntity(
                 "$baseUrl/api/v1/companies/search?query=Test",
-                Array<Company>::class.java
+                Array<Company>::class.java,
             )
 
             // Then
@@ -380,7 +379,7 @@ class ApplicationIntegrationTest {
                     companyType = CompanyType.LTD,
                     incorporationDate = LocalDate.of(2020, 1, 1),
                     nzbn = "942900000000$i",
-                    status = "ACTIVE"
+                    status = "ACTIVE",
                 )
             }
             companyRepository.saveAll(companies)
@@ -389,7 +388,7 @@ class ApplicationIntegrationTest {
             val responses = (1..5).map { i ->
                 restTemplate.getForEntity(
                     "$baseUrl/api/v1/companies/search?query=Concurrent",
-                    Array<Company>::class.java
+                    Array<Company>::class.java,
                 )
             }
 
@@ -414,9 +413,9 @@ class ApplicationIntegrationTest {
                 companyType = CompanyType.LTD,
                 incorporationDate = LocalDate.of(2020, 1, 1),
                 nzbn = "9429000000001",
-                status = "ACTIVE"
+                status = "ACTIVE",
             )
-            
+
             val headers = HttpHeaders()
             headers.contentType = MediaType.APPLICATION_JSON
             headers.setBearerAuth("admin-jwt-token")
@@ -426,7 +425,7 @@ class ApplicationIntegrationTest {
             restTemplate.postForEntity(
                 "$baseUrl/api/v1/companies",
                 request,
-                String::class.java
+                String::class.java,
             )
 
             // Then
@@ -444,7 +443,7 @@ class ApplicationIntegrationTest {
             // When
             val response = restTemplate.getForEntity(
                 "$baseUrl/api/v1/companies/999999",
-                String::class.java
+                String::class.java,
             )
 
             // Then
@@ -456,11 +455,11 @@ class ApplicationIntegrationTest {
         fun `should handle internal server errors gracefully`() {
             // This test would require a way to trigger an internal server error
             // For now, we'll test that the application handles malformed requests
-            
+
             // When
             val response = restTemplate.getForEntity(
                 "$baseUrl/api/v1/companies/invalid-id",
-                String::class.java
+                String::class.java,
             )
 
             // Then
@@ -481,7 +480,7 @@ class ApplicationIntegrationTest {
             val response = restTemplate.postForEntity(
                 "$baseUrl/api/v1/companies",
                 request,
-                String::class.java
+                String::class.java,
             )
 
             // Then
@@ -506,7 +505,7 @@ class ApplicationIntegrationTest {
                 "$baseUrl/api/v1/companies/search?query=test",
                 HttpMethod.OPTIONS,
                 HttpEntity<String>(headers),
-                String::class.java
+                String::class.java,
             )
 
             // Then
@@ -520,7 +519,7 @@ class ApplicationIntegrationTest {
             // When
             val response = restTemplate.getForEntity(
                 "$baseUrl/api/v1/companies/search?query=test",
-                String::class.java
+                String::class.java,
             )
 
             // Then
@@ -544,7 +543,7 @@ class ApplicationIntegrationTest {
                     companyType = CompanyType.LTD,
                     incorporationDate = LocalDate.of(2020, 1, 1),
                     nzbn = "942900000200$i",
-                    status = "ACTIVE"
+                    status = "ACTIVE",
                 )
             }
             companyRepository.saveAll(companies)
@@ -554,7 +553,7 @@ class ApplicationIntegrationTest {
             val responses = (1..20).map { i ->
                 restTemplate.getForEntity(
                     "$baseUrl/api/v1/companies/search?query=Performance",
-                    Array<Company>::class.java
+                    Array<Company>::class.java,
                 )
             }
             val endTime = System.currentTimeMillis()
@@ -578,7 +577,7 @@ class ApplicationIntegrationTest {
                     companyType = CompanyType.LTD,
                     incorporationDate = LocalDate.of(2020, 1, 1),
                     nzbn = "942900000300$i",
-                    status = "ACTIVE"
+                    status = "ACTIVE",
                 )
             }
             companyRepository.saveAll(companies)
@@ -587,7 +586,7 @@ class ApplicationIntegrationTest {
             val startTime = System.currentTimeMillis()
             val response = restTemplate.getForEntity(
                 "$baseUrl/api/v1/companies/search?query=Large",
-                Array<Company>::class.java
+                Array<Company>::class.java,
             )
             val endTime = System.currentTimeMillis()
 
@@ -612,7 +611,7 @@ class ApplicationIntegrationTest {
                 companyType = CompanyType.LTD,
                 incorporationDate = LocalDate.of(2020, 1, 1),
                 nzbn = "9429000000000",
-                status = "ACTIVE"
+                status = "ACTIVE",
             )
             val company2 = Company(
                 companyNumber = "22222222",
@@ -620,37 +619,37 @@ class ApplicationIntegrationTest {
                 companyType = CompanyType.LTD,
                 incorporationDate = LocalDate.of(2020, 1, 1),
                 nzbn = "9429000000001",
-                status = "ACTIVE"
+                status = "ACTIVE",
             )
-            
+
             companyRepository.save(company1)
             companyRepository.save(company2)
 
             // When - User searches for companies
             val searchResponse = restTemplate.getForEntity(
                 "$baseUrl/api/v1/companies/search?query=Company",
-                Array<Company>::class.java
+                Array<Company>::class.java,
             )
 
             // When - User checks name availability
             val nameCheckResponse = restTemplate.getForEntity(
                 "$baseUrl/api/v1/companies/check-name?name=New Company Ltd",
-                Map::class.java
+                Map::class.java,
             )
 
             // When - User checks number availability
             val numberCheckResponse = restTemplate.getForEntity(
                 "$baseUrl/api/v1/companies/check-number?number=99999999",
-                Map::class.java
+                Map::class.java,
             )
 
             // Then
             assert(searchResponse.statusCode == HttpStatus.OK)
             assert(searchResponse.body!!.size == 2)
-            
+
             assert(nameCheckResponse.statusCode == HttpStatus.OK)
             assert(nameCheckResponse.body!!["available"] == true)
-            
+
             assert(numberCheckResponse.statusCode == HttpStatus.OK)
             assert(numberCheckResponse.body!!["available"] == true)
         }
@@ -661,27 +660,27 @@ class ApplicationIntegrationTest {
             // This test would simulate an admin user workflow
             // Creating, updating, and managing companies
             // For now, we'll test the public parts of the workflow
-            
+
             // Given
             val existingCompany = companyRepository.save(testCompany)
 
             // When - Admin searches for existing companies
             val searchResponse = restTemplate.getForEntity(
                 "$baseUrl/api/v1/companies/search?query=Test",
-                Array<Company>::class.java
+                Array<Company>::class.java,
             )
 
             // When - Admin checks for conflicts
             val nameCheckResponse = restTemplate.getForEntity(
                 "$baseUrl/api/v1/companies/check-name?name=Test Company Ltd",
-                Map::class.java
+                Map::class.java,
             )
 
             // Then
             assert(searchResponse.statusCode == HttpStatus.OK)
             assert(searchResponse.body!!.size == 1)
             assert(searchResponse.body!![0].companyName == "Test Company Ltd")
-            
+
             assert(nameCheckResponse.statusCode == HttpStatus.OK)
             assert(nameCheckResponse.body!!["available"] == false)
         }

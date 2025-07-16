@@ -54,7 +54,7 @@ class CompanyRepositoryIntegrationTest {
             companyType = CompanyType.LTD,
             incorporationDate = LocalDate.of(2020, 1, 1),
             nzbn = "9429000000000",
-            status = "ACTIVE"
+            status = "ACTIVE",
         )
     }
 
@@ -130,14 +130,16 @@ class CompanyRepositoryIntegrationTest {
 
             // When
             companyRepository.save(testCompany)
-            companyRepository.save(Company(
-                companyNumber = "87654321",
-                companyName = "Company 2",
-                companyType = testCompany.companyType,
-                incorporationDate = testCompany.incorporationDate,
-                nzbn = "9429000000001",
-                status = testCompany.status,
-            ))
+            companyRepository.save(
+                Company(
+                    companyNumber = "87654321",
+                    companyName = "Company 2",
+                    companyType = testCompany.companyType,
+                    incorporationDate = testCompany.incorporationDate,
+                    nzbn = "9429000000001",
+                    status = testCompany.status,
+                ),
+            )
             entityManager.flush()
 
             // Then
@@ -333,7 +335,7 @@ class CompanyRepositoryIntegrationTest {
             // When
             val companies2021 = companyRepository.findByIncorporationDateBetween(
                 LocalDate.of(2021, 1, 1),
-                LocalDate.of(2021, 12, 31)
+                LocalDate.of(2021, 12, 31),
             )
 
             // Then
@@ -573,7 +575,7 @@ class CompanyRepositoryIntegrationTest {
             // Create companies with null values that should fail validation
             var companyWithNullName: Company? = null
             var companyWithNullNumber: Company? = null
-            
+
             try {
                 companyWithNullName = Company(
                     companyNumber = testCompany.companyNumber,
@@ -586,7 +588,7 @@ class CompanyRepositoryIntegrationTest {
             } catch (e: Exception) {
                 // Expected to fail due to validation
             }
-            
+
             try {
                 companyWithNullNumber = Company(
                     companyNumber = "", // Empty string instead of null since companyNumber is non-null
@@ -675,20 +677,20 @@ class CompanyRepositoryIntegrationTest {
 
             // When - Simulate typical access patterns
             val startTime = System.currentTimeMillis()
-            
+
             // Multiple finds by ID
             repeat(10) { i ->
                 companyRepository.findByCompanyNumber("2000000${i + 1}")
             }
-            
+
             // Multiple searches
             repeat(5) { i ->
                 companyRepository.findByCompanyNameContainingIgnoreCase("Company $i")
             }
-            
+
             // Status queries
             companyRepository.findByStatus("ACTIVE")
-            
+
             val endTime = System.currentTimeMillis()
 
             // Then
@@ -731,7 +733,7 @@ class CompanyRepositoryIntegrationTest {
             } catch (e: Exception) {
                 exceptionThrown = true
             }
-            
+
             assertTrue(exceptionThrown)
             assertEquals(1, companyRepository.count())
         }
@@ -764,7 +766,7 @@ class CompanyRepositoryIntegrationTest {
                     incorporationDate = testCompany.incorporationDate,
                     nzbn = "9429000000002",
                     status = testCompany.status,
-                )
+                ),
             )
 
             // When

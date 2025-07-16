@@ -78,7 +78,7 @@ class CompanyTest {
             isNzResident = true,
             isAustralianResident = false,
             appointedDate = LocalDate.of(2020, 1, 1),
-            status = DirectorStatus.ACTIVE
+            status = DirectorStatus.ACTIVE,
         )
         val resignedDirector = Director(
             id = 2,
@@ -89,7 +89,7 @@ class CompanyTest {
             isNzResident = true,
             isAustralianResident = false,
             appointedDate = LocalDate.of(2020, 1, 1),
-            status = DirectorStatus.RESIGNED
+            status = DirectorStatus.RESIGNED,
         )
 
         company.addDirector(activeDirector)
@@ -111,7 +111,7 @@ class CompanyTest {
             residentialCity = "Auckland",
             isNzResident = true,
             isAustralianResident = false,
-            appointedDate = LocalDate.of(2020, 1, 1)
+            appointedDate = LocalDate.of(2020, 1, 1),
         )
         val auResident = Director(
             id = 2,
@@ -121,7 +121,7 @@ class CompanyTest {
             residentialCity = "Auckland",
             isNzResident = false,
             isAustralianResident = true,
-            appointedDate = LocalDate.of(2020, 1, 1)
+            appointedDate = LocalDate.of(2020, 1, 1),
         )
         val nonResident = Director(
             id = 3,
@@ -131,7 +131,7 @@ class CompanyTest {
             residentialCity = "Auckland",
             isNzResident = false,
             isAustralianResident = false,
-            appointedDate = LocalDate.of(2020, 1, 1)
+            appointedDate = LocalDate.of(2020, 1, 1),
         )
 
         company.addDirector(nzResident)
@@ -154,7 +154,7 @@ class CompanyTest {
             addressLine1 = "456 Company Street",
             city = "Auckland",
             effectiveFrom = LocalDate.now().minusDays(1),
-            effectiveTo = null
+            effectiveTo = null,
         )
         val expiredAddress = Address(
             id = 2,
@@ -163,7 +163,7 @@ class CompanyTest {
             addressLine1 = "456 Company Street",
             city = "Auckland",
             effectiveFrom = LocalDate.now().minusDays(10),
-            effectiveTo = LocalDate.now().minusDays(2)
+            effectiveTo = LocalDate.now().minusDays(2),
         )
 
         company.addAddress(currentAddress)

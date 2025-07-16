@@ -2,9 +2,7 @@ package nz.govt.companiesoffice.register.security
 
 import io.mockk.every
 import io.mockk.mockk
-import io.mockk.mockkObject
 import io.mockk.mockkStatic
-import io.mockk.unmockkObject
 import io.mockk.unmockkStatic
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach

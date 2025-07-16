@@ -12,8 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureWebMvc
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.http.MediaType
-import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.jwt
 import org.springframework.security.core.authority.SimpleGrantedAuthority
+import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.jwt
 import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete
@@ -75,7 +75,7 @@ class CompanyControllerIntegrationTest {
             companyType = CompanyType.LTD,
             incorporationDate = LocalDate.of(2020, 1, 1),
             nzbn = "9429000000000",
-            status = "ACTIVE"
+            status = "ACTIVE",
         )
     }
 
@@ -92,7 +92,7 @@ class CompanyControllerIntegrationTest {
             // When & Then
             mockMvc.perform(
                 get("/api/v1/companies/search")
-                    .param("query", "Test Company")
+                    .param("query", "Test Company"),
             )
                 .andExpect(status().isOk)
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -110,7 +110,7 @@ class CompanyControllerIntegrationTest {
             // When & Then - Check existing name
             mockMvc.perform(
                 get("/api/v1/companies/check-name")
-                    .param("name", "Test Company Ltd")
+                    .param("name", "Test Company Ltd"),
             )
                 .andExpect(status().isOk)
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -119,7 +119,7 @@ class CompanyControllerIntegrationTest {
             // When & Then - Check available name
             mockMvc.perform(
                 get("/api/v1/companies/check-name")
-                    .param("name", "Available Company Ltd")
+                    .param("name", "Available Company Ltd"),
             )
                 .andExpect(status().isOk)
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -135,7 +135,7 @@ class CompanyControllerIntegrationTest {
             // When & Then - Check existing number
             mockMvc.perform(
                 get("/api/v1/companies/check-number")
-                    .param("number", "12345678")
+                    .param("number", "12345678"),
             )
                 .andExpect(status().isOk)
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -144,7 +144,7 @@ class CompanyControllerIntegrationTest {
             // When & Then - Check available number
             mockMvc.perform(
                 get("/api/v1/companies/check-number")
-                    .param("number", "99999999")
+                    .param("number", "99999999"),
             )
                 .andExpect(status().isOk)
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -160,7 +160,7 @@ class CompanyControllerIntegrationTest {
             // When & Then
             mockMvc.perform(
                 get("/api/v1/companies/search")
-                    .param("query", "NonExistent Company")
+                    .param("query", "NonExistent Company"),
             )
                 .andExpect(status().isOk)
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -181,7 +181,7 @@ class CompanyControllerIntegrationTest {
             // When & Then
             mockMvc.perform(
                 get("/api/v1/companies/${savedCompany.id}")
-                    .with(jwt().jwt { it.subject("auth0|user123") })
+                    .with(jwt().jwt { it.subject("auth0|user123") }),
             )
                 .andExpect(status().isOk)
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -199,7 +199,7 @@ class CompanyControllerIntegrationTest {
             // When & Then
             mockMvc.perform(
                 get("/api/v1/companies/number/12345678")
-                    .with(jwt().jwt { it.subject("auth0|user123") })
+                    .with(jwt().jwt { it.subject("auth0|user123") }),
             )
                 .andExpect(status().isOk)
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -218,14 +218,14 @@ class CompanyControllerIntegrationTest {
                 companyType = testCompany.companyType,
                 incorporationDate = testCompany.incorporationDate,
                 nzbn = "9429000000001",
-                status = "INACTIVE"
+                status = "INACTIVE",
             )
             companyRepository.save(inactiveCompany)
 
             // When & Then
             mockMvc.perform(
                 get("/api/v1/companies")
-                    .with(jwt().jwt { it.subject("auth0|user123") })
+                    .with(jwt().jwt { it.subject("auth0|user123") }),
             )
                 .andExpect(status().isOk)
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -257,7 +257,7 @@ class CompanyControllerIntegrationTest {
             // When & Then
             mockMvc.perform(
                 get("/api/v1/companies/999999")
-                    .with(jwt().jwt { it.subject("auth0|user123") })
+                    .with(jwt().jwt { it.subject("auth0|user123") }),
             )
                 .andExpect(status().isNotFound)
         }
@@ -268,7 +268,7 @@ class CompanyControllerIntegrationTest {
             // When & Then
             mockMvc.perform(
                 get("/api/v1/companies/number/99999999")
-                    .with(jwt().jwt { it.subject("auth0|user123") })
+                    .with(jwt().jwt { it.subject("auth0|user123") }),
             )
                 .andExpect(status().isNotFound)
         }
@@ -288,7 +288,7 @@ class CompanyControllerIntegrationTest {
                 companyType = CompanyType.LTD,
                 incorporationDate = LocalDate.of(2023, 1, 1),
                 nzbn = "9429000000001",
-                status = "ACTIVE"
+                status = "ACTIVE",
             )
 
             // When & Then
@@ -296,10 +296,10 @@ class CompanyControllerIntegrationTest {
                 post("/api/v1/companies")
                     .with(
                         jwt().jwt { it.subject("auth0|admin123") }
-                            .authorities(SimpleGrantedAuthority("ROLE_ADMIN"))
+                            .authorities(SimpleGrantedAuthority("ROLE_ADMIN")),
                     )
                     .contentType(MediaType.APPLICATION_JSON)
-                    .content(objectMapper.writeValueAsString(newCompany))
+                    .content(objectMapper.writeValueAsString(newCompany)),
             )
                 .andExpect(status().isCreated)
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -322,7 +322,7 @@ class CompanyControllerIntegrationTest {
                 companyType = CompanyType.LTD,
                 incorporationDate = LocalDate.of(2023, 1, 1),
                 nzbn = "9429000000002",
-                status = "ACTIVE"
+                status = "ACTIVE",
             )
 
             // When & Then
@@ -330,10 +330,10 @@ class CompanyControllerIntegrationTest {
                 post("/api/v1/companies")
                     .with(
                         jwt().jwt { it.subject("auth0|registrar123") }
-                            .authorities(SimpleGrantedAuthority("ROLE_REGISTRAR"))
+                            .authorities(SimpleGrantedAuthority("ROLE_REGISTRAR")),
                     )
                     .contentType(MediaType.APPLICATION_JSON)
-                    .content(objectMapper.writeValueAsString(newCompany))
+                    .content(objectMapper.writeValueAsString(newCompany)),
             )
                 .andExpect(status().isCreated)
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -354,7 +354,7 @@ class CompanyControllerIntegrationTest {
                 companyType = CompanyType.LTD,
                 incorporationDate = LocalDate.of(2023, 1, 1),
                 nzbn = "9429000000003",
-                status = "ACTIVE"
+                status = "ACTIVE",
             )
 
             // When & Then
@@ -362,10 +362,10 @@ class CompanyControllerIntegrationTest {
                 post("/api/v1/companies")
                     .with(
                         jwt().jwt { it.subject("auth0|public123") }
-                            .authorities(SimpleGrantedAuthority("ROLE_PUBLIC"))
+                            .authorities(SimpleGrantedAuthority("ROLE_PUBLIC")),
                     )
                     .contentType(MediaType.APPLICATION_JSON)
-                    .content(objectMapper.writeValueAsString(newCompany))
+                    .content(objectMapper.writeValueAsString(newCompany)),
             )
                 .andExpect(status().isForbidden)
 
@@ -394,10 +394,10 @@ class CompanyControllerIntegrationTest {
                 put("/api/v1/companies/${savedCompany.id}")
                     .with(
                         jwt().jwt { it.subject("auth0|admin123") }
-                            .authorities(SimpleGrantedAuthority("ROLE_ADMIN"))
+                            .authorities(SimpleGrantedAuthority("ROLE_ADMIN")),
                     )
                     .contentType(MediaType.APPLICATION_JSON)
-                    .content(objectMapper.writeValueAsString(updateData))
+                    .content(objectMapper.writeValueAsString(updateData)),
             )
                 .andExpect(status().isOk)
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -428,10 +428,10 @@ class CompanyControllerIntegrationTest {
                 put("/api/v1/companies/${savedCompany.id}")
                     .with(
                         jwt().jwt { it.subject("auth0|registrar123") }
-                            .authorities(SimpleGrantedAuthority("ROLE_REGISTRAR"))
+                            .authorities(SimpleGrantedAuthority("ROLE_REGISTRAR")),
                     )
                     .contentType(MediaType.APPLICATION_JSON)
-                    .content(objectMapper.writeValueAsString(updateData))
+                    .content(objectMapper.writeValueAsString(updateData)),
             )
                 .andExpect(status().isOk)
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -462,10 +462,10 @@ class CompanyControllerIntegrationTest {
                 put("/api/v1/companies/${savedCompany.id}")
                     .with(
                         jwt().jwt { it.subject("auth0|internal123") }
-                            .authorities(SimpleGrantedAuthority("ROLE_INTERNAL_OPS"))
+                            .authorities(SimpleGrantedAuthority("ROLE_INTERNAL_OPS")),
                     )
                     .contentType(MediaType.APPLICATION_JSON)
-                    .content(objectMapper.writeValueAsString(updateData))
+                    .content(objectMapper.writeValueAsString(updateData)),
             )
                 .andExpect(status().isForbidden)
 
@@ -485,8 +485,8 @@ class CompanyControllerIntegrationTest {
                 delete("/api/v1/companies/${savedCompany.id}")
                     .with(
                         jwt().jwt { it.subject("auth0|admin123") }
-                            .authorities(SimpleGrantedAuthority("ROLE_ADMIN"))
-                    )
+                            .authorities(SimpleGrantedAuthority("ROLE_ADMIN")),
+                    ),
             )
                 .andExpect(status().isNoContent)
 
@@ -506,8 +506,8 @@ class CompanyControllerIntegrationTest {
                 delete("/api/v1/companies/${savedCompany.id}")
                     .with(
                         jwt().jwt { it.subject("auth0|registrar123") }
-                            .authorities(SimpleGrantedAuthority("ROLE_REGISTRAR"))
-                    )
+                            .authorities(SimpleGrantedAuthority("ROLE_REGISTRAR")),
+                    ),
             )
                 .andExpect(status().isForbidden)
 
@@ -540,10 +540,10 @@ class CompanyControllerIntegrationTest {
                 post("/api/v1/companies")
                     .with(
                         jwt().jwt { it.subject("auth0|admin123") }
-                            .authorities(SimpleGrantedAuthority("ROLE_ADMIN"))
+                            .authorities(SimpleGrantedAuthority("ROLE_ADMIN")),
                     )
                     .contentType(MediaType.APPLICATION_JSON)
-                    .content(objectMapper.writeValueAsString(duplicateCompany))
+                    .content(objectMapper.writeValueAsString(duplicateCompany)),
             )
                 .andExpect(status().isBadRequest)
         }
@@ -574,10 +574,10 @@ class CompanyControllerIntegrationTest {
                 post("/api/v1/companies")
                     .with(
                         jwt().jwt { it.subject("auth0|admin123") }
-                            .authorities(SimpleGrantedAuthority("ROLE_ADMIN"))
+                            .authorities(SimpleGrantedAuthority("ROLE_ADMIN")),
                     )
                     .contentType(MediaType.APPLICATION_JSON)
-                    .content(objectMapper.writeValueAsString(company1))
+                    .content(objectMapper.writeValueAsString(company1)),
             )
                 .andExpect(status().isCreated)
 
@@ -586,10 +586,10 @@ class CompanyControllerIntegrationTest {
                 post("/api/v1/companies")
                     .with(
                         jwt().jwt { it.subject("auth0|admin123") }
-                            .authorities(SimpleGrantedAuthority("ROLE_ADMIN"))
+                            .authorities(SimpleGrantedAuthority("ROLE_ADMIN")),
                     )
                     .contentType(MediaType.APPLICATION_JSON)
-                    .content(objectMapper.writeValueAsString(company2))
+                    .content(objectMapper.writeValueAsString(company2)),
             )
                 .andExpect(status().isCreated)
 
@@ -629,7 +629,7 @@ class CompanyControllerIntegrationTest {
                 nzbn = "9429000000003",
                 status = testCompany.status,
             )
-            
+
             companyRepository.save(company1)
             companyRepository.save(company2)
             companyRepository.save(company3)
@@ -637,7 +637,7 @@ class CompanyControllerIntegrationTest {
             // When & Then - Search for "Company"
             mockMvc.perform(
                 get("/api/v1/companies/search")
-                    .param("query", "Company")
+                    .param("query", "Company"),
             )
                 .andExpect(status().isOk)
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -646,7 +646,7 @@ class CompanyControllerIntegrationTest {
             // When & Then - Search for "Alpha"
             mockMvc.perform(
                 get("/api/v1/companies/search")
-                    .param("query", "Alpha")
+                    .param("query", "Alpha"),
             )
                 .andExpect(status().isOk)
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -656,7 +656,7 @@ class CompanyControllerIntegrationTest {
             // When & Then - Search for "Corporation"
             mockMvc.perform(
                 get("/api/v1/companies/search")
-                    .param("query", "Corporation")
+                    .param("query", "Corporation"),
             )
                 .andExpect(status().isOk)
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -689,7 +689,7 @@ class CompanyControllerIntegrationTest {
             repeat(5) { i ->
                 mockMvc.perform(
                     get("/api/v1/companies/search")
-                        .param("query", "Company $i")
+                        .param("query", "Company $i"),
                 )
                     .andExpect(status().isOk)
                     .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -715,7 +715,7 @@ class CompanyControllerIntegrationTest {
             // When & Then
             mockMvc.perform(
                 get("/api/v1/companies/search")
-                    .param("query", "Large Dataset")
+                    .param("query", "Large Dataset"),
             )
                 .andExpect(status().isOk)
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))

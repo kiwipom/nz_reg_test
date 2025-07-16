@@ -49,14 +49,14 @@ class CompanyServiceIntegrationTest {
     @BeforeEach
     fun setUp() {
         companyRepository.deleteAll()
-        
+
         testCompany = Company(
             companyNumber = "12345678",
             companyName = "Test Company Ltd",
             companyType = CompanyType.LTD,
             incorporationDate = LocalDate.of(2020, 1, 1),
             nzbn = "9429000000000",
-            status = "ACTIVE"
+            status = "ACTIVE",
         )
     }
 
