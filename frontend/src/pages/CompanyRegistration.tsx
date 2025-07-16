@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Building2, Check, AlertCircle, Loader2 } from 'lucide-react';
+import { Building2, Check, AlertCircle, Loader2, Upload, X, FileText } from 'lucide-react';
 import { useAuth } from '../auth/useAuth';
 import { registrationService } from '../services/registrationService';
 
@@ -12,6 +12,7 @@ interface CompanyRegistrationData {
   shareCapital: number;
   numberOfShares: number;
   shareValue: number;
+  constitutionFile?: File;
 }
 
 interface NameAvailabilityStatus {
@@ -32,6 +33,7 @@ export const CompanyRegistration: React.FC = () => {
     shareCapital: 100,
     numberOfShares: 100,
     shareValue: 1,
+    constitutionFile: undefined,
   });
 
   const [nameAvailability, setNameAvailability] = useState<NameAvailabilityStatus>({
@@ -100,6 +102,32 @@ export const CompanyRegistration: React.FC = () => {
 
       return () => clearTimeout(timeoutId);
     }
+  };
+
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      // Validate file type
+      const allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+      if (!allowedTypes.includes(file.type)) {
+        setErrors(prev => ({ ...prev, constitutionFile: 'Only PDF, DOC, and DOCX files are allowed' }));
+        return;
+      }
+
+      // Validate file size (5MB limit)
+      if (file.size > 5 * 1024 * 1024) {
+        setErrors(prev => ({ ...prev, constitutionFile: 'File size must be less than 5MB' }));
+        return;
+      }
+
+      setFormData(prev => ({ ...prev, constitutionFile: file }));
+      setErrors(prev => ({ ...prev, constitutionFile: '' }));
+    }
+  };
+
+  const removeFile = () => {
+    setFormData(prev => ({ ...prev, constitutionFile: undefined }));
+    setErrors(prev => ({ ...prev, constitutionFile: '' }));
   };
 
   const validateForm = (): boolean => {
@@ -296,6 +324,63 @@ export const CompanyRegistration: React.FC = () => {
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
                 placeholder="New Zealand Business Number"
               />
+            </div>
+
+            {/* Constitution File Upload */}
+            <div>
+              <label htmlFor="constitutionFile" className="block text-sm font-medium text-gray-700 mb-2">
+                Constitution Document (Optional)
+              </label>
+              <p className="text-sm text-gray-600 mb-3">
+                Upload the company constitution document (PDF, DOC, or DOCX format, max 5MB)
+              </p>
+              
+              {!formData.constitutionFile ? (
+                <div className="relative border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-blue-400 transition-colors">
+                  <div className="flex flex-col items-center">
+                    <Upload className="h-12 w-12 text-gray-400 mb-3" />
+                    <p className="text-sm text-gray-600 mb-2">
+                      Click to upload or drag and drop
+                    </p>
+                    <p className="text-xs text-gray-500">
+                      PDF, DOC, DOCX (max 5MB)
+                    </p>
+                  </div>
+                  <input
+                    type="file"
+                    id="constitutionFile"
+                    name="constitutionFile"
+                    accept=".pdf,.doc,.docx"
+                    onChange={handleFileUpload}
+                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                  />
+                </div>
+              ) : (
+                <div className="bg-green-50 border border-green-200 rounded-lg p-4 flex items-center justify-between">
+                  <div className="flex items-center">
+                    <FileText className="h-5 w-5 text-green-600 mr-3" />
+                    <div>
+                      <p className="text-sm font-medium text-green-800">
+                        {formData.constitutionFile.name}
+                      </p>
+                      <p className="text-xs text-green-600">
+                        {(formData.constitutionFile.size / 1024 / 1024).toFixed(2)} MB
+                      </p>
+                    </div>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={removeFile}
+                    className="text-red-600 hover:text-red-700 p-1 rounded-full hover:bg-red-50 transition-colors"
+                  >
+                    <X className="h-4 w-4" />
+                  </button>
+                </div>
+              )}
+              
+              {errors.constitutionFile && (
+                <p className="mt-2 text-sm text-red-600">{errors.constitutionFile}</p>
+              )}
             </div>
 
             {/* Share Capital Section */}

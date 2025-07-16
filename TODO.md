@@ -1,6 +1,6 @@
 # NZ Companies Register System - Development TODO
 
-## 🎯 Current Progress: Phase 1.4 Complete + Section 2.1 Complete + Section 2.2 Complete (Week 3)
+## 🎯 Current Progress: Phase 1.4 Complete + Section 2.1 Complete + Section 2.2 Complete + Section 2.3 Complete (Week 3)
 
 **✅ Completed:**
 - Phase 1.1: Project Setup (Kotlin/Spring Boot 3, React/TypeScript, Docker, Git)
@@ -9,11 +9,12 @@
 - Phase 1.4: Authentication & Security (JWT/Auth0, RBAC, CORS, audit logging)
 - Section 2.1: Comprehensive Integration Testing (90%+ backend coverage, full-stack testing)
 - Section 2.2: Core Business Logic (Company/Director/Shareholder services, audit system)
+- Section 2.3: REST API Development (Complete with OpenAPI docs, comprehensive testing)
 - Documentation: Comprehensive README files and architecture diagrams
 
-**🔄 Next Up:** Phase 2.3 - REST API Development
+**🔄 Next Up:** Phase 3.1 - Company Registration Flow
 
-**📊 Overall Progress:** 4/10 phases complete + Section 2.1 + Section 2.2 complete (50%)
+**📊 Overall Progress:** 4/10 phases complete + Section 2.1 + Section 2.2 + Section 2.3 + Section 2.3.1 complete (65%)
 
 ---
 
@@ -80,13 +81,22 @@
 - [x] **BONUS: NZ Post address integration service** (Placeholder for future NZ Post API)
 - [x] **BONUS: S3 document storage service** (Placeholder for future AWS S3 integration)
 
-### 2.3 REST API Development
-- [ ] Design and implement Company REST endpoints
-- [ ] Create Director management APIs
-- [ ] Build Shareholder management APIs
-- [ ] Implement document upload/download APIs
-- [ ] Create search APIs with filtering
-- [ ] Generate OpenAPI documentation
+### 2.3 REST API Development ✅ COMPLETE
+- [x] Design and implement Company REST endpoints
+- [x] Create Director management APIs
+- [x] Build Shareholder management APIs
+- [x] Implement document upload/download APIs
+- [x] Create search APIs with filtering
+- [x] Generate OpenAPI documentation
+- [x] **BONUS: Comprehensive test coverage** (90%+ for all REST controllers)
+- [x] **BONUS: API documentation controller** (Swagger UI integration)
+- [x] **BONUS: Search API with pagination** (Advanced filtering capabilities)
+
+### 2.3.1 Authentication & Authorization Issues ✅ COMPLETE
+- [x] Fix Auth0 configuration mismatch between frontend and backend
+- [x] Configure Auth0 roles and custom claims for RBAC
+- [x] Update backend Auth0 issuer URLs to match frontend
+- [x] Test role-based access control after Auth0 fixes
 
 ### 2.4 GraphQL API (Optional)
 - [ ] Set up GraphQL schema
