@@ -12,7 +12,8 @@ class VpcStack(Stack):
 
         # VPC with public and private subnets across 3 AZs
         self.vpc = ec2.Vpc(
-            self, "NzCompaniesVpc",
+            self,
+            "NzCompaniesVpc",
             vpc_name="nz-companies-register-vpc",
             max_azs=3,
             subnet_configuration=[
@@ -45,44 +46,39 @@ class VpcStack(Stack):
 
         # Security Groups
         self.alb_security_group = ec2.SecurityGroup(
-            self, "AlbSecurityGroup",
+            self,
+            "AlbSecurityGroup",
             vpc=self.vpc,
             description="Security group for Application Load Balancer",
             security_group_name="nz-companies-alb-sg",
         )
         self.alb_security_group.add_ingress_rule(
-            ec2.Peer.any_ipv4(),
-            ec2.Port.tcp(80),
-            "Allow HTTP from internet"
+            ec2.Peer.any_ipv4(), ec2.Port.tcp(80), "Allow HTTP from internet"
         )
         self.alb_security_group.add_ingress_rule(
-            ec2.Peer.any_ipv4(),
-            ec2.Port.tcp(443),
-            "Allow HTTPS from internet"
+            ec2.Peer.any_ipv4(), ec2.Port.tcp(443), "Allow HTTPS from internet"
         )
 
         self.ecs_security_group = ec2.SecurityGroup(
-            self, "EcsSecurityGroup",
+            self,
+            "EcsSecurityGroup",
             vpc=self.vpc,
             description="Security group for ECS tasks",
             security_group_name="nz-companies-ecs-sg",
         )
         self.ecs_security_group.add_ingress_rule(
-            self.alb_security_group,
-            ec2.Port.tcp(8080),
-            "Allow traffic from ALB"
+            self.alb_security_group, ec2.Port.tcp(8080), "Allow traffic from ALB"
         )
 
         self.database_security_group = ec2.SecurityGroup(
-            self, "DatabaseSecurityGroup",
+            self,
+            "DatabaseSecurityGroup",
             vpc=self.vpc,
             description="Security group for RDS database",
             security_group_name="nz-companies-db-sg",
         )
         self.database_security_group.add_ingress_rule(
-            self.ecs_security_group,
-            ec2.Port.tcp(5432),
-            "Allow PostgreSQL from ECS"
+            self.ecs_security_group, ec2.Port.tcp(5432), "Allow PostgreSQL from ECS"
         )
 
         # Add tags

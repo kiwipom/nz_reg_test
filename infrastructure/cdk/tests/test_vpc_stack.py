@@ -13,23 +13,32 @@ class TestVpcStack:
 
     def test_vpc_created(self, template):
         """Test that VPC is created with correct configuration"""
-        template.has_resource_properties("AWS::EC2::VPC", {
-            "CidrBlock": "10.0.0.0/16",
-            "EnableDnsHostnames": True,
-            "EnableDnsSupport": True,
-        })
+        template.has_resource_properties(
+            "AWS::EC2::VPC",
+            {
+                "CidrBlock": "10.0.0.0/16",
+                "EnableDnsHostnames": True,
+                "EnableDnsSupport": True,
+            },
+        )
 
     def test_subnets_created(self, template):
         """Test that public, private, and database subnets are created"""
         # Public subnets
-        template.has_resource_properties("AWS::EC2::Subnet", {
-            "MapPublicIpOnLaunch": True,
-        })
-        
+        template.has_resource_properties(
+            "AWS::EC2::Subnet",
+            {
+                "MapPublicIpOnLaunch": True,
+            },
+        )
+
         # Private subnets
-        template.has_resource_properties("AWS::EC2::Subnet", {
-            "MapPublicIpOnLaunch": False,
-        })
+        template.has_resource_properties(
+            "AWS::EC2::Subnet",
+            {
+                "MapPublicIpOnLaunch": False,
+            },
+        )
 
     def test_internet_gateway_created(self, template):
         """Test that Internet Gateway is created"""
@@ -42,50 +51,67 @@ class TestVpcStack:
     def test_security_groups_created(self, template):
         """Test that required security groups are created"""
         # ALB Security Group
-        template.has_resource_properties("AWS::EC2::SecurityGroup", {
-            "GroupDescription": "Security group for Application Load Balancer",
-            "SecurityGroupIngress": [
-                {
-                    "IpProtocol": "tcp",
-                    "FromPort": 80,
-                    "ToPort": 80,
-                    "CidrIp": "0.0.0.0/0"
-                },
-                {
-                    "IpProtocol": "tcp",
-                    "FromPort": 443,
-                    "ToPort": 443,
-                    "CidrIp": "0.0.0.0/0"
-                }
-            ]
-        })
+        template.has_resource_properties(
+            "AWS::EC2::SecurityGroup",
+            {
+                "GroupDescription": "Security group for Application Load Balancer",
+                "SecurityGroupIngress": [
+                    {
+                        "IpProtocol": "tcp",
+                        "FromPort": 80,
+                        "ToPort": 80,
+                        "CidrIp": "0.0.0.0/0",
+                    },
+                    {
+                        "IpProtocol": "tcp",
+                        "FromPort": 443,
+                        "ToPort": 443,
+                        "CidrIp": "0.0.0.0/0",
+                    },
+                ],
+            },
+        )
 
         # ECS Security Group
-        template.has_resource_properties("AWS::EC2::SecurityGroup", {
-            "GroupDescription": "Security group for ECS tasks",
-        })
+        template.has_resource_properties(
+            "AWS::EC2::SecurityGroup",
+            {
+                "GroupDescription": "Security group for ECS tasks",
+            },
+        )
 
         # Database Security Group
-        template.has_resource_properties("AWS::EC2::SecurityGroup", {
-            "GroupDescription": "Security group for RDS database",
-        })
+        template.has_resource_properties(
+            "AWS::EC2::SecurityGroup",
+            {
+                "GroupDescription": "Security group for RDS database",
+            },
+        )
 
     def test_flow_logs_enabled(self, template):
         """Test that VPC Flow Logs are enabled"""
-        template.has_resource_properties("AWS::EC2::FlowLog", {
-            "ResourceType": "VPC",
-            "TrafficType": "ALL",
-        })
+        template.has_resource_properties(
+            "AWS::EC2::FlowLog",
+            {
+                "ResourceType": "VPC",
+                "TrafficType": "ALL",
+            },
+        )
 
     def test_tags_applied(self, template):
         """Test that proper tags are applied"""
-        template.has_resource_properties("AWS::EC2::VPC", {
-            "Tags": Match.array_with([
-                {"Key": "Project", "Value": "NZ Companies Register"},
-                {"Key": "Environment", "Value": "Production"},
-                {"Key": "Component", "Value": "Networking"},
-            ])
-        })
+        template.has_resource_properties(
+            "AWS::EC2::VPC",
+            {
+                "Tags": Match.array_with(
+                    [
+                        {"Key": "Project", "Value": "NZ Companies Register"},
+                        {"Key": "Environment", "Value": "Production"},
+                        {"Key": "Component", "Value": "Networking"},
+                    ]
+                )
+            },
+        )
 
     def test_availability_zones(self, template):
         """Test that resources are distributed across multiple AZs"""

@@ -10,25 +10,29 @@ from constructs import Construct
 
 
 class DatabaseStack(Stack):
-    def __init__(self, scope: Construct, construct_id: str, vpc: ec2.Vpc, **kwargs) -> None:
+    def __init__(
+        self, scope: Construct, construct_id: str, vpc: ec2.Vpc, **kwargs
+    ) -> None:
         super().__init__(scope, construct_id, **kwargs)
 
         # Database credentials secret
         self.database_secret = secretsmanager.Secret(
-            self, "DatabaseSecret",
+            self,
+            "DatabaseSecret",
             secret_name="nz-companies-register/database",
             description="Database credentials for NZ Companies Register",
             generate_secret_string=secretsmanager.SecretStringGenerator(
                 secret_string_template='{"username": "postgres"}',
                 generate_string_key="password",
-                exclude_characters=' "\\/@\'',
+                exclude_characters=" \"\\/@'",
                 password_length=32,
             ),
         )
 
         # Database subnet group
         db_subnet_group = rds.SubnetGroup(
-            self, "DatabaseSubnetGroup",
+            self,
+            "DatabaseSubnetGroup",
             description="Subnet group for NZ Companies Register database",
             vpc=vpc,
             subnet_group_name="nz-companies-db-subnet-group",
@@ -39,7 +43,8 @@ class DatabaseStack(Stack):
 
         # Database parameter group
         db_parameter_group = rds.ParameterGroup(
-            self, "DatabaseParameterGroup",
+            self,
+            "DatabaseParameterGroup",
             engine=rds.DatabaseClusterEngine.aurora_postgres(
                 version=rds.AuroraPostgresEngineVersion.VER_15_4
             ),
@@ -54,7 +59,8 @@ class DatabaseStack(Stack):
 
         # Aurora PostgreSQL cluster
         self.database = rds.DatabaseCluster(
-            self, "Database",
+            self,
+            "Database",
             cluster_identifier="nz-companies-register-db",
             engine=rds.DatabaseClusterEngine.aurora_postgres(
                 version=rds.AuroraPostgresEngineVersion.VER_15_4
@@ -67,8 +73,7 @@ class DatabaseStack(Stack):
             writer=rds.ClusterInstance.provisioned(
                 "Writer",
                 instance_type=ec2.InstanceType.of(
-                    ec2.InstanceClass.R6G,
-                    ec2.InstanceSize.LARGE
+                    ec2.InstanceClass.R6G, ec2.InstanceSize.LARGE
                 ),
                 publicly_accessible=False,
                 auto_minor_version_upgrade=True,
@@ -81,8 +86,7 @@ class DatabaseStack(Stack):
                 rds.ClusterInstance.provisioned(
                     "Reader1",
                     instance_type=ec2.InstanceType.of(
-                        ec2.InstanceClass.R6G,
-                        ec2.InstanceSize.LARGE
+                        ec2.InstanceClass.R6G, ec2.InstanceSize.LARGE
                     ),
                     publicly_accessible=False,
                     auto_minor_version_upgrade=True,
@@ -106,17 +110,16 @@ class DatabaseStack(Stack):
 
         # DynamoDB table for document metadata
         from aws_cdk import aws_dynamodb as dynamodb
-        
+
         self.document_table = dynamodb.Table(
-            self, "DocumentTable",
+            self,
+            "DocumentTable",
             table_name="nz-companies-register-documents",
             partition_key=dynamodb.Attribute(
-                name="document_id",
-                type=dynamodb.AttributeType.STRING
+                name="document_id", type=dynamodb.AttributeType.STRING
             ),
             sort_key=dynamodb.Attribute(
-                name="version",
-                type=dynamodb.AttributeType.STRING
+                name="version", type=dynamodb.AttributeType.STRING
             ),
             billing_mode=dynamodb.BillingMode.PAY_PER_REQUEST,
             encryption=dynamodb.TableEncryption.AWS_MANAGED,
@@ -128,12 +131,10 @@ class DatabaseStack(Stack):
         self.document_table.add_global_secondary_index(
             index_name="CompanyIdIndex",
             partition_key=dynamodb.Attribute(
-                name="company_id",
-                type=dynamodb.AttributeType.STRING
+                name="company_id", type=dynamodb.AttributeType.STRING
             ),
             sort_key=dynamodb.Attribute(
-                name="created_at",
-                type=dynamodb.AttributeType.STRING
+                name="created_at", type=dynamodb.AttributeType.STRING
             ),
         )
 
