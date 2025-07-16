@@ -18,6 +18,16 @@ A modern, cloud-native application built to comply with the Companies Act 1993, 
 - Node.js 18+ & npm
 - Java 17+ & Gradle
 - Python 3.9+ & pip (for CDK)
+- **Auth0 account** (for authentication)
+
+### Auth0 Setup
+
+**IMPORTANT**: Before running the application, you must set up Auth0 for authentication:
+
+1. **Follow the comprehensive Auth0 setup guide**: [docs/AUTH0_SETUP.md](docs/AUTH0_SETUP.md)
+2. **Create Auth0 tenant and application**
+3. **Configure API and roles**
+4. **Set up environment variables**
 
 ### Local Development
 
@@ -27,20 +37,33 @@ A modern, cloud-native application built to comply with the Companies Act 1993, 
    cd nz_reg_test
    ```
 
-2. **Start local infrastructure**:
+2. **Configure environment variables**:
+   ```bash
+   # Backend
+   cd backend
+   cp .env.example .env
+   # Edit .env with your Auth0 configuration
+   
+   # Frontend
+   cd ../frontend
+   cp .env.example .env
+   # Edit .env with your Auth0 configuration
+   ```
+
+3. **Start local infrastructure**:
    ```bash
    docker-compose up -d
    ```
    This starts PostgreSQL, DynamoDB Local, LocalStack (S3/SNS/SQS), and monitoring stack.
 
-3. **Run backend**:
+4. **Run backend**:
    ```bash
    cd backend
    ./gradlew bootRun
    ```
    Backend will be available at http://localhost:8080
 
-4. **Run frontend**:
+5. **Run frontend**:
    ```bash
    cd frontend
    npm install
@@ -176,14 +199,16 @@ make deploy
 
 ### Development Security
 - **Database**: postgres/postgres (local only)
-- **API**: No authentication in dev mode
+- **Authentication**: OAuth2/JWT via Auth0
 - **Encryption**: Disabled for local development
+- **RBAC**: Role-based access control (Admin, Registrar, Internal Ops, Public)
 
 ### Production Security
-- **Authentication**: OAuth2/JWT via AWS Cognito
+- **Authentication**: OAuth2/JWT via Auth0
 - **Encryption**: KMS encryption at rest and in transit
 - **Network**: VPC with private subnets
 - **Secrets**: AWS Secrets Manager
+- **Audit Logging**: Comprehensive audit trail for all actions
 
 ## 📖 Documentation
 
@@ -218,10 +243,13 @@ make deploy
 ### Backend
 ```bash
 # Database
-DB_HOST=localhost
-DB_PORT=5432
 DB_USERNAME=postgres
 DB_PASSWORD=postgres
+
+# Auth0
+AUTH0_DOMAIN=your-tenant.au.auth0.com
+AUTH0_AUDIENCE=https://api.companies-register.govt.nz
+AUTH0_ISSUER=https://your-tenant.au.auth0.com/
 
 # AWS Services
 AWS_REGION=ap-southeast-2
@@ -233,7 +261,12 @@ DYNAMODB_ENDPOINT=http://localhost:8000
 ```bash
 # API Configuration
 VITE_API_BASE_URL=http://localhost:8080/api
-VITE_ENVIRONMENT=development
+
+# Auth0
+VITE_AUTH0_DOMAIN=your-tenant.au.auth0.com
+VITE_AUTH0_CLIENT_ID=your-client-id
+VITE_AUTH0_AUDIENCE=https://api.companies-register.govt.nz
+VITE_AUTH0_REDIRECT_URI=http://localhost:3000/callback
 ```
 
 ## 🚨 Troubleshooting
