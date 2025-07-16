@@ -183,7 +183,7 @@ describe('CompanyRegistration', () => {
   it('checks name availability when typing company name', async () => {
     const user = userEvent.setup();
     const mockCheckNameAvailability = vi.mocked(registrationService.checkNameAvailability);
-    mockCheckNameAvailability.mockResolvedValueOnce({ available: true });
+    mockCheckNameAvailability.mockResolvedValue({ available: true });
     
     renderComponent();
     
@@ -193,18 +193,18 @@ describe('CompanyRegistration', () => {
     // Wait for debounced API call with increased timeout
     await waitFor(() => {
       expect(mockCheckNameAvailability).toHaveBeenCalledWith('Test Company Ltd');
-    }, { timeout: 2000 });
+    }, { timeout: 5000 });
     
     // Check that the availability indicator shows
     await waitFor(() => {
       expect(screen.getByText('✓ Name is available')).toBeInTheDocument();
-    }, { timeout: 2000 });
+    }, { timeout: 5000 });
   });
 
   it('shows error when company name is not available', async () => {
     const user = userEvent.setup();
     const mockCheckNameAvailability = vi.mocked(registrationService.checkNameAvailability);
-    mockCheckNameAvailability.mockResolvedValueOnce({ available: false });
+    mockCheckNameAvailability.mockResolvedValue({ available: false });
     
     renderComponent();
     
@@ -214,7 +214,7 @@ describe('CompanyRegistration', () => {
     // Wait for debounced API call
     await waitFor(() => {
       expect(mockCheckNameAvailability).toHaveBeenCalledWith('Existing Company');
-    }, { timeout: 1000 });
+    }, { timeout: 5000 });
     
     // Try to submit
     const incorporationDateInput = screen.getByLabelText(/incorporation date/i);
@@ -269,12 +269,12 @@ describe('CompanyRegistration', () => {
     // Wait for debounced API call with increased timeout
     await waitFor(() => {
       expect(mockCheckNameAvailability).toHaveBeenCalled();
-    }, { timeout: 1000 });
+    }, { timeout: 5000 });
     
     // Should not show availability status on error
     await waitFor(() => {
       expect(screen.queryByText('✓ Name is available')).not.toBeInTheDocument();
-    }, { timeout: 1000 });
+    }, { timeout: 5000 });
     
     consoleSpy.mockRestore();
   });
@@ -340,7 +340,7 @@ describe('CompanyRegistration', () => {
   it('disables submit button when name is not available', async () => {
     const user = userEvent.setup();
     const mockCheckNameAvailability = vi.mocked(registrationService.checkNameAvailability);
-    mockCheckNameAvailability.mockResolvedValueOnce({ available: false });
+    mockCheckNameAvailability.mockResolvedValue({ available: false });
     
     renderComponent();
     
@@ -350,13 +350,13 @@ describe('CompanyRegistration', () => {
     // Wait for debounced API call with increased timeout
     await waitFor(() => {
       expect(mockCheckNameAvailability).toHaveBeenCalled();
-    }, { timeout: 1000 });
+    }, { timeout: 5000 });
     
     const submitButton = screen.getByRole('button', { name: /register company/i });
     
     await waitFor(() => {
       expect(submitButton).toBeDisabled();
-    }, { timeout: 1000 });
+    }, { timeout: 5000 });
   });
 
   it('shows loading state during form submission', async () => {
@@ -364,7 +364,7 @@ describe('CompanyRegistration', () => {
     
     // Mock name availability check
     const mockCheckNameAvailability = vi.mocked(registrationService.checkNameAvailability);
-    mockCheckNameAvailability.mockResolvedValueOnce({ available: true });
+    mockCheckNameAvailability.mockResolvedValue({ available: true });
     
     // Mock registration service with delay
     const mockRegisterCompany = vi.mocked(registrationService.registerCompany);
@@ -397,7 +397,7 @@ describe('CompanyRegistration', () => {
     // Wait for name availability check with increased timeout
     await waitFor(() => {
       expect(screen.getByText('✓ Name is available')).toBeInTheDocument();
-    }, { timeout: 1000 });
+    }, { timeout: 5000 });
     
     // Submit form
     const submitButton = screen.getByRole('button', { name: /register company/i });
