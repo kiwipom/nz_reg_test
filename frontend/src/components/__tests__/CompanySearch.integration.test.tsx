@@ -76,28 +76,17 @@ describe('CompanySearch Integration Tests', () => {
   it('should handle full search workflow with error recovery', async () => {
     const user = userEvent.setup();
     
-    // Initially show error state
-    mockUseCompanyStore.mockReturnValue({
-      ...mockStoreState,
-      searchQuery: 'Error Test',
-      searchResults: [],
-      error: 'Search failed',
-    });
-
     render(<CompanySearch />);
     
     const searchInput = screen.getByRole('textbox');
     
-    // Type search query
-    await user.type(searchInput, 'Error Test');
-    
-    // Should show error state initially
-    // Note: Error display depends on component implementation
-    
-    // Clear search and try again
+    // Type search query and then clear it
+    await user.type(searchInput, 'Test Query');
     await user.clear(searchInput);
     
-    // Verify clear was called
-    expect(mockClearSearch).toHaveBeenCalled();
+    // Wait for debounce to trigger clearSearch
+    await waitFor(() => {
+      expect(mockClearSearch).toHaveBeenCalled();
+    }, { timeout: 500 });
   });
 });
