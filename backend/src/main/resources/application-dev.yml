@@ -1,0 +1,41 @@
+spring:
+  flyway:
+    # Enable dev seed data migration for development profile only
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+    validate-on-migrate: true
+    
+  # Enable debug logging for development
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        use_sql_comments: true
+        show_sql: true
+        
+logging:
+  level:
+    nz.govt.companiesoffice: DEBUG
+    org.springframework.security: DEBUG
+    org.springframework.web: DEBUG
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.flywaydb: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+
+# Development-specific business rules (more lenient for testing)
+app:
+  business:
+    director:
+      min-nz-au-residents: 1
+    search:
+      max-results: 200
+      timeout-ms: 1000
+  
+  # Enable additional debug features for development
+  debug:
+    enabled: true
+    log-audit-events: true
+    log-search-queries: true
