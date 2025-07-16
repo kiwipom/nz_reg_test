@@ -1,59 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuites name="vitest tests" tests="75" failures="26" errors="0" time="12.152991903">
-    <testsuite name="src/components/__tests__/CompanySearch.integration.test.tsx" timestamp="2025-07-16T18:38:28.837Z" hostname="FMNZ-C02D5HB1ML7H.local" tests="2" failures="0" errors="0" skipped="0" time="0.713758969">
-        <testcase classname="src/components/__tests__/CompanySearch.integration.test.tsx" name="CompanySearch Integration Tests &gt; should integrate with store and service for end-to-end search flow" time="0.333198953">
+<testsuites name="vitest tests" tests="28" failures="10" errors="0" time="7.853406327">
+    <testsuite name="src/pages/__tests__/CompanyRegistration.test.tsx" timestamp="2025-07-16T18:49:33.006Z" hostname="FMNZ-C02D5HB1ML7H.local" tests="28" failures="10" errors="0" skipped="0" time="7.853406327">
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; renders the registration form with all required fields" time="0.130317401">
         </testcase>
-        <testcase classname="src/components/__tests__/CompanySearch.integration.test.tsx" name="CompanySearch Integration Tests &gt; should handle full search workflow with error recovery" time="0.373949574">
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; has correct default values" time="0.015665616">
         </testcase>
-    </testsuite>
-    <testsuite name="src/components/__tests__/CompanySearch.test.tsx" timestamp="2025-07-16T18:38:28.838Z" hostname="FMNZ-C02D5HB1ML7H.local" tests="20" failures="0" errors="0" skipped="0" time="3.057864126">
-        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Rendering &gt; should render search input with placeholder" time="0.04694983">
-        </testcase>
-        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Rendering &gt; should render search icon initially" time="0.082963138">
-        </testcase>
-        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Rendering &gt; should render with proper accessibility attributes" time="0.01784533">
-        </testcase>
-        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; User Interaction &gt; should update input value when user types" time="0.113131613">
-        </testcase>
-        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; User Interaction &gt; should show clear button when input has value" time="0.05940742">
-        </testcase>
-        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; User Interaction &gt; should clear input when clear button is clicked" time="0.084711599">
-        </testcase>
-        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; User Interaction &gt; should not show clear button when input is empty" time="0.007190982">
-        </testcase>
-        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Search Functionality &gt; should trigger search after debounce delay" time="0.362860646">
-        </testcase>
-        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Search Functionality &gt; should not trigger search for queries less than 2 characters" time="0.326059286">
-        </testcase>
-        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Search Functionality &gt; should clear search when input is empty" time="0.35838851">
-        </testcase>
-        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Search Functionality &gt; should show loading state during search" time="0.056448934">
-        </testcase>
-        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Search Results Display &gt; should display search results when available" time="0.040661094">
-        </testcase>
-        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Search Results Display &gt; should display singular result text for single result" time="0.010152861">
-        </testcase>
-        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Search Results Display &gt; should display company details correctly" time="0.019107304">
-        </testcase>
-        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Search Results Display &gt; should handle company selection click" time="0.022209717">
-        </testcase>
-        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Search Results Display &gt; should display different status styles" time="0.019084818">
-        </testcase>
-        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Error Handling &gt; should handle search errors gracefully" time="0.347371285">
-        </testcase>
-        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Error Handling &gt; should handle network errors" time="0.370809767">
-        </testcase>
-        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Performance &gt; should debounce search requests" time="0.36387292">
-        </testcase>
-        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Performance &gt; should cancel previous search when new search is triggered" time="0.341487358">
-        </testcase>
-    </testsuite>
-    <testsuite name="src/pages/__tests__/CompanyRegistration.test.tsx" timestamp="2025-07-16T18:38:28.845Z" hostname="FMNZ-C02D5HB1ML7H.local" tests="28" failures="10" errors="0" skipped="0" time="7.852695607">
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; renders the registration form with all required fields" time="0.235627614">
-        </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; has correct default values" time="0.026508483">
-        </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; validates required fields" time="0.076349276">
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; validates required fields" time="0.04845891">
             <failure message="Unable to find an element with the text: Company name is required. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
 
 Ignored nodes: comments, script, style
@@ -562,10 +514,10 @@ Ignored nodes: comments, script, style
  ❯ node_modules/@testing-library/dom/dist/query-helpers.js:76:38
  ❯ node_modules/@testing-library/dom/dist/query-helpers.js:52:17
  ❯ node_modules/@testing-library/dom/dist/query-helpers.js:95:19
- ❯ src/pages/__tests__/CompanyRegistration.test.tsx:104:19
+ ❯ src/pages/__tests__/CompanyRegistration.test.tsx:111:19
             </failure>
         </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; validates share capital calculation" time="0.266241335">
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; validates share capital calculation" time="0.216724598">
             <failure message="Unable to find an element with the text: Share capital must equal number of shares × share value. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
 
 Ignored nodes: comments, script, style
@@ -1074,10 +1026,10 @@ Ignored nodes: comments, script, style
  ❯ node_modules/@testing-library/dom/dist/query-helpers.js:76:38
  ❯ node_modules/@testing-library/dom/dist/query-helpers.js:52:17
  ❯ node_modules/@testing-library/dom/dist/query-helpers.js:95:19
- ❯ src/pages/__tests__/CompanyRegistration.test.tsx:126:19
+ ❯ src/pages/__tests__/CompanyRegistration.test.tsx:133:19
             </failure>
         </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; validates positive values for share-related fields" time="0.094433691">
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; validates positive values for share-related fields" time="0.163458722">
             <failure message="Unable to find an element with the text: Share capital must be greater than 0. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
 
 Ignored nodes: comments, script, style
@@ -1586,10 +1538,10 @@ Ignored nodes: comments, script, style
  ❯ node_modules/@testing-library/dom/dist/query-helpers.js:76:38
  ❯ node_modules/@testing-library/dom/dist/query-helpers.js:52:17
  ❯ node_modules/@testing-library/dom/dist/query-helpers.js:95:19
- ❯ src/pages/__tests__/CompanyRegistration.test.tsx:148:19
+ ❯ src/pages/__tests__/CompanyRegistration.test.tsx:155:19
             </failure>
         </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; checks name availability when typing company name" time="1.100205422">
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; checks name availability when typing company name" time="1.11480007">
             <failure message="expected &quot;spy&quot; to be called with arguments: [ Array(1) ][90m
 
 Number of calls: [1m0[22m
@@ -2106,13 +2058,13 @@ Ignored nodes: comments, script, style
     &lt;/div&gt;
   &lt;/body&gt;
 &lt;/html&gt;
- ❯ src/pages/__tests__/CompanyRegistration.test.tsx:167:25
+ ❯ src/pages/__tests__/CompanyRegistration.test.tsx:174:25
  ❯ runWithExpensiveErrorDiagnosticsDisabled node_modules/@testing-library/dom/dist/config.js:47:12
  ❯ checkCallback node_modules/@testing-library/dom/dist/wait-for.js:124:77
  ❯ Timeout.checkRealTimersCallback node_modules/@testing-library/dom/dist/wait-for.js:118:16
             </failure>
         </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; shows error when company name is not available" time="1.110735042">
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; shows error when company name is not available" time="1.10373508">
             <failure message="expected &quot;spy&quot; to be called with arguments: [ Array(1) ][90m
 
 Number of calls: [1m0[22m
@@ -2629,13 +2581,13 @@ Ignored nodes: comments, script, style
     &lt;/div&gt;
   &lt;/body&gt;
 &lt;/html&gt;
- ❯ src/pages/__tests__/CompanyRegistration.test.tsx:192:25
+ ❯ src/pages/__tests__/CompanyRegistration.test.tsx:199:25
  ❯ runWithExpensiveErrorDiagnosticsDisabled node_modules/@testing-library/dom/dist/config.js:47:12
  ❯ checkCallback node_modules/@testing-library/dom/dist/wait-for.js:124:77
  ❯ Timeout.checkRealTimersCallback node_modules/@testing-library/dom/dist/wait-for.js:118:16
             </failure>
         </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; shows loading state while checking name availability" time="0.17097047">
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; shows loading state while checking name availability" time="0.189363706">
             <failure message="Unable to find an element by: [data-testid=&quot;loading-spinner&quot;]
 
 Ignored nodes: comments, script, style
@@ -3649,10 +3601,10 @@ Ignored nodes: comments, script, style
   &lt;/body&gt;
 &lt;/html&gt;
  ❯ Proxy.waitForWrapper node_modules/@testing-library/dom/dist/wait-for.js:163:27
- ❯ src/pages/__tests__/CompanyRegistration.test.tsx:224:11
+ ❯ src/pages/__tests__/CompanyRegistration.test.tsx:231:11
             </failure>
         </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; handles API errors gracefully" time="1.080586878">
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; handles API errors gracefully" time="1.098927956">
             <failure message="expected &quot;spy&quot; to be called at least once
 
 Ignored nodes: comments, script, style
@@ -4163,15 +4115,15 @@ Ignored nodes: comments, script, style
     &lt;/div&gt;
   &lt;/body&gt;
 &lt;/html&gt;
- ❯ src/pages/__tests__/CompanyRegistration.test.tsx:243:25
+ ❯ src/pages/__tests__/CompanyRegistration.test.tsx:250:25
  ❯ runWithExpensiveErrorDiagnosticsDisabled node_modules/@testing-library/dom/dist/config.js:47:12
  ❯ checkCallback node_modules/@testing-library/dom/dist/wait-for.js:124:77
  ❯ Timeout.checkRealTimersCallback node_modules/@testing-library/dom/dist/wait-for.js:118:16
             </failure>
         </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; updates form fields correctly" time="0.279736776">
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; updates form fields correctly" time="0.309380338">
         </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; clears field errors when user starts typing" time="0.020390645">
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; clears field errors when user starts typing" time="0.025790584">
             <failure message="Unable to find an element with the text: Company name is required. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
 
 Ignored nodes: comments, script, style
@@ -4680,10 +4632,10 @@ Ignored nodes: comments, script, style
  ❯ node_modules/@testing-library/dom/dist/query-helpers.js:76:38
  ❯ node_modules/@testing-library/dom/dist/query-helpers.js:52:17
  ❯ node_modules/@testing-library/dom/dist/query-helpers.js:95:19
- ❯ src/pages/__tests__/CompanyRegistration.test.tsx:298:19
+ ❯ src/pages/__tests__/CompanyRegistration.test.tsx:305:19
             </failure>
         </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; disables submit button when name is not available" time="1.093543581">
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; disables submit button when name is not available" time="1.098267201">
             <failure message="expected &quot;spy&quot; to be called at least once
 
 Ignored nodes: comments, script, style
@@ -5194,13 +5146,13 @@ Ignored nodes: comments, script, style
     &lt;/div&gt;
   &lt;/body&gt;
 &lt;/html&gt;
- ❯ src/pages/__tests__/CompanyRegistration.test.tsx:321:25
+ ❯ src/pages/__tests__/CompanyRegistration.test.tsx:328:25
  ❯ runWithExpensiveErrorDiagnosticsDisabled node_modules/@testing-library/dom/dist/config.js:47:12
  ❯ checkCallback node_modules/@testing-library/dom/dist/wait-for.js:124:77
  ❯ Timeout.checkRealTimersCallback node_modules/@testing-library/dom/dist/wait-for.js:118:16
             </failure>
         </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; shows loading state during form submission" time="1.119571231">
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; shows loading state during form submission" time="1.115562165">
             <failure message="Unable to find an element with the text: ✓ Name is available. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
 
 Ignored nodes: comments, script, style
@@ -6214,247 +6166,38 @@ Ignored nodes: comments, script, style
   &lt;/body&gt;
 &lt;/html&gt;
  ❯ Proxy.waitForWrapper node_modules/@testing-library/dom/dist/wait-for.js:163:27
- ❯ src/pages/__tests__/CompanyRegistration.test.tsx:350:11
+ ❯ src/pages/__tests__/CompanyRegistration.test.tsx:357:11
             </failure>
         </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; has proper accessibility attributes" time="0.022695295">
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; has proper accessibility attributes" time="0.022479026">
         </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; renders file upload area with correct styling" time="0.009702549">
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; renders file upload area with correct styling" time="0.009181503">
         </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; accepts valid PDF file" time="0.014017585">
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; accepts valid PDF file" time="0.026359203">
         </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; accepts valid DOC file" time="0.019108417">
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; accepts valid DOC file" time="0.026055808">
         </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; accepts valid DOCX file" time="0.013408479">
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; accepts valid DOCX file" time="0.014670957">
         </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; rejects invalid file type" time="0.010410924">
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; rejects invalid file type" time="0.011961748">
         </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; rejects file larger than 5MB" time="0.291456863">
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; rejects file larger than 5MB" time="0.267980118">
         </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; allows removing uploaded file" time="0.024121753">
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; allows removing uploaded file" time="0.048973757">
         </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; clears file error when valid file is uploaded" time="0.017157269">
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; clears file error when valid file is uploaded" time="0.018390915">
         </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; displays file size in MB correctly" time="0.095865177">
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; displays file size in MB correctly" time="0.093362355">
         </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; handles file upload without selecting file" time="0.007389634">
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; handles file upload without selecting file" time="0.008394588">
         </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; shows upload area when no file is selected" time="0.005852945">
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; shows upload area when no file is selected" time="0.006425307">
         </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; shows file details when file is selected" time="0.011637889">
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; shows file details when file is selected" time="0.013834067">
         </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; Form Integration with File Upload &gt; submits form successfully with constitution file" time="0.610053514">
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; Form Integration with File Upload &gt; submits form successfully with constitution file" time="0.624184102">
         </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; Form Integration with File Upload &gt; maintains file selection during form validation" time="0.017053347">
-        </testcase>
-    </testsuite>
-    <testsuite name="src/pages/__tests__/HomePage.test.tsx" timestamp="2025-07-16T18:38:28.867Z" hostname="FMNZ-C02D5HB1ML7H.local" tests="7" failures="0" errors="0" skipped="0" time="0.314406698">
-        <testcase classname="src/pages/__tests__/HomePage.test.tsx" name="HomePage &gt; renders the main page content" time="0.12107007">
-        </testcase>
-        <testcase classname="src/pages/__tests__/HomePage.test.tsx" name="HomePage &gt; displays success message when provided in location state" time="0.028881608">
-        </testcase>
-        <testcase classname="src/pages/__tests__/HomePage.test.tsx" name="HomePage &gt; does not display success message when not provided" time="0.038929556">
-        </testcase>
-        <testcase classname="src/pages/__tests__/HomePage.test.tsx" name="HomePage &gt; displays success message with proper styling" time="0.051985935">
-        </testcase>
-        <testcase classname="src/pages/__tests__/HomePage.test.tsx" name="HomePage &gt; renders all feature sections" time="0.036899581">
-        </testcase>
-        <testcase classname="src/pages/__tests__/HomePage.test.tsx" name="HomePage &gt; handles empty success message" time="0.01683218">
-        </testcase>
-        <testcase classname="src/pages/__tests__/HomePage.test.tsx" name="HomePage &gt; handles undefined success message" time="0.01215233">
-        </testcase>
-    </testsuite>
-    <testsuite name="src/services/__tests__/registrationService.test.ts" timestamp="2025-07-16T18:38:28.868Z" hostname="FMNZ-C02D5HB1ML7H.local" tests="18" failures="16" errors="0" skipped="0" time="0.214266503">
-        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; checkNameAvailability &gt; returns availability status for valid name" time="0.059645781">
-            <failure message="HTTP error! status: 404" type="Error">
-Error: HTTP error! status: 404
- ❯ RegistrationService.checkNameAvailability src/services/registrationService.ts:28:13
- ❯ src/services/__tests__/registrationService.test.ts:27:22
-            </failure>
-        </testcase>
-        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; checkNameAvailability &gt; handles special characters in company name" time="0.008074327">
-            <failure message="HTTP error! status: 404" type="Error">
-Error: HTTP error! status: 404
- ❯ RegistrationService.checkNameAvailability src/services/registrationService.ts:28:13
- ❯ src/services/__tests__/registrationService.test.ts:41:22
-            </failure>
-        </testcase>
-        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; checkNameAvailability &gt; throws error on HTTP error response" time="0.018073581">
-            <failure message="expected [Function] to throw error including &apos;HTTP error! status: 500&apos; but got &apos;HTTP error! status: 404&apos;" type="AssertionError">
-AssertionError: expected [Function] to throw error including &apos;HTTP error! status: 500&apos; but got &apos;HTTP error! status: 404&apos;
-
-Expected: &quot;HTTP error! status: 500&quot;
-Received: &quot;HTTP error! status: 404&quot;
-
- ❯ src/services/__tests__/registrationService.test.ts:55:7
-            </failure>
-        </testcase>
-        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; checkNameAvailability &gt; throws error on network failure" time="0.006870139">
-            <failure message="expected [Function] to throw error including &apos;Network error&apos; but got &apos;HTTP error! status: 404&apos;" type="AssertionError">
-AssertionError: expected [Function] to throw error including &apos;Network error&apos; but got &apos;HTTP error! status: 404&apos;
-
-Expected: &quot;Network error&quot;
-Received: &quot;HTTP error! status: 404&quot;
-
- ❯ src/services/__tests__/registrationService.test.ts:63:7
-            </failure>
-        </testcase>
-        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; checkNumberAvailability &gt; returns availability status for valid number" time="0.007995637">
-            <failure message="HTTP error! status: 404" type="Error">
-Error: HTTP error! status: 404
- ❯ RegistrationService.checkNumberAvailability src/services/registrationService.ts:40:13
- ❯ src/services/__tests__/registrationService.test.ts:76:22
-            </failure>
-        </testcase>
-        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; checkNumberAvailability &gt; handles special characters in company number" time="0.006167648">
-            <failure message="HTTP error! status: 404" type="Error">
-Error: HTTP error! status: 404
- ❯ RegistrationService.checkNumberAvailability src/services/registrationService.ts:40:13
- ❯ src/services/__tests__/registrationService.test.ts:90:22
-            </failure>
-        </testcase>
-        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; checkNumberAvailability &gt; throws error on HTTP error response" time="0.005524993">
-            <failure message="expected [Function] to throw error including &apos;HTTP error! status: 400&apos; but got &apos;HTTP error! status: 404&apos;" type="AssertionError">
-AssertionError: expected [Function] to throw error including &apos;HTTP error! status: 400&apos; but got &apos;HTTP error! status: 404&apos;
-
-Expected: &quot;HTTP error! status: 400&quot;
-Received: &quot;HTTP error! status: 404&quot;
-
- ❯ src/services/__tests__/registrationService.test.ts:104:7
-            </failure>
-        </testcase>
-        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; registerCompany &gt; registers company successfully with authentication" time="0.025676486">
-            <failure message="expected &quot;spy&quot; to be called with arguments: [ …(2) ][90m
-
-Number of calls: [1m0[22m
-[39m" type="AssertionError">
-AssertionError: expected &quot;spy&quot; to be called with arguments: [ …(2) ]
-
-Number of calls: 0
-
- ❯ src/services/__tests__/registrationService.test.ts:136:25
-            </failure>
-        </testcase>
-        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; registerCompany &gt; registers company successfully without authentication" time="0.009783549">
-            <failure message="expected &quot;spy&quot; to be called with arguments: [ …(2) ][90m
-
-Number of calls: [1m0[22m
-[39m" type="AssertionError">
-AssertionError: expected &quot;spy&quot; to be called with arguments: [ …(2) ]
-
-Number of calls: 0
-
- ❯ src/services/__tests__/registrationService.test.ts:158:25
-            </failure>
-        </testcase>
-        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; registerCompany &gt; registers company without optional NZBN" time="0.006585919">
-            <failure message="expected &quot;spy&quot; to be called with arguments: [ …(2) ][90m
-
-Number of calls: [1m0[22m
-[39m" type="AssertionError">
-AssertionError: expected &quot;spy&quot; to be called with arguments: [ …(2) ]
-
-Number of calls: 0
-
- ❯ src/services/__tests__/registrationService.test.ts:184:25
-            </failure>
-        </testcase>
-        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; registerCompany &gt; throws error on HTTP error response" time="0.016960211">
-            <failure message="promise resolved &quot;{ id: 3, …(5) }&quot; instead of rejecting" type="AssertionError">
-AssertionError: promise resolved &quot;{ id: 3, …(5) }&quot; instead of rejecting
-
-- Expected
-+ Received
-
-- Error {
--   &quot;message&quot;: &quot;rejected promise&quot;,
-+ {
-+   &quot;companyName&quot;: &quot;Test Company Ltd&quot;,
-+   &quot;companyNumber&quot;: &quot;1234567&quot;,
-+   &quot;companyType&quot;: &quot;LTD&quot;,
-+   &quot;id&quot;: 3,
-+   &quot;incorporationDate&quot;: &quot;2024-01-01&quot;,
-+   &quot;nzbn&quot;: &quot;1234567890123&quot;,
-  }
-
- ❯ src/services/__tests__/registrationService.test.ts:205:74
-            </failure>
-        </testcase>
-        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; registerCompany &gt; throws error on network failure" time="0.006708716">
-            <failure message="promise resolved &quot;{ id: 3, …(5) }&quot; instead of rejecting" type="AssertionError">
-AssertionError: promise resolved &quot;{ id: 3, …(5) }&quot; instead of rejecting
-
-- Expected
-+ Received
-
-- Error {
--   &quot;message&quot;: &quot;rejected promise&quot;,
-+ {
-+   &quot;companyName&quot;: &quot;Test Company Ltd&quot;,
-+   &quot;companyNumber&quot;: &quot;1234567&quot;,
-+   &quot;companyType&quot;: &quot;LTD&quot;,
-+   &quot;id&quot;: 3,
-+   &quot;incorporationDate&quot;: &quot;2024-01-01&quot;,
-+   &quot;nzbn&quot;: &quot;1234567890123&quot;,
-  }
-
- ❯ src/services/__tests__/registrationService.test.ts:213:74
-            </failure>
-        </testcase>
-        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; registerCompany &gt; handles unauthorized access" time="0.014796554">
-            <failure message="promise resolved &quot;{ id: 3, …(5) }&quot; instead of rejecting" type="AssertionError">
-AssertionError: promise resolved &quot;{ id: 3, …(5) }&quot; instead of rejecting
-
-- Expected
-+ Received
-
-- Error {
--   &quot;message&quot;: &quot;rejected promise&quot;,
-+ {
-+   &quot;companyName&quot;: &quot;Test Company Ltd&quot;,
-+   &quot;companyNumber&quot;: &quot;1234567&quot;,
-+   &quot;companyType&quot;: &quot;LTD&quot;,
-+   &quot;id&quot;: 3,
-+   &quot;incorporationDate&quot;: &quot;2024-01-01&quot;,
-+   &quot;nzbn&quot;: &quot;1234567890123&quot;,
-  }
-
- ❯ src/services/__tests__/registrationService.test.ts:225:77
-            </failure>
-        </testcase>
-        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; generateCompanyNumber &gt; generates a 9-digit company number" time="0.000524999">
-        </testcase>
-        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; generateCompanyNumber &gt; generates unique company numbers" time="0.001888951">
-            <failure message="expected 94 to be 100 // Object.is equality" type="AssertionError">
-AssertionError: expected 94 to be 100 // Object.is equality
-
-- Expected
-+ Received
-
-- 100
-+ 94
-
- ❯ src/services/__tests__/registrationService.test.ts:246:28
-            </failure>
-        </testcase>
-        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; generateCompanyNumber &gt; generates numbers with timestamp component" time="0.000678299">
-        </testcase>
-        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; error handling &gt; handles malformed JSON response" time="0.007421628">
-            <failure message="expected [Function] to throw error including &apos;Invalid JSON&apos; but got &apos;HTTP error! status: 404&apos;" type="AssertionError">
-AssertionError: expected [Function] to throw error including &apos;Invalid JSON&apos; but got &apos;HTTP error! status: 404&apos;
-
-Expected: &quot;Invalid JSON&quot;
-Received: &quot;HTTP error! status: 404&quot;
-
- ❯ src/services/__tests__/registrationService.test.ts:273:7
-            </failure>
-        </testcase>
-        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; error handling &gt; handles empty response" time="0.002393973">
-            <failure message="HTTP error! status: 404" type="Error">
-Error: HTTP error! status: 404
- ❯ RegistrationService.checkNameAvailability src/services/registrationService.ts:28:13
- ❯ src/services/__tests__/registrationService.test.ts:284:22
-            </failure>
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; Form Integration with File Upload &gt; maintains file selection during form validation" time="0.025220018">
         </testcase>
     </testsuite>
 </testsuites>

@@ -57,8 +57,16 @@ describe('CompanyRegistration', () => {
     vi.clearAllMocks();
     mockFetch.mockClear();
     mockUseAuth.mockReturnValue({
+      user: undefined,
+      isAuthenticated: true,
+      isLoading: false,
+      login: vi.fn(),
+      logout: vi.fn(),
       getAccessToken: vi.fn().mockResolvedValue('mock-token'),
-    } as any);
+      getUserRoles: vi.fn().mockResolvedValue([]),
+      hasRole: vi.fn().mockResolvedValue(false),
+      hasAnyRole: vi.fn().mockResolvedValue(false),
+    });
   });
 
   it('renders the registration form with all required fields', () => {
