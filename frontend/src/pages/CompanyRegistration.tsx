@@ -44,6 +44,7 @@ export const CompanyRegistration: React.FC = () => {
 
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [debounceTimeout, setDebounceTimeout] = useState<NodeJS.Timeout | null>(null);
 
   // Debounced name availability check
   const checkNameAvailability = async (name: string) => {
@@ -96,11 +97,17 @@ export const CompanyRegistration: React.FC = () => {
 
     // Check name availability when company name changes
     if (name === 'companyName') {
+      // Clear existing timeout
+      if (debounceTimeout) {
+        clearTimeout(debounceTimeout);
+      }
+      
+      // Set new timeout
       const timeoutId = setTimeout(() => {
         checkNameAvailability(value);
       }, 500);
-
-      return () => clearTimeout(timeoutId);
+      
+      setDebounceTimeout(timeoutId);
     }
   };
 

@@ -34,7 +34,7 @@ vi.mock('lucide-react', () => ({
   Building2: () => <div data-testid="building2-icon" />,
   Check: () => <div data-testid="check-icon" />,
   AlertCircle: () => <div data-testid="alert-circle-icon" />,
-  Loader2: () => <div data-testid="loader2-icon" />,
+  Loader2: (props: { 'data-testid'?: string }) => <div data-testid={props['data-testid'] || 'loader2-icon'} />,
   Upload: () => <div data-testid="upload-icon" />,
   X: () => <div data-testid="x-icon" />,
   FileText: () => <div data-testid="file-text-icon" />,
@@ -53,10 +53,15 @@ const renderComponent = () => {
 const mockFetch = vi.fn();
 global.fetch = mockFetch;
 
+// Mock window.alert
+const mockAlert = vi.fn();
+global.alert = mockAlert;
+
 describe('CompanyRegistration', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     mockFetch.mockClear();
+    mockAlert.mockClear();
     mockUseAuth.mockReturnValue({
       user: undefined,
       isAuthenticated: true,
@@ -185,15 +190,15 @@ describe('CompanyRegistration', () => {
     const companyNameInput = screen.getByLabelText(/company name/i);
     await user.type(companyNameInput, 'Test Company Ltd');
     
-    // Wait for debounced API call
+    // Wait for debounced API call with increased timeout
     await waitFor(() => {
       expect(mockCheckNameAvailability).toHaveBeenCalledWith('Test Company Ltd');
-    });
+    }, { timeout: 1000 });
     
     // Check that the availability indicator shows
     await waitFor(() => {
       expect(screen.getByText('✓ Name is available')).toBeInTheDocument();
-    });
+    }, { timeout: 1000 });
   });
 
   it('shows error when company name is not available', async () => {
@@ -209,7 +214,7 @@ describe('CompanyRegistration', () => {
     // Wait for debounced API call
     await waitFor(() => {
       expect(mockCheckNameAvailability).toHaveBeenCalledWith('Existing Company');
-    });
+    }, { timeout: 1000 });
     
     // Try to submit
     const incorporationDateInput = screen.getByLabelText(/incorporation date/i);
@@ -231,7 +236,7 @@ describe('CompanyRegistration', () => {
     // Mock a delayed response
     const mockCheckNameAvailability = vi.mocked(registrationService.checkNameAvailability);
     mockCheckNameAvailability.mockImplementationOnce(() => 
-      new Promise(resolve => setTimeout(() => resolve({ available: true }), 100))
+      new Promise(resolve => setTimeout(() => resolve({ available: true }), 1000))
     );
     
     renderComponent();
@@ -239,10 +244,13 @@ describe('CompanyRegistration', () => {
     const companyNameInput = screen.getByLabelText(/company name/i);
     await user.type(companyNameInput, 'Test Company');
     
-    // Should show loading state
+    // Wait for debounce to complete and API call to start
+    await new Promise(resolve => setTimeout(resolve, 700));
+    
+    // Should show loading state after debounce (500ms) but before API response (1000ms)
     await waitFor(() => {
       expect(screen.getByTestId('loading-spinner')).toBeInTheDocument();
-    }, { timeout: 100 });
+    }, { timeout: 500 });
   });
 
   it('handles API errors gracefully', async () => {
@@ -258,15 +266,15 @@ describe('CompanyRegistration', () => {
     const companyNameInput = screen.getByLabelText(/company name/i);
     await user.type(companyNameInput, 'Test Company');
     
-    // Wait for debounced API call
+    // Wait for debounced API call with increased timeout
     await waitFor(() => {
       expect(mockCheckNameAvailability).toHaveBeenCalled();
-    });
+    }, { timeout: 1000 });
     
     // Should not show availability status on error
     await waitFor(() => {
       expect(screen.queryByText('✓ Name is available')).not.toBeInTheDocument();
-    });
+    }, { timeout: 1000 });
     
     consoleSpy.mockRestore();
   });
@@ -339,15 +347,16 @@ describe('CompanyRegistration', () => {
     const companyNameInput = screen.getByLabelText(/company name/i);
     await user.type(companyNameInput, 'Existing Company');
     
+    // Wait for debounced API call with increased timeout
     await waitFor(() => {
       expect(mockCheckNameAvailability).toHaveBeenCalled();
-    });
+    }, { timeout: 1000 });
     
     const submitButton = screen.getByRole('button', { name: /register company/i });
     
     await waitFor(() => {
       expect(submitButton).toBeDisabled();
-    });
+    }, { timeout: 1000 });
   });
 
   it('shows loading state during form submission', async () => {
@@ -356,6 +365,25 @@ describe('CompanyRegistration', () => {
     // Mock name availability check
     const mockCheckNameAvailability = vi.mocked(registrationService.checkNameAvailability);
     mockCheckNameAvailability.mockResolvedValueOnce({ available: true });
+    
+    // Mock registration service with delay
+    const mockRegisterCompany = vi.mocked(registrationService.registerCompany);
+    mockRegisterCompany.mockImplementationOnce(() => 
+      new Promise(resolve => setTimeout(() => resolve({
+        id: 1,
+        companyNumber: '123456789',
+        companyName: 'Test Company',
+        companyType: 'LTD',
+        incorporationDate: '2024-01-01',
+        status: 'ACTIVE',
+        createdAt: '2024-01-01T00:00:00Z',
+        updatedAt: '2024-01-01T00:00:00Z',
+        version: 1,
+      }), 1000))
+    );
+    
+    const mockGenerateCompanyNumber = vi.mocked(registrationService.generateCompanyNumber);
+    mockGenerateCompanyNumber.mockReturnValue('123456789');
     
     renderComponent();
     
@@ -366,10 +394,10 @@ describe('CompanyRegistration', () => {
     const incorporationDateInput = screen.getByLabelText(/incorporation date/i);
     await user.type(incorporationDateInput, '2024-01-01');
     
-    // Wait for name availability check
+    // Wait for name availability check with increased timeout
     await waitFor(() => {
       expect(screen.getByText('✓ Name is available')).toBeInTheDocument();
-    });
+    }, { timeout: 1000 });
     
     // Submit form
     const submitButton = screen.getByRole('button', { name: /register company/i });
