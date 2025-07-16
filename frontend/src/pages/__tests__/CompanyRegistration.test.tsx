@@ -1,5 +1,5 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import userEvent, { type UserEvent } from '@testing-library/user-event';
 import { vi } from 'vitest';
 import { BrowserRouter } from 'react-router-dom';
 import { CompanyRegistration } from '../CompanyRegistration';
@@ -49,7 +49,7 @@ const renderComponent = () => {
 };
 
 // Helper to set up name availability for validation tests
-const setupNameAvailabilityForValidation = async (user: any) => {
+const setupNameAvailabilityForValidation = async (user: UserEvent) => {
   const mockCheckNameAvailability = vi.mocked(registrationService.checkNameAvailability);
   mockCheckNameAvailability.mockResolvedValue({ available: true });
   
