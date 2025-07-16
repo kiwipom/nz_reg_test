@@ -23,7 +23,7 @@ class ComputeStack(Stack):
         vpc: ec2.Vpc,
         database: rds.DatabaseCluster,
         document_bucket: s3.Bucket,
-        **kwargs
+        **kwargs,
     ) -> None:
         super().__init__(scope, construct_id, **kwargs)
 
@@ -233,8 +233,7 @@ class ComputeStack(Stack):
             health_check=ecs.HealthCheck(
                 command=[
                     "CMD-SHELL",
-                    ("curl -f http://localhost:8080/api/actuator/health "
-                     "|| exit 1"),
+                    ("curl -f http://localhost:8080/api/actuator/health " "|| exit 1"),
                 ],
                 interval=Duration.seconds(30),
                 timeout=Duration.seconds(5),

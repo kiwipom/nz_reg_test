@@ -18,9 +18,7 @@ class SecurityStack(Stack):
         self.application_key = kms.Key(
             self,
             "ApplicationKey",
-            description=(
-                "KMS key for NZ Companies Register application encryption"
-            ),
+            description=("KMS key for NZ Companies Register application encryption"),
             enable_key_rotation=True,
             removal_policy=RemovalPolicy.RETAIN,
         )
@@ -184,9 +182,7 @@ class SecurityStack(Stack):
 
         # Add X-Ray permissions for tracing
         self.ecs_task_role.add_managed_policy(
-            iam.ManagedPolicy.from_aws_managed_policy_name(
-                "AWSXRayDaemonWriteAccess"
-            )
+            iam.ManagedPolicy.from_aws_managed_policy_name("AWSXRayDaemonWriteAccess")
         )
 
         # ECS execution role additional permissions
@@ -200,10 +196,7 @@ class SecurityStack(Stack):
                     "kms:Decrypt",
                 ],
                 resources=[
-                    (
-                        "arn:aws:secretsmanager:*:*:secret:"
-                        "nz-companies-register/*"
-                    ),
+                    ("arn:aws:secretsmanager:*:*:secret:" "nz-companies-register/*"),
                     "arn:aws:ssm:*:*:parameter/nz-companies-register/*",
                     self.application_key.key_arn,
                 ],
@@ -269,9 +262,7 @@ class SecurityStack(Stack):
             self,
             "CORSOrigins",
             parameter_name="/nz-companies-register/cors-origins",
-            string_value=(
-                "https://companies.govt.nz,https://www.companies.govt.nz"
-            ),
+            string_value=("https://companies.govt.nz,https://www.companies.govt.nz"),
             description="Allowed CORS origins",
         )
 

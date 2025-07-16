@@ -13,11 +13,7 @@ from .compute_stack import ComputeStack
 
 class MonitoringStack(Stack):
     def __init__(
-        self,
-        scope: Construct,
-        construct_id: str,
-        compute_stack: ComputeStack,
-        **kwargs
+        self, scope: Construct, construct_id: str, compute_stack: ComputeStack, **kwargs
     ) -> None:
         super().__init__(scope, construct_id, **kwargs)
 
@@ -291,9 +287,7 @@ class MonitoringStack(Stack):
                         namespace="AWS/ECS",
                         metric_name="CPUUtilization",
                         dimensions_map={
-                            "ServiceName": (
-                                compute_stack.backend_service.service_name
-                            ),
+                            "ServiceName": (compute_stack.backend_service.service_name),
                             "ClusterName": compute_stack.cluster.cluster_name,
                         },
                         statistic="Average",
@@ -303,9 +297,7 @@ class MonitoringStack(Stack):
                         namespace="AWS/ECS",
                         metric_name="MemoryUtilization",
                         dimensions_map={
-                            "ServiceName": (
-                                compute_stack.backend_service.service_name
-                            ),
+                            "ServiceName": (compute_stack.backend_service.service_name),
                             "ClusterName": compute_stack.cluster.cluster_name,
                         },
                         statistic="Average",
@@ -317,9 +309,7 @@ class MonitoringStack(Stack):
                         namespace="AWS/ECS",
                         metric_name="RunningTaskCount",
                         dimensions_map={
-                            "ServiceName": (
-                                compute_stack.backend_service.service_name
-                            ),
+                            "ServiceName": (compute_stack.backend_service.service_name),
                             "ClusterName": compute_stack.cluster.cluster_name,
                         },
                         statistic="Average",
@@ -336,9 +326,7 @@ class MonitoringStack(Stack):
                         namespace="AWS/ApplicationELB",
                         metric_name="TargetResponseTime",
                         dimensions_map={
-                            "LoadBalancer": (
-                                compute_stack.alb.load_balancer_full_name
-                            ),
+                            "LoadBalancer": (compute_stack.alb.load_balancer_full_name),
                         },
                         statistic="Average",
                         period=Duration.minutes(5),
@@ -349,9 +337,7 @@ class MonitoringStack(Stack):
                         namespace="AWS/ApplicationELB",
                         metric_name="RequestCount",
                         dimensions_map={
-                            "LoadBalancer": (
-                                compute_stack.alb.load_balancer_full_name
-                            ),
+                            "LoadBalancer": (compute_stack.alb.load_balancer_full_name),
                         },
                         statistic="Sum",
                         period=Duration.minutes(5),
