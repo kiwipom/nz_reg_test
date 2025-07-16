@@ -11,6 +11,8 @@ interface CompanyRepository : JpaRepository<Company, Long> {
 
     fun findByCompanyNumber(companyNumber: String): Company?
 
+    fun findByCompanyNameIgnoreCase(companyName: String): Company?
+
     fun findByCompanyNameContainingIgnoreCase(companyName: String): List<Company>
 
     fun findByStatus(status: String): List<Company>

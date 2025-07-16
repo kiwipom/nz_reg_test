@@ -69,11 +69,27 @@ class CompanyTest {
 
     @Test
     fun `should get active directors only`() {
-        val activeDirector = director.copy(status = DirectorStatus.ACTIVE)
-        val resignedDirector = director.copy(
+        val activeDirector = Director(
+            id = 1,
+            company = company,
+            fullName = "John Doe",
+            residentialAddressLine1 = "123 Test Street",
+            residentialCity = "Auckland",
+            isNzResident = true,
+            isAustralianResident = false,
+            appointedDate = LocalDate.of(2020, 1, 1),
+            status = DirectorStatus.ACTIVE
+        )
+        val resignedDirector = Director(
             id = 2,
+            company = company,
             fullName = "Jane Doe",
-            status = DirectorStatus.RESIGNED,
+            residentialAddressLine1 = "123 Test Street",
+            residentialCity = "Auckland",
+            isNzResident = true,
+            isAustralianResident = false,
+            appointedDate = LocalDate.of(2020, 1, 1),
+            status = DirectorStatus.RESIGNED
         )
 
         company.addDirector(activeDirector)
@@ -87,18 +103,35 @@ class CompanyTest {
 
     @Test
     fun `should get resident directors only`() {
-        val nzResident = director.copy(isNzResident = true, isAustralianResident = false)
-        val auResident = director.copy(
+        val nzResident = Director(
+            id = 1,
+            company = company,
+            fullName = "John Doe",
+            residentialAddressLine1 = "123 Test Street",
+            residentialCity = "Auckland",
+            isNzResident = true,
+            isAustralianResident = false,
+            appointedDate = LocalDate.of(2020, 1, 1)
+        )
+        val auResident = Director(
             id = 2,
+            company = company,
             fullName = "Jane Doe",
+            residentialAddressLine1 = "123 Test Street",
+            residentialCity = "Auckland",
             isNzResident = false,
             isAustralianResident = true,
+            appointedDate = LocalDate.of(2020, 1, 1)
         )
-        val nonResident = director.copy(
+        val nonResident = Director(
             id = 3,
+            company = company,
             fullName = "Bob Smith",
+            residentialAddressLine1 = "123 Test Street",
+            residentialCity = "Auckland",
             isNzResident = false,
             isAustralianResident = false,
+            appointedDate = LocalDate.of(2020, 1, 1)
         )
 
         company.addDirector(nzResident)
@@ -114,14 +147,23 @@ class CompanyTest {
 
     @Test
     fun `should get current address by type`() {
-        val currentAddress = address.copy(
+        val currentAddress = Address(
+            id = 1,
+            company = company,
+            addressType = AddressType.REGISTERED,
+            addressLine1 = "456 Company Street",
+            city = "Auckland",
             effectiveFrom = LocalDate.now().minusDays(1),
-            effectiveTo = null,
+            effectiveTo = null
         )
-        val expiredAddress = address.copy(
+        val expiredAddress = Address(
             id = 2,
+            company = company,
+            addressType = AddressType.REGISTERED,
+            addressLine1 = "456 Company Street",
+            city = "Auckland",
             effectiveFrom = LocalDate.now().minusDays(10),
-            effectiveTo = LocalDate.now().minusDays(2),
+            effectiveTo = LocalDate.now().minusDays(2)
         )
 
         company.addAddress(currentAddress)
