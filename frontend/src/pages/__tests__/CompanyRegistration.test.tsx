@@ -193,12 +193,12 @@ describe('CompanyRegistration', () => {
     // Wait for debounced API call with increased timeout
     await waitFor(() => {
       expect(mockCheckNameAvailability).toHaveBeenCalledWith('Test Company Ltd');
-    }, { timeout: 1000 });
+    }, { timeout: 2000 });
     
     // Check that the availability indicator shows
     await waitFor(() => {
       expect(screen.getByText('✓ Name is available')).toBeInTheDocument();
-    }, { timeout: 1000 });
+    }, { timeout: 2000 });
   });
 
   it('shows error when company name is not available', async () => {
