@@ -60,7 +60,7 @@ class Company(
     @OneToMany(mappedBy = "company", cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
     val shareholders: MutableList<Shareholder> = mutableListOf()
 
-    // Note: Additional entities (shareAllocations, annualReturns, documents) 
+    // Note: Additional entities (shareAllocations, annualReturns, documents)
     // will be added in future phases
 
     fun addAddress(address: Address) {
