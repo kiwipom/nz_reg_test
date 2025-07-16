@@ -160,10 +160,10 @@ Create test users for each role:
 
 1. Go to **User Management** > **Users**
 2. Create users:
-   - `admin@test.com` (Admin role)
-   - `registrar@test.com` (Registrar role)
-   - `internal@test.com` (Internal Ops role)
-   - `public@test.com` (Public role)
+   - `admin@nzco.test.nz`, `admin-p@ssw0rd` (Admin role)
+   - `registrar@nzco.test.nz`, `registrar-p@ssw0rd` (Registrar role)
+   - `internal@nzco.test.nz`, `internal-p@ssw0rd` (Internal Ops role)
+   - `public@test.com`, `public-p@ssw0rd` (Public role)
 
 ## Security Considerations
 
