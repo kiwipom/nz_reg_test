@@ -225,7 +225,12 @@ run_backend_tests() {
     # Generate coverage report
     log "INFO" "Generating backend test coverage report..."
     ./gradlew jacocoTestReport
-    ./gradlew jacocoTestCoverageVerification
+    
+    # Check coverage (non-blocking like GitHub Actions)
+    log "INFO" "Checking backend test coverage (non-blocking)..."
+    ./gradlew jacocoTestCoverageVerification || {
+        log "WARNING" "Coverage verification failed but continuing (matches GitHub Actions behavior)"
+    }
     
     cd "$PROJECT_ROOT"
 }

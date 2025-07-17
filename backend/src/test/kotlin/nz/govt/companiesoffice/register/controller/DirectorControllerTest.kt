@@ -126,7 +126,7 @@ class DirectorControllerTest {
 
         mockMvc.perform(
             get("/v1/directors/1")
-                .with(jwt().authorities(SimpleGrantedAuthority("ROLE_ADMIN")))
+                .with(jwt().authorities(SimpleGrantedAuthority("ROLE_ADMIN"))),
         )
             .andExpect(status().isOk)
             .andExpect(jsonPath("$.id").value(1))
@@ -140,7 +140,7 @@ class DirectorControllerTest {
 
         mockMvc.perform(
             get("/v1/directors/1")
-                .with(jwt().authorities(SimpleGrantedAuthority("ROLE_ADMIN")))
+                .with(jwt().authorities(SimpleGrantedAuthority("ROLE_ADMIN"))),
         )
             .andExpect(status().isNotFound)
     }
@@ -329,7 +329,7 @@ class DirectorControllerTest {
 
         mockMvc.perform(
             get("/v1/directors/company/1")
-                .with(jwt().authorities(SimpleGrantedAuthority("ROLE_ADMIN")))
+                .with(jwt().authorities(SimpleGrantedAuthority("ROLE_ADMIN"))),
         )
             .andExpect(status().isOk)
             .andExpect(jsonPath("$").isArray)
@@ -343,7 +343,7 @@ class DirectorControllerTest {
 
         mockMvc.perform(
             get("/v1/directors/company/1/active")
-                .with(jwt().authorities(SimpleGrantedAuthority("ROLE_ADMIN")))
+                .with(jwt().authorities(SimpleGrantedAuthority("ROLE_ADMIN"))),
         )
             .andExpect(status().isOk)
             .andExpect(jsonPath("$").isArray)
@@ -369,7 +369,7 @@ class DirectorControllerTest {
         mockMvc.perform(
             get("/v1/directors/search")
                 .param("query", "John")
-                .with(jwt().authorities(SimpleGrantedAuthority("ROLE_ADMIN")))
+                .with(jwt().authorities(SimpleGrantedAuthority("ROLE_ADMIN"))),
         )
             .andExpect(status().isOk)
             .andExpect(jsonPath("$").isArray)
@@ -388,7 +388,7 @@ class DirectorControllerTest {
 
         mockMvc.perform(
             get("/v1/directors/company/1/compliance")
-                .with(jwt().authorities(SimpleGrantedAuthority("ROLE_ADMIN")))
+                .with(jwt().authorities(SimpleGrantedAuthority("ROLE_ADMIN"))),
         )
             .andExpect(status().isOk)
             .andExpect(jsonPath("$.hasMinimumDirectors").value(true))
