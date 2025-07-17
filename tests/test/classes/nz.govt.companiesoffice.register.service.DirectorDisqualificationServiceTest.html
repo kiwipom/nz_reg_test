@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - DirectorDisqualificationServiceTest</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>DirectorDisqualificationServiceTest</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/nz.govt.companiesoffice.register.service.html">nz.govt.companiesoffice.register.service</a> &gt; DirectorDisqualificationServiceTest</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">14</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">0.043s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="tab-container">
+<ul class="tabLinks">
+<li>
+<a href="#">Tests</a>
+</li>
+<li>
+<a href="#">Standard output</a>
+</li>
+</ul>
+<div class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">should allow appointment of eligible person()</td>
+<td class="success">0.003s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">should detect age-based disqualification for under 18()</td>
+<td class="success">0.002s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">should detect existing disqualification from database()</td>
+<td class="success">0.001s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">should disqualify director successfully()</td>
+<td class="success">0.011s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">should get comprehensive disqualification info()</td>
+<td class="success">0.002s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">should handle multiple disqualification types correctly()</td>
+<td class="success">0.005s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">should lift disqualification successfully()</td>
+<td class="success">0.004s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">should throw validation exception for disqualified person appointment()</td>
+<td class="success">0.003s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">should throw validation exception for empty disqualification reason()</td>
+<td class="success">0.002s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">should throw validation exception when disqualification would violate minimum directors()</td>
+<td class="success">0.002s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">should throw validation exception when disqualification would violate residency requirements()</td>
+<td class="success">0.002s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">should throw validation exception when disqualifying already disqualified director()</td>
+<td class="success">0.001s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">should throw validation exception when lifting disqualification from non-disqualified director()</td>
+<td class="success">0.004s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">should validate appointment eligibility successfully for eligible person()</td>
+<td class="success">0.001s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>2025-07-17 22:01:07 [Test worker] DEBUG n.g.c.r.s.DirectorDisqualificationService - Checking disqualification status for: John Doe
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorDisqualificationService - Disqualifying director ID: 1, Type: COURT_ORDER, Reason: Court order ABC123
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorDisqualificationService - Director disqualified successfully: John Doe
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorDisqualificationService - Lifting disqualification for director ID: 1, Reason: Test reason
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorDisqualificationService - Disqualifying director ID: 1, Type: COURT_ORDER, Reason: Test reason
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorDisqualificationService - Lifting disqualification for director ID: 1, Reason: Court order lifted
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorDisqualificationService - Disqualification lifted for director: John Doe
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorDisqualificationService - Disqualifying director ID: 1, Type: COMPLIANCE_BREACH, Reason: Test reason
+2025-07-17 22:01:07 [Test worker] DEBUG n.g.c.r.s.DirectorDisqualificationService - Checking disqualification status for: Jane Minor
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorDisqualificationService - Disqualifying director ID: 1, Type: COURT_ORDER, Reason: Court order
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorDisqualificationService - Director disqualified successfully: John Doe
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorDisqualificationService - Disqualifying director ID: 1, Type: BANKRUPTCY, Reason: Bankruptcy filing
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorDisqualificationService - Director disqualified successfully: John Doe
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorDisqualificationService - Disqualifying director ID: 1, Type: COMPLIANCE_BREACH, Reason: Failed to file returns
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorDisqualificationService - Director disqualified successfully: John Doe
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorDisqualificationService - Disqualifying director ID: 1, Type: VOLUNTARY, Reason: Voluntary disqualification
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorDisqualificationService - Director disqualified successfully: John Doe
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorDisqualificationService - Disqualifying director ID: 1, Type: OTHER, Reason: Other statutory reason
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorDisqualificationService - Director disqualified successfully: John Doe
+2025-07-17 22:01:07 [Test worker] DEBUG n.g.c.r.s.DirectorDisqualificationService - Validating appointment eligibility for: John Doe to company: 1
+2025-07-17 22:01:07 [Test worker] DEBUG n.g.c.r.s.DirectorDisqualificationService - Checking disqualification status for: John Doe
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorDisqualificationService - Disqualifying director ID: 1, Type: OTHER, Reason: 
+2025-07-17 22:01:07 [Test worker] DEBUG n.g.c.r.s.DirectorDisqualificationService - Validating appointment eligibility for: John Doe to company: 1
+2025-07-17 22:01:07 [Test worker] DEBUG n.g.c.r.s.DirectorDisqualificationService - Checking disqualification status for: John Doe
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorDisqualificationService - Disqualifying director ID: 1, Type: BANKRUPTCY, Reason: Bankruptcy proceedings
+2025-07-17 22:01:07 [Test worker] DEBUG n.g.c.r.s.DirectorDisqualificationService - Checking disqualification status for: John Doe
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="https://www.gradle.org">Gradle 8.14.2</a> at Jul 17, 2025, 10:01:08 PM</p>
+</div>
+</div>
+</body>
+</html>

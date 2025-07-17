@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - NzCompaniesRegisterApplicationTests</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>NzCompaniesRegisterApplicationTests</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/nz.govt.companiesoffice.register.html">nz.govt.companiesoffice.register</a> &gt; NzCompaniesRegisterApplicationTests</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">1</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">0.632s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="tab-container">
+<ul class="tabLinks">
+<li>
+<a href="#">Tests</a>
+</li>
+<li>
+<a href="#">Standard output</a>
+</li>
+</ul>
+<div class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">contextLoads()</td>
+<td class="success">0.632s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>22:00:16.920 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [nz.govt.companiesoffice.register.NzCompaniesRegisterApplicationTests]: NzCompaniesRegisterApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+22:00:17.562 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration nz.govt.companiesoffice.register.NzCompaniesRegisterApplication for test class nz.govt.companiesoffice.register.NzCompaniesRegisterApplicationTests
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.0)
+
+2025-07-17 22:00:18 [Test worker] INFO  n.g.c.r.NzCompaniesRegisterApplicationTests - Starting NzCompaniesRegisterApplicationTests using Java 17.0.15 with PID 3203 (started by runner in /home/runner/work/nz_reg_test/nz_reg_test/backend)
+2025-07-17 22:00:18 [Test worker] DEBUG n.g.c.r.NzCompaniesRegisterApplicationTests - Running with Spring Boot v3.2.0, Spring v6.1.1
+2025-07-17 22:00:18 [Test worker] INFO  n.g.c.r.NzCompaniesRegisterApplicationTests - The following 1 profile is active: &quot;test&quot;
+2025-07-17 22:00:19 [Test worker] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-07-17 22:00:19 [Test worker] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 207 ms. Found 6 JPA repository interfaces.
+2025-07-17 22:00:21 [Test worker] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-07-17 22:00:21 [Test worker] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.3.1.Final
+2025-07-17 22:00:21 [Test worker] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-07-17 22:00:22 [Test worker] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-07-17 22:00:22 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-07-17 22:00:22 [Test worker] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2025-07-17 22:00:22 [Test worker] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-07-17 22:00:22 [Test worker] WARN  org.hibernate.orm.deprecation - HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-07-17 22:00:23 [Test worker] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-07-17 22:00:23 [Test worker] DEBUG org.hibernate.SQL - 
+    drop table if exists addresses cascade 
+Hibernate: 
+    drop table if exists addresses cascade 
+2025-07-17 22:00:23 [Test worker] DEBUG org.hibernate.SQL - 
+    drop table if exists companies cascade 
+Hibernate: 
+    drop table if exists companies cascade 
+2025-07-17 22:00:23 [Test worker] DEBUG org.hibernate.SQL - 
+    drop table if exists directors cascade 
+Hibernate: 
+    drop table if exists directors cascade 
+2025-07-17 22:00:23 [Test worker] DEBUG org.hibernate.SQL - 
+    drop table if exists documents cascade 
+Hibernate: 
+    drop table if exists documents cascade 
+2025-07-17 22:00:23 [Test worker] DEBUG org.hibernate.SQL - 
+    drop table if exists share_allocations cascade 
+Hibernate: 
+    drop table if exists share_allocations cascade 
+2025-07-17 22:00:23 [Test worker] DEBUG org.hibernate.SQL - 
+    drop table if exists shareholders cascade 
+Hibernate: 
+    drop table if exists shareholders cascade 
+2025-07-17 22:00:23 [Test worker] DEBUG org.hibernate.SQL - 
+    create table addresses (
+        effective_from date not null,
+        effective_to date,
+        company_id bigint not null,
+        created_at timestamp(6) not null,
+        id bigint generated by default as identity,
+        updated_at timestamp(6) not null,
+        address_line_1 varchar(255) not null,
+        address_line_2 varchar(255),
+        address_type varchar(255) not null check (address_type in ('REGISTERED','SERVICE','COMMUNICATION')),
+        city varchar(255) not null,
+        country varchar(255) not null,
+        email varchar(255),
+        phone varchar(255),
+        postcode varchar(255),
+        region varchar(255),
+        primary key (id)
+    )
+Hibernate: 
+    create table addresses (
+        effective_from date not null,
+        effective_to date,
+        company_id bigint not null,
+        created_at timestamp(6) not null,
+        id bigint generated by default as identity,
+        updated_at timestamp(6) not null,
+        address_line_1 varchar(255) not null,
+        address_line_2 varchar(255),
+        address_type varchar(255) not null check (address_type in ('REGISTERED','SERVICE','COMMUNICATION')),
+        city varchar(255) not null,
+        country varchar(255) not null,
+        email varchar(255),
+        phone varchar(255),
+        postcode varchar(255),
+        region varchar(255),
+        primary key (id)
+    )
+2025-07-17 22:00:23 [Test worker] DEBUG org.hibernate.SQL - 
+    create table companies (
+        incorporation_date date not null,
+        version integer not null,
+        created_at timestamp(6) not null,
+        id bigint generated by default as identity,
+        updated_at timestamp(6) not null,
+        company_name varchar(255) not null unique,
+        company_number varchar(255) not null unique,
+        company_type varchar(255) not null check (company_type in ('LTD','OVERSEAS','UNLIMITED')),
+        nzbn varchar(255) unique,
+        status varchar(255) not null,
+        primary key (id)
+    )
+Hibernate: 
+    create table companies (
+        incorporation_date date not null,
+        version integer not null,
+        created_at timestamp(6) not null,
+        id bigint generated by default as identity,
+        updated_at timestamp(6) not null,
+        company_name varchar(255) not null unique,
+        company_number varchar(255) not null unique,
+        company_type varchar(255) not null check (company_type in ('LTD','OVERSEAS','UNLIMITED')),
+        nzbn varchar(255) unique,
+        status varchar(255) not null,
+        primary key (id)
+    )
+2025-07-17 22:00:23 [Test worker] DEBUG org.hibernate.SQL - 
+    create table directors (
+        appointed_date date not null,
+        consent_date date,
+        consent_given boolean not null,
+        date_of_birth date,
+        is_australian_resident boolean not null,
+        is_nz_resident boolean not null,
+        resigned_date date,
+        company_id bigint not null,
+        created_at timestamp(6) not null,
+        id bigint generated by default as identity,
+        updated_at timestamp(6) not null,
+        full_name varchar(255) not null,
+        place_of_birth varchar(255),
+        residential_address_line_1 varchar(255) not null,
+        residential_address_line_2 varchar(255),
+        residential_city varchar(255) not null,
+        residential_country varchar(255) not null,
+        residential_postcode varchar(255),
+        residential_region varchar(255),
+        status varchar(255) not null check (status in ('ACTIVE','RESIGNED','DISQUALIFIED')),
+        primary key (id)
+    )
+Hibernate: 
+    create table directors (
+        appointed_date date not null,
+        consent_date date,
+        consent_given boolean not null,
+        date_of_birth date,
+        is_australian_resident boolean not null,
+        is_nz_resident boolean not null,
+        resigned_date date,
+        company_id bigint not null,
+        created_at timestamp(6) not null,
+        id bigint generated by default as identity,
+        updated_at timestamp(6) not null,
+        full_name varchar(255) not null,
+        place_of_birth varchar(255),
+        residential_address_line_1 varchar(255) not null,
+        residential_address_line_2 varchar(255),
+        residential_city varchar(255) not null,
+        residential_country varchar(255) not null,
+        residential_postcode varchar(255),
+        residential_region varchar(255),
+        status varchar(255) not null check (status in ('ACTIVE','RESIGNED','DISQUALIFIED')),
+        primary key (id)
+    )
+2025-07-17 22:00:23 [Test worker] DEBUG org.hibernate.SQL - 
+    create table documents (
+        is_public boolean not null,
+        retention_until date,
+        version_number integer not null,
+        company_id bigint not null,
+        created_at timestamp(6) not null,
+        file_size bigint,
+        id bigint generated by default as identity,
+        updated_at timestamp(6) not null,
+        uploaded_at timestamp(6) not null,
+        checksum varchar(255),
+        description varchar(255),
+        document_name varchar(255) not null,
+        document_type varchar(255) not null check (document_type in ('CONSTITUTION','ANNUAL_RETURN','DIRECTOR_CONSENT','SHARE_ALLOTMENT','SPECIAL_RESOLUTION','AMALGAMATION_PROPOSAL','LIQUIDATION_NOTICE','RECEIVER_NOTICE','CERTIFICATE_OF_INCORPORATION','CERTIFICATE_OF_COMPLIANCE','CHANGE_OF_NAME','CHANGE_OF_ADDRESS','CHANGE_OF_DIRECTORS','CHANGE_OF_SHAREHOLDERS','MISCELLANEOUS')),
+        file_path varchar(255) not null,
+        mime_type varchar(255),
+        uploaded_by varchar(255),
+        primary key (id)
+    )
+Hibernate: 
+    create table documents (
+        is_public boolean not null,
+        retention_until date,
+        version_number integer not null,
+        company_id bigint not null,
+        created_at timestamp(6) not null,
+        file_size bigint,
+        id bigint generated by default as identity,
+        updated_at timestamp(6) not null,
+        uploaded_at timestamp(6) not null,
+        checksum varchar(255),
+        description varchar(255),
+        document_name varchar(255) not null,
+        document_type varchar(255) not null check (document_type in ('CONSTITUTION','ANNUAL_RETURN','DIRECTOR_CONSENT','SHARE_ALLOTMENT','SPECIAL_RESOLUTION','AMALGAMATION_PROPOSAL','LIQUIDATION_NOTICE','RECEIVER_NOTICE','CERTIFICATE_OF_INCORPORATION','CERTIFICATE_OF_COMPLIANCE','CHANGE_OF_NAME','CHANGE_OF_ADDRESS','CHANGE_OF_DIRECTORS','CHANGE_OF_SHAREHOLDERS','MISCELLANEOUS')),
+        file_path varchar(255) not null,
+        mime_type varchar(255),
+        uploaded_by varchar(255),
+        primary key (id)
+    )
+2025-07-17 22:00:23 [Test worker] DEBUG org.hibernate.SQL - 
+    create table share_allocations (
+        allocation_date date not null,
+        amount_paid numeric(19,2) not null,
+        is_fully_paid boolean not null,
+        nominal_value numeric(19,2) not null,
+        transfer_date date,
+        company_id bigint not null,
+        created_at timestamp(6) not null,
+        id bigint generated by default as identity,
+        number_of_shares bigint not null,
+        shareholder_id bigint not null,
+        transfer_to_shareholder_id bigint,
+        updated_at timestamp(6) not null,
+        certificate_number varchar(255),
+        restrictions varchar(255),
+        share_class varchar(255) not null,
+        status varchar(255) not null,
+        primary key (id)
+    )
+Hibernate: 
+    create table share_allocations (
+        allocation_date date not null,
+        amount_paid numeric(19,2) not null,
+        is_fully_paid boolean not null,
+        nominal_value numeric(19,2) not null,
+        transfer_date date,
+        company_id bigint not null,
+        created_at timestamp(6) not null,
+        id bigint generated by default as identity,
+        number_of_shares bigint not null,
+        shareholder_id bigint not null,
+        transfer_to_shareholder_id bigint,
+        updated_at timestamp(6) not null,
+        certificate_number varchar(255),
+        restrictions varchar(255),
+        share_class varchar(255) not null,
+        status varchar(255) not null,
+        primary key (id)
+    )
+2025-07-17 22:00:23 [Test worker] DEBUG org.hibernate.SQL - 
+    create table shareholders (
+        is_individual boolean not null,
+        company_id bigint not null,
+        created_at timestamp(6) not null,
+        id bigint generated by default as identity,
+        updated_at timestamp(6) not null,
+        address_line_1 varchar(255) not null,
+        address_line_2 varchar(255),
+        city varchar(255) not null,
+        country varchar(255) not null,
+        full_name varchar(255) not null,
+        postcode varchar(255),
+        region varchar(255),
+        primary key (id)
+    )
+Hibernate: 
+    create table shareholders (
+        is_individual boolean not null,
+        company_id bigint not null,
+        created_at timestamp(6) not null,
+        id bigint generated by default as identity,
+        updated_at timestamp(6) not null,
+        address_line_1 varchar(255) not null,
+        address_line_2 varchar(255),
+        city varchar(255) not null,
+        country varchar(255) not null,
+        full_name varchar(255) not null,
+        postcode varchar(255),
+        region varchar(255),
+        primary key (id)
+    )
+2025-07-17 22:00:23 [Test worker] DEBUG org.hibernate.SQL - 
+    alter table if exists addresses 
+       add constraint FK9g6vhnwjn0cbmgx1wx4e2fhm9 
+       foreign key (company_id) 
+       references companies
+Hibernate: 
+    alter table if exists addresses 
+       add constraint FK9g6vhnwjn0cbmgx1wx4e2fhm9 
+       foreign key (company_id) 
+       references companies
+2025-07-17 22:00:24 [Test worker] DEBUG org.hibernate.SQL - 
+    alter table if exists directors 
+       add constraint FKiwphxs64f57xc1kejgg9uqi6t 
+       foreign key (company_id) 
+       references companies
+Hibernate: 
+    alter table if exists directors 
+       add constraint FKiwphxs64f57xc1kejgg9uqi6t 
+       foreign key (company_id) 
+       references companies
+2025-07-17 22:00:24 [Test worker] DEBUG org.hibernate.SQL - 
+    alter table if exists documents 
+       add constraint FK3enb6iofyq9m6e3otajm17vel 
+       foreign key (company_id) 
+       references companies
+Hibernate: 
+    alter table if exists documents 
+       add constraint FK3enb6iofyq9m6e3otajm17vel 
+       foreign key (company_id) 
+       references companies
+2025-07-17 22:00:24 [Test worker] DEBUG org.hibernate.SQL - 
+    alter table if exists share_allocations 
+       add constraint FKb88j02kg9003syiidp1e0ufft 
+       foreign key (company_id) 
+       references companies
+Hibernate: 
+    alter table if exists share_allocations 
+       add constraint FKb88j02kg9003syiidp1e0ufft 
+       foreign key (company_id) 
+       references companies
+2025-07-17 22:00:24 [Test worker] DEBUG org.hibernate.SQL - 
+    alter table if exists share_allocations 
+       add constraint FKluxo64lytue3nkokywv7eq4le 
+       foreign key (shareholder_id) 
+       references shareholders
+Hibernate: 
+    alter table if exists share_allocations 
+       add constraint FKluxo64lytue3nkokywv7eq4le 
+       foreign key (shareholder_id) 
+       references shareholders
+2025-07-17 22:00:24 [Test worker] DEBUG org.hibernate.SQL - 
+    alter table if exists shareholders 
+       add constraint FKoxbhc26elm4d3rhdi05xbetx0 
+       foreign key (company_id) 
+       references companies
+Hibernate: 
+    alter table if exists shareholders 
+       add constraint FKoxbhc26elm4d3rhdi05xbetx0 
+       foreign key (company_id) 
+       references companies
+2025-07-17 22:00:24 [Test worker] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-07-17 22:00:25 [Test worker] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-07-17 22:00:28 [Test worker] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 2 endpoint(s) beneath base path '/actuator'
+2025-07-17 22:00:28 [Test worker] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2e0cbb34, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5d2ed137, org.springframework.security.web.context.SecurityContextHolderFilter@4b7abb87, org.springframework.security.web.header.HeaderWriterFilter@b3ba855, org.springframework.web.filter.CorsFilter@68eccf82, org.springframework.security.web.authentication.logout.LogoutFilter@3ad082a6, org.springframework.security.oauth2.server.resource.web.authentication.BearerTokenAuthenticationFilter@15fcc93b, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3a96c540, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5c8c77b0, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3ece3a9e, org.springframework.security.web.session.SessionManagementFilter@2d26b95e, org.springframework.security.web.access.ExceptionTranslationFilter@4ae10498, org.springframework.security.web.access.intercept.AuthorizationFilter@3faae668]
+2025-07-17 22:00:29 [Test worker] INFO  n.g.c.r.NzCompaniesRegisterApplicationTests - Started NzCompaniesRegisterApplicationTests in 12.053 seconds (process running for 14.629)
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="https://www.gradle.org">Gradle 8.14.2</a> at Jul 17, 2025, 10:01:08 PM</p>
+</div>
+</div>
+</body>
+</html>
