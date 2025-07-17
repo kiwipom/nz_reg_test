@@ -205,7 +205,7 @@ export function CompanyDetails({ companyId: propCompanyId }: CompanyDetailsProps
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
                       <h3 className="text-lg font-medium text-gray-900">
-                        {director.fullName || `${director.firstName} ${director.lastName}`}
+                        {director.fullName}
                       </h3>
                       <div className="mt-2 space-y-1">
                         <p className="text-sm text-gray-600">
@@ -216,12 +216,12 @@ export function CompanyDetails({ companyId: propCompanyId }: CompanyDetailsProps
                         </p>
                         <p className="text-sm text-gray-600">
                           <span className="font-medium">Appointed:</span>{' '}
-                          {formatDate(director.appointmentDate)}
+                          {formatDate(director.appointedDate)}
                         </p>
-                        {director.resignationDate && (
+                        {director.resignedDate && (
                           <p className="text-sm text-gray-600">
                             <span className="font-medium">Resigned:</span>{' '}
-                            {formatDate(director.resignationDate)}
+                            {formatDate(director.resignedDate)}
                           </p>
                         )}
                         <p className="text-sm text-gray-600">
@@ -246,7 +246,7 @@ export function CompanyDetails({ companyId: propCompanyId }: CompanyDetailsProps
                         <button
                           onClick={() => handleResignDirector(
                             director.id, 
-                            director.fullName || `${director.firstName} ${director.lastName}`
+                            director.fullName
                           )}
                           className="inline-flex items-center px-3 py-1 border border-red-300 text-sm font-medium rounded-md text-red-700 bg-white hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
                         >
