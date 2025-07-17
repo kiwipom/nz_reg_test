@@ -1,4 +1,5 @@
 import { render, screen, waitFor } from '@testing-library/react';
+import { BrowserRouter } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { CompanySearch } from '../CompanySearch';
@@ -30,15 +31,19 @@ describe('CompanySearch', () => {
     mockUseCompanyStore.mockReturnValue(mockStoreState);
   });
 
+  const renderWithRouter = (component: React.ReactElement) => {
+    return render(<BrowserRouter>{component}</BrowserRouter>);
+  };
+
   describe('Rendering', () => {
     it('should render search input with placeholder', () => {
-      render(<CompanySearch />);
+      renderWithRouter(<CompanySearch />);
       
       expect(screen.getByPlaceholderText('Search companies by name, company number, or NZBN...')).toBeInTheDocument();
     });
 
     it('should render search icon initially', () => {
-      render(<CompanySearch />);
+      renderWithRouter(<CompanySearch />);
       
       expect(screen.getByRole('textbox')).toBeInTheDocument();
       // Search icon should be visible (lucide-react Search component)
@@ -46,7 +51,7 @@ describe('CompanySearch', () => {
     });
 
     it('should render with proper accessibility attributes', () => {
-      render(<CompanySearch />);
+      renderWithRouter(<CompanySearch />);
       
       const searchInput = screen.getByRole('textbox');
       expect(searchInput).toHaveAttribute('aria-label', 'Search companies');
@@ -57,7 +62,7 @@ describe('CompanySearch', () => {
   describe('User Interaction', () => {
     it('should update input value when user types', async () => {
       const user = userEvent.setup();
-      render(<CompanySearch />);
+      renderWithRouter(<CompanySearch />);
       
       const searchInput = screen.getByRole('textbox');
       await user.type(searchInput, 'Test Company');
@@ -67,7 +72,7 @@ describe('CompanySearch', () => {
 
     it('should show clear button when input has value', async () => {
       const user = userEvent.setup();
-      render(<CompanySearch />);
+      renderWithRouter(<CompanySearch />);
       
       const searchInput = screen.getByRole('textbox');
       await user.type(searchInput, 'Test');
@@ -77,7 +82,7 @@ describe('CompanySearch', () => {
 
     it('should clear input when clear button is clicked', async () => {
       const user = userEvent.setup();
-      render(<CompanySearch />);
+      renderWithRouter(<CompanySearch />);
       
       const searchInput = screen.getByRole('textbox');
       await user.type(searchInput, 'Test Company');
@@ -90,7 +95,7 @@ describe('CompanySearch', () => {
     });
 
     it('should not show clear button when input is empty', () => {
-      render(<CompanySearch />);
+      renderWithRouter(<CompanySearch />);
       
       expect(screen.queryByRole('button', { name: 'Clear search' })).not.toBeInTheDocument();
     });
@@ -99,7 +104,7 @@ describe('CompanySearch', () => {
   describe('Search Functionality', () => {
     it('should trigger search after debounce delay', async () => {
       const user = userEvent.setup();
-      render(<CompanySearch />);
+      renderWithRouter(<CompanySearch />);
       
       const searchInput = screen.getByRole('textbox');
       await user.type(searchInput, 'Test Company');
@@ -112,7 +117,7 @@ describe('CompanySearch', () => {
 
     it('should not trigger search for queries less than 2 characters', async () => {
       const user = userEvent.setup();
-      render(<CompanySearch />);
+      renderWithRouter(<CompanySearch />);
       
       const searchInput = screen.getByRole('textbox');
       await user.type(searchInput, 'T');
@@ -124,7 +129,7 @@ describe('CompanySearch', () => {
 
     it('should clear search when input is empty', async () => {
       const user = userEvent.setup();
-      render(<CompanySearch />);
+      renderWithRouter(<CompanySearch />);
       
       const searchInput = screen.getByRole('textbox');
       await user.type(searchInput, 'Test');
@@ -137,7 +142,7 @@ describe('CompanySearch', () => {
 
     it('should show loading state during search', async () => {
       const user = userEvent.setup();
-      render(<CompanySearch />);
+      renderWithRouter(<CompanySearch />);
       
       const searchInput = screen.getByRole('textbox');
       await user.type(searchInput, 'Test Company');
@@ -177,7 +182,7 @@ describe('CompanySearch', () => {
         searchResults: mockResults,
       });
 
-      render(<CompanySearch />);
+      renderWithRouter(<CompanySearch />);
       
       expect(screen.getByText('Test Company Ltd')).toBeInTheDocument();
       expect(screen.getByText('Another Company Ltd')).toBeInTheDocument();
@@ -203,7 +208,7 @@ describe('CompanySearch', () => {
         searchResults: mockResults,
       });
 
-      render(<CompanySearch />);
+      renderWithRouter(<CompanySearch />);
       
       expect(screen.getByText('1 result for "Test Company"')).toBeInTheDocument();
     });
@@ -227,7 +232,7 @@ describe('CompanySearch', () => {
         searchResults: mockResults,
       });
 
-      render(<CompanySearch />);
+      renderWithRouter(<CompanySearch />);
       
       expect(screen.getByText('Test Company Ltd')).toBeInTheDocument();
       expect(screen.getByText('12345678')).toBeInTheDocument();
@@ -256,7 +261,7 @@ describe('CompanySearch', () => {
         searchResults: mockResults,
       });
 
-      render(<CompanySearch />);
+      renderWithRouter(<CompanySearch />);
       
       const companyItem = screen.getByText('Test Company Ltd').closest('div');
       await user.click(companyItem!);
@@ -293,7 +298,7 @@ describe('CompanySearch', () => {
         searchResults: mockResults,
       });
 
-      render(<CompanySearch />);
+      renderWithRouter(<CompanySearch />);
       
       const activeStatus = screen.getByText('ACTIVE');
       const inactiveStatus = screen.getByText('INACTIVE');
@@ -313,7 +318,7 @@ describe('CompanySearch', () => {
         new Error('Search failed')
       );
 
-      render(<CompanySearch />);
+      renderWithRouter(<CompanySearch />);
       
       const searchInput = screen.getByRole('textbox');
       await user.type(searchInput, 'Error');
@@ -333,7 +338,7 @@ describe('CompanySearch', () => {
         new Error('Network error')
       );
 
-      render(<CompanySearch />);
+      renderWithRouter(<CompanySearch />);
       
       const searchInput = screen.getByRole('textbox');
       await user.type(searchInput, 'Network Error');
@@ -347,7 +352,7 @@ describe('CompanySearch', () => {
   describe('Performance', () => {
     it('should debounce search requests', async () => {
       const user = userEvent.setup();
-      render(<CompanySearch />);
+      renderWithRouter(<CompanySearch />);
       
       const searchInput = screen.getByRole('textbox');
       
@@ -371,7 +376,7 @@ describe('CompanySearch', () => {
 
     it('should cancel previous search when new search is triggered', async () => {
       const user = userEvent.setup();
-      render(<CompanySearch />);
+      renderWithRouter(<CompanySearch />);
       
       const searchInput = screen.getByRole('textbox');
       

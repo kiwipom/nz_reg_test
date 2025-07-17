@@ -1,4 +1,5 @@
 import { render, screen, waitFor } from '@testing-library/react';
+import { BrowserRouter } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { CompanySearch } from '../CompanySearch';
@@ -30,6 +31,10 @@ describe('CompanySearch Integration Tests', () => {
     mockUseCompanyStore.mockReturnValue(mockStoreState);
   });
 
+  const renderWithRouter = (component: React.ReactElement) => {
+    return render(<BrowserRouter>{component}</BrowserRouter>);
+  };
+
   it('should integrate with store and service for end-to-end search flow', async () => {
     const user = userEvent.setup();
     
@@ -52,7 +57,7 @@ describe('CompanySearch Integration Tests', () => {
       searchResults: mockCompanies,
     });
 
-    render(<CompanySearch />);
+    renderWithRouter(<CompanySearch />);
     
     const searchInput = screen.getByRole('textbox');
     
@@ -77,7 +82,7 @@ describe('CompanySearch Integration Tests', () => {
   it('should handle full search workflow with error recovery', async () => {
     const user = userEvent.setup();
     
-    render(<CompanySearch />);
+    renderWithRouter(<CompanySearch />);
     
     const searchInput = screen.getByRole('textbox');
     
