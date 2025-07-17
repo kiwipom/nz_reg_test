@@ -30,6 +30,5 @@
         <testcase classname="src/pages/__tests__/CompanyDetails.test.tsx" name="CompanyDetails &gt; Error Handling &gt; should handle missing company ID when neither prop nor param is provided" time="0.000398187">
         </testcase>
         <testcase classname="src/pages/__tests__/CompanyDetails.test.tsx" name="CompanyDetails &gt; Props Override &gt; should use prop companyId when provided" time="0.009345635">
-        </testcase>
     </testsuite>
 </testsuites>
