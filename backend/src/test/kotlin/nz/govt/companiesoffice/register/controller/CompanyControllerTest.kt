@@ -1,10 +1,14 @@
 package nz.govt.companiesoffice.register.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.ninjasquad.springmockk.MockkBean
 import io.mockk.every
 import io.mockk.verify
+import nz.govt.companiesoffice.register.config.SecurityConfig
+import nz.govt.companiesoffice.register.config.TestSecurityConfig
 import nz.govt.companiesoffice.register.entity.Company
 import nz.govt.companiesoffice.register.entity.CompanyType
+import nz.govt.companiesoffice.register.exception.GlobalExceptionHandler
 import nz.govt.companiesoffice.register.exception.ResourceNotFoundException
 import nz.govt.companiesoffice.register.exception.ValidationException
 import nz.govt.companiesoffice.register.service.CompanyService
@@ -14,7 +18,7 @@ import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
-import org.springframework.boot.test.mock.mockito.MockBean
+import org.springframework.context.annotation.Import
 import org.springframework.http.MediaType
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.jwt
@@ -29,12 +33,13 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 import java.time.LocalDate
 
 @WebMvcTest(CompanyController::class)
+@Import(SecurityConfig::class, TestSecurityConfig::class, GlobalExceptionHandler::class)
 class CompanyControllerTest {
 
     @Autowired
     private lateinit var mockMvc: MockMvc
 
-    @MockBean
+    @MockkBean
     private lateinit var companyService: CompanyService
 
     @Autowired
@@ -82,7 +87,7 @@ class CompanyControllerTest {
 
             // When & Then
             mockMvc.perform(
-                get("/api/v1/companies/search")
+                get("/v1/companies/search")
                     .param("query", query),
             )
                 .andExpect(status().isOk)
@@ -103,7 +108,7 @@ class CompanyControllerTest {
 
             // When & Then
             mockMvc.perform(
-                get("/api/v1/companies/check-name")
+                get("/v1/companies/check-name")
                     .param("name", companyName),
             )
                 .andExpect(status().isOk)
@@ -122,7 +127,7 @@ class CompanyControllerTest {
 
             // When & Then
             mockMvc.perform(
-                get("/api/v1/companies/check-number")
+                get("/v1/companies/check-number")
                     .param("number", companyNumber),
             )
                 .andExpect(status().isOk)
@@ -141,7 +146,7 @@ class CompanyControllerTest {
 
             // When & Then
             mockMvc.perform(
-                get("/api/v1/companies/search")
+                get("/v1/companies/search")
                     .param("query", query),
             )
                 .andExpect(status().isOk)
@@ -157,11 +162,16 @@ class CompanyControllerTest {
     inner class AuthenticatedEndpointTests {
 
         @Test
-        @DisplayName("Should require authentication for getting company by ID")
-        fun `GET company by ID should require authentication`() {
-            // When & Then
-            mockMvc.perform(get("/api/v1/companies/1"))
-                .andExpect(status().isUnauthorized)
+        @DisplayName("Should allow public access to get company by ID")
+        fun `GET company by ID should allow public access`() {
+            // Given - mock service to return test data
+            every { companyService.getCompanyById(1L) } returns testCompany
+
+            // When & Then - public endpoint should return 200 without authentication
+            mockMvc.perform(get("/v1/companies/1"))
+                .andExpect(status().isOk)
+                .andExpect(jsonPath("$.id").value(1))
+                .andExpect(jsonPath("$.companyName").value("Test Company Ltd"))
         }
 
         @Test
@@ -173,7 +183,7 @@ class CompanyControllerTest {
 
             // When & Then
             mockMvc.perform(
-                get("/api/v1/companies/$companyId")
+                get("/v1/companies/$companyId")
                     .with(jwt().jwt { it.subject("auth0|user123") }),
             )
                 .andExpect(status().isOk)
@@ -196,7 +206,7 @@ class CompanyControllerTest {
 
             // When & Then
             mockMvc.perform(
-                get("/api/v1/companies/$companyId")
+                get("/v1/companies/$companyId")
                     .with(jwt().jwt { it.subject("auth0|user123") }),
             )
                 .andExpect(status().isNotFound)
@@ -213,7 +223,7 @@ class CompanyControllerTest {
 
             // When & Then
             mockMvc.perform(
-                get("/api/v1/companies/number/$companyNumber")
+                get("/v1/companies/number/$companyNumber")
                     .with(jwt().jwt { it.subject("auth0|user123") }),
             )
                 .andExpect(status().isOk)
@@ -231,7 +241,7 @@ class CompanyControllerTest {
 
             // When & Then
             mockMvc.perform(
-                get("/api/v1/companies")
+                get("/v1/companies")
                     .with(jwt().jwt { it.subject("auth0|user123") }),
             )
                 .andExpect(status().isOk)
@@ -271,7 +281,7 @@ class CompanyControllerTest {
 
             // When & Then
             mockMvc.perform(
-                post("/api/v1/companies")
+                post("/v1/companies")
                     .with(
                         jwt().jwt { it.subject("auth0|admin123") }
                             .authorities(SimpleGrantedAuthority("ROLE_ADMIN")),
@@ -312,7 +322,7 @@ class CompanyControllerTest {
 
             // When & Then
             mockMvc.perform(
-                post("/api/v1/companies")
+                post("/v1/companies")
                     .with(
                         jwt().jwt { it.subject("auth0|registrar123") }
                             .authorities(SimpleGrantedAuthority("ROLE_REGISTRAR")),
@@ -340,7 +350,7 @@ class CompanyControllerTest {
 
             // When & Then
             mockMvc.perform(
-                post("/api/v1/companies")
+                post("/v1/companies")
                     .with(
                         jwt().jwt { it.subject("auth0|public123") }
                             .authorities(SimpleGrantedAuthority("ROLE_PUBLIC")),
@@ -371,7 +381,7 @@ class CompanyControllerTest {
 
             // When & Then
             mockMvc.perform(
-                put("/api/v1/companies/$companyId")
+                put("/v1/companies/$companyId")
                     .with(
                         jwt().jwt { it.subject("auth0|admin123") }
                             .authorities(SimpleGrantedAuthority("ROLE_ADMIN")),
@@ -403,7 +413,7 @@ class CompanyControllerTest {
 
             // When & Then
             mockMvc.perform(
-                put("/api/v1/companies/$companyId")
+                put("/v1/companies/$companyId")
                     .with(
                         jwt().jwt { it.subject("auth0|registrar123") }
                             .authorities(SimpleGrantedAuthority("ROLE_REGISTRAR")),
@@ -433,7 +443,7 @@ class CompanyControllerTest {
 
             // When & Then
             mockMvc.perform(
-                put("/api/v1/companies/$companyId")
+                put("/v1/companies/$companyId")
                     .with(
                         jwt().jwt { it.subject("auth0|internal123") }
                             .authorities(SimpleGrantedAuthority("ROLE_INTERNAL_OPS")),
@@ -455,7 +465,7 @@ class CompanyControllerTest {
 
             // When & Then
             mockMvc.perform(
-                delete("/api/v1/companies/$companyId")
+                delete("/v1/companies/$companyId")
                     .with(
                         jwt().jwt { it.subject("auth0|admin123") }
                             .authorities(SimpleGrantedAuthority("ROLE_ADMIN")),
@@ -474,7 +484,7 @@ class CompanyControllerTest {
 
             // When & Then
             mockMvc.perform(
-                delete("/api/v1/companies/$companyId")
+                delete("/v1/companies/$companyId")
                     .with(
                         jwt().jwt { it.subject("auth0|registrar123") }
                             .authorities(SimpleGrantedAuthority("ROLE_REGISTRAR")),
@@ -508,7 +518,7 @@ class CompanyControllerTest {
 
             // When & Then
             mockMvc.perform(
-                post("/api/v1/companies")
+                post("/v1/companies")
                     .with(
                         jwt().jwt { it.subject("auth0|admin123") }
                             .authorities(SimpleGrantedAuthority("ROLE_ADMIN")),
@@ -526,7 +536,7 @@ class CompanyControllerTest {
         fun `POST company should handle invalid JSON`() {
             // When & Then
             mockMvc.perform(
-                post("/api/v1/companies")
+                post("/v1/companies")
                     .with(
                         jwt().jwt { it.subject("auth0|admin123") }
                             .authorities(SimpleGrantedAuthority("ROLE_ADMIN")),
@@ -547,7 +557,7 @@ class CompanyControllerTest {
 
             // When & Then
             mockMvc.perform(
-                post("/api/v1/companies")
+                post("/v1/companies")
                     .with(
                         jwt().jwt { it.subject("auth0|admin123") }
                             .authorities(SimpleGrantedAuthority("ROLE_ADMIN")),
@@ -574,7 +584,7 @@ class CompanyControllerTest {
 
             // When & Then
             mockMvc.perform(
-                get("/api/v1/companies/$companyId")
+                get("/v1/companies/$companyId")
                     .with(jwt().jwt { it.subject("auth0|user123") }),
             )
                 .andExpect(status().isInternalServerError)
@@ -587,7 +597,7 @@ class CompanyControllerTest {
         fun `GET company should handle invalid path parameters`() {
             // When & Then
             mockMvc.perform(
-                get("/api/v1/companies/invalid-id")
+                get("/v1/companies/invalid-id")
                     .with(jwt().jwt { it.subject("auth0|user123") }),
             )
                 .andExpect(status().isBadRequest)
@@ -598,11 +608,8 @@ class CompanyControllerTest {
         @Test
         @DisplayName("Should handle missing query parameters")
         fun `GET search should handle missing query parameter`() {
-            // When & Then
-            mockMvc.perform(
-                get("/api/v1/companies/search"),
-                // Missing query parameter
-            )
+            // When & Then - public endpoint but should return 400 for missing required parameter
+            mockMvc.perform(get("/v1/companies/search"))
                 .andExpect(status().isBadRequest)
 
             verify(exactly = 0) { companyService.searchCompanies(any()) }

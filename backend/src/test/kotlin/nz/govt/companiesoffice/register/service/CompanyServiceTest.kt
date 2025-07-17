@@ -15,14 +15,12 @@ import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
-import org.springframework.boot.test.context.SpringBootTest
 import java.time.LocalDate
 import java.util.*
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
-@SpringBootTest
 class CompanyServiceTest {
 
     private val companyRepository: CompanyRepository = mockk()
@@ -88,6 +86,7 @@ class CompanyServiceTest {
 
             every { companyRepository.existsByCompanyNameIgnoreCase(newCompany.companyName) } returns false
             every { companyRepository.existsByCompanyNumber(newCompany.companyNumber) } returns false
+            every { companyRepository.findByNzbn(newCompany.nzbn!!) } returns null // NZBN is available
             every { companyRepository.save(newCompany) } returns savedCompany
             justRun { auditService.logCompanyCreation(savedCompany.id!!, savedCompany.companyName) }
 
@@ -98,6 +97,7 @@ class CompanyServiceTest {
             assertEquals(savedCompany, result)
             verify { companyRepository.existsByCompanyNameIgnoreCase(newCompany.companyName) }
             verify { companyRepository.existsByCompanyNumber(newCompany.companyNumber) }
+            verify { companyRepository.findByNzbn(newCompany.nzbn!!) }
             verify { companyRepository.save(newCompany) }
             verify { auditService.logCompanyCreation(savedCompany.id!!, savedCompany.companyName) }
         }
@@ -336,6 +336,10 @@ class CompanyServiceTest {
             )
 
             every { companyRepository.findById(companyId) } returns Optional.of(existingCompany)
+            every {
+                companyRepository.existsByCompanyNameIgnoreCase("Updated Company Name")
+            } returns false // Name is available
+            every { companyRepository.findByNzbn("9429000000002") } returns null // NZBN is available
             every { companyRepository.save(existingCompany) } returns savedCompany
             justRun { auditService.logCompanyAccess(companyId) }
 
@@ -348,6 +352,8 @@ class CompanyServiceTest {
             assertEquals("9429000000002", result.nzbn)
             assertEquals("INACTIVE", result.status)
             verify { companyRepository.findById(companyId) }
+            verify { companyRepository.existsByCompanyNameIgnoreCase("Updated Company Name") }
+            verify { companyRepository.findByNzbn("9429000000002") }
             verify { companyRepository.save(existingCompany) }
             verify { auditService.logCompanyAccess(companyId) }
         }

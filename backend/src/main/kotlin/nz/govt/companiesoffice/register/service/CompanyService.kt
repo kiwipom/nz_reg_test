@@ -31,6 +31,13 @@ class CompanyService(
             throw ValidationException("companyNumber", "Company number already exists")
         }
 
+        // Validate NZBN uniqueness if provided
+        company.nzbn?.let { nzbn ->
+            if (companyRepository.findByNzbn(nzbn) != null) {
+                throw ValidationException("nzbn", "NZBN already exists")
+            }
+        }
+
         val savedCompany = companyRepository.save(company)
         auditService.logCompanyCreation(savedCompany.id!!, savedCompany.companyName)
         logger.info("Company created successfully: ${savedCompany.companyNumber}")
@@ -71,6 +78,22 @@ class CompanyService(
 
     fun updateCompany(id: Long, updatedCompany: Company): Company {
         val existingCompany = getCompanyById(id)
+
+        // Validate company name uniqueness if it's being changed
+        if (existingCompany.companyName != updatedCompany.companyName) {
+            if (companyRepository.existsByCompanyNameIgnoreCase(updatedCompany.companyName)) {
+                throw ValidationException("companyName", "Company name already exists")
+            }
+        }
+
+        // Validate NZBN uniqueness if it's being changed
+        if (existingCompany.nzbn != updatedCompany.nzbn) {
+            updatedCompany.nzbn?.let { nzbn ->
+                if (companyRepository.findByNzbn(nzbn) != null) {
+                    throw ValidationException("nzbn", "NZBN already exists")
+                }
+            }
+        }
 
         // Update mutable fields
         existingCompany.companyName = updatedCompany.companyName

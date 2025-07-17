@@ -16,6 +16,9 @@ import java.time.LocalDate
 class DirectorService(
     private val directorRepository: DirectorRepository,
     private val auditService: AuditService,
+    private val residencyValidationService: ResidencyValidationService,
+    private val disqualificationService: DirectorDisqualificationService,
+    private val notificationService: DirectorNotificationService,
 ) {
     private val logger = LoggerFactory.getLogger(DirectorService::class.java)
 
@@ -31,14 +34,24 @@ class DirectorService(
             throw ValidationException("fullName", "Director with this name already exists for the company")
         }
 
-        // Validate residency requirements
-        director.validateResidencyRequirement()
+        // Validate residency requirements using enhanced validation
+        residencyValidationService.validateDirectorResidency(director)
+
+        // Check for director disqualifications
+        disqualificationService.validateAppointmentEligibility(
+            director.fullName,
+            director.dateOfBirth,
+            director.company.id!!,
+        )
 
         // Check if company will meet minimum director requirements
         validateDirectorRequirements(director.company.id!!)
 
         val savedDirector = directorRepository.save(director)
         auditService.logDirectorAppointment(savedDirector.id, savedDirector.company.id!!, savedDirector.fullName)
+
+        // Send appointment notifications
+        notificationService.notifyDirectorAppointment(savedDirector)
 
         logger.info("Director appointed successfully: ${savedDirector.fullName}")
         return savedDirector
@@ -57,19 +70,17 @@ class DirectorService(
             throw ValidationException("resignation", "Cannot resign - company must have at least one director")
         }
 
-        // Check NZ residency requirements after resignation
-        val remainingResidentDirectors = directorRepository.countResidentDirectorsByCompanyId(director.company.id!!)
-        if (remainingResidentDirectors <= 1 && director.isResident()) {
-            throw ValidationException(
-                "resignation",
-                "Cannot resign - company must have at least one NZ/Australian resident director",
-            )
-        }
+        // Check residency requirements after resignation using enhanced validation
+        residencyValidationService.validateResignationWontViolateResidency(director)
 
         director.resign(resignationDate)
         val savedDirector = directorRepository.save(director)
 
         auditService.logDirectorResignation(directorId, director.company.id!!, director.fullName, resignationDate)
+
+        // Send resignation notifications
+        notificationService.notifyDirectorResignation(savedDirector, resignationDate)
+
         logger.info("Director resigned: ${director.fullName}")
 
         return savedDirector
@@ -91,11 +102,21 @@ class DirectorService(
         existingDirector.isNzResident = updatedDirector.isNzResident
         existingDirector.isAustralianResident = updatedDirector.isAustralianResident
 
-        // Validate residency requirements
-        existingDirector.validateResidencyRequirement()
+        // Validate residency requirements using enhanced validation
+        val residencyUpdate = ResidencyUpdate(
+            isNzResident = updatedDirector.isNzResident,
+            isAustralianResident = updatedDirector.isAustralianResident,
+            residentialCountry = updatedDirector.residentialCountry,
+        )
+        residencyValidationService.validateResidencyUpdate(existingDirector, residencyUpdate)
 
         val savedDirector = directorRepository.save(existingDirector)
         auditService.logDirectorUpdate(directorId, existingDirector.company.id!!, existingDirector.fullName)
+
+        // Determine updated fields and send notifications
+        val updatedFields = determineUpdatedFields(existingDirector, updatedDirector)
+        val isSignificantChange = isSignificantChange(updatedFields)
+        notificationService.notifyDirectorUpdate(savedDirector, updatedFields, isSignificantChange)
 
         logger.info("Director updated: ${existingDirector.fullName}")
         return savedDirector
@@ -112,6 +133,10 @@ class DirectorService(
         val savedDirector = directorRepository.save(director)
 
         auditService.logDirectorConsent(directorId, director.company.id!!, director.fullName, consentDate)
+
+        // Send consent notifications
+        notificationService.notifyDirectorConsent(savedDirector, consentDate)
+
         logger.info("Director consent given: ${director.fullName}")
 
         return savedDirector
@@ -171,20 +196,71 @@ class DirectorService(
         logger.debug("Validating director requirements for company: $companyId")
     }
 
-    fun disqualifyDirector(directorId: Long, reason: String): Director {
-        val director = getDirectorById(directorId)
+    private fun determineUpdatedFields(existing: Director, updated: Director): List<String> {
+        val updatedFields = mutableListOf<String>()
 
-        if (director.status == DirectorStatus.DISQUALIFIED) {
-            throw ValidationException("status", "Director is already disqualified")
+        if (existing.fullName != updated.fullName) updatedFields.add("Full Name")
+        if (existing.dateOfBirth != updated.dateOfBirth) updatedFields.add("Date of Birth")
+        if (existing.placeOfBirth != updated.placeOfBirth) updatedFields.add("Place of Birth")
+        if (existing.residentialAddressLine1 != updated.residentialAddressLine1) {
+            updatedFields.add(
+                "Residential Address",
+            )
+        }
+        if (existing.residentialAddressLine2 != updated.residentialAddressLine2) {
+            updatedFields.add(
+                "Residential Address",
+            )
+        }
+        if (existing.residentialCity != updated.residentialCity) updatedFields.add("Residential City")
+        if (existing.residentialRegion != updated.residentialRegion) updatedFields.add("Residential Region")
+        if (existing.residentialPostcode != updated.residentialPostcode) updatedFields.add("Residential Postcode")
+        if (existing.residentialCountry != updated.residentialCountry) updatedFields.add("Residential Country")
+        if (existing.isNzResident != updated.isNzResident) updatedFields.add("NZ Residency Status")
+        if (existing.isAustralianResident != updated.isAustralianResident) {
+            updatedFields.add(
+                "Australian Residency Status",
+            )
         }
 
-        director.status = DirectorStatus.DISQUALIFIED
-        val savedDirector = directorRepository.save(director)
+        return updatedFields.distinct()
+    }
 
-        auditService.logDirectorDisqualification(directorId, director.company.id!!, director.fullName, reason)
-        logger.info("Director disqualified: ${director.fullName} - Reason: $reason")
+    private fun isSignificantChange(updatedFields: List<String>): Boolean {
+        val significantFields = setOf(
+            "Full Name",
+            "NZ Residency Status",
+            "Australian Residency Status",
+            "Residential Country",
+        )
 
-        return savedDirector
+        return updatedFields.any { it in significantFields }
+    }
+
+    fun disqualifyDirector(
+        directorId: Long,
+        reason: String,
+        disqualificationType: DisqualificationType = DisqualificationType.OTHER,
+    ): Director {
+        logger.info("Disqualifying director ID: $directorId using enhanced service")
+
+        val result = disqualificationService.disqualifyDirector(
+            directorId = directorId,
+            disqualificationType = disqualificationType,
+            reason = reason,
+        )
+
+        auditService.logDirectorDisqualification(
+            directorId,
+            result.director.company.id!!,
+            result.director.fullName,
+            reason,
+        )
+
+        // Send disqualification notifications
+        notificationService.notifyDirectorDisqualification(result.director, reason)
+
+        return result.director
     }
 
     fun deleteDirector(directorId: Long) {

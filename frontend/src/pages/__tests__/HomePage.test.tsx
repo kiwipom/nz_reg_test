@@ -3,6 +3,7 @@ import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import { vi } from 'vitest';
 import { HomePage } from '../HomePage';
+import { TEST_CONSTANTS } from '../../test/constants';
 
 // Mock the auth hook
 vi.mock('../../auth/useAuth', () => ({
@@ -11,7 +12,7 @@ vi.mock('../../auth/useAuth', () => ({
     user: { roles: ['ADMIN'] },
     loginWithRedirect: vi.fn(),
     logout: vi.fn(),
-    getAccessTokenSilently: vi.fn().mockResolvedValue('mock-token'),
+    getAccessTokenSilently: vi.fn().mockResolvedValue(TEST_CONSTANTS.MOCK_ACCESS_TOKEN),
   })),
 }));
 

@@ -97,4 +97,8 @@ interface DirectorRepository : JpaRepository<Director, Long> {
         @Param("companyId") companyId: Long,
         @Param("fromDate") fromDate: LocalDate,
     ): List<Director>
+
+    // Find directors by name (for disqualification checking)
+    @Query("SELECT d FROM Director d WHERE LOWER(d.fullName) = LOWER(:fullName)")
+    fun findDisqualifiedDirectorsByName(@Param("fullName") fullName: String): List<Director>
 }
