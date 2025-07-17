@@ -1,7 +1,9 @@
 #!/bin/bash
 
-# Local CI/CD Pipeline Mimicking GitHub Actions
+# Local CI/CD Pipeline with Optimized Ordering
 # This script replicates the GitHub Actions workflow for local development and testing
+# Pipeline Order: Linting → Build → Unit Tests → Integration Tests → Coverage/Quality Checks
+# This "fail fast" approach catches compilation errors early, saving time and resources
 
 set -e  # Exit on any error
 
@@ -192,26 +194,26 @@ stop_postgres() {
     fi
 }
 
-# Backend tests
-run_backend_tests() {
-    log "INFO" "Running backend tests..."
+# Backend pipeline with proper ordering
+run_backend_pipeline() {
+    log "INFO" "Running backend pipeline..."
     
     cd "$PROJECT_ROOT/backend"
     
     # Make gradlew executable
     chmod +x ./gradlew
     
-    # Run linting
+    # 1. LINTING (Fast feedback)
     log "INFO" "Running backend linting..."
     ./gradlew ktlintCheck
     log "SUCCESS" "Backend linting passed"
     
-    # Build without tests first
+    # 2. BUILD (Compilation errors caught early)
     log "INFO" "Building backend..."
     ./gradlew build -x test
     log "SUCCESS" "Backend build completed"
     
-    # Run tests
+    # 3. UNIT TESTS (After successful build)
     log "INFO" "Running backend unit tests..."
     SPRING_PROFILES_ACTIVE=test \
     DB_HOST=localhost \
@@ -222,11 +224,10 @@ run_backend_tests() {
     ./gradlew test --info
     log "SUCCESS" "Backend tests passed"
     
-    # Generate coverage report
+    # 4. COVERAGE & QUALITY CHECKS
     log "INFO" "Generating backend test coverage report..."
     ./gradlew jacocoTestReport
     
-    # Check coverage (non-blocking like GitHub Actions)
     log "INFO" "Checking backend test coverage (non-blocking)..."
     ./gradlew jacocoTestCoverageVerification || {
         log "WARNING" "Coverage verification failed but continuing (matches GitHub Actions behavior)"
@@ -235,9 +236,9 @@ run_backend_tests() {
     cd "$PROJECT_ROOT"
 }
 
-# Frontend tests
-run_frontend_tests() {
-    log "INFO" "Running frontend tests..."
+# Frontend pipeline with proper ordering
+run_frontend_pipeline() {
+    log "INFO" "Running frontend pipeline..."
     
     cd "$PROJECT_ROOT/frontend"
     
@@ -249,37 +250,36 @@ run_frontend_tests() {
     # Clean up coverage files first to avoid linting issues
     rm -rf coverage/ 2>/dev/null || true
     
-    # Run linting
+    # 1. LINTING (Fast feedback)
     log "INFO" "Running frontend linting..."
     npm run lint
     log "SUCCESS" "Frontend linting passed"
     
-    # Run type checking
+    # 2. BUILD (TypeScript compilation + Vite build)
     log "INFO" "Running frontend type checking..."
     npm run typecheck
     log "SUCCESS" "Frontend type checking passed"
     
-    # Run unit tests with coverage
-    log "INFO" "Running frontend unit tests with coverage..."
-    npm run test:coverage
-    log "SUCCESS" "Frontend unit tests passed"
-    
-    # Run integration tests
-    log "INFO" "Running frontend integration tests..."
-    npm run test:integration
-    log "SUCCESS" "Frontend integration tests passed"
-    
-    # Build frontend
     log "INFO" "Building frontend..."
     npm run build
     log "SUCCESS" "Frontend build completed"
     
+    # 3. UNIT TESTS (After successful build)
+    log "INFO" "Running frontend unit tests with coverage..."
+    npm run test:coverage
+    log "SUCCESS" "Frontend unit tests passed"
+    
+    # 4. INTEGRATION TESTS (After unit tests)
+    log "INFO" "Running frontend integration tests..."
+    npm run test:integration
+    log "SUCCESS" "Frontend integration tests passed"
+    
     cd "$PROJECT_ROOT"
 }
 
-# Infrastructure tests
-run_infrastructure_tests() {
-    log "INFO" "Running infrastructure tests..."
+# Infrastructure pipeline with proper ordering
+run_infrastructure_pipeline() {
+    log "INFO" "Running infrastructure pipeline..."
     
     cd "$PROJECT_ROOT/infrastructure/cdk"
     
@@ -289,13 +289,13 @@ run_infrastructure_tests() {
     pip install -r test_requirements.txt
     log "SUCCESS" "Infrastructure dependencies installed"
     
-    # Run linting
+    # 1. LINTING (Fast feedback)
     log "INFO" "Running infrastructure linting..."
     black --check .
     flake8 .
     log "SUCCESS" "Infrastructure linting passed"
     
-    # Run unit tests with coverage
+    # 2. UNIT TESTS (Python doesn't need separate build step)
     log "INFO" "Running infrastructure unit tests with coverage..."
     python -m pytest tests/ -v --cov=. --cov-report=xml --cov-report=term
     log "SUCCESS" "Infrastructure tests passed"
@@ -436,11 +436,11 @@ main() {
         fi
     fi
     
-    # Run tests if not skipped
+    # Run pipelines if not skipped (with proper ordering)
     if [ "$SKIP_TESTS" = false ]; then
-        run_backend_tests
-        run_frontend_tests
-        run_infrastructure_tests
+        run_backend_pipeline
+        run_frontend_pipeline
+        run_infrastructure_pipeline
     fi
     
     # Run security scan if not skipped
