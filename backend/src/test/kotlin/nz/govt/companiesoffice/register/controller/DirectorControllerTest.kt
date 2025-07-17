@@ -106,7 +106,7 @@ class DirectorControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(testDirector)),
         )
-            .andExpect(status().isForbidden)
+            .andExpect(status().isUnauthorized)
     }
 
     @Test
@@ -124,7 +124,10 @@ class DirectorControllerTest {
     fun `should get director by id successfully`() {
         every { directorService.getDirectorById(1L) } returns testDirector
 
-        mockMvc.perform(get("/v1/directors/1"))
+        mockMvc.perform(
+            get("/v1/directors/1")
+                .with(jwt().authorities(SimpleGrantedAuthority("ROLE_ADMIN")))
+        )
             .andExpect(status().isOk)
             .andExpect(jsonPath("$.id").value(1))
             .andExpect(jsonPath("$.fullName").value("John Doe"))
@@ -135,7 +138,10 @@ class DirectorControllerTest {
     fun `should return 404 when director not found`() {
         every { directorService.getDirectorById(1L) } throws ResourceNotFoundException("director", "Director not found")
 
-        mockMvc.perform(get("/v1/directors/1"))
+        mockMvc.perform(
+            get("/v1/directors/1")
+                .with(jwt().authorities(SimpleGrantedAuthority("ROLE_ADMIN")))
+        )
             .andExpect(status().isNotFound)
     }
 
@@ -321,7 +327,10 @@ class DirectorControllerTest {
         val directors = listOf(testDirector)
         every { directorService.getDirectorsByCompany(1L) } returns directors
 
-        mockMvc.perform(get("/v1/directors/company/1"))
+        mockMvc.perform(
+            get("/v1/directors/company/1")
+                .with(jwt().authorities(SimpleGrantedAuthority("ROLE_ADMIN")))
+        )
             .andExpect(status().isOk)
             .andExpect(jsonPath("$").isArray)
             .andExpect(jsonPath("$[0].id").value(1))
@@ -332,7 +341,10 @@ class DirectorControllerTest {
         val directors = listOf(testDirector)
         every { directorService.getActiveDirectorsByCompany(1L) } returns directors
 
-        mockMvc.perform(get("/v1/directors/company/1/active"))
+        mockMvc.perform(
+            get("/v1/directors/company/1/active")
+                .with(jwt().authorities(SimpleGrantedAuthority("ROLE_ADMIN")))
+        )
             .andExpect(status().isOk)
             .andExpect(jsonPath("$").isArray)
             .andExpect(jsonPath("$[0].status").value("ACTIVE"))
@@ -356,7 +368,8 @@ class DirectorControllerTest {
 
         mockMvc.perform(
             get("/v1/directors/search")
-                .param("query", "John"),
+                .param("query", "John")
+                .with(jwt().authorities(SimpleGrantedAuthority("ROLE_ADMIN")))
         )
             .andExpect(status().isOk)
             .andExpect(jsonPath("$").isArray)
@@ -373,7 +386,10 @@ class DirectorControllerTest {
         )
         every { directorService.validateCompanyDirectorCompliance(1L) } returns compliance
 
-        mockMvc.perform(get("/v1/directors/company/1/compliance"))
+        mockMvc.perform(
+            get("/v1/directors/company/1/compliance")
+                .with(jwt().authorities(SimpleGrantedAuthority("ROLE_ADMIN")))
+        )
             .andExpect(status().isOk)
             .andExpect(jsonPath("$.hasMinimumDirectors").value(true))
             .andExpect(jsonPath("$.hasResidentDirector").value(true))

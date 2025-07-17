@@ -211,22 +211,21 @@ run_backend_tests() {
     ./gradlew build -x test
     log "SUCCESS" "Backend build completed"
     
-    # Run tests (currently commented out in CI due to issues)
-    log "WARNING" "Backend unit tests are currently disabled in CI due to compilation issues"
-    # Uncomment when tests are fixed:
-    # log "INFO" "Running backend unit tests..."
-    # SPRING_PROFILES_ACTIVE=test \
-    # DB_HOST=localhost \
-    # DB_PORT=$POSTGRES_PORT \
-    # DB_NAME=$POSTGRES_DB \
-    # DB_USERNAME=$POSTGRES_USER \
-    # DB_PASSWORD=$POSTGRES_PASSWORD \
-    # ./gradlew test --info
-    # log "SUCCESS" "Backend tests passed"
+    # Run tests
+    log "INFO" "Running backend unit tests..."
+    SPRING_PROFILES_ACTIVE=test \
+    DB_HOST=localhost \
+    DB_PORT=$POSTGRES_PORT \
+    DB_NAME=$POSTGRES_DB \
+    DB_USERNAME=$POSTGRES_USER \
+    DB_PASSWORD=$POSTGRES_PASSWORD \
+    ./gradlew test --info
+    log "SUCCESS" "Backend tests passed"
     
-    # Generate coverage report (when tests are enabled)
-    # ./gradlew jacocoTestReport
-    # ./gradlew jacocoTestCoverageVerification
+    # Generate coverage report
+    log "INFO" "Generating backend test coverage report..."
+    ./gradlew jacocoTestReport
+    ./gradlew jacocoTestCoverageVerification
     
     cd "$PROJECT_ROOT"
 }
