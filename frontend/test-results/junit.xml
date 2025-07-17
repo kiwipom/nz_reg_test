@@ -1,228 +1,228 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuites name="vitest tests" tests="105" failures="0" errors="0" time="15.529187328">
-    <testsuite name="src/components/__tests__/CompanySearch.integration.test.tsx" timestamp="2025-07-17T07:28:29.023Z" hostname="FMNZ-C02D5HB1ML7H.local" tests="2" failures="0" errors="0" skipped="0" time="0.807989245">
-        <testcase classname="src/components/__tests__/CompanySearch.integration.test.tsx" name="CompanySearch Integration Tests &gt; should integrate with store and service for end-to-end search flow" time="0.417376379">
+<testsuites name="vitest tests" tests="105" failures="0" errors="0" time="15.291122436">
+    <testsuite name="src/components/__tests__/CompanySearch.integration.test.tsx" timestamp="2025-07-17T07:46:10.943Z" hostname="FMNZ-C02D5HB1ML7H.local" tests="2" failures="0" errors="0" skipped="0" time="0.804657363">
+        <testcase classname="src/components/__tests__/CompanySearch.integration.test.tsx" name="CompanySearch Integration Tests &gt; should integrate with store and service for end-to-end search flow" time="0.388011434">
         </testcase>
-        <testcase classname="src/components/__tests__/CompanySearch.integration.test.tsx" name="CompanySearch Integration Tests &gt; should handle full search workflow with error recovery" time="0.383483148">
-        </testcase>
-    </testsuite>
-    <testsuite name="src/components/__tests__/CompanySearch.test.tsx" timestamp="2025-07-17T07:28:29.025Z" hostname="FMNZ-C02D5HB1ML7H.local" tests="20" failures="0" errors="0" skipped="0" time="3.088102349">
-        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Rendering &gt; should render search input with placeholder" time="0.067572957">
-        </testcase>
-        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Rendering &gt; should render search icon initially" time="0.107455551">
-        </testcase>
-        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Rendering &gt; should render with proper accessibility attributes" time="0.014289135">
-        </testcase>
-        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; User Interaction &gt; should update input value when user types" time="0.128783503">
-        </testcase>
-        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; User Interaction &gt; should show clear button when input has value" time="0.066510115">
-        </testcase>
-        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; User Interaction &gt; should clear input when clear button is clicked" time="0.102576832">
-        </testcase>
-        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; User Interaction &gt; should not show clear button when input is empty" time="0.005525319">
-        </testcase>
-        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Search Functionality &gt; should trigger search after debounce delay" time="0.387155512">
-        </testcase>
-        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Search Functionality &gt; should not trigger search for queries less than 2 characters" time="0.331157047">
-        </testcase>
-        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Search Functionality &gt; should clear search when input is empty" time="0.335050766">
-        </testcase>
-        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Search Functionality &gt; should show loading state during search" time="0.054692423">
-        </testcase>
-        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Search Results Display &gt; should display search results when available" time="0.032208518">
-        </testcase>
-        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Search Results Display &gt; should display singular result text for single result" time="0.011779068">
-        </testcase>
-        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Search Results Display &gt; should display company details correctly" time="0.011510282">
-        </testcase>
-        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Search Results Display &gt; should handle company selection click" time="0.019185337">
-        </testcase>
-        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Search Results Display &gt; should display different status styles" time="0.013579141">
-        </testcase>
-        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Error Handling &gt; should handle search errors gracefully" time="0.334719263">
-        </testcase>
-        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Error Handling &gt; should handle network errors" time="0.362781909">
-        </testcase>
-        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Performance &gt; should debounce search requests" time="0.3567808">
-        </testcase>
-        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Performance &gt; should cancel previous search when new search is triggered" time="0.336958918">
+        <testcase classname="src/components/__tests__/CompanySearch.integration.test.tsx" name="CompanySearch Integration Tests &gt; should handle full search workflow with error recovery" time="0.411054966">
         </testcase>
     </testsuite>
-    <testsuite name="src/pages/__tests__/CompanyRegistration.test.tsx" timestamp="2025-07-17T07:28:29.032Z" hostname="FMNZ-C02D5HB1ML7H.local" tests="28" failures="0" errors="0" skipped="0" time="7.211223396">
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; renders the registration form with all required fields" time="0.27053373">
+    <testsuite name="src/components/__tests__/CompanySearch.test.tsx" timestamp="2025-07-17T07:46:10.945Z" hostname="FMNZ-C02D5HB1ML7H.local" tests="20" failures="0" errors="0" skipped="0" time="3.087175136">
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Rendering &gt; should render search input with placeholder" time="0.053537849">
         </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; has correct default values" time="0.03559827">
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Rendering &gt; should render search icon initially" time="0.098306781">
         </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; validates required fields" time="0.039095788">
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Rendering &gt; should render with proper accessibility attributes" time="0.017976769">
         </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; validates share capital calculation" time="0.258013985">
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; User Interaction &gt; should update input value when user types" time="0.141332762">
         </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; validates positive values for share-related fields" time="0.128123861">
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; User Interaction &gt; should show clear button when input has value" time="0.058292212">
         </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; checks name availability when typing company name" time="0.809722738">
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; User Interaction &gt; should clear input when clear button is clicked" time="0.128999274">
         </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; shows error when company name is not available" time="0.8434439">
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; User Interaction &gt; should not show clear button when input is empty" time="0.003657598">
         </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; shows loading state while checking name availability" time="0.773506288">
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Search Functionality &gt; should trigger search after debounce delay" time="0.376231233">
         </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; handles API errors gracefully" time="0.780894248">
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Search Functionality &gt; should not trigger search for queries less than 2 characters" time="0.322317442">
         </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; updates form fields correctly" time="0.336382589">
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Search Functionality &gt; should clear search when input is empty" time="0.333394512">
         </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; clears field errors when user starts typing" time="0.033569865">
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Search Functionality &gt; should show loading state during search" time="0.047780464">
         </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; disables submit button when name is not available" time="0.811145883">
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Search Results Display &gt; should display search results when available" time="0.032404474">
         </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; shows loading state during form submission" time="0.864231086">
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Search Results Display &gt; should display singular result text for single result" time="0.006607912">
         </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; has proper accessibility attributes" time="0.017247975">
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Search Results Display &gt; should display company details correctly" time="0.011255645">
         </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; renders file upload area with correct styling" time="0.007259699">
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Search Results Display &gt; should handle company selection click" time="0.020303661">
         </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; accepts valid PDF file" time="0.015210198">
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Search Results Display &gt; should display different status styles" time="0.012515538">
         </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; accepts valid DOC file" time="0.015481478">
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Error Handling &gt; should handle search errors gracefully" time="0.339806373">
         </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; accepts valid DOCX file" time="0.013021931">
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Error Handling &gt; should handle network errors" time="0.360984321">
         </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; rejects invalid file type" time="0.013183893">
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Performance &gt; should debounce search requests" time="0.379360661">
         </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; rejects file larger than 5MB" time="0.285053345">
-        </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; allows removing uploaded file" time="0.026441821">
-        </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; clears file error when valid file is uploaded" time="0.016512319">
-        </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; displays file size in MB correctly" time="0.093597994">
-        </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; handles file upload without selecting file" time="0.007562252">
-        </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; shows upload area when no file is selected" time="0.005945105">
-        </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; shows file details when file is selected" time="0.013973924">
-        </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; Form Integration with File Upload &gt; submits form successfully with constitution file" time="0.671837755">
-        </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; Form Integration with File Upload &gt; maintains file selection during form validation" time="0.017459909">
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Performance &gt; should cancel previous search when new search is triggered" time="0.335114606">
         </testcase>
     </testsuite>
-    <testsuite name="src/pages/__tests__/DirectorAppointment.test.tsx" timestamp="2025-07-17T07:28:29.039Z" hostname="FMNZ-C02D5HB1ML7H.local" tests="21" failures="0" errors="0" skipped="1" time="3.349403987">
-        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; renders the director appointment form with all required fields" time="0.366775427">
+    <testsuite name="src/pages/__tests__/CompanyRegistration.test.tsx" timestamp="2025-07-17T07:46:10.951Z" hostname="FMNZ-C02D5HB1ML7H.local" tests="28" failures="0" errors="0" skipped="0" time="7.148884963">
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; renders the registration form with all required fields" time="0.273427193">
         </testcase>
-        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; has correct default values" time="0.074685017">
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; has correct default values" time="0.027764619">
         </testcase>
-        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; validates required fields on form submission" time="0.128121925">
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; validates required fields" time="0.046010497">
         </testcase>
-        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; validates age requirement (must be 18+)" time="0.168322247">
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; validates share capital calculation" time="0.293173303">
         </testcase>
-        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; shows residency warning for non-NZ/AU residents" time="0.062017713">
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; validates positive values for share-related fields" time="0.131063355">
         </testcase>
-        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; toggles service address fields when checkbox is unchecked" time="0.058451157">
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; checks name availability when typing company name" time="0.80878699">
         </testcase>
-        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; validates service address when not using residential address" time="0.68114385">
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; shows error when company name is not available" time="0.833153907">
         </testcase>
-        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; updates form fields correctly" time="0.278803021">
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; shows loading state while checking name availability" time="0.783764385">
         </testcase>
-        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; clears field errors when user starts typing" time="0.056669444">
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; handles API errors gracefully" time="0.789945807">
         </testcase>
-        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; shows loading state during form submission" time="0.526306891">
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; updates form fields correctly" time="0.285673013">
         </testcase>
-        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; handles checkbox interactions correctly" time="0.100971206">
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; clears field errors when user starts typing" time="0.027004682">
         </testcase>
-        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; has proper accessibility attributes" time="0.048374638">
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; disables submit button when name is not available" time="0.796239502">
         </testcase>
-        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; handles middle name field correctly" time="0.137971102">
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; shows loading state during form submission" time="0.8476569">
         </testcase>
-        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; handles director role field correctly" time="0.131266872">
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; has proper accessibility attributes" time="0.018873109">
         </testcase>
-        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; validates appointment date field" time="0.04563779">
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; renders file upload area with correct styling" time="0.007069718">
         </testcase>
-        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; displays correct section headers and icons" time="0.024609174">
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; accepts valid PDF file" time="0.014197449">
         </testcase>
-        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; handles consent document upload" time="0.035097606">
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; accepts valid DOC file" time="0.012162123">
         </testcase>
-        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; handles identification document upload" time="0.031544931">
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; accepts valid DOCX file" time="0.012460083">
+        </testcase>
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; rejects invalid file type" time="0.011148291">
+        </testcase>
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; rejects file larger than 5MB" time="0.267793089">
+        </testcase>
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; allows removing uploaded file" time="0.028317032">
+        </testcase>
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; clears file error when valid file is uploaded" time="0.019597376">
+        </testcase>
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; displays file size in MB correctly" time="0.088845765">
+        </testcase>
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; handles file upload without selecting file" time="0.007452686">
+        </testcase>
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; shows upload area when no file is selected" time="0.005407338">
+        </testcase>
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; shows file details when file is selected" time="0.01181781">
+        </testcase>
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; Form Integration with File Upload &gt; submits form successfully with constitution file" time="0.675511762">
+        </testcase>
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; Form Integration with File Upload &gt; maintains file selection during form validation" time="0.017123342">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/pages/__tests__/DirectorAppointment.test.tsx" timestamp="2025-07-17T07:46:10.954Z" hostname="FMNZ-C02D5HB1ML7H.local" tests="21" failures="0" errors="0" skipped="1" time="3.331206854">
+        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; renders the director appointment form with all required fields" time="0.398175697">
+        </testcase>
+        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; has correct default values" time="0.055162261">
+        </testcase>
+        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; validates required fields on form submission" time="0.10927355">
+        </testcase>
+        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; validates age requirement (must be 18+)" time="0.205361354">
+        </testcase>
+        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; shows residency warning for non-NZ/AU residents" time="0.054174197">
+        </testcase>
+        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; toggles service address fields when checkbox is unchecked" time="0.063841037">
+        </testcase>
+        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; validates service address when not using residential address" time="0.623596085">
+        </testcase>
+        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; updates form fields correctly" time="0.259942516">
+        </testcase>
+        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; clears field errors when user starts typing" time="0.060372193">
+        </testcase>
+        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; shows loading state during form submission" time="0.526506418">
+        </testcase>
+        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; handles checkbox interactions correctly" time="0.089841421">
+        </testcase>
+        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; has proper accessibility attributes" time="0.050837358">
+        </testcase>
+        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; handles middle name field correctly" time="0.169194512">
+        </testcase>
+        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; handles director role field correctly" time="0.156195409">
+        </testcase>
+        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; validates appointment date field" time="0.04205806">
+        </testcase>
+        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; displays correct section headers and icons" time="0.024527368">
+        </testcase>
+        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; handles consent document upload" time="0.034253902">
+        </testcase>
+        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; handles identification document upload" time="0.03698018">
         </testcase>
         <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; validates file types for document uploads" time="0">
             <skipped/>
         </testcase>
-        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; validates file size for document uploads" time="0.317816531">
+        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; validates file size for document uploads" time="0.31274153">
         </testcase>
-        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; allows removing uploaded documents" time="0.068952425">
-        </testcase>
-    </testsuite>
-    <testsuite name="src/pages/__tests__/DirectorResignation.test.tsx" timestamp="2025-07-17T07:28:29.045Z" hostname="FMNZ-C02D5HB1ML7H.local" tests="9" failures="0" errors="0" skipped="0" time="0.582238741">
-        <testcase classname="src/pages/__tests__/DirectorResignation.test.tsx" name="DirectorResignation &gt; renders the director resignation form" time="0.221962778">
-        </testcase>
-        <testcase classname="src/pages/__tests__/DirectorResignation.test.tsx" name="DirectorResignation &gt; pre-fills director ID when provided" time="0.023458506">
-        </testcase>
-        <testcase classname="src/pages/__tests__/DirectorResignation.test.tsx" name="DirectorResignation &gt; validates required fields" time="0.103460196">
-        </testcase>
-        <testcase classname="src/pages/__tests__/DirectorResignation.test.tsx" name="DirectorResignation &gt; validates confirmation checkbox" time="0.03868559">
-        </testcase>
-        <testcase classname="src/pages/__tests__/DirectorResignation.test.tsx" name="DirectorResignation &gt; submits form successfully" time="0.07123596">
-        </testcase>
-        <testcase classname="src/pages/__tests__/DirectorResignation.test.tsx" name="DirectorResignation &gt; handles submission errors" time="0.039667596">
-        </testcase>
-        <testcase classname="src/pages/__tests__/DirectorResignation.test.tsx" name="DirectorResignation &gt; shows loading state during submission" time="0.037411564">
-        </testcase>
-        <testcase classname="src/pages/__tests__/DirectorResignation.test.tsx" name="DirectorResignation &gt; resets form when reset button is clicked" time="0.028100007">
-        </testcase>
-        <testcase classname="src/pages/__tests__/DirectorResignation.test.tsx" name="DirectorResignation &gt; displays important notice about resignation requirements" time="0.0119537">
+        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; allows removing uploaded documents" time="0.052092906">
         </testcase>
     </testsuite>
-    <testsuite name="src/pages/__tests__/HomePage.test.tsx" timestamp="2025-07-17T07:28:29.047Z" hostname="FMNZ-C02D5HB1ML7H.local" tests="7" failures="0" errors="0" skipped="0" time="0.417988622">
-        <testcase classname="src/pages/__tests__/HomePage.test.tsx" name="HomePage &gt; renders the main page content" time="0.187220044">
+    <testsuite name="src/pages/__tests__/DirectorResignation.test.tsx" timestamp="2025-07-17T07:46:10.957Z" hostname="FMNZ-C02D5HB1ML7H.local" tests="9" failures="0" errors="0" skipped="0" time="0.641685608">
+        <testcase classname="src/pages/__tests__/DirectorResignation.test.tsx" name="DirectorResignation &gt; renders the director resignation form" time="0.249356988">
         </testcase>
-        <testcase classname="src/pages/__tests__/HomePage.test.tsx" name="HomePage &gt; displays success message when provided in location state" time="0.100187894">
+        <testcase classname="src/pages/__tests__/DirectorResignation.test.tsx" name="DirectorResignation &gt; pre-fills director ID when provided" time="0.023800755">
         </testcase>
-        <testcase classname="src/pages/__tests__/HomePage.test.tsx" name="HomePage &gt; does not display success message when not provided" time="0.036186471">
+        <testcase classname="src/pages/__tests__/DirectorResignation.test.tsx" name="DirectorResignation &gt; validates required fields" time="0.108608264">
         </testcase>
-        <testcase classname="src/pages/__tests__/HomePage.test.tsx" name="HomePage &gt; displays success message with proper styling" time="0.019900843">
+        <testcase classname="src/pages/__tests__/DirectorResignation.test.tsx" name="DirectorResignation &gt; validates confirmation checkbox" time="0.053052024">
         </testcase>
-        <testcase classname="src/pages/__tests__/HomePage.test.tsx" name="HomePage &gt; renders all feature sections" time="0.024381953">
+        <testcase classname="src/pages/__tests__/DirectorResignation.test.tsx" name="DirectorResignation &gt; submits form successfully" time="0.035847764">
         </testcase>
-        <testcase classname="src/pages/__tests__/HomePage.test.tsx" name="HomePage &gt; handles empty success message" time="0.023097775">
+        <testcase classname="src/pages/__tests__/DirectorResignation.test.tsx" name="DirectorResignation &gt; handles submission errors" time="0.039446019">
         </testcase>
-        <testcase classname="src/pages/__tests__/HomePage.test.tsx" name="HomePage &gt; handles undefined success message" time="0.018290961">
+        <testcase classname="src/pages/__tests__/DirectorResignation.test.tsx" name="DirectorResignation &gt; shows loading state during submission" time="0.044051379">
+        </testcase>
+        <testcase classname="src/pages/__tests__/DirectorResignation.test.tsx" name="DirectorResignation &gt; resets form when reset button is clicked" time="0.057091054">
+        </testcase>
+        <testcase classname="src/pages/__tests__/DirectorResignation.test.tsx" name="DirectorResignation &gt; displays important notice about resignation requirements" time="0.022441429">
         </testcase>
     </testsuite>
-    <testsuite name="src/services/__tests__/registrationService.test.ts" timestamp="2025-07-17T07:28:29.049Z" hostname="FMNZ-C02D5HB1ML7H.local" tests="18" failures="0" errors="0" skipped="0" time="0.072240988">
-        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; checkNameAvailability &gt; returns availability status for valid name" time="0.006880394">
+    <testsuite name="src/pages/__tests__/HomePage.test.tsx" timestamp="2025-07-17T07:46:10.958Z" hostname="FMNZ-C02D5HB1ML7H.local" tests="7" failures="0" errors="0" skipped="0" time="0.237131004">
+        <testcase classname="src/pages/__tests__/HomePage.test.tsx" name="HomePage &gt; renders the main page content" time="0.074562305">
         </testcase>
-        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; checkNameAvailability &gt; handles special characters in company name" time="0.001190169">
+        <testcase classname="src/pages/__tests__/HomePage.test.tsx" name="HomePage &gt; displays success message when provided in location state" time="0.021566368">
         </testcase>
-        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; checkNameAvailability &gt; throws error on HTTP error response" time="0.009889959">
+        <testcase classname="src/pages/__tests__/HomePage.test.tsx" name="HomePage &gt; does not display success message when not provided" time="0.026391953">
         </testcase>
-        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; checkNameAvailability &gt; throws error on network failure" time="0.001157076">
+        <testcase classname="src/pages/__tests__/HomePage.test.tsx" name="HomePage &gt; displays success message with proper styling" time="0.017724853">
         </testcase>
-        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; checkNumberAvailability &gt; returns availability status for valid number" time="0.000855314">
+        <testcase classname="src/pages/__tests__/HomePage.test.tsx" name="HomePage &gt; renders all feature sections" time="0.029776562">
         </testcase>
-        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; checkNumberAvailability &gt; handles special characters in company number" time="0.00071809">
+        <testcase classname="src/pages/__tests__/HomePage.test.tsx" name="HomePage &gt; handles empty success message" time="0.042793835">
         </testcase>
-        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; checkNumberAvailability &gt; throws error on HTTP error response" time="0.000860853">
+        <testcase classname="src/pages/__tests__/HomePage.test.tsx" name="HomePage &gt; handles undefined success message" time="0.016334443">
         </testcase>
-        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; registerCompany &gt; registers company successfully with authentication" time="0.00301988">
+    </testsuite>
+    <testsuite name="src/services/__tests__/registrationService.test.ts" timestamp="2025-07-17T07:46:10.959Z" hostname="FMNZ-C02D5HB1ML7H.local" tests="18" failures="0" errors="0" skipped="0" time="0.040381508">
+        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; checkNameAvailability &gt; returns availability status for valid name" time="0.008369789">
         </testcase>
-        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; registerCompany &gt; registers company successfully without authentication" time="0.003963982">
+        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; checkNameAvailability &gt; handles special characters in company name" time="0.001559748">
         </testcase>
-        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; registerCompany &gt; registers company without optional NZBN" time="0.010306526">
+        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; checkNameAvailability &gt; throws error on HTTP error response" time="0.003740564">
         </testcase>
-        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; registerCompany &gt; throws error on HTTP error response" time="0.000923917">
+        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; checkNameAvailability &gt; throws error on network failure" time="0.001392293">
         </testcase>
-        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; registerCompany &gt; throws error on network failure" time="0.005071229">
+        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; checkNumberAvailability &gt; returns availability status for valid number" time="0.001158988">
         </testcase>
-        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; registerCompany &gt; handles unauthorized access" time="0.002477643">
+        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; checkNumberAvailability &gt; handles special characters in company number" time="0.00124742">
         </testcase>
-        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; generateCompanyNumber &gt; generates a 9-digit company number" time="0.000520689">
+        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; checkNumberAvailability &gt; throws error on HTTP error response" time="0.00078145">
         </testcase>
-        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; generateCompanyNumber &gt; generates unique company numbers" time="0.002542568">
+        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; registerCompany &gt; registers company successfully with authentication" time="0.001713511">
         </testcase>
-        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; generateCompanyNumber &gt; generates numbers with timestamp component" time="0.00293097">
+        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; registerCompany &gt; registers company successfully without authentication" time="0.001952708">
         </testcase>
-        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; error handling &gt; handles malformed JSON response" time="0.001013385">
+        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; registerCompany &gt; registers company without optional NZBN" time="0.001401476">
         </testcase>
-        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; error handling &gt; handles empty response" time="0.00063098">
+        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; registerCompany &gt; throws error on HTTP error response" time="0.000919442">
+        </testcase>
+        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; registerCompany &gt; throws error on network failure" time="0.00088696">
+        </testcase>
+        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; registerCompany &gt; handles unauthorized access" time="0.000846681">
+        </testcase>
+        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; generateCompanyNumber &gt; generates a 9-digit company number" time="0.000723507">
+        </testcase>
+        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; generateCompanyNumber &gt; generates unique company numbers" time="0.002848009">
+        </testcase>
+        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; generateCompanyNumber &gt; generates numbers with timestamp component" time="0.000542661">
+        </testcase>
+        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; error handling &gt; handles malformed JSON response" time="0.000892333">
+        </testcase>
+        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; error handling &gt; handles empty response" time="0.000851282">
         </testcase>
     </testsuite>
 </testsuites>

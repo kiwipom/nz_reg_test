@@ -1,4 +1,4 @@
-import { DirectorFormData } from '../pages/DirectorAppointment';
+import type { DirectorFormData } from '../pages/DirectorAppointment';
 
 interface DirectorAppointmentRequest {
   directorData: Omit<DirectorFormData, 'consentDocument' | 'identificationDocument'>;

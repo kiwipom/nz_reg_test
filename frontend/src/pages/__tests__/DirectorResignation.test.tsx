@@ -1,5 +1,5 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { beforeEach, afterEach, describe, expect, it, vi } from 'vitest';
 import { DirectorResignation } from '../DirectorResignation';
 import { DirectorService } from '../../services/directorService';
 
@@ -23,8 +23,13 @@ describe('DirectorResignation', () => {
     
     // Mock the DirectorService constructor and methods
     vi.mocked(DirectorService).mockImplementation(() => ({
+      baseUrl: 'http://localhost:8080/api/v1',
       resignDirector: mockResignDirector,
-    } as Partial<DirectorService>));
+    } as any));
+  });
+
+  afterEach(() => {
+    vi.clearAllTimers();
   });
 
   it('renders the director resignation form', () => {

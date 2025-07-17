@@ -453,9 +453,10 @@ describe('DirectorAppointment', () => {
     // Create a mock file
     const file = new File(['consent content'], 'consent.pdf', { type: 'application/pdf' });
     const fileInput = document.getElementById('consentDocument');
+    expect(fileInput).toBeInTheDocument();
     
     // Upload the file
-    await user.upload(fileInput, file);
+    await user.upload(fileInput!, file);
     
     // Check that file details are displayed
     await waitFor(() => {
@@ -473,9 +474,10 @@ describe('DirectorAppointment', () => {
     // Create a mock file
     const file = new File(['id content'], 'passport.jpg', { type: 'image/jpeg' });
     const idFileInput = document.getElementById('identificationDocument');
+    expect(idFileInput).toBeInTheDocument();
     
     // Upload the file
-    await user.upload(idFileInput, file);
+    await user.upload(idFileInput!, file);
     
     // Check that file details are displayed
     await waitFor(() => {
@@ -491,8 +493,9 @@ describe('DirectorAppointment', () => {
     // Try to upload an invalid file type
     const invalidFile = new File(['invalid content'], 'document.txt', { type: 'text/plain' });
     const fileInput = document.getElementById('consentDocument');
+    expect(fileInput).toBeInTheDocument();
     
-    await user.upload(fileInput, invalidFile);
+    await user.upload(fileInput!, invalidFile);
     
     // Should show error message
     await waitFor(() => {
@@ -507,8 +510,9 @@ describe('DirectorAppointment', () => {
     // Create a file larger than 5MB
     const largeFile = new File(['x'.repeat(6 * 1024 * 1024)], 'large.pdf', { type: 'application/pdf' });
     const fileInput = document.getElementById('consentDocument');
+    expect(fileInput).toBeInTheDocument();
     
-    await user.upload(fileInput, largeFile);
+    await user.upload(fileInput!, largeFile);
     
     // Should show error message
     await waitFor(() => {
@@ -523,7 +527,8 @@ describe('DirectorAppointment', () => {
     // Upload a file first
     const file = new File(['content'], 'test.pdf', { type: 'application/pdf' });
     const fileInput = document.getElementById('consentDocument');
-    await user.upload(fileInput, file);
+    expect(fileInput).toBeInTheDocument();
+    await user.upload(fileInput!, file);
     
     // Wait for file to be displayed
     await waitFor(() => {
