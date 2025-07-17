@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Search, Loader2, Building2, Calendar, CheckCircle, XCircle } from 'lucide-react';
 import { useCompanyStore } from '../stores/useCompanyStore';
 import { companyService } from '../services/companyService';
 
 export const CompanySearch: React.FC = () => {
+  const navigate = useNavigate();
   const [inputValue, setInputValue] = useState('');
   const [isSearching, setIsSearching] = useState(false);
   
@@ -116,8 +118,7 @@ export const CompanySearch: React.FC = () => {
               key={company.id}
               className="p-4 border-b border-gray-100 last:border-b-0 hover:bg-gradient-to-r hover:from-blue-50 hover:to-green-50 cursor-pointer transition-all duration-200 group"
               onClick={() => {
-                // Handle company selection
-                console.log('Selected company:', company);
+                navigate(`/companies/${company.id}`);
               }}
             >
               <div className="flex justify-between items-start">

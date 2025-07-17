@@ -4,6 +4,9 @@ import { AuthServiceInitializer } from './components/AuthServiceInitializer';
 import { AuthButton } from './components/AuthButton';
 import { HomePage } from './pages/HomePage';
 import { CompanyRegistration } from './pages/CompanyRegistration';
+import { CompanyDetails } from './pages/CompanyDetails';
+import { DirectorAppointment } from './pages/DirectorAppointment';
+import { DirectorResignation } from './pages/DirectorResignation';
 import { Building2 } from 'lucide-react';
 
 function App() {
@@ -39,6 +42,9 @@ function App() {
               <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/register" element={<CompanyRegistration />} />
+                <Route path="/companies/:id" element={<CompanyDetails />} />
+                <Route path="/companies/:id/directors/appoint" element={<DirectorAppointment />} />
+                <Route path="/companies/:id/directors/:directorId/resign" element={<DirectorResignation />} />
               </Routes>
             </main>
 
