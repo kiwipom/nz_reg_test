@@ -117,8 +117,8 @@
 - [x] Build registration confirmation workflow
 
 ### 3.2 Director Management
-- [ ] Create director appointment form
-- [ ] Implement director consent capture and storage
+- [x] Create director appointment form
+- [x] Implement director consent capture and storage
 - [ ] Build director resignation workflow
 - [ ] Add NZ/Australian residency validation
 - [ ] Implement director disqualification checks
