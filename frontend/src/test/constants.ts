@@ -4,7 +4,7 @@
  */
 
 // Generate test tokens dynamically to avoid CodeQL warnings about hardcoded credentials
-const generateTestToken = (prefix: string) => `${prefix}-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
+// const generateTestToken = (prefix: string) => `${prefix}-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
 
 export const TEST_CONSTANTS = {
   // Authentication tokens (generated to avoid CodeQL warnings)
