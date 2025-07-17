@@ -1,21 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuites name="vitest tests" tests="15" failures="0" errors="0" time="0.364159509">
-    <testsuite name="src/pages/__tests__/CompanyDetails.test.tsx" timestamp="2025-07-17T08:42:17.268Z" hostname="FMNZ-C02D5HB1ML7H.local" tests="15" failures="0" errors="0" skipped="0" time="0.364159509">
-        <testcase classname="src/pages/__tests__/CompanyDetails.test.tsx" name="CompanyDetails &gt; Loading State &gt; should display loading state initially" time="0.033496771">
+<testsuites name="vitest tests" tests="9" failures="0" errors="0" time="0.008441351">
+    <testsuite name="src/services/__tests__/directorService.test.ts" timestamp="2025-07-17T09:30:55.860Z" hostname="FMNZ-C02D5HB1ML7H.local" tests="9" failures="0" errors="0" skipped="0" time="0.008441351">
+        <testcase classname="src/services/__tests__/directorService.test.ts" name="DirectorService &gt; getCountryCode &gt; should convert New Zealand to NZ" time="0.001450016">
         </testcase>
-        <testcase classname="src/pages/__tests__/CompanyDetails.test.tsx" name="CompanyDetails &gt; Company Information Display &gt; should display company details correctly" time="0.058203139">
+        <testcase classname="src/services/__tests__/directorService.test.ts" name="DirectorService &gt; getCountryCode &gt; should convert Australia to AU" time="0.000331038">
         </testcase>
-        <testcase classname="src/pages/__tests__/CompanyDetails.test.tsx" name="CompanyDetails &gt; Company Information Display &gt; should handle company without NZBN" time="0.020004191">
+        <testcase classname="src/services/__tests__/directorService.test.ts" name="DirectorService &gt; getCountryCode &gt; should convert United States variants to US" time="0.000290573">
         </testcase>
-        <testcase classname="src/pages/__tests__/CompanyDetails.test.tsx" name="CompanyDetails &gt; Directors Section &gt; should display directors list correctly" time="0.034096655">
+        <testcase classname="src/services/__tests__/directorService.test.ts" name="DirectorService &gt; getCountryCode &gt; should convert United Kingdom to GB" time="0.000230407">
         </testcase>
-        <testcase classname="src/pages/__tests__/CompanyDetails.test.tsx" name="CompanyDetails &gt; Directors Section &gt; should display &quot;no directors&quot; message when no directors exist" time="0.013166582">
+        <testcase classname="src/services/__tests__/directorService.test.ts" name="DirectorService &gt; getCountryCode &gt; should convert Canada to CA" time="0.000199121">
         </testcase>
-        <testcase classname="src/pages/__tests__/CompanyDetails.test.tsx" name="CompanyDetails &gt; Directors Section &gt; should show appoint director button when authenticated" time="0.09428649">
+        <testcase classname="src/services/__tests__/directorService.test.ts" name="DirectorService &gt; getCountryCode &gt; should default to NZ for unrecognized countries" time="0.000205784">
         </testcase>
-        <testcase classname="src/pages/__tests__/CompanyDetails.test.tsx" name="CompanyDetails &gt; Directors Section &gt; should not show appoint director button when not authenticated" time="0.011113245">
+        <testcase classname="src/services/__tests__/directorService.test.ts" name="DirectorService &gt; getCountryCode &gt; should handle edge cases" time="0.000148925">
         </testcase>
-        <testcase classname="src/pages/__tests__/CompanyDetails.test.tsx" name="CompanyDetails &gt; Directors Section &gt; should show resign button for active directors when authenticated" time="0.019337692">
+        <testcase classname="src/services/__tests__/directorService.test.ts" name="DirectorService &gt; getCountryCode &gt; should ensure all returned codes are exactly 2 characters" time="0.001515995">
+        </testcase>
+        <testcase classname="src/services/__tests__/directorService.test.ts" name="DirectorService &gt; getCountryCode &gt; should comply with database VARCHAR(2) constraint" time="0.000438215">
         </testcase>
         <testcase classname="src/pages/__tests__/CompanyDetails.test.tsx" name="CompanyDetails &gt; Directors Section &gt; should not show resign button for resigned directors" time="0.016851072">
         </testcase>
@@ -30,5 +32,6 @@
         <testcase classname="src/pages/__tests__/CompanyDetails.test.tsx" name="CompanyDetails &gt; Error Handling &gt; should handle missing company ID when neither prop nor param is provided" time="0.000398187">
         </testcase>
         <testcase classname="src/pages/__tests__/CompanyDetails.test.tsx" name="CompanyDetails &gt; Props Override &gt; should use prop companyId when provided" time="0.009345635">
+        </testcase>
     </testsuite>
 </testsuites>

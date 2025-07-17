@@ -1,4 +1,4 @@
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080/api';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080/api/v1';
 
 interface Company {
   id: number;
@@ -55,47 +55,47 @@ class CompanyService {
   }
 
   async searchCompanies(query: string): Promise<Company[]> {
-    return this.fetchWithAuth(`/v1/companies/search?query=${encodeURIComponent(query)}`);
+    return this.fetchWithAuth(`/companies/search?query=${encodeURIComponent(query)}`);
   }
 
   async getCompanyById(id: number): Promise<Company> {
-    return this.fetchWithAuth(`/v1/companies/${id}`);
+    return this.fetchWithAuth(`/companies/${id}`);
   }
 
   async getCompanyByNumber(companyNumber: string): Promise<Company> {
-    return this.fetchWithAuth(`/v1/companies/number/${companyNumber}`);
+    return this.fetchWithAuth(`/companies/number/${companyNumber}`);
   }
 
   async getActiveCompanies(): Promise<Company[]> {
-    return this.fetchWithAuth('/v1/companies');
+    return this.fetchWithAuth('/companies');
   }
 
   async createCompany(company: CreateCompanyRequest): Promise<Company> {
-    return this.fetchWithAuth('/v1/companies', {
+    return this.fetchWithAuth('/companies', {
       method: 'POST',
       body: JSON.stringify(company),
     });
   }
 
   async updateCompany(id: number, company: Partial<Company>): Promise<Company> {
-    return this.fetchWithAuth(`/v1/companies/${id}`, {
+    return this.fetchWithAuth(`/companies/${id}`, {
       method: 'PUT',
       body: JSON.stringify(company),
     });
   }
 
   async deleteCompany(id: number): Promise<void> {
-    await this.fetchWithAuth(`/v1/companies/${id}`, {
+    await this.fetchWithAuth(`/companies/${id}`, {
       method: 'DELETE',
     });
   }
 
   async checkNameAvailability(name: string): Promise<{ available: boolean }> {
-    return this.fetchWithAuth(`/v1/companies/check-name?name=${encodeURIComponent(name)}`);
+    return this.fetchWithAuth(`/companies/check-name?name=${encodeURIComponent(name)}`);
   }
 
   async checkNumberAvailability(number: string): Promise<{ available: boolean }> {
-    return this.fetchWithAuth(`/v1/companies/check-number?number=${encodeURIComponent(number)}`);
+    return this.fetchWithAuth(`/companies/check-number?number=${encodeURIComponent(number)}`);
   }
 }
 
