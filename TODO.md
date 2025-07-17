@@ -1,6 +1,6 @@
 # NZ Companies Register System - Development TODO
 
-## 🎯 Current Progress: Phase 1.4 Complete + Section 2.1 Complete + Section 2.2 Complete + Section 2.3 Complete + Section 3.2 Complete + Section 3.2.1 Complete + Section 3.3 Complete (Week 4)
+## 🎯 Current Progress: Phase 1.4 Complete + Section 2.1 Complete + Section 2.2 Complete + Section 2.3 Complete + Section 3.2 Complete + Section 3.2.1 Complete + Section 3.3 Complete + Section 3.4 Complete (Week 4)
 
 **✅ Completed:**
 - Phase 1.1: Project Setup (Kotlin/Spring Boot 3, React/TypeScript, Docker, Git)
@@ -14,11 +14,12 @@
 - Section 3.2: Director Management (Complete with appointment, resignation, validation, disqualification, notifications)
 - Section 3.2.1: Director Management UI Integration (Complete with company details, director listing, navigation)
 - Section 3.3: Shareholder Management (Complete with tests, notification system, registration, transfers, allocations)
+- Section 3.4: Address Management (Complete with validation service, workflows, history tracking, NZ Post integration, notifications)
 - Documentation: Comprehensive README files and architecture diagrams
 
-**🔄 Next Up:** Section 3.4 - Address Management
+**🔄 Next Up:** Section 3.5 - Permission Test Coverage
 
-**📊 Overall Progress:** 2/10 phases complete + Section 2.1 + Section 2.2 + Section 2.3 + Section 2.3.1 + Section 3.1 + Section 3.2 + Section 3.2.1 + Section 3.3 complete (84%)
+**📊 Overall Progress:** 2/10 phases complete + Section 2.1 + Section 2.2 + Section 2.3 + Section 2.3.1 + Section 3.1 + Section 3.2 + Section 3.2.1 + Section 3.3 + Section 3.4 complete (86%)
 
 ---
 
@@ -144,12 +145,12 @@
 - [x] **Fix CI authentication issues with SecurityConfig refactoring**
 - [ ] Implement share class and rights management (moved to Section 3.5)
 
-### 3.4 Address Management
-- [ ] Create address validation service
-- [ ] Build address update workflows
-- [ ] Implement address history tracking
-- [ ] Integrate with NZ Post address services
-- [ ] Create address change notifications
+### 3.4 Address Management ✅ COMPLETE
+- [x] Create address validation service
+- [x] Build address update workflows
+- [x] Implement address history tracking
+- [x] Integrate with NZ Post address services
+- [x] Create address change notifications
 
 ### 3.5 Permission Test Coverage
 - [ ] Add comprehensive permission test coverage for all shareholder endpoints
