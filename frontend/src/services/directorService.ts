@@ -5,7 +5,7 @@ interface DirectorAppointmentRequest {
   companyId: string;
 }
 
-interface DirectorAppointmentResponse {
+export interface DirectorAppointmentResponse {
   id: number;
   firstName: string;
   lastName: string;
