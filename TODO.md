@@ -1,6 +1,6 @@
 # NZ Companies Register System - Development TODO
 
-## 🎯 Current Progress: Phase 1.4 Complete + Section 2.1 Complete + Section 2.2 Complete + Section 2.3 Complete (Week 3)
+## 🎯 Current Progress: Phase 1.4 Complete + Section 2.1 Complete + Section 2.2 Complete + Section 2.3 Complete + Section 3.2 Complete (Week 3)
 
 **✅ Completed:**
 - Phase 1.1: Project Setup (Kotlin/Spring Boot 3, React/TypeScript, Docker, Git)
@@ -11,11 +11,12 @@
 - Section 2.2: Core Business Logic (Company/Director/Shareholder services, audit system)
 - Section 2.3: REST API Development (Complete with OpenAPI docs, comprehensive testing)
 - Section 3.1: Company Registration Flow (Complete with file upload, form validation, confirmation workflow)
+- Section 3.2: Director Management (Complete with appointment, resignation, validation, disqualification, notifications)
 - Documentation: Comprehensive README files and architecture diagrams
 
-**🔄 Next Up:** Phase 3.2 - Director Management
+**🔄 Next Up:** Section 3.2.1 - Director Management UI Integration
 
-**📊 Overall Progress:** 2/10 phases complete + Section 2.1 + Section 2.2 + Section 2.3 + Section 2.3.1 + Section 3.1 complete (70%)
+**📊 Overall Progress:** 2/10 phases complete + Section 2.1 + Section 2.2 + Section 2.3 + Section 2.3.1 + Section 3.1 + Section 3.2 complete (75%)
 
 ---
 
@@ -116,13 +117,13 @@
 - [x] Implement constitution file upload
 - [x] Build registration confirmation workflow
 
-### 3.2 Director Management
+### 3.2 Director Management ✅ COMPLETE
 - [x] Create director appointment form
 - [x] Implement director consent capture and storage
-- [ ] Build director resignation workflow
-- [ ] Add NZ/Australian residency validation
-- [ ] Implement director disqualification checks
-- [ ] Create director update notifications
+- [x] Build director resignation workflow
+- [x] Add NZ/Australian residency validation
+- [x] Implement director disqualification checks
+- [x] Create director update notifications
 
 ### 3.3 Shareholder Management
 - [ ] Build shareholder registration forms

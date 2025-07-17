@@ -9,11 +9,17 @@ interface DirectorAppointmentResponse {
   id: number;
   firstName: string;
   lastName: string;
-  status: string;
+  fullName?: string;
+  status: 'ACTIVE' | 'RESIGNED' | 'DISQUALIFIED';
   appointmentDate: string;
+  resignationDate?: string;
   consentGiven: boolean;
   consentDate?: string;
+  isNzResident: boolean;
+  isAustralianResident: boolean;
+  residentialCountry: string;
   createdAt: string;
+  updatedAt?: string;
 }
 
 export class DirectorService {
@@ -173,6 +179,96 @@ export class DirectorService {
       return await response.json();
     } catch (error) {
       console.error('Error fetching director:', error);
+      throw error;
+    }
+  }
+
+  /**
+   * Resign a director
+   */
+  async resignDirector(
+    directorId: number,
+    resignationDate?: string,
+    token?: string
+  ): Promise<DirectorAppointmentResponse> {
+    try {
+      const headers: Record<string, string> = {};
+      if (token) {
+        headers['Authorization'] = `Bearer ${token}`;
+      }
+
+      const params = new URLSearchParams();
+      if (resignationDate) {
+        params.append('resignationDate', resignationDate);
+      }
+
+      const response = await fetch(`${this.baseUrl}/directors/${directorId}/resign?${params}`, {
+        method: 'POST',
+        headers,
+      });
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Director resignation failed: ${response.status} ${errorText}`);
+      }
+
+      return await response.json();
+    } catch (error) {
+      console.error('Error resigning director:', error);
+      throw error;
+    }
+  }
+
+  /**
+   * Get directors for a company
+   */
+  async getDirectorsByCompany(companyId: string, token?: string): Promise<DirectorAppointmentResponse[]> {
+    try {
+      const headers: Record<string, string> = {};
+      if (token) {
+        headers['Authorization'] = `Bearer ${token}`;
+      }
+
+      const response = await fetch(`${this.baseUrl}/directors/company/${companyId}`, {
+        method: 'GET',
+        headers,
+      });
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Failed to fetch directors: ${response.status} ${errorText}`);
+      }
+
+      return await response.json();
+    } catch (error) {
+      console.error('Error fetching directors:', error);
+      throw error;
+    }
+  }
+
+  /**
+   * Get active directors for a company
+   */
+  async getActiveDirectorsByCompany(companyId: string, token?: string): Promise<DirectorAppointmentResponse[]> {
+    try {
+      const headers: Record<string, string> = {};
+      if (token) {
+        headers['Authorization'] = `Bearer ${token}`;
+      }
+
+      const response = await fetch(`${this.baseUrl}/directors/company/${companyId}/active`, {
+        method: 'GET',
+        headers,
+      });
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Failed to fetch active directors: ${response.status} ${errorText}`);
+      }
+
+      return await response.json();
+    } catch (error) {
+      console.error('Error fetching active directors:', error);
       throw error;
     }
   }
