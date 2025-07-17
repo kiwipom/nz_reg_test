@@ -20,7 +20,7 @@ class TestSecurityConfig {
                 .claim("sub", "test-user")
                 .claim("aud", "https://test.api.nz")
                 .claim("iss", "https://test.auth0.com/")
-                .claim("https://test.api.nz/roles", listOf("ADMIN"))
+                .claim("https://api.nzco.test.nz/roles", listOf("ADMIN"))
                 .issuedAt(Instant.now().minusSeconds(60))
                 .expiresAt(Instant.now().plusSeconds(3600))
                 .build()
