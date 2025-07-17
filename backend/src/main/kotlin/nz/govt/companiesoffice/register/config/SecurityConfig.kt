@@ -40,26 +40,51 @@ class SecurityConfig {
             .cors { it.configurationSource(corsConfigurationSource()) }
             .sessionManagement { it.sessionCreationPolicy(SessionCreationPolicy.STATELESS) }
             .authorizeHttpRequests { authz ->
-                if (testSecurityEnabled) {
-                    authz
-                        // Public endpoints - Companies register public access
-                        .requestMatchers(
-                            "/v1/companies/search",
-                            "/v1/companies/check-name",
-                            "/v1/companies/check-number",
-                            "/v1/companies",
-                            "/v1/companies/{id}",
-                            "/v1/companies/number/{companyNumber}",
-                        ).permitAll()
-                        .requestMatchers("/actuator/health", "/actuator/info").permitAll()
-                        .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
-                        // Protected endpoints require authentication
-                        .anyRequest().authenticated()
-                } else {
-                    authz
-                        // Allow all requests when security is disabled
-                        .anyRequest().permitAll()
-                }
+                authz
+                    // Public endpoints - Always accessible (even with security enabled)
+                    // Companies register public access endpoints
+                    .requestMatchers(
+                        "/v1/companies/search",
+                        "/v1/companies/check-name",
+                        "/v1/companies/check-number",
+                        "/v1/companies",
+                        "/v1/companies/{id}",
+                        "/v1/companies/number/{companyNumber}",
+                    ).permitAll()
+                    // Public shareholder endpoints
+                    .requestMatchers(
+                        "/v1/shareholders/{id}",
+                        "/v1/shareholders/company/{companyId}",
+                        "/v1/shareholders/company/{companyId}/individual",
+                        "/v1/shareholders/company/{companyId}/corporate",
+                        "/v1/shareholders/company/{companyId}/by-location",
+                        "/v1/shareholders/company/{companyId}/by-country",
+                        "/v1/shareholders/company/{companyId}/by-region",
+                        "/v1/shareholders/company/{companyId}/by-postcode",
+                        "/v1/shareholders/search",
+                        "/v1/shareholders/company/{companyId}/search-address",
+                        "/v1/shareholders/company/{companyId}/statistics",
+                    ).permitAll()
+                    // Public share allocation endpoints
+                    .requestMatchers(
+                        "/v1/share-allocations/{allocationId}",
+                        "/v1/share-allocations/company/{companyId}",
+                        "/v1/share-allocations/shareholder/{shareholderId}",
+                        "/v1/share-allocations/company/{companyId}/share-class/{shareClass}",
+                        "/v1/share-allocations/company/{companyId}/statistics",
+                        "/v1/share-allocations/shareholder/{shareholderId}/portfolio",
+                    ).permitAll()
+                    // System endpoints
+                    .requestMatchers("/actuator/health", "/actuator/info").permitAll()
+                    .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
+                    // All other endpoints require authentication when security is enabled
+                    .also { matcher ->
+                        if (testSecurityEnabled) {
+                            matcher.anyRequest().authenticated()
+                        } else {
+                            matcher.anyRequest().permitAll()
+                        }
+                    }
             }
             .also { httpSecurity ->
                 if (testSecurityEnabled) {

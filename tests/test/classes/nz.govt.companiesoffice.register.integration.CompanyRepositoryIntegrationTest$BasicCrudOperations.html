@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - Basic CRUD Operations</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>Basic CRUD Operations</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/nz.govt.companiesoffice.register.integration.html">nz.govt.companiesoffice.register.integration</a> &gt; CompanyRepositoryIntegrationTest$BasicCrudOperations</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">4</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">0.453s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="tab-container">
+<ul class="tabLinks">
+<li>
+<a href="#">Tests</a>
+</li>
+<li>
+<a href="#">Standard output</a>
+</li>
+</ul>
+<div class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Method name</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">Should count companies</td>
+<td class="success">should count companies correctly()</td>
+<td class="success">0.020s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">Should delete company</td>
+<td class="success">should delete company successfully()</td>
+<td class="success">0.376s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">Should save and retrieve company</td>
+<td class="success">should save and retrieve company successfully()</td>
+<td class="success">0.026s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">Should update company</td>
+<td class="success">should update company successfully()</td>
+<td class="success">0.031s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>2025-07-17 22:00:56 [Test worker] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [nz.govt.companiesoffice.register.integration.CompanyRepositoryIntegrationTest$BasicCrudOperations]: BasicCrudOperations does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-07-17 22:00:56 [Test worker] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration nz.govt.companiesoffice.register.NzCompaniesRegisterApplication for test class nz.govt.companiesoffice.register.integration.CompanyRepositoryIntegrationTest$BasicCrudOperations
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.0)
+
+2025-07-17 22:00:56 [Test worker] INFO  n.g.c.r.i.CompanyRepositoryIntegrationTest - Starting CompanyRepositoryIntegrationTest using Java 17.0.15 with PID 3203 (started by runner in /home/runner/work/nz_reg_test/nz_reg_test/backend)
+2025-07-17 22:00:56 [Test worker] DEBUG n.g.c.r.i.CompanyRepositoryIntegrationTest - Running with Spring Boot v3.2.0, Spring v6.1.1
+2025-07-17 22:00:56 [Test worker] INFO  n.g.c.r.i.CompanyRepositoryIntegrationTest - The following 1 profile is active: &quot;test&quot;
+2025-07-17 22:00:56 [Test worker] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-07-17 22:00:56 [Test worker] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 37 ms. Found 6 JPA repository interfaces.
+2025-07-17 22:00:56 [Test worker] INFO  o.s.b.t.a.j.TestDatabaseAutoConfiguration$EmbeddedDataSourceBeanFactoryPostProcessor - Replacing 'dataSource' DataSource bean with embedded version
+2025-07-17 22:00:56 [Test worker] INFO  o.s.j.d.e.EmbeddedDatabaseFactory - Starting embedded database: url='jdbc:h2:mem:5c787a7c-eaa7-437c-833a-40db169230fc;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false', username='sa'
+2025-07-17 22:00:56 [Test worker] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-07-17 22:00:56 [Test worker] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-07-17 22:00:56 [Test worker] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-07-17 22:00:56 [Test worker] WARN  org.hibernate.orm.deprecation - HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-07-17 22:00:56 [Test worker] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-07-17 22:00:56 [Test worker] DEBUG org.hibernate.SQL - 
+    drop table if exists addresses cascade 
+Hibernate: 
+    drop table if exists addresses cascade 
+2025-07-17 22:00:56 [Test worker] DEBUG org.hibernate.SQL - 
+    drop table if exists companies cascade 
+Hibernate: 
+    drop table if exists companies cascade 
+2025-07-17 22:00:56 [Test worker] DEBUG org.hibernate.SQL - 
+    drop table if exists directors cascade 
+Hibernate: 
+    drop table if exists directors cascade 
+2025-07-17 22:00:56 [Test worker] DEBUG org.hibernate.SQL - 
+    drop table if exists documents cascade 
+Hibernate: 
+    drop table if exists documents cascade 
+2025-07-17 22:00:56 [Test worker] DEBUG org.hibernate.SQL - 
+    drop table if exists share_allocations cascade 
+Hibernate: 
+    drop table if exists share_allocations cascade 
+2025-07-17 22:00:56 [Test worker] DEBUG org.hibernate.SQL - 
+    drop table if exists shareholders cascade 
+Hibernate: 
+    drop table if exists shareholders cascade 
+2025-07-17 22:00:56 [Test worker] DEBUG org.hibernate.SQL - 
+    create table addresses (
+        effective_from date not null,
+        effective_to date,
+        company_id bigint not null,
+        created_at timestamp(6) not null,
+        id bigint generated by default as identity,
+        updated_at timestamp(6) not null,
+        address_line_1 varchar(255) not null,
+        address_line_2 varchar(255),
+        address_type varchar(255) not null check (address_type in ('REGISTERED','SERVICE','COMMUNICATION')),
+        city varchar(255) not null,
+        country varchar(255) not null,
+        email varchar(255),
+        phone varchar(255),
+        postcode varchar(255),
+        region varchar(255),
+        primary key (id)
+    )
+Hibernate: 
+    create table addresses (
+        effective_from date not null,
+        effective_to date,
+        company_id bigint not null,
+        created_at timestamp(6) not null,
+        id bigint generated by default as identity,
+        updated_at timestamp(6) not null,
+        address_line_1 varchar(255) not null,
+        address_line_2 varchar(255),
+        address_type varchar(255) not null check (address_type in ('REGISTERED','SERVICE','COMMUNICATION')),
+        city varchar(255) not null,
+        country varchar(255) not null,
+        email varchar(255),
+        phone varchar(255),
+        postcode varchar(255),
+        region varchar(255),
+        primary key (id)
+    )
+2025-07-17 22:00:56 [Test worker] DEBUG org.hibernate.SQL - 
+    create table companies (
+        incorporation_date date not null,
+        version integer not null,
+        created_at timestamp(6) not null,
+        id bigint generated by default as identity,
+        updated_at timestamp(6) not null,
+        company_name varchar(255) not null unique,
+        company_number varchar(255) not null unique,
+        company_type varchar(255) not null check (company_type in ('LTD','OVERSEAS','UNLIMITED')),
+        nzbn varchar(255) unique,
+        status varchar(255) not null,
+        primary key (id)
+    )
+Hibernate: 
+    create table companies (
+        incorporation_date date not null,
+        version integer not null,
+        created_at timestamp(6) not null,
+        id bigint generated by default as identity,
+        updated_at timestamp(6) not null,
+        company_name varchar(255) not null unique,
+        company_number varchar(255) not null unique,
+        company_type varchar(255) not null check (company_type in ('LTD','OVERSEAS','UNLIMITED')),
+        nzbn varchar(255) unique,
+        status varchar(255) not null,
+        primary key (id)
+    )
+2025-07-17 22:00:56 [Test worker] DEBUG org.hibernate.SQL - 
+    create table directors (
+        appointed_date date not null,
+        consent_date date,
+        consent_given boolean not null,
+        date_of_birth date,
+        is_australian_resident boolean not null,
+        is_nz_resident boolean not null,
+        resigned_date date,
+        company_id bigint not null,
+        created_at timestamp(6) not null,
+        id bigint generated by default as identity,
+        updated_at timestamp(6) not null,
+        full_name varchar(255) not null,
+        place_of_birth varchar(255),
+        residential_address_line_1 varchar(255) not null,
+        residential_address_line_2 varchar(255),
+        residential_city varchar(255) not null,
+        residential_country varchar(255) not null,
+        residential_postcode varchar(255),
+        residential_region varchar(255),
+        status varchar(255) not null check (status in ('ACTIVE','RESIGNED','DISQUALIFIED')),
+        primary key (id)
+    )
+Hibernate: 
+    create table directors (
+        appointed_date date not null,
+        consent_date date,
+        consent_given boolean not null,
+        date_of_birth date,
+        is_australian_resident boolean not null,
+        is_nz_resident boolean not null,
+        resigned_date date,
+        company_id bigint not null,
+        created_at timestamp(6) not null,
+        id bigint generated by default as identity,
+        updated_at timestamp(6) not null,
+        full_name varchar(255) not null,
+        place_of_birth varchar(255),
+        residential_address_line_1 varchar(255) not null,
+        residential_address_line_2 varchar(255),
+        residential_city varchar(255) not null,
+        residential_country varchar(255) not null,
+        residential_postcode varchar(255),
+        residential_region varchar(255),
+        status varchar(255) not null check (status in ('ACTIVE','RESIGNED','DISQUALIFIED')),
+        primary key (id)
+    )
+2025-07-17 22:00:56 [Test worker] DEBUG org.hibernate.SQL - 
+    create table documents (
+        is_public boolean not null,
+        retention_until date,
+        version_number integer not null,
+        company_id bigint not null,
+        created_at timestamp(6) not null,
+        file_size bigint,
+        id bigint generated by default as identity,
+        updated_at timestamp(6) not null,
+        uploaded_at timestamp(6) not null,
+        checksum varchar(255),
+        description varchar(255),
+        document_name varchar(255) not null,
+        document_type varchar(255) not null check (document_type in ('CONSTITUTION','ANNUAL_RETURN','DIRECTOR_CONSENT','SHARE_ALLOTMENT','SPECIAL_RESOLUTION','AMALGAMATION_PROPOSAL','LIQUIDATION_NOTICE','RECEIVER_NOTICE','CERTIFICATE_OF_INCORPORATION','CERTIFICATE_OF_COMPLIANCE','CHANGE_OF_NAME','CHANGE_OF_ADDRESS','CHANGE_OF_DIRECTORS','CHANGE_OF_SHAREHOLDERS','MISCELLANEOUS')),
+        file_path varchar(255) not null,
+        mime_type varchar(255),
+        uploaded_by varchar(255),
+        primary key (id)
+    )
+Hibernate: 
+    create table documents (
+        is_public boolean not null,
+        retention_until date,
+        version_number integer not null,
+        company_id bigint not null,
+        created_at timestamp(6) not null,
+        file_size bigint,
+        id bigint generated by default as identity,
+        updated_at timestamp(6) not null,
+        uploaded_at timestamp(6) not null,
+        checksum varchar(255),
+        description varchar(255),
+        document_name varchar(255) not null,
+        document_type varchar(255) not null check (document_type in ('CONSTITUTION','ANNUAL_RETURN','DIRECTOR_CONSENT','SHARE_ALLOTMENT','SPECIAL_RESOLUTION','AMALGAMATION_PROPOSAL','LIQUIDATION_NOTICE','RECEIVER_NOTICE','CERTIFICATE_OF_INCORPORATION','CERTIFICATE_OF_COMPLIANCE','CHANGE_OF_NAME','CHANGE_OF_ADDRESS','CHANGE_OF_DIRECTORS','CHANGE_OF_SHAREHOLDERS','MISCELLANEOUS')),
+        file_path varchar(255) not null,
+        mime_type varchar(255),
+        uploaded_by varchar(255),
+        primary key (id)
+    )
+2025-07-17 22:00:56 [Test worker] DEBUG org.hibernate.SQL - 
+    create table share_allocations (
+        allocation_date date not null,
+        amount_paid numeric(19,2) not null,
+        is_fully_paid boolean not null,
+        nominal_value numeric(19,2) not null,
+        transfer_date date,
+        company_id bigint not null,
+        created_at timestamp(6) not null,
+        id bigint generated by default as identity,
+        number_of_shares bigint not null,
+        shareholder_id bigint not null,
+        transfer_to_shareholder_id bigint,
+        updated_at timestamp(6) not null,
+        certificate_number varchar(255),
+        restrictions varchar(255),
+        share_class varchar(255) not null,
+        status varchar(255) not null,
+        primary key (id)
+    )
+Hibernate: 
+    create table share_allocations (
+        allocation_date date not null,
+        amount_paid numeric(19,2) not null,
+        is_fully_paid boolean not null,
+        nominal_value numeric(19,2) not null,
+        transfer_date date,
+        company_id bigint not null,
+        created_at timestamp(6) not null,
+        id bigint generated by default as identity,
+        number_of_shares bigint not null,
+        shareholder_id bigint not null,
+        transfer_to_shareholder_id bigint,
+        updated_at timestamp(6) not null,
+        certificate_number varchar(255),
+        restrictions varchar(255),
+        share_class varchar(255) not null,
+        status varchar(255) not null,
+        primary key (id)
+    )
+2025-07-17 22:00:56 [Test worker] DEBUG org.hibernate.SQL - 
+    create table shareholders (
+        is_individual boolean not null,
+        company_id bigint not null,
+        created_at timestamp(6) not null,
+        id bigint generated by default as identity,
+        updated_at timestamp(6) not null,
+        address_line_1 varchar(255) not null,
+        address_line_2 varchar(255),
+        city varchar(255) not null,
+        country varchar(255) not null,
+        full_name varchar(255) not null,
+        postcode varchar(255),
+        region varchar(255),
+        primary key (id)
+    )
+Hibernate: 
+    create table shareholders (
+        is_individual boolean not null,
+        company_id bigint not null,
+        created_at timestamp(6) not null,
+        id bigint generated by default as identity,
+        updated_at timestamp(6) not null,
+        address_line_1 varchar(255) not null,
+        address_line_2 varchar(255),
+        city varchar(255) not null,
+        country varchar(255) not null,
+        full_name varchar(255) not null,
+        postcode varchar(255),
+        region varchar(255),
+        primary key (id)
+    )
+2025-07-17 22:00:56 [Test worker] DEBUG org.hibernate.SQL - 
+    alter table if exists addresses 
+       add constraint FK9g6vhnwjn0cbmgx1wx4e2fhm9 
+       foreign key (company_id) 
+       references companies
+Hibernate: 
+    alter table if exists addresses 
+       add constraint FK9g6vhnwjn0cbmgx1wx4e2fhm9 
+       foreign key (company_id) 
+       references companies
+2025-07-17 22:00:56 [Test worker] DEBUG org.hibernate.SQL - 
+    alter table if exists directors 
+       add constraint FKiwphxs64f57xc1kejgg9uqi6t 
+       foreign key (company_id) 
+       references companies
+Hibernate: 
+    alter table if exists directors 
+       add constraint FKiwphxs64f57xc1kejgg9uqi6t 
+       foreign key (company_id) 
+       references companies
+2025-07-17 22:00:56 [Test worker] DEBUG org.hibernate.SQL - 
+    alter table if exists documents 
+       add constraint FK3enb6iofyq9m6e3otajm17vel 
+       foreign key (company_id) 
+       references companies
+Hibernate: 
+    alter table if exists documents 
+       add constraint FK3enb6iofyq9m6e3otajm17vel 
+       foreign key (company_id) 
+       references companies
+2025-07-17 22:00:56 [Test worker] DEBUG org.hibernate.SQL - 
+    alter table if exists share_allocations 
+       add constraint FKb88j02kg9003syiidp1e0ufft 
+       foreign key (company_id) 
+       references companies
+Hibernate: 
+    alter table if exists share_allocations 
+       add constraint FKb88j02kg9003syiidp1e0ufft 
+       foreign key (company_id) 
+       references companies
+2025-07-17 22:00:56 [Test worker] DEBUG org.hibernate.SQL - 
+    alter table if exists share_allocations 
+       add constraint FKluxo64lytue3nkokywv7eq4le 
+       foreign key (shareholder_id) 
+       references shareholders
+Hibernate: 
+    alter table if exists share_allocations 
+       add constraint FKluxo64lytue3nkokywv7eq4le 
+       foreign key (shareholder_id) 
+       references shareholders
+2025-07-17 22:00:56 [Test worker] DEBUG org.hibernate.SQL - 
+    alter table if exists shareholders 
+       add constraint FKoxbhc26elm4d3rhdi05xbetx0 
+       foreign key (company_id) 
+       references companies
+Hibernate: 
+    alter table if exists shareholders 
+       add constraint FKoxbhc26elm4d3rhdi05xbetx0 
+       foreign key (company_id) 
+       references companies
+2025-07-17 22:00:56 [Test worker] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-07-17 22:00:57 [Test worker] INFO  n.g.c.r.i.CompanyRepositoryIntegrationTest - Started CompanyRepositoryIntegrationTest in 1.0 seconds (process running for 42.006)
+2025-07-17 22:00:57 [Test worker] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.company_name,
+        c1_0.company_number,
+        c1_0.company_type,
+        c1_0.created_at,
+        c1_0.incorporation_date,
+        c1_0.nzbn,
+        c1_0.status,
+        c1_0.updated_at,
+        c1_0.version 
+    from
+        companies c1_0
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.company_name,
+        c1_0.company_number,
+        c1_0.company_type,
+        c1_0.created_at,
+        c1_0.incorporation_date,
+        c1_0.nzbn,
+        c1_0.status,
+        c1_0.updated_at,
+        c1_0.version 
+    from
+        companies c1_0
+2025-07-17 22:00:57 [Test worker] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        companies
+        (company_name, company_number, company_type, created_at, incorporation_date, nzbn, status, updated_at, version, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        companies
+        (company_name, company_number, company_type, created_at, incorporation_date, nzbn, status, updated_at, version, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-07-17 22:00:57 [Test worker] DEBUG org.hibernate.SQL - 
+    select
+        count(*) 
+    from
+        companies c1_0
+Hibernate: 
+    select
+        count(*) 
+    from
+        companies c1_0
+2025-07-17 22:00:57 [Test worker] DEBUG org.hibernate.SQL - 
+    delete 
+    from
+        companies 
+    where
+        id=? 
+        and version=?
+Hibernate: 
+    delete 
+    from
+        companies 
+    where
+        id=? 
+        and version=?
+2025-07-17 22:00:57 [Test worker] DEBUG org.hibernate.SQL - 
+    select
+        count(*) 
+    from
+        companies c1_0
+Hibernate: 
+    select
+        count(*) 
+    from
+        companies c1_0
+2025-07-17 22:00:57 [Test worker] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.company_name,
+        c1_0.company_number,
+        c1_0.company_type,
+        c1_0.created_at,
+        c1_0.incorporation_date,
+        c1_0.nzbn,
+        c1_0.status,
+        c1_0.updated_at,
+        c1_0.version 
+    from
+        companies c1_0 
+    where
+        c1_0.id=?
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.company_name,
+        c1_0.company_number,
+        c1_0.company_type,
+        c1_0.created_at,
+        c1_0.incorporation_date,
+        c1_0.nzbn,
+        c1_0.status,
+        c1_0.updated_at,
+        c1_0.version 
+    from
+        companies c1_0 
+    where
+        c1_0.id=?
+2025-07-17 22:00:57 [Test worker] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.company_name,
+        c1_0.company_number,
+        c1_0.company_type,
+        c1_0.created_at,
+        c1_0.incorporation_date,
+        c1_0.nzbn,
+        c1_0.status,
+        c1_0.updated_at,
+        c1_0.version 
+    from
+        companies c1_0
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.company_name,
+        c1_0.company_number,
+        c1_0.company_type,
+        c1_0.created_at,
+        c1_0.incorporation_date,
+        c1_0.nzbn,
+        c1_0.status,
+        c1_0.updated_at,
+        c1_0.version 
+    from
+        companies c1_0
+2025-07-17 22:00:57 [Test worker] DEBUG org.hibernate.SQL - 
+    select
+        count(*) 
+    from
+        companies c1_0
+Hibernate: 
+    select
+        count(*) 
+    from
+        companies c1_0
+2025-07-17 22:00:57 [Test worker] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        companies
+        (company_name, company_number, company_type, created_at, incorporation_date, nzbn, status, updated_at, version, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        companies
+        (company_name, company_number, company_type, created_at, incorporation_date, nzbn, status, updated_at, version, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-07-17 22:00:57 [Test worker] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        companies
+        (company_name, company_number, company_type, created_at, incorporation_date, nzbn, status, updated_at, version, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        companies
+        (company_name, company_number, company_type, created_at, incorporation_date, nzbn, status, updated_at, version, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-07-17 22:00:57 [Test worker] DEBUG org.hibernate.SQL - 
+    select
+        count(*) 
+    from
+        companies c1_0
+Hibernate: 
+    select
+        count(*) 
+    from
+        companies c1_0
+2025-07-17 22:00:57 [Test worker] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.company_name,
+        c1_0.company_number,
+        c1_0.company_type,
+        c1_0.created_at,
+        c1_0.incorporation_date,
+        c1_0.nzbn,
+        c1_0.status,
+        c1_0.updated_at,
+        c1_0.version 
+    from
+        companies c1_0
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.company_name,
+        c1_0.company_number,
+        c1_0.company_type,
+        c1_0.created_at,
+        c1_0.incorporation_date,
+        c1_0.nzbn,
+        c1_0.status,
+        c1_0.updated_at,
+        c1_0.version 
+    from
+        companies c1_0
+2025-07-17 22:00:57 [Test worker] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        companies
+        (company_name, company_number, company_type, created_at, incorporation_date, nzbn, status, updated_at, version, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        companies
+        (company_name, company_number, company_type, created_at, incorporation_date, nzbn, status, updated_at, version, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-07-17 22:00:57 [Test worker] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.company_name,
+        c1_0.company_number,
+        c1_0.company_type,
+        c1_0.created_at,
+        c1_0.incorporation_date,
+        c1_0.nzbn,
+        c1_0.status,
+        c1_0.updated_at,
+        c1_0.version 
+    from
+        companies c1_0 
+    where
+        c1_0.id=?
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.company_name,
+        c1_0.company_number,
+        c1_0.company_type,
+        c1_0.created_at,
+        c1_0.incorporation_date,
+        c1_0.nzbn,
+        c1_0.status,
+        c1_0.updated_at,
+        c1_0.version 
+    from
+        companies c1_0 
+    where
+        c1_0.id=?
+2025-07-17 22:00:57 [Test worker] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.company_name,
+        c1_0.company_number,
+        c1_0.company_type,
+        c1_0.created_at,
+        c1_0.incorporation_date,
+        c1_0.nzbn,
+        c1_0.status,
+        c1_0.updated_at,
+        c1_0.version 
+    from
+        companies c1_0
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.company_name,
+        c1_0.company_number,
+        c1_0.company_type,
+        c1_0.created_at,
+        c1_0.incorporation_date,
+        c1_0.nzbn,
+        c1_0.status,
+        c1_0.updated_at,
+        c1_0.version 
+    from
+        companies c1_0
+2025-07-17 22:00:57 [Test worker] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        companies
+        (company_name, company_number, company_type, created_at, incorporation_date, nzbn, status, updated_at, version, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        companies
+        (company_name, company_number, company_type, created_at, incorporation_date, nzbn, status, updated_at, version, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-07-17 22:00:57 [Test worker] DEBUG org.hibernate.SQL - 
+    update
+        companies 
+    set
+        company_name=?,
+        company_number=?,
+        company_type=?,
+        created_at=?,
+        incorporation_date=?,
+        nzbn=?,
+        status=?,
+        updated_at=?,
+        version=? 
+    where
+        id=? 
+        and version=?
+Hibernate: 
+    update
+        companies 
+    set
+        company_name=?,
+        company_number=?,
+        company_type=?,
+        created_at=?,
+        incorporation_date=?,
+        nzbn=?,
+        status=?,
+        updated_at=?,
+        version=? 
+    where
+        id=? 
+        and version=?
+2025-07-17 22:00:57 [Test worker] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.company_name,
+        c1_0.company_number,
+        c1_0.company_type,
+        c1_0.created_at,
+        c1_0.incorporation_date,
+        c1_0.nzbn,
+        c1_0.status,
+        c1_0.updated_at,
+        c1_0.version 
+    from
+        companies c1_0 
+    where
+        c1_0.id=?
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.company_name,
+        c1_0.company_number,
+        c1_0.company_type,
+        c1_0.created_at,
+        c1_0.incorporation_date,
+        c1_0.nzbn,
+        c1_0.status,
+        c1_0.updated_at,
+        c1_0.version 
+    from
+        companies c1_0 
+    where
+        c1_0.id=?
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="https://www.gradle.org">Gradle 8.14.2</a> at Jul 17, 2025, 10:01:08 PM</p>
+</div>
+</div>
+</body>
+</html>

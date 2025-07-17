@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - CompanyRepositoryIntegrationTest</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>CompanyRepositoryIntegrationTest</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/nz.govt.companiesoffice.register.integration.html">nz.govt.companiesoffice.register.integration</a> &gt; CompanyRepositoryIntegrationTest</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">0</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">-</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">-</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="tab-container">
+<ul class="tabLinks">
+<li>
+<a href="#">Tests</a>
+</li>
+<li>
+<a href="#">Standard output</a>
+</li>
+</ul>
+<div class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+</table>
+</div>
+<div class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>2025-07-17 22:00:44 [Test worker] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [nz.govt.companiesoffice.register.integration.CompanyRepositoryIntegrationTest]: CompanyRepositoryIntegrationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-07-17 22:00:44 [Test worker] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration nz.govt.companiesoffice.register.NzCompaniesRegisterApplication for test class nz.govt.companiesoffice.register.integration.CompanyRepositoryIntegrationTest
+2025-07-17 22:00:44 [Test worker] INFO  o.testcontainers.images.PullPolicy - Image pull policy will be performed by: DefaultPullPolicy()
+2025-07-17 22:00:44 [Test worker] INFO  o.t.utility.ImageNameSubstitutor - Image name substitution will be performed by: DefaultImageNameSubstitutor (composite of 'ConfigurationFileImageNameSubstitutor' and 'PrefixingImageNameSubstitutor')
+2025-07-17 22:00:45 [Test worker] INFO  o.t.d.DockerClientProviderStrategy - Found Docker environment with local Unix socket (unix:///var/run/docker.sock)
+2025-07-17 22:00:45 [Test worker] INFO  o.testcontainers.DockerClientFactory - Docker host IP address is localhost
+2025-07-17 22:00:45 [Test worker] INFO  o.testcontainers.DockerClientFactory - Connected to docker: 
+  Server Version: 28.0.4
+  API Version: 1.48
+  Operating System: Ubuntu 24.04.2 LTS
+  Total Memory: 15995 MB
+2025-07-17 22:00:45 [Test worker] INFO  tc.testcontainers/ryuk:0.5.1 - Pulling docker image: testcontainers/ryuk:0.5.1. Please be patient; this may take some time but only needs to be done once.
+2025-07-17 22:00:47 [docker-java-stream--1729979775] INFO  tc.testcontainers/ryuk:0.5.1 - Starting to pull image
+2025-07-17 22:00:47 [docker-java-stream--1729979775] INFO  tc.testcontainers/ryuk:0.5.1 - Pulling image layers:  0 pending,  0 downloaded,  0 extracted, (0 bytes/0 bytes)
+2025-07-17 22:00:47 [docker-java-stream--1729979775] INFO  tc.testcontainers/ryuk:0.5.1 - Pulling image layers:  2 pending,  1 downloaded,  0 extracted, (333 KB/? MB)
+2025-07-17 22:00:47 [docker-java-stream--1729979775] INFO  tc.testcontainers/ryuk:0.5.1 - Pulling image layers:  1 pending,  2 downloaded,  0 extracted, (333 KB/? MB)
+2025-07-17 22:00:47 [docker-java-stream--1729979775] INFO  tc.testcontainers/ryuk:0.5.1 - Pulling image layers:  0 pending,  3 downloaded,  0 extracted, (333 KB/5 MB)
+2025-07-17 22:00:47 [docker-java-stream--1729979775] INFO  tc.testcontainers/ryuk:0.5.1 - Pulling image layers:  0 pending,  3 downloaded,  1 extracted, (2 MB/5 MB)
+2025-07-17 22:00:47 [docker-java-stream--1729979775] INFO  tc.testcontainers/ryuk:0.5.1 - Pulling image layers:  0 pending,  3 downloaded,  2 extracted, (2 MB/5 MB)
+2025-07-17 22:00:47 [docker-java-stream--1729979775] INFO  tc.testcontainers/ryuk:0.5.1 - Pulling image layers:  0 pending,  3 downloaded,  3 extracted, (5 MB/5 MB)
+2025-07-17 22:00:47 [Test worker] INFO  tc.testcontainers/ryuk:0.5.1 - Image testcontainers/ryuk:0.5.1 pull took PT2.00901475S
+2025-07-17 22:00:48 [Test worker] INFO  tc.testcontainers/ryuk:0.5.1 - Creating container for image: testcontainers/ryuk:0.5.1
+2025-07-17 22:00:48 [Test worker] INFO  tc.testcontainers/ryuk:0.5.1 - Container testcontainers/ryuk:0.5.1 is starting: 23fee30a5ca0eb8453d183f53cf8cc54c38dc3c8db0dcd0feded4781c42aaab2
+2025-07-17 22:00:48 [Test worker] INFO  tc.testcontainers/ryuk:0.5.1 - Container testcontainers/ryuk:0.5.1 started in PT0.394002651S
+2025-07-17 22:00:48 [Test worker] INFO  o.t.utility.RyukResourceReaper - Ryuk started - will monitor and terminate Testcontainers containers on JVM exit
+2025-07-17 22:00:48 [Test worker] INFO  o.testcontainers.DockerClientFactory - Checking the system...
+2025-07-17 22:00:48 [Test worker] INFO  o.testcontainers.DockerClientFactory - ✔︎ Docker server version should be at least 1.6.0
+2025-07-17 22:00:48 [Test worker] INFO  tc.postgres:15 - Pulling docker image: postgres:15. Please be patient; this may take some time but only needs to be done once.
+2025-07-17 22:00:49 [docker-java-stream-1823912210] INFO  tc.postgres:15 - Starting to pull image
+2025-07-17 22:00:49 [docker-java-stream-1823912210] INFO  tc.postgres:15 - Pulling image layers:  0 pending,  0 downloaded,  0 extracted, (0 bytes/0 bytes)
+2025-07-17 22:00:49 [docker-java-stream-1823912210] INFO  tc.postgres:15 - Pulling image layers: 13 pending,  1 downloaded,  0 extracted, (58 KB/? MB)
+2025-07-17 22:00:49 [docker-java-stream-1823912210] INFO  tc.postgres:15 - Pulling image layers: 12 pending,  2 downloaded,  0 extracted, (60 KB/? MB)
+2025-07-17 22:00:49 [docker-java-stream-1823912210] INFO  tc.postgres:15 - Pulling image layers: 12 pending,  2 downloaded,  1 extracted, (60 KB/? MB)
+2025-07-17 22:00:49 [docker-java-stream-1823912210] INFO  tc.postgres:15 - Pulling image layers: 11 pending,  3 downloaded,  1 extracted, (60 KB/? MB)
+2025-07-17 22:00:50 [docker-java-stream-1823912210] INFO  tc.postgres:15 - Pulling image layers: 11 pending,  3 downloaded,  2 extracted, (4 MB/? MB)
+2025-07-17 22:00:50 [docker-java-stream-1823912210] INFO  tc.postgres:15 - Pulling image layers: 10 pending,  4 downloaded,  2 extracted, (6 MB/? MB)
+2025-07-17 22:00:50 [docker-java-stream-1823912210] INFO  tc.postgres:15 - Pulling image layers: 10 pending,  4 downloaded,  3 extracted, (6 MB/? MB)
+2025-07-17 22:00:50 [docker-java-stream-1823912210] INFO  tc.postgres:15 - Pulling image layers:  9 pending,  5 downloaded,  3 extracted, (6 MB/? MB)
+2025-07-17 22:00:50 [docker-java-stream-1823912210] INFO  tc.postgres:15 - Pulling image layers:  8 pending,  6 downloaded,  3 extracted, (13 MB/? MB)
+2025-07-17 22:00:50 [docker-java-stream-1823912210] INFO  tc.postgres:15 - Pulling image layers:  7 pending,  7 downloaded,  3 extracted, (13 MB/? MB)
+2025-07-17 22:00:50 [docker-java-stream-1823912210] INFO  tc.postgres:15 - Pulling image layers:  6 pending,  8 downloaded,  3 extracted, (14 MB/? MB)
+2025-07-17 22:00:50 [docker-java-stream-1823912210] INFO  tc.postgres:15 - Pulling image layers:  6 pending,  8 downloaded,  4 extracted, (32 MB/? MB)
+2025-07-17 22:00:50 [docker-java-stream-1823912210] INFO  tc.postgres:15 - Pulling image layers:  5 pending,  9 downloaded,  4 extracted, (32 MB/? MB)
+2025-07-17 22:00:50 [docker-java-stream-1823912210] INFO  tc.postgres:15 - Pulling image layers:  4 pending, 10 downloaded,  4 extracted, (44 MB/? MB)
+2025-07-17 22:00:50 [docker-java-stream-1823912210] INFO  tc.postgres:15 - Pulling image layers:  4 pending, 10 downloaded,  5 extracted, (44 MB/? MB)
+2025-07-17 22:00:50 [docker-java-stream-1823912210] INFO  tc.postgres:15 - Pulling image layers:  4 pending, 10 downloaded,  6 extracted, (44 MB/? MB)
+2025-07-17 22:00:51 [docker-java-stream-1823912210] INFO  tc.postgres:15 - Pulling image layers:  4 pending, 10 downloaded,  7 extracted, (54 MB/? MB)
+2025-07-17 22:00:51 [docker-java-stream-1823912210] INFO  tc.postgres:15 - Pulling image layers:  3 pending, 11 downloaded,  7 extracted, (66 MB/? MB)
+2025-07-17 22:00:51 [docker-java-stream-1823912210] INFO  tc.postgres:15 - Pulling image layers:  2 pending, 12 downloaded,  7 extracted, (66 MB/? MB)
+2025-07-17 22:00:51 [docker-java-stream-1823912210] INFO  tc.postgres:15 - Pulling image layers:  1 pending, 13 downloaded,  7 extracted, (115 MB/? MB)
+2025-07-17 22:00:55 [docker-java-stream-1823912210] INFO  tc.postgres:15 - Pulling image layers:  1 pending, 13 downloaded,  8 extracted, (119 MB/? MB)
+2025-07-17 22:00:55 [docker-java-stream-1823912210] INFO  tc.postgres:15 - Pulling image layers:  1 pending, 13 downloaded,  9 extracted, (119 MB/? MB)
+2025-07-17 22:00:55 [docker-java-stream-1823912210] INFO  tc.postgres:15 - Pulling image layers:  1 pending, 13 downloaded, 10 extracted, (119 MB/? MB)
+2025-07-17 22:00:55 [docker-java-stream-1823912210] INFO  tc.postgres:15 - Pulling image layers:  1 pending, 13 downloaded, 11 extracted, (119 MB/? MB)
+2025-07-17 22:00:55 [docker-java-stream-1823912210] INFO  tc.postgres:15 - Pulling image layers:  1 pending, 13 downloaded, 12 extracted, (119 MB/? MB)
+2025-07-17 22:00:55 [docker-java-stream-1823912210] INFO  tc.postgres:15 - Pulling image layers:  1 pending, 13 downloaded, 13 extracted, (119 MB/? MB)
+2025-07-17 22:00:55 [docker-java-stream-1823912210] INFO  tc.postgres:15 - Pull complete. 14 layers, pulled in 5s (downloaded 119 MB at 23 MB/s)
+2025-07-17 22:00:55 [Test worker] INFO  tc.postgres:15 - Image postgres:15 pull took PT6.67950701S
+2025-07-17 22:00:55 [Test worker] INFO  tc.postgres:15 - Creating container for image: postgres:15
+2025-07-17 22:00:55 [Test worker] INFO  tc.postgres:15 - Container postgres:15 is starting: 2e8a359ec1de4f85de6cc762176fc942a283e162ba2e5c89ad87b6195cd2357b
+2025-07-17 22:00:56 [Test worker] INFO  tc.postgres:15 - Container postgres:15 started in PT1.078684752S
+2025-07-17 22:00:56 [Test worker] INFO  tc.postgres:15 - Container is started (JDBC URL: jdbc:postgresql://localhost:32769/companies_register_test?loggerLevel=OFF)
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="https://www.gradle.org">Gradle 8.14.2</a> at Jul 17, 2025, 10:01:08 PM</p>
+</div>
+</div>
+</body>
+</html>

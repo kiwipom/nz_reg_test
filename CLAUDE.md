@@ -244,8 +244,9 @@ You are implementing testing strategies for the NZ Companies Register System.
 8. **Move to next item** - Repeat cycle for the next uncompleted task
 
 ### On completion of the final task within the section:
-1. **Prepare the branch** - `npm precommit` addressing any issues as appropriate
-2. **Create the PR** - push the branch
+1. **Prepare the branch** - Run `/scripts/local-pipeline.sh` - do not push the branch unless GREEN!
+2. **Create the PR** - push the branch and create a PR
+3. **Update TODO.md** - Update overall section ✅ Complete, and update overall %age progress
 
 ### Commit Message Format:
 ```

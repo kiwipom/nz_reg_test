@@ -380,4 +380,85 @@ class AuditService {
             ),
         )
     }
+
+    // Share allocation audit methods
+    fun logShareAllocation(
+        companyId: Long,
+        shareholderId: Long,
+        shareClass: String,
+        numberOfShares: Long,
+        nominalValue: java.math.BigDecimal,
+    ) {
+        logEvent(
+            action = AuditAction.CREATE,
+            resourceType = "ShareAllocation",
+            details = mapOf(
+                "companyId" to companyId,
+                "shareholderId" to shareholderId,
+                "shareClass" to shareClass,
+                "numberOfShares" to numberOfShares,
+                "nominalValue" to nominalValue,
+                "action" to "SHARE_ALLOCATION",
+            ),
+        )
+    }
+
+    fun logShareTransfer(
+        companyId: Long,
+        fromShareholderId: Long,
+        toShareholderId: Long,
+        shareClass: String,
+        numberOfShares: Long,
+    ) {
+        logEvent(
+            action = AuditAction.UPDATE,
+            resourceType = "ShareAllocation",
+            details = mapOf(
+                "companyId" to companyId,
+                "fromShareholderId" to fromShareholderId,
+                "toShareholderId" to toShareholderId,
+                "shareClass" to shareClass,
+                "numberOfShares" to numberOfShares,
+                "action" to "SHARE_TRANSFER",
+            ),
+        )
+    }
+
+    fun logSharePaymentUpdate(
+        companyId: Long,
+        shareholderId: Long,
+        allocationId: Long,
+        additionalPayment: java.math.BigDecimal,
+    ) {
+        logEvent(
+            action = AuditAction.UPDATE,
+            resourceType = "ShareAllocation",
+            resourceId = allocationId.toString(),
+            details = mapOf(
+                "companyId" to companyId,
+                "shareholderId" to shareholderId,
+                "additionalPayment" to additionalPayment,
+                "action" to "SHARE_PAYMENT_UPDATE",
+            ),
+        )
+    }
+
+    fun logShareCancellation(
+        companyId: Long,
+        shareholderId: Long,
+        allocationId: Long,
+        reason: String,
+    ) {
+        logEvent(
+            action = AuditAction.DELETE,
+            resourceType = "ShareAllocation",
+            resourceId = allocationId.toString(),
+            details = mapOf(
+                "companyId" to companyId,
+                "shareholderId" to shareholderId,
+                "reason" to reason,
+                "action" to "SHARE_CANCELLATION",
+            ),
+        )
+    }
 }

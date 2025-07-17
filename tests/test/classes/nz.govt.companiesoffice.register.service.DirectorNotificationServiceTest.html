@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - DirectorNotificationServiceTest</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>DirectorNotificationServiceTest</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/nz.govt.companiesoffice.register.service.html">nz.govt.companiesoffice.register.service</a> &gt; DirectorNotificationServiceTest</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">14</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">0.023s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="tab-container">
+<ul class="tabLinks">
+<li>
+<a href="#">Tests</a>
+</li>
+<li>
+<a href="#">Standard output</a>
+</li>
+</ul>
+<div class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">should create compliance issues with proper severity levels()</td>
+<td class="success">0s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">should create proper notification structure()</td>
+<td class="success">0.002s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">should handle notification failures gracefully()</td>
+<td class="success">0.003s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">should send compliance reminders with appropriate priorities()</td>
+<td class="success">0.001s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">should send director appointment notifications without consent requirement()</td>
+<td class="success">0.001s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">should send director appointment notifications()</td>
+<td class="success">0.001s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">should send director consent notifications()</td>
+<td class="success">0.001s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">should send director disqualification notifications()</td>
+<td class="success">0s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">should send director resignation notifications()</td>
+<td class="success">0.001s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">should send director update notifications for significant changes()</td>
+<td class="success">0.011s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">should send minimal notifications for non-significant changes()</td>
+<td class="success">0.001s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">should validate notification priority levels()</td>
+<td class="success">0s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">should validate notification recipients()</td>
+<td class="success">0s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">should validate notification types()</td>
+<td class="success">0.001s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorNotificationService - Sending director update notifications for: John Doe
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorNotificationService - Sending notification to registrar: Director Information Updated
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorNotificationService - Notification sent successfully: DN-1752789667858-8034
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorNotificationService - Sending notification to company contacts: Director Information Updated
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorNotificationService - Notification sent successfully: DN-1752789667864-9828
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorNotificationService - Sending director appointment notifications for: John Doe
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorNotificationService - Sending notification to registrar: New Director Appointed
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorNotificationService - Notification sent successfully: DN-1752789667867-1116
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorNotificationService - Sending notification to company contacts: Director Appointment Confirmation
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorNotificationService - Notification sent successfully: DN-1752789667867-9476
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorNotificationService - Sending notification to director: Director Consent Required
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorNotificationService - Notification sent successfully: DN-1752789667867-6709
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorNotificationService - Sending director resignation notifications for: John Doe
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorNotificationService - Sending notification to registrar: Director Resignation
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorNotificationService - Notification sent successfully: DN-1752789667868-5809
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorNotificationService - Sending notification to company contacts: Director Resignation Notice
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorNotificationService - Notification sent successfully: DN-1752789667868-1834
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorNotificationService - Sending director disqualification notifications for: John Doe
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorNotificationService - Sending notification to registrar: Director Disqualification
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorNotificationService - Notification sent successfully: DN-1752789667869-4623
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorNotificationService - Sending notification to company contacts: URGENT: Director Disqualification Notice
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorNotificationService - Notification sent successfully: DN-1752789667869-4289
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorNotificationService - Sending director update notifications for: John Doe
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorNotificationService - Sending notification to registrar: Director Information Updated
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorNotificationService - Notification sent successfully: DN-1752789667869-2086
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorNotificationService - Sending notification to company contacts: Director Information Updated
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorNotificationService - Notification sent successfully: DN-1752789667869-5827
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorNotificationService - Sending director consent notifications for: John Doe
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorNotificationService - Sending notification to registrar: Director Consent Received
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorNotificationService - Notification sent successfully: DN-1752789667869-2613
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorNotificationService - Sending notification to company contacts: Director Consent Completed
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorNotificationService - Notification sent successfully: DN-1752789667870-3182
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorNotificationService - Sending director resignation notifications for: John Doe
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorNotificationService - Sending notification to registrar: Director Resignation
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorNotificationService - Notification sent successfully: DN-1752789667871-9419
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorNotificationService - Sending notification to company contacts: Director Resignation Notice
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorNotificationService - Notification sent successfully: DN-1752789667871-7288
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorNotificationService - Sending compliance reminders for company: 1
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorNotificationService - Sending notification to company contacts: Director Compliance Reminder
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorNotificationService - Notification sent successfully: DN-1752789667873-3630
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorNotificationService - Sending notification to company contacts: Director Compliance Reminder
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorNotificationService - Notification sent successfully: DN-1752789667873-9347
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorNotificationService - Sending notification to company contacts: Director Compliance Reminder
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorNotificationService - Notification sent successfully: DN-1752789667873-5676
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorNotificationService - Sending director appointment notifications for: John Doe
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorNotificationService - Sending notification to registrar: New Director Appointed
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorNotificationService - Notification sent successfully: DN-1752789667875-7743
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorNotificationService - Sending notification to company contacts: Director Appointment Confirmation
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorNotificationService - Notification sent successfully: DN-1752789667875-9539
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorNotificationService - Sending notification to director: Director Consent Required
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorNotificationService - Notification sent successfully: DN-1752789667875-6340
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorNotificationService - Sending director update notifications for: John Doe
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorNotificationService - Sending notification to registrar: Director Information Updated
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorNotificationService - Notification sent successfully: DN-1752789667876-5155
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorNotificationService - Sending director disqualification notifications for: John Doe
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorNotificationService - Sending notification to registrar: Director Disqualification
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorNotificationService - Notification sent successfully: DN-1752789667876-3917
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorNotificationService - Sending notification to company contacts: URGENT: Director Disqualification Notice
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorNotificationService - Notification sent successfully: DN-1752789667876-6750
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorNotificationService - Sending director appointment notifications for: John Doe
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorNotificationService - Sending notification to registrar: New Director Appointed
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorNotificationService - Notification sent successfully: DN-1752789667877-3827
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorNotificationService - Sending notification to company contacts: Director Appointment Confirmation
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorNotificationService - Notification sent successfully: DN-1752789667877-1492
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorNotificationService - Sending director consent notifications for: John Doe
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorNotificationService - Sending notification to registrar: Director Consent Received
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorNotificationService - Notification sent successfully: DN-1752789667879-7180
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorNotificationService - Sending notification to company contacts: Director Consent Completed
+2025-07-17 22:01:07 [Test worker] INFO  n.g.c.r.s.DirectorNotificationService - Notification sent successfully: DN-1752789667879-8295
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="https://www.gradle.org">Gradle 8.14.2</a> at Jul 17, 2025, 10:01:08 PM</p>
+</div>
+</div>
+</body>
+</html>

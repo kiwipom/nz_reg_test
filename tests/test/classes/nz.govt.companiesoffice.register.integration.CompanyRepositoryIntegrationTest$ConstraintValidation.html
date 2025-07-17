@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - Constraint Validation</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>Constraint Validation</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/nz.govt.companiesoffice.register.integration.html">nz.govt.companiesoffice.register.integration</a> &gt; CompanyRepositoryIntegrationTest$ConstraintValidation</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">4</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">0.095s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="tab-container">
+<ul class="tabLinks">
+<li>
+<a href="#">Tests</a>
+</li>
+<li>
+<a href="#">Standard output</a>
+</li>
+</ul>
+<div class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Method name</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">Should allow empty string values since they are non-null</td>
+<td class="success">should allow empty string values since they are non-null()</td>
+<td class="success">0.026s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">Should enforce unique NZBN constraint</td>
+<td class="success">should enforce unique NZBN constraint()</td>
+<td class="success">0.033s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">Should enforce unique company name constraint</td>
+<td class="success">should enforce unique company name constraint()</td>
+<td class="success">0.016s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">Should enforce unique company number constraint</td>
+<td class="success">should enforce unique company number constraint()</td>
+<td class="success">0.020s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>2025-07-17 22:00:57 [Test worker] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [nz.govt.companiesoffice.register.integration.CompanyRepositoryIntegrationTest$ConstraintValidation]: ConstraintValidation does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-07-17 22:00:57 [Test worker] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration nz.govt.companiesoffice.register.NzCompaniesRegisterApplication for test class nz.govt.companiesoffice.register.integration.CompanyRepositoryIntegrationTest$ConstraintValidation
+2025-07-17 22:00:57 [Test worker] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.company_name,
+        c1_0.company_number,
+        c1_0.company_type,
+        c1_0.created_at,
+        c1_0.incorporation_date,
+        c1_0.nzbn,
+        c1_0.status,
+        c1_0.updated_at,
+        c1_0.version 
+    from
+        companies c1_0
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.company_name,
+        c1_0.company_number,
+        c1_0.company_type,
+        c1_0.created_at,
+        c1_0.incorporation_date,
+        c1_0.nzbn,
+        c1_0.status,
+        c1_0.updated_at,
+        c1_0.version 
+    from
+        companies c1_0
+2025-07-17 22:00:57 [Test worker] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        companies
+        (company_name, company_number, company_type, created_at, incorporation_date, nzbn, status, updated_at, version, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        companies
+        (company_name, company_number, company_type, created_at, incorporation_date, nzbn, status, updated_at, version, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-07-17 22:00:57 [Test worker] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        companies
+        (company_name, company_number, company_type, created_at, incorporation_date, nzbn, status, updated_at, version, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        companies
+        (company_name, company_number, company_type, created_at, incorporation_date, nzbn, status, updated_at, version, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-07-17 22:00:57 [Test worker] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 23505, SQLState: 23505
+2025-07-17 22:00:57 [Test worker] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Unique index or primary key violation: &quot;PUBLIC.CONSTRAINT_INDEX_51E ON PUBLIC.COMPANIES(NZBN NULLS FIRST) VALUES ( /* 6 */ '9429000000005' )&quot;; SQL statement:
+insert into companies (company_name,company_number,company_type,created_at,incorporation_date,nzbn,status,updated_at,version,id) values (?,?,?,?,?,?,?,?,?,default) [23505-224]
+2025-07-17 22:00:57 [Test worker] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.company_name,
+        c1_0.company_number,
+        c1_0.company_type,
+        c1_0.created_at,
+        c1_0.incorporation_date,
+        c1_0.nzbn,
+        c1_0.status,
+        c1_0.updated_at,
+        c1_0.version 
+    from
+        companies c1_0
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.company_name,
+        c1_0.company_number,
+        c1_0.company_type,
+        c1_0.created_at,
+        c1_0.incorporation_date,
+        c1_0.nzbn,
+        c1_0.status,
+        c1_0.updated_at,
+        c1_0.version 
+    from
+        companies c1_0
+2025-07-17 22:00:57 [Test worker] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        companies
+        (company_name, company_number, company_type, created_at, incorporation_date, nzbn, status, updated_at, version, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        companies
+        (company_name, company_number, company_type, created_at, incorporation_date, nzbn, status, updated_at, version, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-07-17 22:00:57 [Test worker] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        companies
+        (company_name, company_number, company_type, created_at, incorporation_date, nzbn, status, updated_at, version, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        companies
+        (company_name, company_number, company_type, created_at, incorporation_date, nzbn, status, updated_at, version, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-07-17 22:00:57 [Test worker] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 23505, SQLState: 23505
+2025-07-17 22:00:57 [Test worker] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Unique index or primary key violation: &quot;PUBLIC.CONSTRAINT_INDEX_51 ON PUBLIC.COMPANIES(COMPANY_NUMBER NULLS FIRST) VALUES ( /* 8 */ '11111111' )&quot;; SQL statement:
+insert into companies (company_name,company_number,company_type,created_at,incorporation_date,nzbn,status,updated_at,version,id) values (?,?,?,?,?,?,?,?,?,default) [23505-224]
+2025-07-17 22:00:57 [Test worker] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.company_name,
+        c1_0.company_number,
+        c1_0.company_type,
+        c1_0.created_at,
+        c1_0.incorporation_date,
+        c1_0.nzbn,
+        c1_0.status,
+        c1_0.updated_at,
+        c1_0.version 
+    from
+        companies c1_0
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.company_name,
+        c1_0.company_number,
+        c1_0.company_type,
+        c1_0.created_at,
+        c1_0.incorporation_date,
+        c1_0.nzbn,
+        c1_0.status,
+        c1_0.updated_at,
+        c1_0.version 
+    from
+        companies c1_0
+2025-07-17 22:00:57 [Test worker] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        companies
+        (company_name, company_number, company_type, created_at, incorporation_date, nzbn, status, updated_at, version, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        companies
+        (company_name, company_number, company_type, created_at, incorporation_date, nzbn, status, updated_at, version, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-07-17 22:00:57 [Test worker] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        companies
+        (company_name, company_number, company_type, created_at, incorporation_date, nzbn, status, updated_at, version, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        companies
+        (company_name, company_number, company_type, created_at, incorporation_date, nzbn, status, updated_at, version, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-07-17 22:00:57 [Test worker] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 23505, SQLState: 23505
+2025-07-17 22:00:57 [Test worker] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Unique index or primary key violation: &quot;PUBLIC.CONSTRAINT_INDEX_5 ON PUBLIC.COMPANIES(COMPANY_NAME NULLS FIRST) VALUES ( /* 10 */ 'Unique Test Company Ltd' )&quot;; SQL statement:
+insert into companies (company_name,company_number,company_type,created_at,incorporation_date,nzbn,status,updated_at,version,id) values (?,?,?,?,?,?,?,?,?,default) [23505-224]
+2025-07-17 22:00:57 [Test worker] DEBUG org.hibernate.SQL - 
+    select
+        c1_0.id,
+        c1_0.company_name,
+        c1_0.company_number,
+        c1_0.company_type,
+        c1_0.created_at,
+        c1_0.incorporation_date,
+        c1_0.nzbn,
+        c1_0.status,
+        c1_0.updated_at,
+        c1_0.version 
+    from
+        companies c1_0
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.company_name,
+        c1_0.company_number,
+        c1_0.company_type,
+        c1_0.created_at,
+        c1_0.incorporation_date,
+        c1_0.nzbn,
+        c1_0.status,
+        c1_0.updated_at,
+        c1_0.version 
+    from
+        companies c1_0
+2025-07-17 22:00:57 [Test worker] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        companies
+        (company_name, company_number, company_type, created_at, incorporation_date, nzbn, status, updated_at, version, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        companies
+        (company_name, company_number, company_type, created_at, incorporation_date, nzbn, status, updated_at, version, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-07-17 22:00:57 [Test worker] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        companies
+        (company_name, company_number, company_type, created_at, incorporation_date, nzbn, status, updated_at, version, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        companies
+        (company_name, company_number, company_type, created_at, incorporation_date, nzbn, status, updated_at, version, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="https://www.gradle.org">Gradle 8.14.2</a> at Jul 17, 2025, 10:01:08 PM</p>
+</div>
+</div>
+</body>
+</html>

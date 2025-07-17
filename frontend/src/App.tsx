@@ -7,6 +7,9 @@ import { CompanyRegistration } from './pages/CompanyRegistration';
 import { CompanyDetails } from './pages/CompanyDetails';
 import { DirectorAppointment } from './pages/DirectorAppointment';
 import { DirectorResignation } from './pages/DirectorResignation';
+import { ShareholderRegistration } from './pages/ShareholderRegistration';
+import { ShareAllocation } from './pages/ShareAllocation';
+import { ShareTransfer } from './pages/ShareTransfer';
 import { Building2 } from 'lucide-react';
 
 function App() {
@@ -45,6 +48,9 @@ function App() {
                 <Route path="/companies/:id" element={<CompanyDetails />} />
                 <Route path="/companies/:id/directors/appoint" element={<DirectorAppointment />} />
                 <Route path="/companies/:id/directors/:directorId/resign" element={<DirectorResignation />} />
+                <Route path="/companies/:id/shareholders/register" element={<ShareholderRegistration />} />
+                <Route path="/companies/:id/shareholders/:shareholderId/allocate" element={<ShareAllocation />} />
+                <Route path="/share-allocations/:allocationId/transfer" element={<ShareTransfer />} />
               </Routes>
             </main>
 
