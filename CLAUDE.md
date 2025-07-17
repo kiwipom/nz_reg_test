@@ -240,7 +240,7 @@ You are implementing testing strategies for the NZ Companies Register System.
 4. **Verify all tests pass** - Run `npm run test:run` (frontend) or `./gradlew test` (backend)
 5. **Run linting and type checking** - `npm run lint && npm run typecheck` or `./gradlew ktlintCheck`
 6. **Create a commit** - Clear, descriptive commit message following conventional commits
-7. **Update TODO.md** - Change `[ ] Item` to `[x] Item` in the appropriate section
+7. **Update TODO.md** - Change `[ ] Item` to `[x] Item` in the appropriate section. This means writing changes into the repo root /TODO.md file - not just tracking the `Update Todos` list in the Claude terminal
 8. **Move to next item** - Repeat cycle for the next uncompleted task
 
 ### On completion of the final task within the section:

@@ -1,6 +1,5 @@
 package nz.govt.companiesoffice.register.service
 
-import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
 import nz.govt.companiesoffice.register.audit.AuditService
@@ -30,7 +29,7 @@ class AddressNotificationServiceTest {
     fun setUp() {
         auditService = mockk(relaxed = true)
         addressNotificationService = AddressNotificationService(auditService)
-        
+
         testCompany = Company(
             id = 1L,
             companyNumber = "12345678",
@@ -38,7 +37,7 @@ class AddressNotificationServiceTest {
             companyType = CompanyType.LTD,
             incorporationDate = LocalDate.now(),
         )
-        
+
         testAddress = Address(
             company = testCompany,
             addressType = AddressType.REGISTERED,
@@ -251,48 +250,48 @@ class AddressNotificationServiceTest {
                 AddressChangeNotificationRequest(
                     addressType = AddressType.REGISTERED,
                     previousAddress = Address(
-                company = testCompany,
-                addressType = AddressType.REGISTERED,
-                addressLine1 = "123 Test Street",
-                city = "Auckland",
-                country = "NZ",
-                postcode = "1010",
-                email = "test@example.com",
-                effectiveFrom = LocalDate.now(),
-            ),
+                        company = testCompany,
+                        addressType = AddressType.REGISTERED,
+                        addressLine1 = "123 Test Street",
+                        city = "Auckland",
+                        country = "NZ",
+                        postcode = "1010",
+                        email = "test@example.com",
+                        effectiveFrom = LocalDate.now(),
+                    ),
                     newAddress = Address(
-                company = testCompany,
-                addressType = AddressType.REGISTERED,
-                addressLine1 = "456 New Street",
-                city = "Auckland",
-                country = "NZ",
-                postcode = "1010",
-                email = "test@example.com",
-                effectiveFrom = LocalDate.now(),
-            ),
+                        company = testCompany,
+                        addressType = AddressType.REGISTERED,
+                        addressLine1 = "456 New Street",
+                        city = "Auckland",
+                        country = "NZ",
+                        postcode = "1010",
+                        email = "test@example.com",
+                        effectiveFrom = LocalDate.now(),
+                    ),
                 ),
                 AddressChangeNotificationRequest(
                     addressType = AddressType.SERVICE,
                     previousAddress = Address(
-                company = testCompany,
-                addressType = AddressType.SERVICE,
-                addressLine1 = "123 Test Street",
-                city = "Auckland",
-                country = "NZ",
-                postcode = "1010",
-                email = "test@example.com",
-                effectiveFrom = LocalDate.now(),
-            ),
+                        company = testCompany,
+                        addressType = AddressType.SERVICE,
+                        addressLine1 = "123 Test Street",
+                        city = "Auckland",
+                        country = "NZ",
+                        postcode = "1010",
+                        email = "test@example.com",
+                        effectiveFrom = LocalDate.now(),
+                    ),
                     newAddress = Address(
-                company = testCompany,
-                addressType = AddressType.SERVICE,
-                addressLine1 = "789 Service Street",
-                city = "Auckland",
-                country = "NZ",
-                postcode = "1010",
-                email = "test@example.com",
-                effectiveFrom = LocalDate.now(),
-            ),
+                        company = testCompany,
+                        addressType = AddressType.SERVICE,
+                        addressLine1 = "789 Service Street",
+                        city = "Auckland",
+                        country = "NZ",
+                        postcode = "1010",
+                        email = "test@example.com",
+                        effectiveFrom = LocalDate.now(),
+                    ),
                 ),
             )
 
@@ -326,15 +325,15 @@ class AddressNotificationServiceTest {
                     addressType = AddressType.REGISTERED,
                     previousAddress = null,
                     newAddress = Address(
-                company = testCompany,
-                addressType = AddressType.REGISTERED,
-                addressLine1 = "123 Test Street",
-                city = "Auckland",
-                country = "NZ",
-                postcode = "1010",
-                email = "test@example.com",
-                effectiveFrom = LocalDate.now(),
-            ),
+                        company = testCompany,
+                        addressType = AddressType.REGISTERED,
+                        addressLine1 = "123 Test Street",
+                        city = "Auckland",
+                        country = "NZ",
+                        postcode = "1010",
+                        email = "test@example.com",
+                        effectiveFrom = LocalDate.now(),
+                    ),
                 ),
             )
 
@@ -384,7 +383,11 @@ class AddressNotificationServiceTest {
             assertAll(
                 { assertEquals(2, results.size) },
                 { assertTrue(results.all { it.isSuccessful }) },
-                { assertTrue(results.all { it.notification.notificationType == AddressNotificationType.COMPLIANCE_REQUIRED }) },
+                {
+                    assertTrue(
+                        results.all { it.notification.notificationType == AddressNotificationType.COMPLIANCE_REQUIRED },
+                    )
+                },
                 { assertTrue(results.all { it.notification.subject.contains("Address Compliance Notice") }) },
             )
         }
@@ -512,8 +515,18 @@ class AddressNotificationServiceTest {
             assertAll(
                 { assertFalse(validation.isValid) },
                 { assertTrue(validation.hasErrors()) },
-                { assertTrue(validation.errors.any { it.contains("at least one notification delivery method") }) },
-                { assertTrue(validation.warnings.any { it.contains("No delivery methods specified") }) },
+                {
+                    assertTrue(
+                        validation.errors.any {
+                            it.contains("At least one notification delivery method must be specified")
+                        },
+                    )
+                },
+                {
+                    assertTrue(
+                        validation.warnings.any { it.contains("No delivery methods specified") },
+                    )
+                },
             )
         }
 
@@ -524,7 +537,11 @@ class AddressNotificationServiceTest {
                 emailAddresses = listOf("test@example.com"),
                 phoneNumbers = listOf("+64 9 123 4567"),
                 postalAddress = testAddress,
-                deliveryMethods = listOf(AddressDeliveryMethod.EMAIL, AddressDeliveryMethod.SMS, AddressDeliveryMethod.POST),
+                deliveryMethods = listOf(
+                    AddressDeliveryMethod.EMAIL,
+                    AddressDeliveryMethod.SMS,
+                    AddressDeliveryMethod.POST,
+                ),
                 notificationTypes = listOf(AddressNotificationType.ADDRESS_CHANGED),
             )
 

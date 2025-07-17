@@ -34,27 +34,27 @@ class AddressValidationService(
      */
     fun validateAddress(address: Address): ValidationResult {
         logger.debug("Validating address ${address.id} of type ${address.addressType}")
-        
+
         val errors = mutableListOf<String>()
         val warnings = mutableListOf<String>()
         val suggestions = mutableListOf<String>()
 
         // Basic field validation
         validateBasicFields(address, errors)
-        
+
         // Business rule validation
         validateBusinessRules(address, errors, warnings)
-        
+
         // Country-specific validation
         when (address.country.uppercase()) {
             "NZ" -> validateNZAddress(address, errors, warnings, suggestions)
             "AU" -> validateAUAddress(address, errors, warnings, suggestions)
             else -> validateInternationalAddress(address, errors, warnings, suggestions)
         }
-        
+
         // Address type specific validation
         validateAddressTypeRules(address, errors, warnings)
-        
+
         // Cross-field validation
         validateCrossFieldRules(address, errors, warnings)
 
@@ -328,20 +328,20 @@ class AddressValidationService(
                 if (address.postcode == null && address.country == "NZ") {
                     errors.add("Registered addresses in New Zealand must have a postcode")
                 }
-                
+
                 // Should not be a PO Box for registered address
                 if (isLikelyPOBox(address.addressLine1)) {
                     errors.add("Registered address cannot be a PO Box")
                 }
             }
-            
+
             AddressType.SERVICE -> {
                 // Service addresses can be PO Boxes but should have contact info
                 if (address.email == null && address.phone == null) {
                     warnings.add("Service addresses should have contact information (email or phone)")
                 }
             }
-            
+
             AddressType.COMMUNICATION -> {
                 // Communication addresses must have contact info
                 if (address.email == null && address.phone == null) {
@@ -361,7 +361,9 @@ class AddressValidationService(
             val domain = address.email!!.substringAfter("@").lowercase()
             val commonPersonalDomains = listOf("gmail.com", "yahoo.com", "hotmail.com", "outlook.com")
             if (commonPersonalDomains.contains(domain)) {
-                warnings.add("Consider using a business email address for ${address.addressType.name.lowercase()} addresses")
+                warnings.add(
+                    "Consider using a business email address for ${address.addressType.name.lowercase()} addresses",
+                )
             }
         }
 
@@ -404,14 +406,14 @@ class AddressValidationService(
     private fun isValidNZPhoneNumber(phone: String): Boolean {
         val cleanPhone = phone.replace(Regex("[\\s()-]"), "")
         val nzPhonePatterns = listOf(
-            Regex("^\\+64[2-9]\\d{7,8}$"),      // +64 9 xxx xxxx
-            Regex("^0[2-9]\\d{7,8}$"),          // 09 xxx xxxx
-            Regex("^\\+6421\\d{6,7}$"),         // +64 21 xxx xxxx (mobile)
-            Regex("^021\\d{6,7}$"),             // 021 xxx xxxx (mobile)
-            Regex("^\\+6422\\d{6,7}$"),         // +64 22 xxx xxxx (mobile)
-            Regex("^022\\d{6,7}$"),             // 022 xxx xxxx (mobile)
-            Regex("^\\+6427\\d{6,7}$"),         // +64 27 xxx xxxx (mobile)
-            Regex("^027\\d{6,7}$"),             // 027 xxx xxxx (mobile)
+            Regex("^\\+64[2-9]\\d{7,8}$"), // +64 9 xxx xxxx
+            Regex("^0[2-9]\\d{7,8}$"), // 09 xxx xxxx
+            Regex("^\\+6421\\d{6,7}$"), // +64 21 xxx xxxx (mobile)
+            Regex("^021\\d{6,7}$"), // 021 xxx xxxx (mobile)
+            Regex("^\\+6422\\d{6,7}$"), // +64 22 xxx xxxx (mobile)
+            Regex("^022\\d{6,7}$"), // 022 xxx xxxx (mobile)
+            Regex("^\\+6427\\d{6,7}$"), // +64 27 xxx xxxx (mobile)
+            Regex("^027\\d{6,7}$"), // 027 xxx xxxx (mobile)
         )
         return nzPhonePatterns.any { it.matches(cleanPhone) }
     }
@@ -419,10 +421,10 @@ class AddressValidationService(
     private fun isValidAUPhoneNumber(phone: String): Boolean {
         val cleanPhone = phone.replace(Regex("[\\s()-]"), "")
         val auPhonePatterns = listOf(
-            Regex("^\\+61[2-8]\\d{8}$"),        // +61 2 xxxx xxxx (landline)
-            Regex("^0[2-8]\\d{8}$"),            // 02 xxxx xxxx (landline)
-            Regex("^\\+614\\d{8}$"),            // +61 4xx xxx xxx (mobile)
-            Regex("^04\\d{8}$"),                // 04xx xxx xxx (mobile)
+            Regex("^\\+61[2-8]\\d{8}$"), // +61 2 xxxx xxxx (landline)
+            Regex("^0[2-8]\\d{8}$"), // 02 xxxx xxxx (landline)
+            Regex("^\\+614\\d{8}$"), // +61 4xx xxx xxx (mobile)
+            Regex("^04\\d{8}$"), // 04xx xxx xxx (mobile)
         )
         return auPhonePatterns.any { it.matches(cleanPhone) }
     }
