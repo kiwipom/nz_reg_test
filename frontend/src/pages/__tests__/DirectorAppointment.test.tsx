@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
 import { BrowserRouter } from 'react-router-dom';
 import { DirectorAppointment } from '../DirectorAppointment';
-import { useAuth } from '../../auth/useAuth';
+import { useAuth0 } from '@auth0/auth0-react';
 import { TEST_CONSTANTS } from '../../test/constants';
 
 // Mock DirectorService
@@ -14,9 +14,9 @@ vi.mock('../../services/directorService', () => ({
   })),
 }));
 
-// Mock the auth hook
-vi.mock('../../auth/useAuth');
-const mockUseAuth = vi.mocked(useAuth);
+// Mock the Auth0 hook
+vi.mock('@auth0/auth0-react');
+const mockUseAuth0 = vi.mocked(useAuth0);
 
 // Mock React Router hooks
 const mockNavigate = vi.fn();
@@ -25,7 +25,7 @@ vi.mock('react-router-dom', async () => {
   return {
     ...actual,
     useNavigate: () => mockNavigate,
-    useParams: () => ({ companyId: 'test-company-123' }),
+    useParams: () => ({ id: 'test-company-123' }),
   };
 });
 
@@ -59,16 +59,18 @@ describe('DirectorAppointment', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     mockAlert.mockClear();
-    mockUseAuth.mockReturnValue({
+    mockUseAuth0.mockReturnValue({
       user: undefined,
       isAuthenticated: true,
       isLoading: false,
-      login: vi.fn(),
+      loginWithRedirect: vi.fn(),
       logout: vi.fn(),
-      getAccessToken: vi.fn().mockResolvedValue(TEST_CONSTANTS.MOCK_ACCESS_TOKEN),
-      getUserRoles: vi.fn().mockResolvedValue([]),
-      hasRole: vi.fn().mockResolvedValue(false),
-      hasAnyRole: vi.fn().mockResolvedValue(false),
+      getAccessTokenSilently: vi.fn().mockResolvedValue(TEST_CONSTANTS.MOCK_ACCESS_TOKEN),
+      getIdTokenClaims: vi.fn(),
+      getAccessTokenWithPopup: vi.fn(),
+      loginWithPopup: vi.fn(),
+      handleRedirectCallback: vi.fn(),
+      error: undefined,
     });
     
     // Default mock for DirectorService

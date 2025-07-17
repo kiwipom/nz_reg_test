@@ -93,6 +93,10 @@ auth0:
   issuer: ${AUTH0_ISSUER:https://dev-qj27erqk8q2n6uoa.us.auth0.com/}
   roles-namespace: ${AUTH0_ROLES_NAMESPACE:https://api.nzco.test.nz/}
 
+test:
+  security:
+    enabled: true
+
 app:
   aws:
     region: ${AWS_REGION:ap-southeast-2}

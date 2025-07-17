@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { UserPlus, Check, Loader2, Calendar, MapPin, FileText, Upload, X } from 'lucide-react';
-import { useAuth } from '../auth/useAuth';
+import { useAuth0 } from '@auth0/auth0-react';
 import { DirectorService } from '../services/directorService';
 
 export interface DirectorFormData {
@@ -53,8 +53,8 @@ interface ValidationErrors {
 
 export const DirectorAppointment: React.FC = () => {
   const navigate = useNavigate();
-  const { companyId } = useParams();
-  const { getAccessToken } = useAuth();
+  const { id: companyId } = useParams();
+  const { getAccessTokenSilently } = useAuth0();
   const directorService = new DirectorService();
   
   const [formData, setFormData] = useState<DirectorFormData>({
@@ -225,7 +225,7 @@ export const DirectorAppointment: React.FC = () => {
     setIsSubmitting(true);
     
     try {
-      const token = await getAccessToken();
+      const token = await getAccessTokenSilently();
       
       if (!companyId) {
         throw new Error('Company ID is required');

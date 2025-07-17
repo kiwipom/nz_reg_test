@@ -1,10 +1,5 @@
 import type { DirectorFormData } from '../pages/DirectorAppointment';
 
-interface DirectorAppointmentRequest {
-  directorData: Omit<DirectorFormData, 'consentDocument' | 'identificationDocument'>;
-  companyId: string;
-}
-
 export interface DirectorAppointmentResponse {
   id: number;
   fullName: string;
@@ -25,6 +20,26 @@ export interface DirectorAppointmentResponse {
 export class DirectorService {
   private baseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080/api/v1';
 
+  public getCountryCode(countryName: string): string {
+    // Convert full country names to ISO country codes as expected by database
+    switch (countryName.toLowerCase()) {
+      case 'new zealand':
+        return 'NZ';
+      case 'australia':
+        return 'AU';
+      case 'united states':
+      case 'united states of america':
+        return 'US';
+      case 'united kingdom':
+        return 'GB';
+      case 'canada':
+        return 'CA';
+      default:
+        // Default to NZ if country not recognized
+        return 'NZ';
+    }
+  }
+
   /**
    * Appoint a new director with optional consent documents
    */
@@ -34,51 +49,49 @@ export class DirectorService {
     token: string
   ): Promise<DirectorAppointmentResponse> {
     try {
-      // Prepare the multipart form data
-      const submitData = new FormData();
-      
-      // Add director data as JSON
-      const directorData: DirectorAppointmentRequest = {
-        directorData: {
-          firstName: formData.firstName,
-          lastName: formData.lastName,
-          middleName: formData.middleName,
-          dateOfBirth: formData.dateOfBirth,
-          occupation: formData.occupation,
-          nationality: formData.nationality,
-          residencyStatus: formData.residencyStatus,
-          residentialAddress: formData.residentialAddress,
-          serviceAddress: formData.useResidentialForService ? undefined : formData.serviceAddress,
-          useResidentialForService: formData.useResidentialForService,
-          hasConsentedToAppointment: formData.hasConsentedToAppointment,
-          hasReadDirectorDuties: formData.hasReadDirectorDuties,
-          isNotDisqualified: formData.isNotDisqualified,
-          appointmentDate: formData.appointmentDate,
-          directorRole: formData.directorRole,
-          hasSigningAuthority: formData.hasSigningAuthority,
+      // TODO: Handle document uploads separately if needed
+      // For now, we're only handling the basic director appointment
+
+      // First, fetch the company details to include in the director request
+      const companyResponse = await fetch(`${this.baseUrl}/companies/${companyId}`, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${token}`,
         },
-        companyId,
+      });
+
+      if (!companyResponse.ok) {
+        throw new Error('Failed to fetch company details');
+      }
+
+      const company = await companyResponse.json();
+
+      // Transform form data to match backend Director entity
+      const directorRequest = {
+        company: company,
+        fullName: `${formData.firstName} ${formData.lastName}`.trim(),
+        dateOfBirth: formData.dateOfBirth,
+        placeOfBirth: null, // Not captured in form yet
+        residentialAddressLine1: formData.residentialAddress.streetAddress,
+        residentialAddressLine2: formData.residentialAddress.suburb,
+        residentialCity: formData.residentialAddress.city,
+        residentialRegion: null, // Not captured in form yet
+        residentialPostcode: formData.residentialAddress.postcode,
+        residentialCountry: this.getCountryCode(formData.residentialAddress.country),
+        isNzResident: formData.residencyStatus === 'NZ_CITIZEN' || formData.residencyStatus === 'NZ_RESIDENT',
+        isAustralianResident: formData.residencyStatus === 'AU_CITIZEN' || formData.residencyStatus === 'AU_RESIDENT',
+        consentGiven: formData.hasConsentedToAppointment,
+        consentDate: formData.hasConsentedToAppointment ? formData.appointmentDate : null,
+        appointedDate: formData.appointmentDate,
       };
 
-      submitData.append('directorData', JSON.stringify(directorData));
-
-      // Add consent document if provided
-      if (formData.consentDocument) {
-        submitData.append('consentDocument', formData.consentDocument);
-      }
-
-      // Add identification document if provided
-      if (formData.identificationDocument) {
-        submitData.append('identificationDocument', formData.identificationDocument);
-      }
-
-      const response = await fetch(`${this.baseUrl}/companies/${companyId}/directors`, {
+      const response = await fetch(`${this.baseUrl}/directors`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
-          // Note: Don't set Content-Type for FormData, let browser set it with boundary
+          'Content-Type': 'application/json',
         },
-        body: submitData,
+        body: JSON.stringify(directorRequest),
       });
 
       if (!response.ok) {
