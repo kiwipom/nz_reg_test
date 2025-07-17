@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { UserPlus, Check, Loader2, Calendar, MapPin } from 'lucide-react';
+import { UserPlus, Check, Loader2, Calendar, MapPin, FileText, Upload, X } from 'lucide-react';
 import { useAuth } from '../auth/useAuth';
+import { DirectorService } from '../services/directorService';
 
-interface DirectorFormData {
+export interface DirectorFormData {
   firstName: string;
   lastName: string;
   middleName?: string;
@@ -54,6 +55,7 @@ export const DirectorAppointment: React.FC = () => {
   const navigate = useNavigate();
   const { companyId } = useParams();
   const { getAccessToken } = useAuth();
+  const directorService = new DirectorService();
   
   const [formData, setFormData] = useState<DirectorFormData>({
     firstName: '',
@@ -184,34 +186,33 @@ export const DirectorAppointment: React.FC = () => {
     }
   };
 
-  // File upload handler for future use
-  // const handleFileUpload = (field: 'consentDocument' | 'identificationDocument') => 
-  //   (e: React.ChangeEvent<HTMLInputElement>) => {
-  //     const file = e.target.files?.[0];
-  //     if (file) {
-  //       // Validate file type
-  //       const allowedTypes = ['application/pdf', 'image/jpeg', 'image/png'];
-  //       if (!allowedTypes.includes(file.type)) {
-  //         setErrors(prev => ({ 
-  //           ...prev, 
-  //           [field]: 'Only PDF, JPEG, and PNG files are allowed' 
-  //         }));
-  //         return;
-  //       }
+  const handleFileUpload = (field: 'consentDocument' | 'identificationDocument') => 
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const file = e.target.files?.[0];
+      if (file) {
+        // Validate file type
+        const allowedTypes = ['application/pdf', 'image/jpeg', 'image/png'];
+        if (!allowedTypes.includes(file.type)) {
+          setErrors(prev => ({ 
+            ...prev, 
+            [field]: 'Only PDF, JPEG, and PNG files are allowed' 
+          }));
+          return;
+        }
 
-  //       // Validate file size (5MB limit)
-  //       if (file.size > 5 * 1024 * 1024) {
-  //         setErrors(prev => ({ 
-  //           ...prev, 
-  //           [field]: 'File size must be less than 5MB' 
-  //         }));
-  //         return;
-  //       }
+        // Validate file size (5MB limit)
+        if (file.size > 5 * 1024 * 1024) {
+          setErrors(prev => ({ 
+            ...prev, 
+            [field]: 'File size must be less than 5MB' 
+          }));
+          return;
+        }
 
-  //       setFormData(prev => ({ ...prev, [field]: file }));
-  //       setErrors(prev => ({ ...prev, [field]: '' }));
-  //     }
-  //   };
+        setFormData(prev => ({ ...prev, [field]: file }));
+        setErrors(prev => ({ ...prev, [field]: '' }));
+      }
+    };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -224,33 +225,18 @@ export const DirectorAppointment: React.FC = () => {
     setIsSubmitting(true);
     
     try {
-      await getAccessToken();
+      const token = await getAccessToken();
       
-      // Create FormData for file uploads
-      const submitData = new FormData();
-      submitData.append('directorData', JSON.stringify({
-        ...formData,
-        companyId,
-        consentDocument: undefined,
-        identificationDocument: undefined,
-      }));
-
-      if (formData.consentDocument) {
-        submitData.append('consentDocument', formData.consentDocument);
-      }
-      if (formData.identificationDocument) {
-        submitData.append('identificationDocument', formData.identificationDocument);
+      if (!companyId) {
+        throw new Error('Company ID is required');
       }
 
-      // TODO: Replace with actual API call
-      console.log('Submitting director appointment:', formData);
-      
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      // Use the DirectorService to submit the appointment
+      const result = await directorService.appointDirector(formData, companyId, token);
       
       navigate(`/companies/${companyId}`, { 
         state: { 
-          message: `Director ${formData.firstName} ${formData.lastName} appointed successfully!` 
+          message: `Director ${result.firstName} ${result.lastName} appointed successfully!` 
         } 
       });
       
@@ -663,6 +649,126 @@ export const DirectorAppointment: React.FC = () => {
                 {errors.isNotDisqualified && (
                   <p className="text-sm text-red-600">{errors.isNotDisqualified}</p>
                 )}
+              </div>
+            </div>
+
+            {/* Supporting Documents Section */}
+            <div className="border-b border-gray-200 pb-8">
+              <h2 className="text-xl font-semibold text-gray-900 mb-6 flex items-center">
+                <FileText className="h-5 w-5 mr-2" />
+                Supporting Documents
+              </h2>
+              
+              <div className="space-y-6">
+                {/* Consent Document Upload */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Director Consent Document (Optional)
+                  </label>
+                  <p className="text-sm text-gray-600 mb-4">
+                    Upload a signed consent document from the director. Accepted formats: PDF, JPEG, PNG (max 5MB)
+                  </p>
+                  
+                  {!formData.consentDocument ? (
+                    <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-gray-400 transition-colors">
+                      <Upload className="mx-auto h-12 w-12 text-gray-400 mb-4" />
+                      <div className="text-sm text-gray-600">
+                        <label htmlFor="consentDocument" className="cursor-pointer font-medium text-blue-600 hover:text-blue-500">
+                          Click to upload
+                        </label>
+                        <span> or drag and drop</span>
+                      </div>
+                      <p className="text-xs text-gray-500 mt-2">PDF, JPEG, PNG up to 5MB</p>
+                      <input
+                        id="consentDocument"
+                        name="consentDocument"
+                        type="file"
+                        className="sr-only"
+                        accept=".pdf,.jpg,.jpeg,.png"
+                        onChange={handleFileUpload('consentDocument')}
+                      />
+                    </div>
+                  ) : (
+                    <div className="border border-gray-300 rounded-lg p-4 bg-gray-50">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center">
+                          <FileText className="h-8 w-8 text-blue-600 mr-3" />
+                          <div>
+                            <p className="text-sm font-medium text-gray-900">{formData.consentDocument.name}</p>
+                            <p className="text-xs text-gray-500">
+                              {(formData.consentDocument.size / 1024 / 1024).toFixed(2)} MB
+                            </p>
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => setFormData(prev => ({ ...prev, consentDocument: undefined }))}
+                          className="text-gray-400 hover:text-red-500 transition-colors"
+                        >
+                          <X className="h-5 w-5" />
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                  {errors.consentDocument && (
+                    <p className="mt-2 text-sm text-red-600">{errors.consentDocument}</p>
+                  )}
+                </div>
+
+                {/* Identification Document Upload */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Identification Document (Optional)
+                  </label>
+                  <p className="text-sm text-gray-600 mb-4">
+                    Upload a copy of the director's identification (driver's license, passport, etc.). Accepted formats: PDF, JPEG, PNG (max 5MB)
+                  </p>
+                  
+                  {!formData.identificationDocument ? (
+                    <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-gray-400 transition-colors">
+                      <Upload className="mx-auto h-12 w-12 text-gray-400 mb-4" />
+                      <div className="text-sm text-gray-600">
+                        <label htmlFor="identificationDocument" className="cursor-pointer font-medium text-blue-600 hover:text-blue-500">
+                          Click to upload
+                        </label>
+                        <span> or drag and drop</span>
+                      </div>
+                      <p className="text-xs text-gray-500 mt-2">PDF, JPEG, PNG up to 5MB</p>
+                      <input
+                        id="identificationDocument"
+                        name="identificationDocument"
+                        type="file"
+                        className="sr-only"
+                        accept=".pdf,.jpg,.jpeg,.png"
+                        onChange={handleFileUpload('identificationDocument')}
+                      />
+                    </div>
+                  ) : (
+                    <div className="border border-gray-300 rounded-lg p-4 bg-gray-50">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center">
+                          <FileText className="h-8 w-8 text-blue-600 mr-3" />
+                          <div>
+                            <p className="text-sm font-medium text-gray-900">{formData.identificationDocument.name}</p>
+                            <p className="text-xs text-gray-500">
+                              {(formData.identificationDocument.size / 1024 / 1024).toFixed(2)} MB
+                            </p>
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => setFormData(prev => ({ ...prev, identificationDocument: undefined }))}
+                          className="text-gray-400 hover:text-red-500 transition-colors"
+                        >
+                          <X className="h-5 w-5" />
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                  {errors.identificationDocument && (
+                    <p className="mt-2 text-sm text-red-600">{errors.identificationDocument}</p>
+                  )}
+                </div>
               </div>
             </div>
 
