@@ -78,7 +78,7 @@ class AddressService(
 
         // Get current address for validation
         val currentAddress = getCurrentAddress(company, addressType)
-        
+
         // Validate the address change using the validation service
         if (currentAddress != null) {
             val validationResult = addressValidationService.validateAddressUpdate(
@@ -86,11 +86,13 @@ class AddressService(
                 newAddress = newAddress,
                 effectiveDate = effectiveDate,
             )
-            
+
             if (!validationResult.isValid) {
-                throw IllegalArgumentException("Address change validation failed: ${validationResult.errors.joinToString(", ")}")
+                throw IllegalArgumentException(
+                    "Address change validation failed: ${validationResult.errors.joinToString(", ")}",
+                )
             }
-            
+
             // Log warnings if any
             if (validationResult.hasWarnings()) {
                 logger.warn("Address change warnings: ${validationResult.warnings.joinToString(", ")}")
@@ -133,33 +135,37 @@ class AddressService(
         requestedBy: String? = null,
     ): AddressChangeWorkflow {
         logger.info("Initiating address change workflow for company ${company.id}, type ${addressType.name}")
-        
+
         val currentAddress = getCurrentAddress(company, addressType)
-        
+
         // Perform comprehensive validation
         val validationResult = if (currentAddress != null) {
             addressValidationService.validateAddressUpdate(currentAddress, newAddress, effectiveDate)
         } else {
             addressValidationService.validateAddress(newAddress)
         }
-        
+
         val workflow = AddressChangeWorkflow(
             companyId = company.id,
             addressType = addressType,
             currentAddress = currentAddress,
             proposedAddress = newAddress,
             effectiveDate = effectiveDate,
-            status = if (validationResult.isValid) AddressChangeStatus.PENDING_APPROVAL else AddressChangeStatus.VALIDATION_FAILED,
+            status = if (validationResult.isValid) {
+                AddressChangeStatus.PENDING_APPROVAL
+            } else {
+                AddressChangeStatus.VALIDATION_FAILED
+            },
             validationResult = validationResult,
             requestedBy = requestedBy,
             requestedAt = java.time.LocalDateTime.now(),
         )
-        
+
         // Determine if automatic approval is possible
         if (canAutoApprove(workflow)) {
             return approveAddressChange(workflow)
         }
-        
+
         auditService.logEvent(
             action = nz.govt.companiesoffice.register.audit.AuditAction.CREATE,
             resourceType = "AddressChangeWorkflow",
@@ -173,20 +179,20 @@ class AddressService(
                 "hasValidationWarnings" to validationResult.hasWarnings(),
             ),
         )
-        
+
         return workflow
     }
-    
+
     /**
      * Approves and executes an address change workflow
      */
     fun approveAddressChange(workflow: AddressChangeWorkflow): AddressChangeWorkflow {
         logger.info("Approving address change workflow for company ${workflow.companyId}")
-        
+
         if (!workflow.validationResult.isValid) {
             throw IllegalStateException("Cannot approve workflow with validation errors")
         }
-        
+
         // Execute the address change
         val newAddress = changeAddress(
             company = workflow.currentAddress?.company ?: workflow.proposedAddress.company,
@@ -194,13 +200,13 @@ class AddressService(
             newAddress = workflow.proposedAddress,
             effectiveDate = workflow.effectiveDate,
         )
-        
+
         val approvedWorkflow = workflow.copy(
             status = AddressChangeStatus.APPROVED,
             approvedAt = java.time.LocalDateTime.now(),
             executedAddress = newAddress,
         )
-        
+
         auditService.logEvent(
             action = nz.govt.companiesoffice.register.audit.AuditAction.UPDATE,
             resourceType = "AddressChangeWorkflow",
@@ -212,22 +218,22 @@ class AddressService(
                 "newAddressId" to newAddress.id,
             ),
         )
-        
+
         return approvedWorkflow
     }
-    
+
     /**
      * Rejects an address change workflow
      */
     fun rejectAddressChange(workflow: AddressChangeWorkflow, reason: String): AddressChangeWorkflow {
         logger.info("Rejecting address change workflow for company ${workflow.companyId}: $reason")
-        
+
         val rejectedWorkflow = workflow.copy(
             status = AddressChangeStatus.REJECTED,
             rejectionReason = reason,
             rejectedAt = java.time.LocalDateTime.now(),
         )
-        
+
         auditService.logEvent(
             action = nz.govt.companiesoffice.register.audit.AuditAction.UPDATE,
             resourceType = "AddressChangeWorkflow",
@@ -239,10 +245,10 @@ class AddressService(
                 "reason" to reason,
             ),
         )
-        
+
         return rejectedWorkflow
     }
-    
+
     /**
      * Bulk address update workflow for companies with multiple addresses
      */
@@ -252,10 +258,10 @@ class AddressService(
         effectiveDate: LocalDate = LocalDate.now(),
     ): BulkAddressUpdateResult {
         logger.info("Processing bulk address update for company ${company.id} with ${addressUpdates.size} updates")
-        
+
         val results = mutableListOf<AddressChangeWorkflow>()
         val errors = mutableListOf<String>()
-        
+
         // Validate all updates first
         for (update in addressUpdates) {
             try {
@@ -271,7 +277,7 @@ class AddressService(
                 errors.add("${update.addressType.name}: ${e.message}")
             }
         }
-        
+
         // If any validation failed, return early
         if (errors.isNotEmpty()) {
             return BulkAddressUpdateResult(
@@ -281,7 +287,7 @@ class AddressService(
                 status = BulkUpdateStatus.VALIDATION_FAILED,
             )
         }
-        
+
         // Approve all valid workflows
         val approvedWorkflows = results.map { workflow ->
             if (canAutoApprove(workflow)) {
@@ -290,7 +296,7 @@ class AddressService(
                 workflow
             }
         }
-        
+
         auditService.logEvent(
             action = nz.govt.companiesoffice.register.audit.AuditAction.UPDATE,
             resourceType = "BulkAddressUpdate",
@@ -302,7 +308,7 @@ class AddressService(
                 "pendingCount" to approvedWorkflows.count { it.status == AddressChangeStatus.PENDING_APPROVAL },
             ),
         )
-        
+
         return BulkAddressUpdateResult(
             company = company,
             workflows = approvedWorkflows,
@@ -314,39 +320,39 @@ class AddressService(
             },
         )
     }
-    
+
     private fun canAutoApprove(workflow: AddressChangeWorkflow): Boolean {
         // Auto-approve if:
         // 1. No validation errors
         // 2. No significant warnings (like country changes for registered addresses)
         // 3. Not a registered address change to different country
         // 4. Change is within reasonable timeframe (not too far in future)
-        
+
         if (!workflow.validationResult.isValid) {
             return false
         }
-        
+
         // Check for significant warnings that require manual approval
         val significantWarnings = listOf(
             "different country may have legal implications",
             "different region may affect court jurisdiction",
         )
-        
+
         val hasSignificantWarnings = workflow.validationResult.warnings.any { warning ->
             significantWarnings.any { significant -> warning.contains(significant, ignoreCase = true) }
         }
-        
+
         if (hasSignificantWarnings) {
             logger.info("Manual approval required due to significant warnings: ${workflow.validationResult.warnings}")
             return false
         }
-        
+
         // Check if effective date is too far in future (requires manual approval)
         if (workflow.effectiveDate.isAfter(LocalDate.now().plusMonths(6))) {
             logger.info("Manual approval required for address change more than 6 months in future")
             return false
         }
-        
+
         return true
     }
 

@@ -146,14 +146,14 @@ data class AddressChangeResponse(
                 suggestions = workflow.validationResult.suggestions,
             )
         }
-        
+
         fun failure(errors: List<String>): AddressChangeResponse {
             return AddressChangeResponse(
                 success = false,
                 errors = errors,
             )
         }
-        
+
         fun validation(workflow: AddressChangeWorkflow): AddressChangeResponse {
             return AddressChangeResponse(
                 success = workflow.validationResult.isValid,
@@ -208,6 +208,6 @@ data class BulkUpdateSummary(
             0.0
         }
     }
-    
+
     fun hasErrors(): Boolean = errors.isNotEmpty() || validationFailures > 0
 }

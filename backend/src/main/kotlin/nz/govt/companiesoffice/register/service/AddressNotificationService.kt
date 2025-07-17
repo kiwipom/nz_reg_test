@@ -84,7 +84,9 @@ class AddressNotificationService(
         notificationType: AddressNotificationType = AddressNotificationType.BULK_UPDATE,
         requestedBy: String? = null,
     ): BulkAddressNotificationResult {
-        logger.info("Sending bulk address change notifications for company ${company.id} with ${addressChanges.size} changes")
+        logger.info(
+            "Sending bulk address change notifications for company ${company.id} with ${addressChanges.size} changes",
+        )
 
         val notificationResults = addressChanges.map { change ->
             sendAddressChangeNotification(
@@ -197,7 +199,10 @@ class AddressNotificationService(
         }
 
         // Check for at least one delivery method
-        if (preferences.emailAddresses.isEmpty() && preferences.phoneNumbers.isEmpty() && preferences.postalAddress == null) {
+        if (preferences.emailAddresses.isEmpty() &&
+            preferences.phoneNumbers.isEmpty() &&
+            preferences.postalAddress == null
+        ) {
             errors.add("At least one notification delivery method must be specified")
         }
 
@@ -267,7 +272,11 @@ class AddressNotificationService(
         // recipients.addAll(getDirectorRecipients(company))
 
         // Add registrar for certain notification types
-        if (notificationType in listOf(AddressNotificationType.COMPLIANCE_REQUIRED, AddressNotificationType.WORKFLOW_APPROVED)) {
+        if (notificationType in listOf(
+                AddressNotificationType.COMPLIANCE_REQUIRED,
+                AddressNotificationType.WORKFLOW_APPROVED,
+            )
+        ) {
             recipients.add(
                 AddressNotificationRecipient(
                     type = AddressRecipientType.REGISTRAR,
@@ -466,7 +475,13 @@ class AddressNotificationService(
         val recipients = mutableListOf<AddressNotificationRecipient>()
 
         // Add company contacts
-        recipients.addAll(determineAddressNotificationRecipients(company, issue.addressType, AddressNotificationType.COMPLIANCE_REQUIRED))
+        recipients.addAll(
+            determineAddressNotificationRecipients(
+                company,
+                issue.addressType,
+                AddressNotificationType.COMPLIANCE_REQUIRED,
+            ),
+        )
 
         // Add internal recipients for high severity issues
         if (issue.severity == AddressComplianceSeverity.HIGH) {
@@ -572,7 +587,10 @@ class AddressNotificationService(
     }
 
     private fun isValidPhoneNumber(phone: String): Boolean {
-        return phone.matches(Regex("^\\+?[1-9]\\d{1,14}$"))
+        // Allow international format with optional spaces, brackets, hyphens
+        // Must be at least 8 digits and start with + or digit
+        val cleanPhone = phone.replace(Regex("[\\s\\-()]"), "")
+        return cleanPhone.matches(Regex("^\\+?[1-9]\\d{7,14}$"))
     }
 }
 
@@ -655,8 +673,6 @@ data class AddressDeliveryResult(
     }
 }
 
-
-
 data class AddressNotificationResult(
     val notification: AddressNotification,
     val deliveryResults: List<AddressDeliveryResult>,
@@ -665,7 +681,13 @@ data class AddressNotificationResult(
 ) {
     fun getSuccessfulDeliveries(): List<AddressDeliveryResult> = deliveryResults.filter { it.isSuccessful }
     fun getFailedDeliveries(): List<AddressDeliveryResult> = deliveryResults.filter { !it.isSuccessful }
-    fun getDeliveryRate(): Double = if (deliveryResults.isEmpty()) 0.0 else deliveryResults.count { it.isSuccessful }.toDouble() / deliveryResults.size.toDouble()
+    fun getDeliveryRate(): Double = if (deliveryResults.isEmpty()) {
+        0.0
+    } else {
+        deliveryResults.count {
+            it.isSuccessful
+        }.toDouble() / deliveryResults.size.toDouble()
+    }
 }
 
 data class BulkAddressNotificationResult(
@@ -678,7 +700,11 @@ data class BulkAddressNotificationResult(
     fun getTotalNotificationsSent(): Int = individualResults.size
     fun getSuccessfulNotifications(): Int = individualResults.count { it.isSuccessful }
     fun getFailedNotifications(): Int = individualResults.count { !it.isSuccessful }
-    fun getOverallSuccessRate(): Double = if (individualResults.isEmpty()) 0.0 else getSuccessfulNotifications().toDouble() / getTotalNotificationsSent().toDouble()
+    fun getOverallSuccessRate(): Double = if (individualResults.isEmpty()) {
+        0.0
+    } else {
+        getSuccessfulNotifications().toDouble() / getTotalNotificationsSent().toDouble()
+    }
 }
 
 data class AddressChangeNotificationRequest(
@@ -713,10 +739,9 @@ data class AddressComplianceIssue(
     fun getDaysUntilDue(): Long {
         return java.time.Period.between(LocalDate.now(), dueDate).days.toLong()
     }
-    
+
     fun isOverdue(): Boolean = LocalDate.now().isAfter(dueDate)
 }
-
 
 data class AddressNotificationPreferences(
     val emailAddresses: List<String>,

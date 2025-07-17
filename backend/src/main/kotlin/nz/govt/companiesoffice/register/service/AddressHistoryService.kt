@@ -5,8 +5,6 @@ import nz.govt.companiesoffice.register.entity.AddressType
 import nz.govt.companiesoffice.register.entity.Company
 import nz.govt.companiesoffice.register.repository.AddressRepository
 import org.slf4j.LoggerFactory
-import org.springframework.data.domain.Page
-import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import java.time.LocalDate
@@ -28,10 +26,10 @@ class AddressHistoryService(
      */
     fun getCompanyAddressHistory(company: Company): AddressHistory {
         logger.debug("Retrieving complete address history for company ${company.id}")
-        
+
         val allAddresses = addressRepository.findAddressHistoryByCompany(company)
         val groupedByType = allAddresses.groupBy { it.addressType }
-        
+
         val typeHistories = AddressType.values().map { type ->
             val addresses = groupedByType[type] ?: emptyList()
             AddressTypeHistory(
@@ -43,7 +41,7 @@ class AddressHistoryService(
                 lastChanged = addresses.maxByOrNull { it.effectiveFrom }?.effectiveFrom,
             )
         }
-        
+
         return AddressHistory(
             company = company,
             typeHistories = typeHistories,
@@ -63,13 +61,13 @@ class AddressHistoryService(
         includeInactive: Boolean = true,
     ): AddressTypeHistory {
         logger.debug("Retrieving ${addressType.name} address history for company ${company.id}")
-        
+
         val addresses = if (includeInactive) {
             addressRepository.findAddressHistoryByCompanyAndType(company, addressType)
         } else {
             listOfNotNull(addressRepository.findEffectiveAddressByCompanyAndType(company, addressType))
         }
-        
+
         return AddressTypeHistory(
             addressType = addressType,
             addresses = addresses.sortedByDescending { it.effectiveFrom },
@@ -89,18 +87,18 @@ class AddressHistoryService(
         endDate: LocalDate,
     ): List<AddressChange> {
         logger.debug("Retrieving address changes for company ${company.id} between $startDate and $endDate")
-        
+
         val allAddresses = addressRepository.findAddressHistoryByCompany(company)
         val changes = mutableListOf<AddressChange>()
-        
+
         // Group by type and analyze changes
         allAddresses.groupBy { it.addressType }.forEach { (type, addresses) ->
             val sortedAddresses = addresses.sortedBy { it.effectiveFrom }
-            
+
             for (i in 0 until sortedAddresses.size) {
                 val current = sortedAddresses[i]
                 val previous = if (i > 0) sortedAddresses[i - 1] else null
-                
+
                 // Check if this change falls within the date range
                 if (current.effectiveFrom >= startDate && current.effectiveFrom <= endDate) {
                     changes.add(
@@ -122,7 +120,7 @@ class AddressHistoryService(
                 }
             }
         }
-        
+
         return changes.sortedByDescending { it.changeDate }
     }
 
@@ -134,13 +132,13 @@ class AddressHistoryService(
         date: LocalDate,
     ): AddressSnapshot {
         logger.debug("Retrieving address snapshot for company ${company.id} at $date")
-        
+
         val addresses = AddressType.values().mapNotNull { type ->
             addressRepository.findEffectiveAddressByCompanyAndType(company, type, date)?.let { address ->
                 type to address
             }
         }.toMap()
-        
+
         return AddressSnapshot(
             company = company,
             snapshotDate = date,
@@ -154,20 +152,20 @@ class AddressHistoryService(
      */
     fun analyzeAddressPatterns(company: Company): AddressAnalysis {
         logger.debug("Analyzing address patterns for company ${company.id}")
-        
+
         val history = getCompanyAddressHistory(company)
         val allAddresses = history.typeHistories.flatMap { it.addresses }
-        
+
         // Analyze geographical distribution
         val cityDistribution = allAddresses.groupBy { it.city }.mapValues { it.value.size }
         val regionDistribution = allAddresses.mapNotNull { it.region }.groupBy { it }.mapValues { it.value.size }
         val countryDistribution = allAddresses.groupBy { it.country }.mapValues { it.value.size }
-        
+
         // Analyze change frequency
-        val changeFrequency = history.typeHistories.associate { 
-            it.addressType to it.totalChanges 
+        val changeFrequency = history.typeHistories.associate {
+            it.addressType to it.totalChanges
         }
-        
+
         // Calculate stability metrics
         val averageAddressDuration = history.typeHistories.mapNotNull { typeHistory ->
             if (typeHistory.addresses.size > 1) {
@@ -176,9 +174,11 @@ class AddressHistoryService(
                     java.time.Period.between(current.effectiveFrom, next.effectiveFrom).days.toLong()
                 }
                 durations.average()
-            } else null
+            } else {
+                null
+            }
         }.average()
-        
+
         return AddressAnalysis(
             company = company,
             totalAddressChanges = allAddresses.size,
@@ -202,13 +202,13 @@ class AddressHistoryService(
         threshold: Double = 0.7,
     ): List<AddressSimilarity> {
         logger.debug("Finding companies with similar address patterns to company ${company.id}")
-        
+
         val targetAnalysis = analyzeAddressPatterns(company)
         val similarities = mutableListOf<AddressSimilarity>()
-        
+
         // This would typically query other companies, but for now we'll return empty
         // In a real implementation, this would compare address patterns across companies
-        
+
         return similarities
     }
 
@@ -217,45 +217,55 @@ class AddressHistoryService(
      */
     fun validateAddressHistory(company: Company): AddressHistoryValidation {
         logger.debug("Validating address history for company ${company.id}")
-        
+
         val history = getCompanyAddressHistory(company)
         val errors = mutableListOf<String>()
         val warnings = mutableListOf<String>()
-        
+
         // Check for required addresses
-        val hasRegisteredAddress = history.typeHistories.any { 
-            it.addressType == AddressType.REGISTERED && it.currentAddress != null 
+        val hasRegisteredAddress = history.typeHistories.any {
+            it.addressType == AddressType.REGISTERED && it.currentAddress != null
         }
         if (!hasRegisteredAddress) {
             errors.add("Company must have an active registered address")
         }
-        
+
         // Check for gaps in address history
         history.typeHistories.forEach { typeHistory ->
             val addresses = typeHistory.addresses.sortedBy { it.effectiveFrom }
             for (i in 0 until addresses.size - 1) {
                 val current = addresses[i]
                 val next = addresses[i + 1]
-                
-                if (current.effectiveTo != null && current.effectiveTo!!.plusDays(1) != next.effectiveFrom) {
-                    warnings.add("Gap in ${typeHistory.addressType.name} address history between ${current.effectiveTo} and ${next.effectiveFrom}")
+
+                if (current.effectiveTo != null &&
+                    current.effectiveTo!!.plusDays(1) != next.effectiveFrom
+                ) {
+                    warnings.add(
+                        "Gap in ${typeHistory.addressType.name} address history " +
+                            "between ${current.effectiveTo} and ${next.effectiveFrom}",
+                    )
                 }
             }
         }
-        
+
         // Check for overlapping addresses
         history.typeHistories.forEach { typeHistory ->
             val addresses = typeHistory.addresses.sortedBy { it.effectiveFrom }
             for (i in 0 until addresses.size - 1) {
                 val current = addresses[i]
                 val next = addresses[i + 1]
-                
-                if (current.effectiveTo != null && current.effectiveTo!! >= next.effectiveFrom) {
-                    errors.add("Overlapping ${typeHistory.addressType.name} addresses: ${current.effectiveFrom} to ${current.effectiveTo} overlaps with ${next.effectiveFrom}")
+
+                if (current.effectiveTo != null &&
+                    current.effectiveTo!! >= next.effectiveFrom
+                ) {
+                    errors.add(
+                        "Overlapping ${typeHistory.addressType.name} addresses: " +
+                            "${current.effectiveFrom} to ${current.effectiveTo} overlaps with ${next.effectiveFrom}",
+                    )
                 }
             }
         }
-        
+
         return AddressHistoryValidation(
             company = company,
             isValid = errors.isEmpty(),
@@ -270,16 +280,16 @@ class AddressHistoryService(
         // 1. Number of address changes (fewer changes = more stable)
         // 2. Time since last change (longer = more stable)
         // 3. Consistency of geographical location (same city/region = more stable)
-        
+
         val totalChanges = history.typeHistories.sumOf { it.totalChanges }
         val daysSinceLastChange = history.newestAddress?.effectiveFrom?.let { lastChange ->
             java.time.Period.between(lastChange, LocalDate.now()).days.toDouble()
         } ?: 0.0
-        
+
         // Simple scoring algorithm (0-100 scale)
         val changeScore = maxOf(0.0, 100.0 - (totalChanges * 10.0))
         val timeScore = minOf(100.0, daysSinceLastChange / 365.0 * 50.0) // 50 points for 1+ years
-        
+
         return (changeScore + timeScore) / 2.0
     }
 }
@@ -301,7 +311,7 @@ data class AddressHistory(
             }
         }.toMap()
     }
-    
+
     fun hasCompleteHistory(): Boolean {
         return typeHistories.any { it.addressType == AddressType.REGISTERED && it.addresses.isNotEmpty() }
     }
@@ -320,7 +330,9 @@ data class AddressTypeHistory(
     fun getDurationDays(): Long? {
         return if (firstRegistered != null && lastChanged != null) {
             java.time.Period.between(firstRegistered, lastChanged).days.toLong()
-        } else null
+        } else {
+            null
+        }
     }
 }
 
@@ -335,13 +347,17 @@ data class AddressChange(
     fun isSignificantChange(): Boolean {
         return changeType == AddressChangeType.ADDRESS_CHANGE &&
             previousAddress != null &&
-            (previousAddress.city != newAddress.city || previousAddress.country != newAddress.country)
+            (
+                previousAddress.city != newAddress.city ||
+                    previousAddress.country != newAddress.country
+                )
     }
-    
+
     fun getChangeDescription(): String {
         return when (changeType) {
             AddressChangeType.INITIAL_REGISTRATION -> "Initial address registration"
-            AddressChangeType.ADDRESS_CHANGE -> "Address changed from ${previousAddress?.getFullAddress()} to ${newAddress.getFullAddress()}"
+            AddressChangeType.ADDRESS_CHANGE ->
+                "Address changed from ${previousAddress?.getFullAddress()} to ${newAddress.getFullAddress()}"
             AddressChangeType.ADMINISTRATIVE_UPDATE -> "Administrative update"
         }
     }
@@ -382,7 +398,7 @@ data class AddressAnalysis(
     fun isHighlyStable(): Boolean = stabilityScore > 80.0
     fun isModeratelyStable(): Boolean = stabilityScore in 50.0..80.0
     fun isUnstable(): Boolean = stabilityScore < 50.0
-    
+
     fun getPrimaryLocation(): String {
         return listOfNotNull(mostFrequentCity, mostFrequentRegion).joinToString(", ")
     }

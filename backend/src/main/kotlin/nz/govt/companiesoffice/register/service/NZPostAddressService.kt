@@ -2,7 +2,6 @@ package nz.govt.companiesoffice.register.service
 
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
-import java.util.Locale
 
 @Service
 class NZPostAddressService {
@@ -113,7 +112,9 @@ class NZPostAddressService {
 
         // Standardize address format
         val standardizedAddress = if (errors.isEmpty()) {
-            standardizeAddress(components ?: createBasicComponents(addressLine1, addressLine2, cityMatch ?: city, postcode))
+            standardizeAddress(
+                components ?: createBasicComponents(addressLine1, addressLine2, cityMatch ?: city, postcode),
+            )
         } else {
             null
         }
@@ -188,7 +189,7 @@ class NZPostAddressService {
 
         // Get comprehensive address database
         val addressDatabase = getKnownAddressDatabase()
-        
+
         // Find matches using different strategies
         suggestions.addAll(findExactMatches(input, addressDatabase))
         suggestions.addAll(findPartialMatches(input, addressDatabase))
@@ -196,8 +197,10 @@ class NZPostAddressService {
 
         // Sort by score and type preference
         return suggestions
-            .sortedWith(compareByDescending<AddressSuggestion> { it.type.ordinal }
-                .thenByDescending { it.score })
+            .sortedWith(
+                compareByDescending<AddressSuggestion> { it.type.ordinal }
+                    .thenByDescending { it.score },
+            )
             .take(10)
     }
 
@@ -215,11 +218,11 @@ class NZPostAddressService {
      */
     fun standardizeAddress(address: String): AddressStandardizationResult {
         logger.debug("Standardizing address: $address")
-        
+
         val components = parseAddressString(address)
         val standardized = standardizeAddress(components)
         val confidence = calculateAddressConfidence(components)
-        
+
         return AddressStandardizationResult(
             originalAddress = address,
             standardizedAddress = standardized,
@@ -285,7 +288,7 @@ class NZPostAddressService {
         return try {
             val streetParts = parseStreetAddress(addressLine1)
             val region = getRegionForCity(city)
-            
+
             AddressComponents(
                 streetNumber = streetParts["number"],
                 streetName = streetParts["name"],
@@ -317,7 +320,7 @@ class NZPostAddressService {
 
     private fun standardizeAddress(components: AddressComponents): String {
         val parts = mutableListOf<String>()
-        
+
         if (components.streetNumber != null && components.streetName != null) {
             val streetPart = "${components.streetNumber} ${components.streetName}"
             if (components.streetType != null) {
@@ -328,11 +331,11 @@ class NZPostAddressService {
         } else if (components.streetName != null) {
             parts.add(components.streetName)
         }
-        
+
         components.suburb?.let { parts.add(it) }
         parts.add(components.city)
         components.postcode?.let { parts.add(it) }
-        
+
         return parts.joinToString(", ")
     }
 
@@ -341,7 +344,7 @@ class NZPostAddressService {
         val postcode = parts.lastOrNull()?.takeIf { it.matches(Regex("^\\d{4}$")) }
         val city = if (postcode != null) parts[parts.size - 2] else parts.last()
         val streetAddress = parts.first()
-        
+
         return AddressComponents(
             streetName = streetAddress,
             city = city,
@@ -351,20 +354,20 @@ class NZPostAddressService {
 
     private fun calculateAddressConfidence(components: AddressComponents): Double {
         var confidence = 0.0
-        
+
         if (components.streetNumber != null) confidence += 0.2
         if (components.streetName != null) confidence += 0.3
         if (components.postcode != null) confidence += 0.2
         if (getValidCities().contains(components.city)) confidence += 0.2
         if (components.region != null && getValidRegions().contains(components.region)) confidence += 0.1
-        
+
         return confidence.coerceIn(0.0, 1.0)
     }
 
     private fun parseStreetAddress(streetAddress: String): Map<String, String> {
         val parts = streetAddress.trim().split("\\s+".toRegex())
         val result = mutableMapOf<String, String>()
-        
+
         // Try to identify street number (first part if numeric)
         if (parts.isNotEmpty() && parts[0].matches(Regex("^\\d+[A-Za-z]?$"))) {
             result["number"] = parts[0]
@@ -374,7 +377,7 @@ class NZPostAddressService {
         } else {
             result["name"] = streetAddress
         }
-        
+
         return result
     }
 
@@ -395,27 +398,27 @@ class NZPostAddressService {
             "Whangarei" to "Northland",
             "Gisborne" to "Gisborne",
         )
-        
+
         return cityRegionMap[city]
     }
 
     private fun findBestCityMatch(city: String, validCities: List<String>): String? {
         val cityLower = city.lowercase()
-        
+
         // Exact match
         validCities.forEach { validCity ->
             if (validCity.lowercase() == cityLower) {
                 return validCity
             }
         }
-        
+
         // Partial match
         validCities.forEach { validCity ->
             if (validCity.lowercase().contains(cityLower) || cityLower.contains(validCity.lowercase())) {
                 return validCity
             }
         }
-        
+
         return null
     }
 
@@ -441,7 +444,7 @@ class NZPostAddressService {
             "2025" to Pair("Auckland", "Auckland"),
             "2104" to Pair("Auckland", "Auckland"),
             "2105" to Pair("Auckland", "Auckland"),
-            
+
             // Wellington
             "6011" to Pair("Wellington", "Wellington"),
             "6012" to Pair("Wellington", "Wellington"),
@@ -451,7 +454,7 @@ class NZPostAddressService {
             "5011" to Pair("Lower Hutt", "Wellington"),
             "5018" to Pair("Upper Hutt", "Wellington"),
             "5019" to Pair("Upper Hutt", "Wellington"),
-            
+
             // Canterbury
             "8011" to Pair("Christchurch", "Canterbury"),
             "8013" to Pair("Christchurch", "Canterbury"),
@@ -461,7 +464,7 @@ class NZPostAddressService {
             "8041" to Pair("Christchurch", "Canterbury"),
             "8051" to Pair("Christchurch", "Canterbury"),
             "7910" to Pair("Timaru", "Canterbury"),
-            
+
             // Other major cities
             "9016" to Pair("Dunedin", "Otago"),
             "9018" to Pair("Dunedin", "Otago"),
@@ -483,7 +486,7 @@ class NZPostAddressService {
         if (postcode.length != 4 || !postcode.all { it.isDigit() }) {
             return emptyList()
         }
-        
+
         return getPostcodeCityRegionMap().keys.filter { validPostcode ->
             calculateLevenshteinDistance(postcode, validPostcode) <= 1
         }.take(5)
@@ -504,11 +507,31 @@ class NZPostAddressService {
             AddressComponents(streetName = "Queen Street", city = "Auckland", postcode = "1010"),
             AddressComponents(streetNumber = "1", streetName = "Lambton Quay", city = "Wellington", postcode = "6011"),
             AddressComponents(streetName = "Lambton Quay", city = "Wellington", postcode = "6011"),
-            AddressComponents(streetNumber = "100", streetName = "Victoria Street", city = "Auckland", postcode = "1010"),
+            AddressComponents(
+                streetNumber = "100",
+                streetName = "Victoria Street",
+                city = "Auckland",
+                postcode = "1010",
+            ),
             AddressComponents(streetNumber = "50", streetName = "The Terrace", city = "Wellington", postcode = "6011"),
-            AddressComponents(streetNumber = "123", streetName = "Cashel Street", city = "Christchurch", postcode = "8011"),
-            AddressComponents(streetNumber = "88", streetName = "Shortland Street", city = "Auckland", postcode = "1010"),
-            AddressComponents(streetNumber = "25", streetName = "Featherston Street", city = "Wellington", postcode = "6011"),
+            AddressComponents(
+                streetNumber = "123",
+                streetName = "Cashel Street",
+                city = "Christchurch",
+                postcode = "8011",
+            ),
+            AddressComponents(
+                streetNumber = "88",
+                streetName = "Shortland Street",
+                city = "Auckland",
+                postcode = "1010",
+            ),
+            AddressComponents(
+                streetNumber = "25",
+                streetName = "Featherston Street",
+                city = "Wellington",
+                postcode = "6011",
+            ),
         )
     }
 
@@ -568,9 +591,9 @@ class NZPostAddressService {
             for (j in 1..len2) {
                 val cost = if (s1[i - 1] == s2[j - 1]) 0 else 1
                 dp[i][j] = minOf(
-                    dp[i - 1][j] + 1,      // deletion
-                    dp[i][j - 1] + 1,      // insertion
-                    dp[i - 1][j - 1] + cost // substitution
+                    dp[i - 1][j] + 1, // deletion
+                    dp[i][j - 1] + 1, // insertion
+                    dp[i - 1][j - 1] + cost, // substitution
                 )
             }
         }
