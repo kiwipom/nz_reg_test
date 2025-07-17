@@ -70,8 +70,6 @@ describe('DirectorAppointment', () => {
       getAccessTokenWithPopup: vi.fn(),
       loginWithPopup: vi.fn(),
       handleRedirectCallback: vi.fn(),
-      buildAuthorizeUrl: vi.fn(),
-      buildLogoutUrl: vi.fn(),
       error: undefined,
     });
     

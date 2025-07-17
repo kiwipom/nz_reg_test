@@ -1,10 +1,5 @@
 import type { DirectorFormData } from '../pages/DirectorAppointment';
 
-interface DirectorAppointmentRequest {
-  directorData: Omit<DirectorFormData, 'consentDocument' | 'identificationDocument'>;
-  companyId: string;
-}
-
 export interface DirectorAppointmentResponse {
   id: number;
   fullName: string;
