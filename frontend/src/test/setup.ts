@@ -2,6 +2,7 @@ import '@testing-library/jest-dom';
 import { beforeAll, afterEach, afterAll, vi } from 'vitest';
 import { cleanup } from '@testing-library/react';
 import { server } from './mocks/server';
+import { TEST_CONSTANTS } from './constants';
 
 // Setup MSW
 beforeAll(() => {
@@ -18,11 +19,11 @@ afterAll(() => {
 });
 
 // Mock environment variables
-process.env.VITE_AUTH0_DOMAIN = 'test.auth0.com';
-process.env.VITE_AUTH0_CLIENT_ID = 'test-client-id';
-process.env.VITE_AUTH0_AUDIENCE = 'https://api.companies-register.govt.nz';
-process.env.VITE_AUTH0_REDIRECT_URI = 'http://localhost:3000/callback';
-process.env.VITE_API_BASE_URL = 'http://localhost:8080/api';
+process.env.VITE_AUTH0_DOMAIN = TEST_CONSTANTS.AUTH0_TEST_DOMAIN;
+process.env.VITE_AUTH0_CLIENT_ID = TEST_CONSTANTS.AUTH0_TEST_CLIENT_ID;
+process.env.VITE_AUTH0_AUDIENCE = TEST_CONSTANTS.AUTH0_TEST_AUDIENCE;
+process.env.VITE_AUTH0_REDIRECT_URI = TEST_CONSTANTS.AUTH0_TEST_REDIRECT_URI;
+process.env.VITE_API_BASE_URL = TEST_CONSTANTS.TEST_API_BASE_URL;
 
 // Mock Auth0
 const mockAuth0 = {
@@ -31,9 +32,9 @@ const mockAuth0 = {
   isLoading: false,
   loginWithRedirect: vi.fn(),
   logout: vi.fn(),
-  getAccessTokenSilently: vi.fn().mockResolvedValue('mock-token'),
+  getAccessTokenSilently: vi.fn().mockResolvedValue(TEST_CONSTANTS.MOCK_ACCESS_TOKEN),
   getIdTokenClaims: vi.fn().mockResolvedValue({
-    'https://api.companies-register.govt.nz/roles': ['PUBLIC']
+    'https://api.companies-register.govt.nz/roles': TEST_CONSTANTS.TEST_USER_ROLES
   }),
 };
 

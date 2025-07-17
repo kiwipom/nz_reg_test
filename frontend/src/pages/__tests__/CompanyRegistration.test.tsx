@@ -5,6 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { CompanyRegistration } from '../CompanyRegistration';
 import { useAuth } from '../../auth/useAuth';
 import { registrationService } from '../../services/registrationService';
+import { TEST_CONSTANTS } from '../../test/constants';
 
 // Mock the auth hook
 vi.mock('../../auth/useAuth');
@@ -68,7 +69,7 @@ describe('CompanyRegistration', () => {
       isLoading: false,
       login: vi.fn(),
       logout: vi.fn(),
-      getAccessToken: vi.fn().mockResolvedValue('mock-token'),
+      getAccessToken: vi.fn().mockResolvedValue(TEST_CONSTANTS.MOCK_ACCESS_TOKEN),
       getUserRoles: vi.fn().mockResolvedValue([]),
       hasRole: vi.fn().mockResolvedValue(false),
       hasAnyRole: vi.fn().mockResolvedValue(false),
@@ -673,7 +674,7 @@ describe('CompanyRegistration', () => {
             companyType: 'LTD',
             incorporationDate: '2024-01-01',
           }),
-          'mock-token'
+          TEST_CONSTANTS.MOCK_ACCESS_TOKEN
         );
         expect(mockNavigate).toHaveBeenCalledWith('/', {
           state: {

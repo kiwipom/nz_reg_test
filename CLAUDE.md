@@ -228,16 +228,37 @@ You are implementing testing strategies for the NZ Companies Register System.
 7. **Scalability**: Design for horizontal scaling and high availability
 8. **Monitoring**: Include proper logging, metrics, and alerting in all features
 
-## TODO.md Management - CRITICAL REMINDERS
+## Development Workflow - for each Phase Section in TODO.md:**
 
-**ALWAYS update TODO.md after completing tasks. This is essential for project tracking:**
+### Before the first task:
+1. **Create a new feature branch** - Named to match the scope of the section, e.g. `feature/phase-1.4-authentication-security`
 
-1. **After completing any significant task or phase** - Automatically update TODO.md to mark items as complete
-2. **When starting a new phase or section** - Update the "Current Progress" section at the top
-3. **When adding bonus features or discovering additional work** - Add those as bonus items in TODO.md
-4. **At the end of each work session** - Do a final check to ensure TODO.md reflects the current state
+### Standard Development Cycle:
+1. **Analyze the task** - Review the `[ ] Item` in TODO.md and understand requirements
+2. **Write the code** - Implement the feature following the appropriate `/prompt` guidelines
+3. **Write comprehensive tests** - Unit tests, integration tests, and any E2E tests needed. Consider happy path and negative test cases.
+4. **Verify all tests pass** - Run `npm run test:run` (frontend) or `./gradlew test` (backend)
+5. **Run linting and type checking** - `npm run lint && npm run typecheck` or `./gradlew ktlintCheck`
+6. **Create a commit** - Clear, descriptive commit message following conventional commits
+7. **Update TODO.md** - Change `[ ] Item` to `[x] Item` in the appropriate section
+8. **Move to next item** - Repeat cycle for the next uncompleted task
 
-This ensures the TODO.md file is always an accurate reflection of the project's current state without requiring user reminders. It's essential for proper project management and maintaining a clear record of progress.
+### On completion of the final task within the section:
+1. **Prepare the branch** - `npm precommit` addressing any issues as appropriate
+2. **Create the PR** - push the branch
+
+### Commit Message Format:
+```
+<type>: <description>
+
+- <specific change 1>
+- <specific change 2>
+- <test coverage details>
+
+🤖 Generated with [Claude Code](https://claude.ai/code)
+
+Co-Authored-By: Claude <noreply@anthropic.com>
+```
 
 ## Quick Reference
 

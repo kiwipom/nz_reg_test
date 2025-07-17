@@ -1,5 +1,6 @@
 import { vi, beforeEach, describe, it, expect } from 'vitest';
 import { RegistrationService } from '../registrationService';
+import { TEST_CONSTANTS } from '../../test/constants';
 
 // Mock fetch
 const mockFetch = vi.fn();
@@ -129,7 +130,7 @@ describe('RegistrationService', () => {
         json: async () => mockResponse,
       });
 
-      const result = await service.registerCompany(mockCompanyData, 'test-token');
+      const result = await service.registerCompany(mockCompanyData, TEST_CONSTANTS.MOCK_AUTH_TOKEN);
 
       expect(mockFetch).toHaveBeenCalledWith(
         'http://localhost:8080/api/v1/companies',
@@ -137,7 +138,7 @@ describe('RegistrationService', () => {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer test-token',
+            'Authorization': `Bearer ${TEST_CONSTANTS.MOCK_AUTH_TOKEN}`,
           },
           body: JSON.stringify(mockCompanyData),
         }
@@ -177,7 +178,7 @@ describe('RegistrationService', () => {
         json: async () => ({ ...mockResponse, nzbn: undefined }),
       });
 
-      const result = await service.registerCompany(dataWithoutNZBN, 'test-token');
+      const result = await service.registerCompany(dataWithoutNZBN, TEST_CONSTANTS.MOCK_AUTH_TOKEN);
 
       expect(mockFetch).toHaveBeenCalledWith(
         'http://localhost:8080/api/v1/companies',
@@ -185,7 +186,7 @@ describe('RegistrationService', () => {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer test-token',
+            'Authorization': `Bearer ${TEST_CONSTANTS.MOCK_AUTH_TOKEN}`,
           },
           body: JSON.stringify(dataWithoutNZBN),
         }
@@ -200,7 +201,7 @@ describe('RegistrationService', () => {
         text: async () => 'Validation error',
       });
 
-      await expect(service.registerCompany(mockCompanyData, 'test-token'))
+      await expect(service.registerCompany(mockCompanyData, TEST_CONSTANTS.MOCK_AUTH_TOKEN))
         .rejects
         .toThrow('Registration failed: 400 Validation error');
     });
@@ -208,7 +209,7 @@ describe('RegistrationService', () => {
     it('throws error on network failure', async () => {
       mockFetch.mockRejectedValueOnce(new Error('Network error'));
 
-      await expect(service.registerCompany(mockCompanyData, 'test-token'))
+      await expect(service.registerCompany(mockCompanyData, TEST_CONSTANTS.MOCK_AUTH_TOKEN))
         .rejects
         .toThrow('Network error');
     });
