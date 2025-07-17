@@ -21,6 +21,7 @@ class ShareAllocationService(
     private val shareholderRepository: ShareholderRepository,
     private val companyRepository: CompanyRepository,
     private val auditService: AuditService,
+    private val shareholderNotificationService: ShareholderNotificationService,
 ) {
     private val logger = LoggerFactory.getLogger(ShareAllocationService::class.java)
 
@@ -88,6 +89,9 @@ class ShareAllocationService(
             nominalValue,
         )
 
+        // Send allocation notifications
+        shareholderNotificationService.notifyShareAllocation(savedAllocation)
+
         logger.info("Share allocation created successfully with id: ${savedAllocation.id}")
         return savedAllocation
     }
@@ -152,6 +156,9 @@ class ShareAllocationService(
             allocation.numberOfShares,
         )
 
+        // Send transfer notifications
+        shareholderNotificationService.notifyShareTransfer(allocation, savedNewAllocation, transferDate)
+
         logger.info("Share transfer completed successfully")
         return savedNewAllocation
     }
@@ -198,6 +205,9 @@ class ShareAllocationService(
             additionalPayment,
         )
 
+        // Send payment update notifications
+        shareholderNotificationService.notifyPaymentUpdate(savedAllocation, additionalPayment)
+
         logger.info("Payment updated successfully for allocation $allocationId")
         return savedAllocation
     }
@@ -233,6 +243,9 @@ class ShareAllocationService(
             allocationId,
             reason,
         )
+
+        // Send cancellation notifications
+        shareholderNotificationService.notifyAllocationCancellation(savedAllocation, reason)
 
         logger.info("Allocation $allocationId cancelled successfully")
         return savedAllocation

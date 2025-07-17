@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional
 class ShareholderService(
     private val shareholderRepository: ShareholderRepository,
     private val auditService: AuditService,
+    private val shareholderNotificationService: ShareholderNotificationService,
 ) {
     private val logger = LoggerFactory.getLogger(ShareholderService::class.java)
 
@@ -36,6 +37,9 @@ class ShareholderService(
             savedShareholder.fullName,
         )
 
+        // Send registration notifications
+        shareholderNotificationService.notifyShareholderRegistration(savedShareholder)
+
         logger.info("Shareholder created successfully: ${savedShareholder.fullName}")
         return savedShareholder
     }
@@ -43,15 +47,46 @@ class ShareholderService(
     fun updateShareholder(shareholderId: Long, updatedShareholder: Shareholder): Shareholder {
         val existingShareholder = getShareholderById(shareholderId)
 
+        // Track which fields are being updated
+        val updatedFields = mutableListOf<String>()
+        val originalName = existingShareholder.fullName
+        val originalAddress =
+            "${existingShareholder.addressLine1}, ${existingShareholder.city}, ${existingShareholder.country}"
+        val originalType = existingShareholder.isIndividual
+
         // Update mutable fields
-        existingShareholder.fullName = updatedShareholder.fullName
-        existingShareholder.addressLine1 = updatedShareholder.addressLine1
-        existingShareholder.addressLine2 = updatedShareholder.addressLine2
-        existingShareholder.city = updatedShareholder.city
-        existingShareholder.region = updatedShareholder.region
-        existingShareholder.postcode = updatedShareholder.postcode
-        existingShareholder.country = updatedShareholder.country
-        existingShareholder.isIndividual = updatedShareholder.isIndividual
+        if (existingShareholder.fullName != updatedShareholder.fullName) {
+            existingShareholder.fullName = updatedShareholder.fullName
+            updatedFields.add("name")
+        }
+        if (existingShareholder.addressLine1 != updatedShareholder.addressLine1) {
+            existingShareholder.addressLine1 = updatedShareholder.addressLine1
+            updatedFields.add("address")
+        }
+        if (existingShareholder.addressLine2 != updatedShareholder.addressLine2) {
+            existingShareholder.addressLine2 = updatedShareholder.addressLine2
+            updatedFields.add("address")
+        }
+        if (existingShareholder.city != updatedShareholder.city) {
+            existingShareholder.city = updatedShareholder.city
+            updatedFields.add("city")
+        }
+        if (existingShareholder.region != updatedShareholder.region) {
+            existingShareholder.region = updatedShareholder.region
+            updatedFields.add("region")
+        }
+        if (existingShareholder.postcode != updatedShareholder.postcode) {
+            existingShareholder.postcode = updatedShareholder.postcode
+            updatedFields.add("postcode")
+        }
+        if (existingShareholder.country != updatedShareholder.country) {
+            existingShareholder.country = updatedShareholder.country
+            updatedFields.add("country")
+        }
+        if (existingShareholder.isIndividual != updatedShareholder.isIndividual) {
+            existingShareholder.isIndividual = updatedShareholder.isIndividual
+            updatedFields.add("shareholderType")
+        }
 
         val savedShareholder = shareholderRepository.save(existingShareholder)
         auditService.logShareholderUpdate(
@@ -59,6 +94,16 @@ class ShareholderService(
             existingShareholder.company.id!!,
             existingShareholder.fullName,
         )
+
+        // Send update notifications if there were changes
+        if (updatedFields.isNotEmpty()) {
+            val isSignificantChange = updatedFields.any { it in listOf("name", "shareholderType", "country") }
+            shareholderNotificationService.notifyShareholderUpdate(
+                savedShareholder,
+                updatedFields,
+                isSignificantChange,
+            )
+        }
 
         logger.info("Shareholder updated: ${existingShareholder.fullName}")
         return savedShareholder
@@ -69,6 +114,10 @@ class ShareholderService(
 
         shareholderRepository.delete(shareholder)
         auditService.logShareholderDeletion(shareholderId, shareholder.company.id!!, shareholder.fullName)
+
+        // Send removal notifications
+        shareholderNotificationService.notifyShareholderRemoval(shareholder, "Shareholder record deleted")
+
         logger.info("Shareholder deleted: ${shareholder.fullName}")
     }
 
