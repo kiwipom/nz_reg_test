@@ -18,7 +18,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource
 
 @Configuration
 @EnableWebSecurity
-@EnableMethodSecurity(prePostEnabled = false)
+@EnableMethodSecurity(prePostEnabled = true)
 class SecurityConfig {
 
     @Value("\${auth0.audience}")
@@ -30,6 +30,9 @@ class SecurityConfig {
     @Value("\${auth0.roles-namespace}")
     private lateinit var rolesNamespace: String
 
+    @Value("\${test.security.enabled:false}")
+    private var testSecurityEnabled: Boolean = false
+
     @Bean
     fun filterChain(http: HttpSecurity): SecurityFilterChain {
         return http
@@ -37,17 +40,47 @@ class SecurityConfig {
             .cors { it.configurationSource(corsConfigurationSource()) }
             .sessionManagement { it.sessionCreationPolicy(SessionCreationPolicy.STATELESS) }
             .authorizeHttpRequests { authz ->
-                authz
-                    // Temporarily allow all requests for testing
-                    .anyRequest().permitAll()
+                if (testSecurityEnabled) {
+                    authz
+                        // Public endpoints - Companies register public access
+                        .requestMatchers(
+                            "/v1/companies/search",
+                            "/v1/companies/check-name",
+                            "/v1/companies/check-number",
+                            "/v1/companies",
+                            "/v1/companies/{id}",
+                            "/v1/companies/number/{companyNumber}",
+                        ).permitAll()
+                        .requestMatchers("/actuator/health", "/actuator/info").permitAll()
+                        .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
+                        // Protected endpoints require authentication
+                        .anyRequest().authenticated()
+                } else {
+                    authz
+                        // Allow all requests when security is disabled
+                        .anyRequest().permitAll()
+                }
             }
-            // Temporarily disable OAuth2 resource server for testing
-            // .oauth2ResourceServer { oauth2 ->
-            //     oauth2.jwt { jwt ->
-            //         jwt.decoder(jwtDecoder())
-            //             .jwtAuthenticationConverter(jwtAuthenticationConverter())
-            //     }
-            // }
+            .also { httpSecurity ->
+                if (testSecurityEnabled) {
+                    httpSecurity.oauth2ResourceServer { oauth2 ->
+                        oauth2.jwt { jwt ->
+                            jwt.decoder(jwtDecoder())
+                                .jwtAuthenticationConverter(jwtAuthenticationConverter())
+                        }
+                        oauth2.authenticationEntryPoint { _, response, _ ->
+                            response.status = 401
+                            response.contentType = "application/json"
+                            response.writer.write("""{"error":"Unauthorized","message":"Authentication required"}""")
+                        }
+                        oauth2.accessDeniedHandler { _, response, _ ->
+                            response.status = 403
+                            response.contentType = "application/json"
+                            response.writer.write("""{"error":"Forbidden","message":"Access denied"}""")
+                        }
+                    }
+                }
+            }
             .build()
     }
 

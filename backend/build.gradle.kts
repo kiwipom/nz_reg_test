@@ -70,6 +70,7 @@ dependencies {
     testImplementation("org.springframework.security:spring-security-test")
     testImplementation("org.testcontainers:junit-jupiter")
     testImplementation("org.testcontainers:postgresql")
+    testImplementation("com.h2database:h2")
     testImplementation("io.mockk:mockk:1.13.8")
     testImplementation("com.ninja-squad:springmockk:4.0.2")
     testImplementation("org.jetbrains.kotlin:kotlin-test")

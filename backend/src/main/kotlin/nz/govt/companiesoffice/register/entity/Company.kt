@@ -26,7 +26,7 @@ class Company(
     @Column(name = "company_number", unique = true, nullable = false)
     val companyNumber: String,
 
-    @Column(name = "company_name", nullable = false)
+    @Column(name = "company_name", nullable = false, unique = true)
     var companyName: String,
 
     @Enumerated(EnumType.STRING)

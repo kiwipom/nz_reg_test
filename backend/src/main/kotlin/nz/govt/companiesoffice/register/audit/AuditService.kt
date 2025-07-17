@@ -51,8 +51,8 @@ class AuditService {
             resourceType = resourceType,
             resourceId = resourceId,
             details = details,
-            ipAddress = request?.remoteAddr,
-            userAgent = request?.getHeader("User-Agent"),
+            ipAddress = try { request?.remoteAddr } catch (e: Exception) { null },
+            userAgent = try { request?.getHeader("User-Agent") } catch (e: Exception) { null },
             success = success,
             errorMessage = errorMessage,
         )

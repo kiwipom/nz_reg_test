@@ -2,8 +2,14 @@ package nz.govt.companiesoffice.register.exception
 
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.http.converter.HttpMessageNotReadableException
+import org.springframework.security.access.AccessDeniedException
+import org.springframework.security.core.AuthenticationException
+import org.springframework.web.bind.MethodArgumentNotValidException
+import org.springframework.web.bind.MissingServletRequestParameterException
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.RestControllerAdvice
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException
 import java.time.LocalDateTime
 
 @RestControllerAdvice
@@ -43,6 +49,82 @@ class GlobalExceptionHandler {
             path = ex.context,
         )
         return ResponseEntity.status(HttpStatus.CONFLICT).body(errorResponse)
+    }
+
+    @ExceptionHandler(HttpMessageNotReadableException::class)
+    fun handleHttpMessageNotReadableException(ex: HttpMessageNotReadableException): ResponseEntity<ErrorResponse> {
+        val errorResponse = ErrorResponse(
+            timestamp = LocalDateTime.now(),
+            status = HttpStatus.BAD_REQUEST.value(),
+            error = "Bad Request",
+            message = "Invalid JSON format or missing required fields",
+            path = null,
+        )
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse)
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException::class)
+    fun handleMethodArgumentNotValidException(ex: MethodArgumentNotValidException): ResponseEntity<ErrorResponse> {
+        val errorResponse = ErrorResponse(
+            timestamp = LocalDateTime.now(),
+            status = HttpStatus.BAD_REQUEST.value(),
+            error = "Validation Error",
+            message = "Request validation failed",
+            path = null,
+        )
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse)
+    }
+
+    @ExceptionHandler(MethodArgumentTypeMismatchException::class)
+    fun handleMethodArgumentTypeMismatchException(
+        ex: MethodArgumentTypeMismatchException,
+    ): ResponseEntity<ErrorResponse> {
+        val errorResponse = ErrorResponse(
+            timestamp = LocalDateTime.now(),
+            status = HttpStatus.BAD_REQUEST.value(),
+            error = "Bad Request",
+            message = "Invalid parameter type: ${ex.name}",
+            path = null,
+        )
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse)
+    }
+
+    @ExceptionHandler(MissingServletRequestParameterException::class)
+    fun handleMissingServletRequestParameterException(
+        ex: MissingServletRequestParameterException,
+    ): ResponseEntity<ErrorResponse> {
+        val errorResponse = ErrorResponse(
+            timestamp = LocalDateTime.now(),
+            status = HttpStatus.BAD_REQUEST.value(),
+            error = "Bad Request",
+            message = "Missing required parameter: ${ex.parameterName}",
+            path = null,
+        )
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse)
+    }
+
+    @ExceptionHandler(AuthenticationException::class)
+    fun handleAuthenticationException(ex: AuthenticationException): ResponseEntity<ErrorResponse> {
+        val errorResponse = ErrorResponse(
+            timestamp = LocalDateTime.now(),
+            status = HttpStatus.UNAUTHORIZED.value(),
+            error = "Unauthorized",
+            message = "Authentication required",
+            path = null,
+        )
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponse)
+    }
+
+    @ExceptionHandler(AccessDeniedException::class)
+    fun handleAccessDeniedException(ex: AccessDeniedException): ResponseEntity<ErrorResponse> {
+        val errorResponse = ErrorResponse(
+            timestamp = LocalDateTime.now(),
+            status = HttpStatus.FORBIDDEN.value(),
+            error = "Forbidden",
+            message = "Access denied",
+            path = null,
+        )
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(errorResponse)
     }
 
     @ExceptionHandler(Exception::class)

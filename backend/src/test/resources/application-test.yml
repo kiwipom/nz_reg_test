@@ -1,0 +1,111 @@
+spring:
+  application:
+    name: nz-companies-register-test
+  
+  datasource:
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password: 
+    driver-class-name: org.h2.Driver
+    hikari:
+      maximum-pool-size: 5
+      minimum-idle: 1
+      idle-timeout: 30000
+      connection-timeout: 10000
+  
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        format_sql: true
+    open-in-view: false
+  
+  flyway:
+    enabled: false
+  
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://test.auth0.com/
+          jwk-set-uri: https://test.auth0.com/.well-known/jwks.json
+  
+  cache:
+    type: simple
+
+server:
+  port: 0
+  servlet:
+    context-path: /
+  error:
+    include-message: always
+    include-binding-errors: always
+    include-stacktrace: never
+    include-exception: false
+
+# Enable security for tests to validate authentication/authorization
+test:
+  security:
+    enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+      base-path: /actuator
+  endpoint:
+    health:
+      show-details: always
+
+logging:
+  level:
+    nz.govt.companiesoffice: DEBUG
+    org.springframework.security: INFO
+    org.springframework.web: INFO
+    org.hibernate.SQL: DEBUG
+    org.testcontainers: INFO
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+
+auth0:
+  domain: test.auth0.com
+  audience: https://test.api.nz
+  issuer: https://test.auth0.com/
+  roles-namespace: https://test.api.nz/
+
+app:
+  aws:
+    region: ap-southeast-2
+    s3:
+      document-bucket: test-bucket
+    dynamodb:
+      document-table: test-table
+    sns:
+      notification-topic: test-topic
+    sqs:
+      notification-queue: test-queue
+  
+  security:
+    cors:
+      allowed-origins: "*"
+      allowed-methods: "*"
+      allowed-headers: "*"
+      allow-credentials: true
+      max-age: 3600
+  
+  business:
+    annual-return:
+      reminder-days: 30,7,0
+      overdue-follow-up-days: 7,30
+      strike-off-threshold-days: 180
+    
+    director:
+      min-nz-au-residents: 1
+    
+    search:
+      max-results: 100
+      timeout-ms: 500
