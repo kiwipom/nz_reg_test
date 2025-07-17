@@ -10,7 +10,6 @@ import { DirectorResignation } from './pages/DirectorResignation';
 import { ShareholderRegistration } from './pages/ShareholderRegistration';
 import { ShareAllocation } from './pages/ShareAllocation';
 import { ShareTransfer } from './pages/ShareTransfer';
-import DateInputTest from './components/DateInputTest';
 import { Building2 } from 'lucide-react';
 
 function App() {
@@ -52,7 +51,6 @@ function App() {
                 <Route path="/companies/:id/shareholders/register" element={<ShareholderRegistration />} />
                 <Route path="/companies/:id/shareholders/:shareholderId/allocate" element={<ShareAllocation />} />
                 <Route path="/share-allocations/:allocationId/transfer" element={<ShareTransfer />} />
-                <Route path="/test-date" element={<DateInputTest />} />
               </Routes>
             </main>
 

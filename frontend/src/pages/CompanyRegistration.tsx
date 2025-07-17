@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Building2, Check, AlertCircle, Loader2, Upload, X, FileText } from 'lucide-react';
 import { useAuth } from '../auth/useAuth';
 import { registrationService } from '../services/registrationService';
+import DateInput from '../components/DateInput';
 
 interface CompanyRegistrationData {
   companyName: string;
@@ -298,23 +299,15 @@ export const CompanyRegistration: React.FC = () => {
 
             {/* Incorporation Date */}
             <div>
-              <label htmlFor="incorporationDate" className="block text-sm font-medium text-gray-700 mb-2">
-                Incorporation Date *
-              </label>
-              <input
-                type="date"
+              <DateInput
                 id="incorporationDate"
                 name="incorporationDate"
                 value={formData.incorporationDate}
-                onChange={handleInputChange}
-                className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors ${
-                  errors.incorporationDate ? 'border-red-500' : 'border-gray-300'
-                }`}
+                onChange={(value) => setFormData(prev => ({ ...prev, incorporationDate: value }))}
+                label="Incorporation Date"
                 required
+                error={errors.incorporationDate}
               />
-              {errors.incorporationDate && (
-                <p className="mt-2 text-sm text-red-600">{errors.incorporationDate}</p>
-              )}
             </div>
 
             {/* NZBN */}

@@ -5,6 +5,7 @@ import { ShareholderService } from '../services/shareholderService';
 import { companyService } from '../services/companyService';
 import { useAuth } from '../auth/useAuth';
 import type { Company, Shareholder, ShareAllocationRequest } from '../types/company';
+import DateInput from '../components/DateInput';
 
 const shareAllocationSchema = z.object({
   companyId: z.number(),
@@ -360,16 +361,12 @@ export const ShareAllocation: React.FC<ShareAllocationProps> = ({
             </div>
 
             <div>
-              <label htmlFor="allocationDate" className="block text-sm font-medium text-gray-700 mb-1">
-                Allocation Date
-              </label>
-              <input
-                type="date"
+              <DateInput
                 id="allocationDate"
                 name="allocationDate"
                 value={formData.allocationDate || ''}
-                onChange={handleInputChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                onChange={(value) => handleInputChange({ target: { name: 'allocationDate', value } } as any)}
+                label="Allocation Date"
               />
             </div>
 
