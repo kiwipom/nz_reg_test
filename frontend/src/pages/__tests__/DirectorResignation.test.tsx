@@ -23,9 +23,14 @@ describe('DirectorResignation', () => {
     
     // Mock the DirectorService constructor and methods
     vi.mocked(DirectorService).mockImplementation(() => ({
-      baseUrl: 'http://localhost:8080/api/v1',
+      appointDirector: vi.fn(),
+      giveDirectorConsent: vi.fn(),
+      getDirectorsRequiringConsent: vi.fn(),
+      getDirector: vi.fn(),
       resignDirector: mockResignDirector,
-    } as any));
+      getDirectorsByCompany: vi.fn(),
+      getActiveDirectorsByCompany: vi.fn(),
+    } as unknown as DirectorService));
   });
 
   afterEach(() => {
