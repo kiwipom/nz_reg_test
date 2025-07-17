@@ -5,14 +5,14 @@ interface DirectorAppointmentRequest {
   companyId: string;
 }
 
-interface DirectorAppointmentResponse {
+export interface DirectorAppointmentResponse {
   id: number;
-  firstName: string;
-  lastName: string;
-  fullName?: string;
+  fullName: string;
+  firstName?: string;
+  lastName?: string;
   status: 'ACTIVE' | 'RESIGNED' | 'DISQUALIFIED';
-  appointmentDate: string;
-  resignationDate?: string;
+  appointedDate: string;
+  resignedDate?: string;
   consentGiven: boolean;
   consentDate?: string;
   isNzResident: boolean;

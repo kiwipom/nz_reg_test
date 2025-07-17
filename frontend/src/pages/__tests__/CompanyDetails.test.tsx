@@ -37,11 +37,9 @@ describe('CompanyDetails', () => {
   const mockDirectors = [
     {
       id: 1,
-      firstName: 'John',
-      lastName: 'Doe',
       fullName: 'John Doe',
       status: 'ACTIVE' as const,
-      appointmentDate: '2020-01-01',
+      appointedDate: '2020-01-01',
       consentGiven: true,
       consentDate: '2020-01-01',
       isNzResident: true,
@@ -51,12 +49,10 @@ describe('CompanyDetails', () => {
     },
     {
       id: 2,
-      firstName: 'Jane',
-      lastName: 'Smith',
       fullName: 'Jane Smith',
       status: 'RESIGNED' as const,
-      appointmentDate: '2020-01-01',
-      resignationDate: '2021-01-01',
+      appointedDate: '2020-01-01',
+      resignedDate: '2021-01-01',
       consentGiven: false,
       isNzResident: false,
       isAustralianResident: true,
