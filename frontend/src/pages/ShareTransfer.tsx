@@ -36,12 +36,6 @@ export const ShareTransfer: React.FC<ShareTransferProps> = ({ allocationId: prop
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    if (allocationId) {
-      loadAllocationData();
-    }
-  }, [allocationId, loadAllocationData]);
-
   const loadAllocationData = useCallback(async () => {
     if (!allocationId) return;
     
@@ -61,6 +55,12 @@ export const ShareTransfer: React.FC<ShareTransferProps> = ({ allocationId: prop
       setIsLoading(false);
     }
   }, [allocationId]);
+
+  useEffect(() => {
+    if (allocationId) {
+      loadAllocationData();
+    }
+  }, [allocationId, loadAllocationData]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -98,9 +98,11 @@ export const ShareTransfer: React.FC<ShareTransferProps> = ({ allocationId: prop
     } catch (error) {
       if (error instanceof z.ZodError) {
         const newErrors: Record<string, string> = {};
-        error.issues.forEach((err: { path: (string | number)[]; message: string }) => {
+        error.issues.forEach((err) => {
           if (err.path) {
-            newErrors[err.path[0] as string] = err.message;
+            if (err.path && err.path.length > 0) {
+              newErrors[err.path[0] as string] = err.message;
+            }
           }
         });
         setErrors(newErrors);

@@ -57,21 +57,6 @@ export const ShareAllocation: React.FC<ShareAllocationProps> = ({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    if (companyId) {
-      loadCompanyData();
-    }
-  }, [companyId, loadCompanyData]);
-
-  useEffect(() => {
-    if (shareholderId && shareholders.length > 0) {
-      const shareholder = shareholders.find(s => s.id === shareholderId);
-      if (shareholder) {
-        setSelectedShareholder(shareholder);
-      }
-    }
-  }, [shareholderId, shareholders]);
-
   const loadCompanyData = useCallback(async () => {
     if (!companyId) return;
     
@@ -90,6 +75,21 @@ export const ShareAllocation: React.FC<ShareAllocationProps> = ({
       setIsLoading(false);
     }
   }, [companyId]);
+
+  useEffect(() => {
+    if (companyId) {
+      loadCompanyData();
+    }
+  }, [companyId, loadCompanyData]);
+
+  useEffect(() => {
+    if (shareholderId && shareholders.length > 0) {
+      const shareholder = shareholders.find(s => s.id === shareholderId);
+      if (shareholder) {
+        setSelectedShareholder(shareholder);
+      }
+    }
+  }, [shareholderId, shareholders]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value, type } = e.target;
@@ -141,9 +141,11 @@ export const ShareAllocation: React.FC<ShareAllocationProps> = ({
     } catch (error) {
       if (error instanceof z.ZodError) {
         const newErrors: Record<string, string> = {};
-        error.issues.forEach((err: { path: (string | number)[]; message: string }) => {
+        error.issues.forEach((err) => {
           if (err.path) {
-            newErrors[err.path[0] as string] = err.message;
+            if (err.path && err.path.length > 0) {
+              newErrors[err.path[0] as string] = err.message;
+            }
           }
         });
         setErrors(newErrors);

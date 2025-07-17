@@ -45,12 +45,6 @@ export const ShareholderRegistration: React.FC<ShareholderRegistrationProps> = (
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    if (companyId) {
-      loadCompany();
-    }
-  }, [companyId, loadCompany]);
-
   const loadCompany = useCallback(async () => {
     if (!companyId) return;
     
@@ -64,6 +58,12 @@ export const ShareholderRegistration: React.FC<ShareholderRegistrationProps> = (
       setIsLoading(false);
     }
   }, [companyId]);
+
+  useEffect(() => {
+    if (companyId) {
+      loadCompany();
+    }
+  }, [companyId, loadCompany]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target;
@@ -91,9 +91,11 @@ export const ShareholderRegistration: React.FC<ShareholderRegistrationProps> = (
     } catch (error) {
       if (error instanceof z.ZodError) {
         const newErrors: Record<string, string> = {};
-        error.issues.forEach((err: { path: (string | number)[]; message: string }) => {
+        error.issues.forEach((err) => {
           if (err.path) {
-            newErrors[err.path[0] as string] = err.message;
+            if (err.path && err.path.length > 0) {
+              newErrors[err.path[0] as string] = err.message;
+            }
           }
         });
         setErrors(newErrors);
