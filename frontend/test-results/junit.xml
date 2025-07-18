@@ -1,849 +1,1390 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuites name="vitest tests" tests="129" failures="35" errors="0" time="17.976046084">
-    <testsuite name="src/components/__tests__/CompanySearch.integration.test.tsx" timestamp="2025-07-18T00:10:22.858Z" hostname="FMNZ-C02D5HB1ML7H.local" tests="2" failures="0" errors="0" skipped="0" time="0.714119454">
-        <testcase classname="src/components/__tests__/CompanySearch.integration.test.tsx" name="CompanySearch Integration Tests &gt; should integrate with store and service for end-to-end search flow" time="0.335785699">
+<testsuites name="vitest tests" tests="129" failures="10" errors="0" time="24.214035328">
+    <testsuite name="src/components/__tests__/CompanySearch.integration.test.tsx" timestamp="2025-07-18T00:14:07.897Z" hostname="FMNZ-C02D5HB1ML7H.local" tests="2" failures="0" errors="0" skipped="0" time="0.954489947">
+        <testcase classname="src/components/__tests__/CompanySearch.integration.test.tsx" name="CompanySearch Integration Tests &gt; should integrate with store and service for end-to-end search flow" time="0.515165297">
         </testcase>
-        <testcase classname="src/components/__tests__/CompanySearch.integration.test.tsx" name="CompanySearch Integration Tests &gt; should handle full search workflow with error recovery" time="0.373633686">
-        </testcase>
-    </testsuite>
-    <testsuite name="src/components/__tests__/CompanySearch.test.tsx" timestamp="2025-07-18T00:10:22.860Z" hostname="FMNZ-C02D5HB1ML7H.local" tests="20" failures="0" errors="0" skipped="0" time="3.600700412">
-        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Rendering &gt; should render search input with placeholder" time="0.064069106">
-        </testcase>
-        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Rendering &gt; should render search icon initially" time="0.12183313">
-        </testcase>
-        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Rendering &gt; should render with proper accessibility attributes" time="0.026100542">
-        </testcase>
-        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; User Interaction &gt; should update input value when user types" time="0.203879314">
-        </testcase>
-        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; User Interaction &gt; should show clear button when input has value" time="0.085793547">
-        </testcase>
-        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; User Interaction &gt; should clear input when clear button is clicked" time="0.180747616">
-        </testcase>
-        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; User Interaction &gt; should not show clear button when input is empty" time="0.005864238">
-        </testcase>
-        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Search Functionality &gt; should trigger search after debounce delay" time="0.422567464">
-        </testcase>
-        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Search Functionality &gt; should not trigger search for queries less than 2 characters" time="0.344158901">
-        </testcase>
-        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Search Functionality &gt; should clear search when input is empty" time="0.369267919">
-        </testcase>
-        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Search Functionality &gt; should show loading state during search" time="0.081937217">
-        </testcase>
-        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Search Results Display &gt; should display search results when available" time="0.057596768">
-        </testcase>
-        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Search Results Display &gt; should display singular result text for single result" time="0.007902005">
-        </testcase>
-        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Search Results Display &gt; should display company details correctly" time="0.010432077">
-        </testcase>
-        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Search Results Display &gt; should handle company selection click" time="0.042478185">
-        </testcase>
-        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Search Results Display &gt; should display different status styles" time="0.027960728">
-        </testcase>
-        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Error Handling &gt; should handle search errors gracefully" time="0.393687527">
-        </testcase>
-        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Error Handling &gt; should handle network errors" time="0.391848641">
-        </testcase>
-        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Performance &gt; should debounce search requests" time="0.390320049">
-        </testcase>
-        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Performance &gt; should cancel previous search when new search is triggered" time="0.363805622">
+        <testcase classname="src/components/__tests__/CompanySearch.integration.test.tsx" name="CompanySearch Integration Tests &gt; should handle full search workflow with error recovery" time="0.433034357">
         </testcase>
     </testsuite>
-    <testsuite name="src/services/__tests__/directorService.test.ts" timestamp="2025-07-18T00:10:22.870Z" hostname="FMNZ-C02D5HB1ML7H.local" tests="9" failures="0" errors="0" skipped="0" time="0.013233237">
-        <testcase classname="src/services/__tests__/directorService.test.ts" name="DirectorService &gt; getCountryCode &gt; should convert New Zealand to NZ" time="0.002224434">
+    <testsuite name="src/components/__tests__/CompanySearch.test.tsx" timestamp="2025-07-18T00:14:07.899Z" hostname="FMNZ-C02D5HB1ML7H.local" tests="20" failures="0" errors="0" skipped="0" time="3.43065932">
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Rendering &gt; should render search input with placeholder" time="0.05612841">
         </testcase>
-        <testcase classname="src/services/__tests__/directorService.test.ts" name="DirectorService &gt; getCountryCode &gt; should convert Australia to AU" time="0.000434516">
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Rendering &gt; should render search icon initially" time="0.16910952">
         </testcase>
-        <testcase classname="src/services/__tests__/directorService.test.ts" name="DirectorService &gt; getCountryCode &gt; should convert United States variants to US" time="0.000815279">
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Rendering &gt; should render with proper accessibility attributes" time="0.035736086">
         </testcase>
-        <testcase classname="src/services/__tests__/directorService.test.ts" name="DirectorService &gt; getCountryCode &gt; should convert United Kingdom to GB" time="0.00039375">
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; User Interaction &gt; should update input value when user types" time="0.206688778">
         </testcase>
-        <testcase classname="src/services/__tests__/directorService.test.ts" name="DirectorService &gt; getCountryCode &gt; should convert Canada to CA" time="0.000306484">
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; User Interaction &gt; should show clear button when input has value" time="0.094184086">
         </testcase>
-        <testcase classname="src/services/__tests__/directorService.test.ts" name="DirectorService &gt; getCountryCode &gt; should default to NZ for unrecognized countries" time="0.0002521">
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; User Interaction &gt; should clear input when clear button is clicked" time="0.133474711">
         </testcase>
-        <testcase classname="src/services/__tests__/directorService.test.ts" name="DirectorService &gt; getCountryCode &gt; should handle edge cases" time="0.000204383">
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; User Interaction &gt; should not show clear button when input is empty" time="0.00391008">
         </testcase>
-        <testcase classname="src/services/__tests__/directorService.test.ts" name="DirectorService &gt; getCountryCode &gt; should ensure all returned codes are exactly 2 characters" time="0.002278769">
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Search Functionality &gt; should trigger search after debounce delay" time="0.385955652">
         </testcase>
-        <testcase classname="src/services/__tests__/directorService.test.ts" name="DirectorService &gt; getCountryCode &gt; should comply with database VARCHAR(2) constraint" time="0.00049762">
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Search Functionality &gt; should not trigger search for queries less than 2 characters" time="0.341341453">
         </testcase>
-    </testsuite>
-    <testsuite name="src/services/__tests__/registrationService.test.ts" timestamp="2025-07-18T00:10:22.872Z" hostname="FMNZ-C02D5HB1ML7H.local" tests="18" failures="0" errors="0" skipped="0" time="0.034696343">
-        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; checkNameAvailability &gt; returns availability status for valid name" time="0.007759093">
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Search Functionality &gt; should clear search when input is empty" time="0.356243653">
         </testcase>
-        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; checkNameAvailability &gt; handles special characters in company name" time="0.000766075">
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Search Functionality &gt; should show loading state during search" time="0.066601659">
         </testcase>
-        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; checkNameAvailability &gt; throws error on HTTP error response" time="0.003064823">
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Search Results Display &gt; should display search results when available" time="0.045069184">
         </testcase>
-        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; checkNameAvailability &gt; throws error on network failure" time="0.000795628">
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Search Results Display &gt; should display singular result text for single result" time="0.007662229">
         </testcase>
-        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; checkNumberAvailability &gt; returns availability status for valid number" time="0.000737604">
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Search Results Display &gt; should display company details correctly" time="0.013545499">
         </testcase>
-        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; checkNumberAvailability &gt; handles special characters in company number" time="0.000665235">
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Search Results Display &gt; should handle company selection click" time="0.03245245">
         </testcase>
-        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; checkNumberAvailability &gt; throws error on HTTP error response" time="0.000465846">
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Search Results Display &gt; should display different status styles" time="0.012841407">
         </testcase>
-        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; registerCompany &gt; registers company successfully with authentication" time="0.00187054">
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Error Handling &gt; should handle search errors gracefully" time="0.346973185">
         </testcase>
-        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; registerCompany &gt; registers company successfully without authentication" time="0.000778574">
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Error Handling &gt; should handle network errors" time="0.371190237">
         </testcase>
-        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; registerCompany &gt; registers company without optional NZBN" time="0.000745632">
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Performance &gt; should debounce search requests" time="0.376834437">
         </testcase>
-        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; registerCompany &gt; throws error on HTTP error response" time="0.000644644">
-        </testcase>
-        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; registerCompany &gt; throws error on network failure" time="0.000737561">
-        </testcase>
-        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; registerCompany &gt; handles unauthorized access" time="0.000943152">
-        </testcase>
-        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; generateCompanyNumber &gt; generates a 9-digit company number" time="0.000812702">
-        </testcase>
-        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; generateCompanyNumber &gt; generates unique company numbers" time="0.002142451">
-        </testcase>
-        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; generateCompanyNumber &gt; generates numbers with timestamp component" time="0.000706913">
-        </testcase>
-        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; error handling &gt; handles malformed JSON response" time="0.000742748">
-        </testcase>
-        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; error handling &gt; handles empty response" time="0.001296876">
+        <testcase classname="src/components/__tests__/CompanySearch.test.tsx" name="CompanySearch &gt; Performance &gt; should cancel previous search when new search is triggered" time="0.353463315">
         </testcase>
     </testsuite>
-    <testsuite name="src/pages/__tests__/CompanyDetails.test.tsx" timestamp="2025-07-18T00:10:22.875Z" hostname="FMNZ-C02D5HB1ML7H.local" tests="15" failures="0" errors="0" skipped="0" time="1.085115266">
-        <testcase classname="src/pages/__tests__/CompanyDetails.test.tsx" name="CompanyDetails &gt; Loading State &gt; should display loading state initially" time="0.094309708">
+    <testsuite name="src/pages/__tests__/CompanyDetails.test.tsx" timestamp="2025-07-18T00:14:07.908Z" hostname="FMNZ-C02D5HB1ML7H.local" tests="15" failures="0" errors="0" skipped="0" time="0.958342986">
+        <testcase classname="src/pages/__tests__/CompanyDetails.test.tsx" name="CompanyDetails &gt; Loading State &gt; should display loading state initially" time="0.077815476">
         </testcase>
-        <testcase classname="src/pages/__tests__/CompanyDetails.test.tsx" name="CompanyDetails &gt; Company Information Display &gt; should display company details correctly" time="0.173990342">
+        <testcase classname="src/pages/__tests__/CompanyDetails.test.tsx" name="CompanyDetails &gt; Company Information Display &gt; should display company details correctly" time="0.144958479">
         </testcase>
-        <testcase classname="src/pages/__tests__/CompanyDetails.test.tsx" name="CompanyDetails &gt; Company Information Display &gt; should handle company without NZBN" time="0.05143032">
+        <testcase classname="src/pages/__tests__/CompanyDetails.test.tsx" name="CompanyDetails &gt; Company Information Display &gt; should handle company without NZBN" time="0.058096354">
         </testcase>
-        <testcase classname="src/pages/__tests__/CompanyDetails.test.tsx" name="CompanyDetails &gt; Directors Section &gt; should display directors list correctly" time="0.082674838">
+        <testcase classname="src/pages/__tests__/CompanyDetails.test.tsx" name="CompanyDetails &gt; Directors Section &gt; should display directors list correctly" time="0.135497913">
         </testcase>
-        <testcase classname="src/pages/__tests__/CompanyDetails.test.tsx" name="CompanyDetails &gt; Directors Section &gt; should display &quot;no directors&quot; message when no directors exist" time="0.033208799">
+        <testcase classname="src/pages/__tests__/CompanyDetails.test.tsx" name="CompanyDetails &gt; Directors Section &gt; should display &quot;no directors&quot; message when no directors exist" time="0.03868001">
         </testcase>
-        <testcase classname="src/pages/__tests__/CompanyDetails.test.tsx" name="CompanyDetails &gt; Directors Section &gt; should show appoint director button when authenticated" time="0.164313382">
+        <testcase classname="src/pages/__tests__/CompanyDetails.test.tsx" name="CompanyDetails &gt; Directors Section &gt; should show appoint director button when authenticated" time="0.207191493">
         </testcase>
-        <testcase classname="src/pages/__tests__/CompanyDetails.test.tsx" name="CompanyDetails &gt; Directors Section &gt; should not show appoint director button when not authenticated" time="0.053214871">
+        <testcase classname="src/pages/__tests__/CompanyDetails.test.tsx" name="CompanyDetails &gt; Directors Section &gt; should not show appoint director button when not authenticated" time="0.03194071">
         </testcase>
-        <testcase classname="src/pages/__tests__/CompanyDetails.test.tsx" name="CompanyDetails &gt; Directors Section &gt; should show resign button for active directors when authenticated" time="0.116624404">
+        <testcase classname="src/pages/__tests__/CompanyDetails.test.tsx" name="CompanyDetails &gt; Directors Section &gt; should show resign button for active directors when authenticated" time="0.05738821">
         </testcase>
-        <testcase classname="src/pages/__tests__/CompanyDetails.test.tsx" name="CompanyDetails &gt; Directors Section &gt; should not show resign button for resigned directors" time="0.068965744">
+        <testcase classname="src/pages/__tests__/CompanyDetails.test.tsx" name="CompanyDetails &gt; Directors Section &gt; should not show resign button for resigned directors" time="0.083824821">
         </testcase>
-        <testcase classname="src/pages/__tests__/CompanyDetails.test.tsx" name="CompanyDetails &gt; Navigation &gt; should navigate to director appointment page when appoint button is clicked" time="0.060812341">
+        <testcase classname="src/pages/__tests__/CompanyDetails.test.tsx" name="CompanyDetails &gt; Navigation &gt; should navigate to director appointment page when appoint button is clicked" time="0.047068046">
         </testcase>
-        <testcase classname="src/pages/__tests__/CompanyDetails.test.tsx" name="CompanyDetails &gt; Navigation &gt; should navigate to director resignation page when resign button is clicked" time="0.051298068">
+        <testcase classname="src/pages/__tests__/CompanyDetails.test.tsx" name="CompanyDetails &gt; Navigation &gt; should navigate to director resignation page when resign button is clicked" time="0.02966905">
         </testcase>
-        <testcase classname="src/pages/__tests__/CompanyDetails.test.tsx" name="CompanyDetails &gt; Error Handling &gt; should display error message when company loading fails" time="0.01449374">
+        <testcase classname="src/pages/__tests__/CompanyDetails.test.tsx" name="CompanyDetails &gt; Error Handling &gt; should display error message when company loading fails" time="0.008336956">
         </testcase>
-        <testcase classname="src/pages/__tests__/CompanyDetails.test.tsx" name="CompanyDetails &gt; Error Handling &gt; should display error message when directors loading fails" time="0.014428053">
+        <testcase classname="src/pages/__tests__/CompanyDetails.test.tsx" name="CompanyDetails &gt; Error Handling &gt; should display error message when directors loading fails" time="0.00968579">
         </testcase>
-        <testcase classname="src/pages/__tests__/CompanyDetails.test.tsx" name="CompanyDetails &gt; Error Handling &gt; should handle missing company ID when neither prop nor param is provided" time="0.002132427">
+        <testcase classname="src/pages/__tests__/CompanyDetails.test.tsx" name="CompanyDetails &gt; Error Handling &gt; should handle missing company ID when neither prop nor param is provided" time="0.000428099">
         </testcase>
-        <testcase classname="src/pages/__tests__/CompanyDetails.test.tsx" name="CompanyDetails &gt; Props Override &gt; should use prop companyId when provided" time="0.055158379">
-        </testcase>
-    </testsuite>
-    <testsuite name="src/pages/__tests__/CompanyRegistration.test.tsx" timestamp="2025-07-18T00:10:22.877Z" hostname="FMNZ-C02D5HB1ML7H.local" tests="28" failures="28" errors="0" skipped="0" time="0.690806314">
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; renders the registration form with all required fields" time="0.077912432">
-            <failure message="[vitest] No &quot;Calendar&quot; export is defined on the &quot;lucide-react&quot; mock. Did you forget to return it from &quot;vi.mock&quot;?
-If you need to partially mock a module, you can use &quot;importOriginal&quot; helper inside:
-" type="Error">
-Error: [vitest] No &quot;Calendar&quot; export is defined on the &quot;lucide-react&quot; mock. Did you forget to return it from &quot;vi.mock&quot;?
-If you need to partially mock a module, you can use &quot;importOriginal&quot; helper inside:
-
-vi.mock(import(&quot;lucide-react&quot;), async (importOriginal) =&gt; {
-  const actual = await importOriginal()
-  return {
-    ...actual,
-    // your mocked methods
-  }
-})
-
- ❯ DateInput src/components/DateInput.tsx:200:12
- ❯ Object.react-stack-bottom-frame node_modules/react-dom/cjs/react-dom-client.development.js:23863:20
- ❯ renderWithHooks node_modules/react-dom/cjs/react-dom-client.development.js:5529:22
- ❯ updateFunctionComponent node_modules/react-dom/cjs/react-dom-client.development.js:8897:19
- ❯ beginWork node_modules/react-dom/cjs/react-dom-client.development.js:10522:18
- ❯ runWithFiberInDEV node_modules/react-dom/cjs/react-dom-client.development.js:1522:13
- ❯ performUnitOfWork node_modules/react-dom/cjs/react-dom-client.development.js:15140:22
- ❯ workLoopSync node_modules/react-dom/cjs/react-dom-client.development.js:14956:41
-            </failure>
-        </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; has correct default values" time="0.020713232">
-            <failure message="[vitest] No &quot;Calendar&quot; export is defined on the &quot;lucide-react&quot; mock. Did you forget to return it from &quot;vi.mock&quot;?
-If you need to partially mock a module, you can use &quot;importOriginal&quot; helper inside:
-" type="Error">
-Error: [vitest] No &quot;Calendar&quot; export is defined on the &quot;lucide-react&quot; mock. Did you forget to return it from &quot;vi.mock&quot;?
-If you need to partially mock a module, you can use &quot;importOriginal&quot; helper inside:
-
-vi.mock(import(&quot;lucide-react&quot;), async (importOriginal) =&gt; {
-  const actual = await importOriginal()
-  return {
-    ...actual,
-    // your mocked methods
-  }
-})
-
- ❯ DateInput src/components/DateInput.tsx:200:12
- ❯ Object.react-stack-bottom-frame node_modules/react-dom/cjs/react-dom-client.development.js:23863:20
- ❯ renderWithHooks node_modules/react-dom/cjs/react-dom-client.development.js:5529:22
- ❯ updateFunctionComponent node_modules/react-dom/cjs/react-dom-client.development.js:8897:19
- ❯ beginWork node_modules/react-dom/cjs/react-dom-client.development.js:10522:18
- ❯ runWithFiberInDEV node_modules/react-dom/cjs/react-dom-client.development.js:1522:13
- ❯ performUnitOfWork node_modules/react-dom/cjs/react-dom-client.development.js:15140:22
- ❯ workLoopSync node_modules/react-dom/cjs/react-dom-client.development.js:14956:41
-            </failure>
-        </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; validates required fields" time="0.014288025">
-            <failure message="[vitest] No &quot;Calendar&quot; export is defined on the &quot;lucide-react&quot; mock. Did you forget to return it from &quot;vi.mock&quot;?
-If you need to partially mock a module, you can use &quot;importOriginal&quot; helper inside:
-" type="Error">
-Error: [vitest] No &quot;Calendar&quot; export is defined on the &quot;lucide-react&quot; mock. Did you forget to return it from &quot;vi.mock&quot;?
-If you need to partially mock a module, you can use &quot;importOriginal&quot; helper inside:
-
-vi.mock(import(&quot;lucide-react&quot;), async (importOriginal) =&gt; {
-  const actual = await importOriginal()
-  return {
-    ...actual,
-    // your mocked methods
-  }
-})
-
- ❯ DateInput src/components/DateInput.tsx:200:12
- ❯ Object.react-stack-bottom-frame node_modules/react-dom/cjs/react-dom-client.development.js:23863:20
- ❯ renderWithHooks node_modules/react-dom/cjs/react-dom-client.development.js:5529:22
- ❯ updateFunctionComponent node_modules/react-dom/cjs/react-dom-client.development.js:8897:19
- ❯ beginWork node_modules/react-dom/cjs/react-dom-client.development.js:10522:18
- ❯ runWithFiberInDEV node_modules/react-dom/cjs/react-dom-client.development.js:1522:13
- ❯ performUnitOfWork node_modules/react-dom/cjs/react-dom-client.development.js:15140:22
- ❯ workLoopSync node_modules/react-dom/cjs/react-dom-client.development.js:14956:41
-            </failure>
-        </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; validates share capital calculation" time="0.023864139">
-            <failure message="[vitest] No &quot;Calendar&quot; export is defined on the &quot;lucide-react&quot; mock. Did you forget to return it from &quot;vi.mock&quot;?
-If you need to partially mock a module, you can use &quot;importOriginal&quot; helper inside:
-" type="Error">
-Error: [vitest] No &quot;Calendar&quot; export is defined on the &quot;lucide-react&quot; mock. Did you forget to return it from &quot;vi.mock&quot;?
-If you need to partially mock a module, you can use &quot;importOriginal&quot; helper inside:
-
-vi.mock(import(&quot;lucide-react&quot;), async (importOriginal) =&gt; {
-  const actual = await importOriginal()
-  return {
-    ...actual,
-    // your mocked methods
-  }
-})
-
- ❯ DateInput src/components/DateInput.tsx:200:12
- ❯ Object.react-stack-bottom-frame node_modules/react-dom/cjs/react-dom-client.development.js:23863:20
- ❯ renderWithHooks node_modules/react-dom/cjs/react-dom-client.development.js:5529:22
- ❯ updateFunctionComponent node_modules/react-dom/cjs/react-dom-client.development.js:8897:19
- ❯ beginWork node_modules/react-dom/cjs/react-dom-client.development.js:10522:18
- ❯ runWithFiberInDEV node_modules/react-dom/cjs/react-dom-client.development.js:1522:13
- ❯ performUnitOfWork node_modules/react-dom/cjs/react-dom-client.development.js:15140:22
- ❯ workLoopSync node_modules/react-dom/cjs/react-dom-client.development.js:14956:41
-            </failure>
-        </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; validates positive values for share-related fields" time="0.01753086">
-            <failure message="[vitest] No &quot;Calendar&quot; export is defined on the &quot;lucide-react&quot; mock. Did you forget to return it from &quot;vi.mock&quot;?
-If you need to partially mock a module, you can use &quot;importOriginal&quot; helper inside:
-" type="Error">
-Error: [vitest] No &quot;Calendar&quot; export is defined on the &quot;lucide-react&quot; mock. Did you forget to return it from &quot;vi.mock&quot;?
-If you need to partially mock a module, you can use &quot;importOriginal&quot; helper inside:
-
-vi.mock(import(&quot;lucide-react&quot;), async (importOriginal) =&gt; {
-  const actual = await importOriginal()
-  return {
-    ...actual,
-    // your mocked methods
-  }
-})
-
- ❯ DateInput src/components/DateInput.tsx:200:12
- ❯ Object.react-stack-bottom-frame node_modules/react-dom/cjs/react-dom-client.development.js:23863:20
- ❯ renderWithHooks node_modules/react-dom/cjs/react-dom-client.development.js:5529:22
- ❯ updateFunctionComponent node_modules/react-dom/cjs/react-dom-client.development.js:8897:19
- ❯ beginWork node_modules/react-dom/cjs/react-dom-client.development.js:10522:18
- ❯ runWithFiberInDEV node_modules/react-dom/cjs/react-dom-client.development.js:1522:13
- ❯ performUnitOfWork node_modules/react-dom/cjs/react-dom-client.development.js:15140:22
- ❯ workLoopSync node_modules/react-dom/cjs/react-dom-client.development.js:14956:41
-            </failure>
-        </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; checks name availability when typing company name" time="0.017583076">
-            <failure message="[vitest] No &quot;Calendar&quot; export is defined on the &quot;lucide-react&quot; mock. Did you forget to return it from &quot;vi.mock&quot;?
-If you need to partially mock a module, you can use &quot;importOriginal&quot; helper inside:
-" type="Error">
-Error: [vitest] No &quot;Calendar&quot; export is defined on the &quot;lucide-react&quot; mock. Did you forget to return it from &quot;vi.mock&quot;?
-If you need to partially mock a module, you can use &quot;importOriginal&quot; helper inside:
-
-vi.mock(import(&quot;lucide-react&quot;), async (importOriginal) =&gt; {
-  const actual = await importOriginal()
-  return {
-    ...actual,
-    // your mocked methods
-  }
-})
-
- ❯ DateInput src/components/DateInput.tsx:200:12
- ❯ Object.react-stack-bottom-frame node_modules/react-dom/cjs/react-dom-client.development.js:23863:20
- ❯ renderWithHooks node_modules/react-dom/cjs/react-dom-client.development.js:5529:22
- ❯ updateFunctionComponent node_modules/react-dom/cjs/react-dom-client.development.js:8897:19
- ❯ beginWork node_modules/react-dom/cjs/react-dom-client.development.js:10522:18
- ❯ runWithFiberInDEV node_modules/react-dom/cjs/react-dom-client.development.js:1522:13
- ❯ performUnitOfWork node_modules/react-dom/cjs/react-dom-client.development.js:15140:22
- ❯ workLoopSync node_modules/react-dom/cjs/react-dom-client.development.js:14956:41
-            </failure>
-        </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; shows error when company name is not available" time="0.021712644">
-            <failure message="[vitest] No &quot;Calendar&quot; export is defined on the &quot;lucide-react&quot; mock. Did you forget to return it from &quot;vi.mock&quot;?
-If you need to partially mock a module, you can use &quot;importOriginal&quot; helper inside:
-" type="Error">
-Error: [vitest] No &quot;Calendar&quot; export is defined on the &quot;lucide-react&quot; mock. Did you forget to return it from &quot;vi.mock&quot;?
-If you need to partially mock a module, you can use &quot;importOriginal&quot; helper inside:
-
-vi.mock(import(&quot;lucide-react&quot;), async (importOriginal) =&gt; {
-  const actual = await importOriginal()
-  return {
-    ...actual,
-    // your mocked methods
-  }
-})
-
- ❯ DateInput src/components/DateInput.tsx:200:12
- ❯ Object.react-stack-bottom-frame node_modules/react-dom/cjs/react-dom-client.development.js:23863:20
- ❯ renderWithHooks node_modules/react-dom/cjs/react-dom-client.development.js:5529:22
- ❯ updateFunctionComponent node_modules/react-dom/cjs/react-dom-client.development.js:8897:19
- ❯ beginWork node_modules/react-dom/cjs/react-dom-client.development.js:10522:18
- ❯ runWithFiberInDEV node_modules/react-dom/cjs/react-dom-client.development.js:1522:13
- ❯ performUnitOfWork node_modules/react-dom/cjs/react-dom-client.development.js:15140:22
- ❯ workLoopSync node_modules/react-dom/cjs/react-dom-client.development.js:14956:41
-            </failure>
-        </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; shows loading state while checking name availability" time="0.035934851">
-            <failure message="[vitest] No &quot;Calendar&quot; export is defined on the &quot;lucide-react&quot; mock. Did you forget to return it from &quot;vi.mock&quot;?
-If you need to partially mock a module, you can use &quot;importOriginal&quot; helper inside:
-" type="Error">
-Error: [vitest] No &quot;Calendar&quot; export is defined on the &quot;lucide-react&quot; mock. Did you forget to return it from &quot;vi.mock&quot;?
-If you need to partially mock a module, you can use &quot;importOriginal&quot; helper inside:
-
-vi.mock(import(&quot;lucide-react&quot;), async (importOriginal) =&gt; {
-  const actual = await importOriginal()
-  return {
-    ...actual,
-    // your mocked methods
-  }
-})
-
- ❯ DateInput src/components/DateInput.tsx:200:12
- ❯ Object.react-stack-bottom-frame node_modules/react-dom/cjs/react-dom-client.development.js:23863:20
- ❯ renderWithHooks node_modules/react-dom/cjs/react-dom-client.development.js:5529:22
- ❯ updateFunctionComponent node_modules/react-dom/cjs/react-dom-client.development.js:8897:19
- ❯ beginWork node_modules/react-dom/cjs/react-dom-client.development.js:10522:18
- ❯ runWithFiberInDEV node_modules/react-dom/cjs/react-dom-client.development.js:1522:13
- ❯ performUnitOfWork node_modules/react-dom/cjs/react-dom-client.development.js:15140:22
- ❯ workLoopSync node_modules/react-dom/cjs/react-dom-client.development.js:14956:41
-            </failure>
-        </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; handles API errors gracefully" time="0.023519939">
-            <failure message="[vitest] No &quot;Calendar&quot; export is defined on the &quot;lucide-react&quot; mock. Did you forget to return it from &quot;vi.mock&quot;?
-If you need to partially mock a module, you can use &quot;importOriginal&quot; helper inside:
-" type="Error">
-Error: [vitest] No &quot;Calendar&quot; export is defined on the &quot;lucide-react&quot; mock. Did you forget to return it from &quot;vi.mock&quot;?
-If you need to partially mock a module, you can use &quot;importOriginal&quot; helper inside:
-
-vi.mock(import(&quot;lucide-react&quot;), async (importOriginal) =&gt; {
-  const actual = await importOriginal()
-  return {
-    ...actual,
-    // your mocked methods
-  }
-})
-
- ❯ DateInput src/components/DateInput.tsx:200:12
- ❯ Object.react-stack-bottom-frame node_modules/react-dom/cjs/react-dom-client.development.js:23863:20
- ❯ renderWithHooks node_modules/react-dom/cjs/react-dom-client.development.js:5529:22
- ❯ updateFunctionComponent node_modules/react-dom/cjs/react-dom-client.development.js:8897:19
- ❯ beginWork node_modules/react-dom/cjs/react-dom-client.development.js:10522:18
- ❯ runWithFiberInDEV node_modules/react-dom/cjs/react-dom-client.development.js:1522:13
- ❯ performUnitOfWork node_modules/react-dom/cjs/react-dom-client.development.js:15140:22
- ❯ workLoopSync node_modules/react-dom/cjs/react-dom-client.development.js:14956:41
-            </failure>
-        </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; updates form fields correctly" time="0.02582807">
-            <failure message="[vitest] No &quot;Calendar&quot; export is defined on the &quot;lucide-react&quot; mock. Did you forget to return it from &quot;vi.mock&quot;?
-If you need to partially mock a module, you can use &quot;importOriginal&quot; helper inside:
-" type="Error">
-Error: [vitest] No &quot;Calendar&quot; export is defined on the &quot;lucide-react&quot; mock. Did you forget to return it from &quot;vi.mock&quot;?
-If you need to partially mock a module, you can use &quot;importOriginal&quot; helper inside:
-
-vi.mock(import(&quot;lucide-react&quot;), async (importOriginal) =&gt; {
-  const actual = await importOriginal()
-  return {
-    ...actual,
-    // your mocked methods
-  }
-})
-
- ❯ DateInput src/components/DateInput.tsx:200:12
- ❯ Object.react-stack-bottom-frame node_modules/react-dom/cjs/react-dom-client.development.js:23863:20
- ❯ renderWithHooks node_modules/react-dom/cjs/react-dom-client.development.js:5529:22
- ❯ updateFunctionComponent node_modules/react-dom/cjs/react-dom-client.development.js:8897:19
- ❯ beginWork node_modules/react-dom/cjs/react-dom-client.development.js:10522:18
- ❯ runWithFiberInDEV node_modules/react-dom/cjs/react-dom-client.development.js:1522:13
- ❯ performUnitOfWork node_modules/react-dom/cjs/react-dom-client.development.js:15140:22
- ❯ workLoopSync node_modules/react-dom/cjs/react-dom-client.development.js:14956:41
-            </failure>
-        </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; clears field errors when user starts typing" time="0.028138204">
-            <failure message="[vitest] No &quot;Calendar&quot; export is defined on the &quot;lucide-react&quot; mock. Did you forget to return it from &quot;vi.mock&quot;?
-If you need to partially mock a module, you can use &quot;importOriginal&quot; helper inside:
-" type="Error">
-Error: [vitest] No &quot;Calendar&quot; export is defined on the &quot;lucide-react&quot; mock. Did you forget to return it from &quot;vi.mock&quot;?
-If you need to partially mock a module, you can use &quot;importOriginal&quot; helper inside:
-
-vi.mock(import(&quot;lucide-react&quot;), async (importOriginal) =&gt; {
-  const actual = await importOriginal()
-  return {
-    ...actual,
-    // your mocked methods
-  }
-})
-
- ❯ DateInput src/components/DateInput.tsx:200:12
- ❯ Object.react-stack-bottom-frame node_modules/react-dom/cjs/react-dom-client.development.js:23863:20
- ❯ renderWithHooks node_modules/react-dom/cjs/react-dom-client.development.js:5529:22
- ❯ updateFunctionComponent node_modules/react-dom/cjs/react-dom-client.development.js:8897:19
- ❯ beginWork node_modules/react-dom/cjs/react-dom-client.development.js:10522:18
- ❯ runWithFiberInDEV node_modules/react-dom/cjs/react-dom-client.development.js:1522:13
- ❯ performUnitOfWork node_modules/react-dom/cjs/react-dom-client.development.js:15140:22
- ❯ workLoopSync node_modules/react-dom/cjs/react-dom-client.development.js:14956:41
-            </failure>
-        </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; disables submit button when name is not available" time="0.020029003">
-            <failure message="[vitest] No &quot;Calendar&quot; export is defined on the &quot;lucide-react&quot; mock. Did you forget to return it from &quot;vi.mock&quot;?
-If you need to partially mock a module, you can use &quot;importOriginal&quot; helper inside:
-" type="Error">
-Error: [vitest] No &quot;Calendar&quot; export is defined on the &quot;lucide-react&quot; mock. Did you forget to return it from &quot;vi.mock&quot;?
-If you need to partially mock a module, you can use &quot;importOriginal&quot; helper inside:
-
-vi.mock(import(&quot;lucide-react&quot;), async (importOriginal) =&gt; {
-  const actual = await importOriginal()
-  return {
-    ...actual,
-    // your mocked methods
-  }
-})
-
- ❯ DateInput src/components/DateInput.tsx:200:12
- ❯ Object.react-stack-bottom-frame node_modules/react-dom/cjs/react-dom-client.development.js:23863:20
- ❯ renderWithHooks node_modules/react-dom/cjs/react-dom-client.development.js:5529:22
- ❯ updateFunctionComponent node_modules/react-dom/cjs/react-dom-client.development.js:8897:19
- ❯ beginWork node_modules/react-dom/cjs/react-dom-client.development.js:10522:18
- ❯ runWithFiberInDEV node_modules/react-dom/cjs/react-dom-client.development.js:1522:13
- ❯ performUnitOfWork node_modules/react-dom/cjs/react-dom-client.development.js:15140:22
- ❯ workLoopSync node_modules/react-dom/cjs/react-dom-client.development.js:14956:41
-            </failure>
-        </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; shows loading state during form submission" time="0.01914579">
-            <failure message="[vitest] No &quot;Calendar&quot; export is defined on the &quot;lucide-react&quot; mock. Did you forget to return it from &quot;vi.mock&quot;?
-If you need to partially mock a module, you can use &quot;importOriginal&quot; helper inside:
-" type="Error">
-Error: [vitest] No &quot;Calendar&quot; export is defined on the &quot;lucide-react&quot; mock. Did you forget to return it from &quot;vi.mock&quot;?
-If you need to partially mock a module, you can use &quot;importOriginal&quot; helper inside:
-
-vi.mock(import(&quot;lucide-react&quot;), async (importOriginal) =&gt; {
-  const actual = await importOriginal()
-  return {
-    ...actual,
-    // your mocked methods
-  }
-})
-
- ❯ DateInput src/components/DateInput.tsx:200:12
- ❯ Object.react-stack-bottom-frame node_modules/react-dom/cjs/react-dom-client.development.js:23863:20
- ❯ renderWithHooks node_modules/react-dom/cjs/react-dom-client.development.js:5529:22
- ❯ updateFunctionComponent node_modules/react-dom/cjs/react-dom-client.development.js:8897:19
- ❯ beginWork node_modules/react-dom/cjs/react-dom-client.development.js:10522:18
- ❯ runWithFiberInDEV node_modules/react-dom/cjs/react-dom-client.development.js:1522:13
- ❯ performUnitOfWork node_modules/react-dom/cjs/react-dom-client.development.js:15140:22
- ❯ workLoopSync node_modules/react-dom/cjs/react-dom-client.development.js:14956:41
-            </failure>
-        </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; has proper accessibility attributes" time="0.029519781">
-            <failure message="[vitest] No &quot;Calendar&quot; export is defined on the &quot;lucide-react&quot; mock. Did you forget to return it from &quot;vi.mock&quot;?
-If you need to partially mock a module, you can use &quot;importOriginal&quot; helper inside:
-" type="Error">
-Error: [vitest] No &quot;Calendar&quot; export is defined on the &quot;lucide-react&quot; mock. Did you forget to return it from &quot;vi.mock&quot;?
-If you need to partially mock a module, you can use &quot;importOriginal&quot; helper inside:
-
-vi.mock(import(&quot;lucide-react&quot;), async (importOriginal) =&gt; {
-  const actual = await importOriginal()
-  return {
-    ...actual,
-    // your mocked methods
-  }
-})
-
- ❯ DateInput src/components/DateInput.tsx:200:12
- ❯ Object.react-stack-bottom-frame node_modules/react-dom/cjs/react-dom-client.development.js:23863:20
- ❯ renderWithHooks node_modules/react-dom/cjs/react-dom-client.development.js:5529:22
- ❯ updateFunctionComponent node_modules/react-dom/cjs/react-dom-client.development.js:8897:19
- ❯ beginWork node_modules/react-dom/cjs/react-dom-client.development.js:10522:18
- ❯ runWithFiberInDEV node_modules/react-dom/cjs/react-dom-client.development.js:1522:13
- ❯ performUnitOfWork node_modules/react-dom/cjs/react-dom-client.development.js:15140:22
- ❯ workLoopSync node_modules/react-dom/cjs/react-dom-client.development.js:14956:41
-            </failure>
-        </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; renders file upload area with correct styling" time="0.015679559">
-            <failure message="[vitest] No &quot;Calendar&quot; export is defined on the &quot;lucide-react&quot; mock. Did you forget to return it from &quot;vi.mock&quot;?
-If you need to partially mock a module, you can use &quot;importOriginal&quot; helper inside:
-" type="Error">
-Error: [vitest] No &quot;Calendar&quot; export is defined on the &quot;lucide-react&quot; mock. Did you forget to return it from &quot;vi.mock&quot;?
-If you need to partially mock a module, you can use &quot;importOriginal&quot; helper inside:
-
-vi.mock(import(&quot;lucide-react&quot;), async (importOriginal) =&gt; {
-  const actual = await importOriginal()
-  return {
-    ...actual,
-    // your mocked methods
-  }
-})
-
- ❯ DateInput src/components/DateInput.tsx:200:12
- ❯ Object.react-stack-bottom-frame node_modules/react-dom/cjs/react-dom-client.development.js:23863:20
- ❯ renderWithHooks node_modules/react-dom/cjs/react-dom-client.development.js:5529:22
- ❯ updateFunctionComponent node_modules/react-dom/cjs/react-dom-client.development.js:8897:19
- ❯ beginWork node_modules/react-dom/cjs/react-dom-client.development.js:10522:18
- ❯ runWithFiberInDEV node_modules/react-dom/cjs/react-dom-client.development.js:1522:13
- ❯ performUnitOfWork node_modules/react-dom/cjs/react-dom-client.development.js:15140:22
- ❯ workLoopSync node_modules/react-dom/cjs/react-dom-client.development.js:14956:41
-            </failure>
-        </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; accepts valid PDF file" time="0.018101985">
-            <failure message="[vitest] No &quot;Calendar&quot; export is defined on the &quot;lucide-react&quot; mock. Did you forget to return it from &quot;vi.mock&quot;?
-If you need to partially mock a module, you can use &quot;importOriginal&quot; helper inside:
-" type="Error">
-Error: [vitest] No &quot;Calendar&quot; export is defined on the &quot;lucide-react&quot; mock. Did you forget to return it from &quot;vi.mock&quot;?
-If you need to partially mock a module, you can use &quot;importOriginal&quot; helper inside:
-
-vi.mock(import(&quot;lucide-react&quot;), async (importOriginal) =&gt; {
-  const actual = await importOriginal()
-  return {
-    ...actual,
-    // your mocked methods
-  }
-})
-
- ❯ DateInput src/components/DateInput.tsx:200:12
- ❯ Object.react-stack-bottom-frame node_modules/react-dom/cjs/react-dom-client.development.js:23863:20
- ❯ renderWithHooks node_modules/react-dom/cjs/react-dom-client.development.js:5529:22
- ❯ updateFunctionComponent node_modules/react-dom/cjs/react-dom-client.development.js:8897:19
- ❯ beginWork node_modules/react-dom/cjs/react-dom-client.development.js:10522:18
- ❯ runWithFiberInDEV node_modules/react-dom/cjs/react-dom-client.development.js:1522:13
- ❯ performUnitOfWork node_modules/react-dom/cjs/react-dom-client.development.js:15140:22
- ❯ workLoopSync node_modules/react-dom/cjs/react-dom-client.development.js:14956:41
-            </failure>
-        </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; accepts valid DOC file" time="0.015357916">
-            <failure message="[vitest] No &quot;Calendar&quot; export is defined on the &quot;lucide-react&quot; mock. Did you forget to return it from &quot;vi.mock&quot;?
-If you need to partially mock a module, you can use &quot;importOriginal&quot; helper inside:
-" type="Error">
-Error: [vitest] No &quot;Calendar&quot; export is defined on the &quot;lucide-react&quot; mock. Did you forget to return it from &quot;vi.mock&quot;?
-If you need to partially mock a module, you can use &quot;importOriginal&quot; helper inside:
-
-vi.mock(import(&quot;lucide-react&quot;), async (importOriginal) =&gt; {
-  const actual = await importOriginal()
-  return {
-    ...actual,
-    // your mocked methods
-  }
-})
-
- ❯ DateInput src/components/DateInput.tsx:200:12
- ❯ Object.react-stack-bottom-frame node_modules/react-dom/cjs/react-dom-client.development.js:23863:20
- ❯ renderWithHooks node_modules/react-dom/cjs/react-dom-client.development.js:5529:22
- ❯ updateFunctionComponent node_modules/react-dom/cjs/react-dom-client.development.js:8897:19
- ❯ beginWork node_modules/react-dom/cjs/react-dom-client.development.js:10522:18
- ❯ runWithFiberInDEV node_modules/react-dom/cjs/react-dom-client.development.js:1522:13
- ❯ performUnitOfWork node_modules/react-dom/cjs/react-dom-client.development.js:15140:22
- ❯ workLoopSync node_modules/react-dom/cjs/react-dom-client.development.js:14956:41
-            </failure>
-        </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; accepts valid DOCX file" time="0.023300616">
-            <failure message="[vitest] No &quot;Calendar&quot; export is defined on the &quot;lucide-react&quot; mock. Did you forget to return it from &quot;vi.mock&quot;?
-If you need to partially mock a module, you can use &quot;importOriginal&quot; helper inside:
-" type="Error">
-Error: [vitest] No &quot;Calendar&quot; export is defined on the &quot;lucide-react&quot; mock. Did you forget to return it from &quot;vi.mock&quot;?
-If you need to partially mock a module, you can use &quot;importOriginal&quot; helper inside:
-
-vi.mock(import(&quot;lucide-react&quot;), async (importOriginal) =&gt; {
-  const actual = await importOriginal()
-  return {
-    ...actual,
-    // your mocked methods
-  }
-})
-
- ❯ DateInput src/components/DateInput.tsx:200:12
- ❯ Object.react-stack-bottom-frame node_modules/react-dom/cjs/react-dom-client.development.js:23863:20
- ❯ renderWithHooks node_modules/react-dom/cjs/react-dom-client.development.js:5529:22
- ❯ updateFunctionComponent node_modules/react-dom/cjs/react-dom-client.development.js:8897:19
- ❯ beginWork node_modules/react-dom/cjs/react-dom-client.development.js:10522:18
- ❯ runWithFiberInDEV node_modules/react-dom/cjs/react-dom-client.development.js:1522:13
- ❯ performUnitOfWork node_modules/react-dom/cjs/react-dom-client.development.js:15140:22
- ❯ workLoopSync node_modules/react-dom/cjs/react-dom-client.development.js:14956:41
-            </failure>
-        </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; rejects invalid file type" time="0.014931474">
-            <failure message="[vitest] No &quot;Calendar&quot; export is defined on the &quot;lucide-react&quot; mock. Did you forget to return it from &quot;vi.mock&quot;?
-If you need to partially mock a module, you can use &quot;importOriginal&quot; helper inside:
-" type="Error">
-Error: [vitest] No &quot;Calendar&quot; export is defined on the &quot;lucide-react&quot; mock. Did you forget to return it from &quot;vi.mock&quot;?
-If you need to partially mock a module, you can use &quot;importOriginal&quot; helper inside:
-
-vi.mock(import(&quot;lucide-react&quot;), async (importOriginal) =&gt; {
-  const actual = await importOriginal()
-  return {
-    ...actual,
-    // your mocked methods
-  }
-})
-
- ❯ DateInput src/components/DateInput.tsx:200:12
- ❯ Object.react-stack-bottom-frame node_modules/react-dom/cjs/react-dom-client.development.js:23863:20
- ❯ renderWithHooks node_modules/react-dom/cjs/react-dom-client.development.js:5529:22
- ❯ updateFunctionComponent node_modules/react-dom/cjs/react-dom-client.development.js:8897:19
- ❯ beginWork node_modules/react-dom/cjs/react-dom-client.development.js:10522:18
- ❯ runWithFiberInDEV node_modules/react-dom/cjs/react-dom-client.development.js:1522:13
- ❯ performUnitOfWork node_modules/react-dom/cjs/react-dom-client.development.js:15140:22
- ❯ workLoopSync node_modules/react-dom/cjs/react-dom-client.development.js:14956:41
-            </failure>
-        </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; rejects file larger than 5MB" time="0.016881869">
-            <failure message="[vitest] No &quot;Calendar&quot; export is defined on the &quot;lucide-react&quot; mock. Did you forget to return it from &quot;vi.mock&quot;?
-If you need to partially mock a module, you can use &quot;importOriginal&quot; helper inside:
-" type="Error">
-Error: [vitest] No &quot;Calendar&quot; export is defined on the &quot;lucide-react&quot; mock. Did you forget to return it from &quot;vi.mock&quot;?
-If you need to partially mock a module, you can use &quot;importOriginal&quot; helper inside:
-
-vi.mock(import(&quot;lucide-react&quot;), async (importOriginal) =&gt; {
-  const actual = await importOriginal()
-  return {
-    ...actual,
-    // your mocked methods
-  }
-})
-
- ❯ DateInput src/components/DateInput.tsx:200:12
- ❯ Object.react-stack-bottom-frame node_modules/react-dom/cjs/react-dom-client.development.js:23863:20
- ❯ renderWithHooks node_modules/react-dom/cjs/react-dom-client.development.js:5529:22
- ❯ updateFunctionComponent node_modules/react-dom/cjs/react-dom-client.development.js:8897:19
- ❯ beginWork node_modules/react-dom/cjs/react-dom-client.development.js:10522:18
- ❯ runWithFiberInDEV node_modules/react-dom/cjs/react-dom-client.development.js:1522:13
- ❯ performUnitOfWork node_modules/react-dom/cjs/react-dom-client.development.js:15140:22
- ❯ workLoopSync node_modules/react-dom/cjs/react-dom-client.development.js:14956:41
-            </failure>
-        </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; allows removing uploaded file" time="0.02957331">
-            <failure message="[vitest] No &quot;Calendar&quot; export is defined on the &quot;lucide-react&quot; mock. Did you forget to return it from &quot;vi.mock&quot;?
-If you need to partially mock a module, you can use &quot;importOriginal&quot; helper inside:
-" type="Error">
-Error: [vitest] No &quot;Calendar&quot; export is defined on the &quot;lucide-react&quot; mock. Did you forget to return it from &quot;vi.mock&quot;?
-If you need to partially mock a module, you can use &quot;importOriginal&quot; helper inside:
-
-vi.mock(import(&quot;lucide-react&quot;), async (importOriginal) =&gt; {
-  const actual = await importOriginal()
-  return {
-    ...actual,
-    // your mocked methods
-  }
-})
-
- ❯ DateInput src/components/DateInput.tsx:200:12
- ❯ Object.react-stack-bottom-frame node_modules/react-dom/cjs/react-dom-client.development.js:23863:20
- ❯ renderWithHooks node_modules/react-dom/cjs/react-dom-client.development.js:5529:22
- ❯ updateFunctionComponent node_modules/react-dom/cjs/react-dom-client.development.js:8897:19
- ❯ beginWork node_modules/react-dom/cjs/react-dom-client.development.js:10522:18
- ❯ runWithFiberInDEV node_modules/react-dom/cjs/react-dom-client.development.js:1522:13
- ❯ performUnitOfWork node_modules/react-dom/cjs/react-dom-client.development.js:15140:22
- ❯ workLoopSync node_modules/react-dom/cjs/react-dom-client.development.js:14956:41
-            </failure>
-        </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; clears file error when valid file is uploaded" time="0.017769969">
-            <failure message="[vitest] No &quot;Calendar&quot; export is defined on the &quot;lucide-react&quot; mock. Did you forget to return it from &quot;vi.mock&quot;?
-If you need to partially mock a module, you can use &quot;importOriginal&quot; helper inside:
-" type="Error">
-Error: [vitest] No &quot;Calendar&quot; export is defined on the &quot;lucide-react&quot; mock. Did you forget to return it from &quot;vi.mock&quot;?
-If you need to partially mock a module, you can use &quot;importOriginal&quot; helper inside:
-
-vi.mock(import(&quot;lucide-react&quot;), async (importOriginal) =&gt; {
-  const actual = await importOriginal()
-  return {
-    ...actual,
-    // your mocked methods
-  }
-})
-
- ❯ DateInput src/components/DateInput.tsx:200:12
- ❯ Object.react-stack-bottom-frame node_modules/react-dom/cjs/react-dom-client.development.js:23863:20
- ❯ renderWithHooks node_modules/react-dom/cjs/react-dom-client.development.js:5529:22
- ❯ updateFunctionComponent node_modules/react-dom/cjs/react-dom-client.development.js:8897:19
- ❯ beginWork node_modules/react-dom/cjs/react-dom-client.development.js:10522:18
- ❯ runWithFiberInDEV node_modules/react-dom/cjs/react-dom-client.development.js:1522:13
- ❯ performUnitOfWork node_modules/react-dom/cjs/react-dom-client.development.js:15140:22
- ❯ workLoopSync node_modules/react-dom/cjs/react-dom-client.development.js:14956:41
-            </failure>
-        </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; displays file size in MB correctly" time="0.055122497">
-            <failure message="[vitest] No &quot;Calendar&quot; export is defined on the &quot;lucide-react&quot; mock. Did you forget to return it from &quot;vi.mock&quot;?
-If you need to partially mock a module, you can use &quot;importOriginal&quot; helper inside:
-" type="Error">
-Error: [vitest] No &quot;Calendar&quot; export is defined on the &quot;lucide-react&quot; mock. Did you forget to return it from &quot;vi.mock&quot;?
-If you need to partially mock a module, you can use &quot;importOriginal&quot; helper inside:
-
-vi.mock(import(&quot;lucide-react&quot;), async (importOriginal) =&gt; {
-  const actual = await importOriginal()
-  return {
-    ...actual,
-    // your mocked methods
-  }
-})
-
- ❯ DateInput src/components/DateInput.tsx:200:12
- ❯ Object.react-stack-bottom-frame node_modules/react-dom/cjs/react-dom-client.development.js:23863:20
- ❯ renderWithHooks node_modules/react-dom/cjs/react-dom-client.development.js:5529:22
- ❯ updateFunctionComponent node_modules/react-dom/cjs/react-dom-client.development.js:8897:19
- ❯ beginWork node_modules/react-dom/cjs/react-dom-client.development.js:10522:18
- ❯ runWithFiberInDEV node_modules/react-dom/cjs/react-dom-client.development.js:1522:13
- ❯ performUnitOfWork node_modules/react-dom/cjs/react-dom-client.development.js:15140:22
- ❯ workLoopSync node_modules/react-dom/cjs/react-dom-client.development.js:14956:41
-            </failure>
-        </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; handles file upload without selecting file" time="0.03153667">
-            <failure message="[vitest] No &quot;Calendar&quot; export is defined on the &quot;lucide-react&quot; mock. Did you forget to return it from &quot;vi.mock&quot;?
-If you need to partially mock a module, you can use &quot;importOriginal&quot; helper inside:
-" type="Error">
-Error: [vitest] No &quot;Calendar&quot; export is defined on the &quot;lucide-react&quot; mock. Did you forget to return it from &quot;vi.mock&quot;?
-If you need to partially mock a module, you can use &quot;importOriginal&quot; helper inside:
-
-vi.mock(import(&quot;lucide-react&quot;), async (importOriginal) =&gt; {
-  const actual = await importOriginal()
-  return {
-    ...actual,
-    // your mocked methods
-  }
-})
-
- ❯ DateInput src/components/DateInput.tsx:200:12
- ❯ Object.react-stack-bottom-frame node_modules/react-dom/cjs/react-dom-client.development.js:23863:20
- ❯ renderWithHooks node_modules/react-dom/cjs/react-dom-client.development.js:5529:22
- ❯ updateFunctionComponent node_modules/react-dom/cjs/react-dom-client.development.js:8897:19
- ❯ beginWork node_modules/react-dom/cjs/react-dom-client.development.js:10522:18
- ❯ runWithFiberInDEV node_modules/react-dom/cjs/react-dom-client.development.js:1522:13
- ❯ performUnitOfWork node_modules/react-dom/cjs/react-dom-client.development.js:15140:22
- ❯ workLoopSync node_modules/react-dom/cjs/react-dom-client.development.js:14956:41
-            </failure>
-        </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; shows upload area when no file is selected" time="0.014191494">
-            <failure message="[vitest] No &quot;Calendar&quot; export is defined on the &quot;lucide-react&quot; mock. Did you forget to return it from &quot;vi.mock&quot;?
-If you need to partially mock a module, you can use &quot;importOriginal&quot; helper inside:
-" type="Error">
-Error: [vitest] No &quot;Calendar&quot; export is defined on the &quot;lucide-react&quot; mock. Did you forget to return it from &quot;vi.mock&quot;?
-If you need to partially mock a module, you can use &quot;importOriginal&quot; helper inside:
-
-vi.mock(import(&quot;lucide-react&quot;), async (importOriginal) =&gt; {
-  const actual = await importOriginal()
-  return {
-    ...actual,
-    // your mocked methods
-  }
-})
-
- ❯ DateInput src/components/DateInput.tsx:200:12
- ❯ Object.react-stack-bottom-frame node_modules/react-dom/cjs/react-dom-client.development.js:23863:20
- ❯ renderWithHooks node_modules/react-dom/cjs/react-dom-client.development.js:5529:22
- ❯ updateFunctionComponent node_modules/react-dom/cjs/react-dom-client.development.js:8897:19
- ❯ beginWork node_modules/react-dom/cjs/react-dom-client.development.js:10522:18
- ❯ runWithFiberInDEV node_modules/react-dom/cjs/react-dom-client.development.js:1522:13
- ❯ performUnitOfWork node_modules/react-dom/cjs/react-dom-client.development.js:15140:22
- ❯ workLoopSync node_modules/react-dom/cjs/react-dom-client.development.js:14956:41
-            </failure>
-        </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; shows file details when file is selected" time="0.015071445">
-            <failure message="[vitest] No &quot;Calendar&quot; export is defined on the &quot;lucide-react&quot; mock. Did you forget to return it from &quot;vi.mock&quot;?
-If you need to partially mock a module, you can use &quot;importOriginal&quot; helper inside:
-" type="Error">
-Error: [vitest] No &quot;Calendar&quot; export is defined on the &quot;lucide-react&quot; mock. Did you forget to return it from &quot;vi.mock&quot;?
-If you need to partially mock a module, you can use &quot;importOriginal&quot; helper inside:
-
-vi.mock(import(&quot;lucide-react&quot;), async (importOriginal) =&gt; {
-  const actual = await importOriginal()
-  return {
-    ...actual,
-    // your mocked methods
-  }
-})
-
- ❯ DateInput src/components/DateInput.tsx:200:12
- ❯ Object.react-stack-bottom-frame node_modules/react-dom/cjs/react-dom-client.development.js:23863:20
- ❯ renderWithHooks node_modules/react-dom/cjs/react-dom-client.development.js:5529:22
- ❯ updateFunctionComponent node_modules/react-dom/cjs/react-dom-client.development.js:8897:19
- ❯ beginWork node_modules/react-dom/cjs/react-dom-client.development.js:10522:18
- ❯ runWithFiberInDEV node_modules/react-dom/cjs/react-dom-client.development.js:1522:13
- ❯ performUnitOfWork node_modules/react-dom/cjs/react-dom-client.development.js:15140:22
- ❯ workLoopSync node_modules/react-dom/cjs/react-dom-client.development.js:14956:41
-            </failure>
-        </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; Form Integration with File Upload &gt; submits form successfully with constitution file" time="0.016947351">
-            <failure message="[vitest] No &quot;Calendar&quot; export is defined on the &quot;lucide-react&quot; mock. Did you forget to return it from &quot;vi.mock&quot;?
-If you need to partially mock a module, you can use &quot;importOriginal&quot; helper inside:
-" type="Error">
-Error: [vitest] No &quot;Calendar&quot; export is defined on the &quot;lucide-react&quot; mock. Did you forget to return it from &quot;vi.mock&quot;?
-If you need to partially mock a module, you can use &quot;importOriginal&quot; helper inside:
-
-vi.mock(import(&quot;lucide-react&quot;), async (importOriginal) =&gt; {
-  const actual = await importOriginal()
-  return {
-    ...actual,
-    // your mocked methods
-  }
-})
-
- ❯ DateInput src/components/DateInput.tsx:200:12
- ❯ Object.react-stack-bottom-frame node_modules/react-dom/cjs/react-dom-client.development.js:23863:20
- ❯ renderWithHooks node_modules/react-dom/cjs/react-dom-client.development.js:5529:22
- ❯ updateFunctionComponent node_modules/react-dom/cjs/react-dom-client.development.js:8897:19
- ❯ beginWork node_modules/react-dom/cjs/react-dom-client.development.js:10522:18
- ❯ runWithFiberInDEV node_modules/react-dom/cjs/react-dom-client.development.js:1522:13
- ❯ performUnitOfWork node_modules/react-dom/cjs/react-dom-client.development.js:15140:22
- ❯ workLoopSync node_modules/react-dom/cjs/react-dom-client.development.js:14956:41
-            </failure>
-        </testcase>
-        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; Form Integration with File Upload &gt; maintains file selection during form validation" time="0.022368862">
-            <failure message="[vitest] No &quot;Calendar&quot; export is defined on the &quot;lucide-react&quot; mock. Did you forget to return it from &quot;vi.mock&quot;?
-If you need to partially mock a module, you can use &quot;importOriginal&quot; helper inside:
-" type="Error">
-Error: [vitest] No &quot;Calendar&quot; export is defined on the &quot;lucide-react&quot; mock. Did you forget to return it from &quot;vi.mock&quot;?
-If you need to partially mock a module, you can use &quot;importOriginal&quot; helper inside:
-
-vi.mock(import(&quot;lucide-react&quot;), async (importOriginal) =&gt; {
-  const actual = await importOriginal()
-  return {
-    ...actual,
-    // your mocked methods
-  }
-})
-
- ❯ DateInput src/components/DateInput.tsx:200:12
- ❯ Object.react-stack-bottom-frame node_modules/react-dom/cjs/react-dom-client.development.js:23863:20
- ❯ renderWithHooks node_modules/react-dom/cjs/react-dom-client.development.js:5529:22
- ❯ updateFunctionComponent node_modules/react-dom/cjs/react-dom-client.development.js:8897:19
- ❯ beginWork node_modules/react-dom/cjs/react-dom-client.development.js:10522:18
- ❯ runWithFiberInDEV node_modules/react-dom/cjs/react-dom-client.development.js:1522:13
- ❯ performUnitOfWork node_modules/react-dom/cjs/react-dom-client.development.js:15140:22
- ❯ workLoopSync node_modules/react-dom/cjs/react-dom-client.development.js:14956:41
-            </failure>
+        <testcase classname="src/pages/__tests__/CompanyDetails.test.tsx" name="CompanyDetails &gt; Props Override &gt; should use prop companyId when provided" time="0.019677108">
         </testcase>
     </testsuite>
-    <testsuite name="src/pages/__tests__/DirectorAppointment.test.tsx" timestamp="2025-07-18T00:10:22.907Z" hostname="FMNZ-C02D5HB1ML7H.local" tests="21" failures="5" errors="0" skipped="1" time="8.527766152">
-        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; renders the director appointment form with all required fields" time="0.667655703">
+    <testsuite name="src/pages/__tests__/CompanyRegistration.test.tsx" timestamp="2025-07-18T00:14:07.912Z" hostname="FMNZ-C02D5HB1ML7H.local" tests="28" failures="3" errors="0" skipped="0" time="8.960199609">
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; renders the registration form with all required fields" time="0.412605881">
         </testcase>
-        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; has correct default values" time="0.176524714">
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; has correct default values" time="0.057526978">
+        </testcase>
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; validates required fields" time="0.074591064">
+        </testcase>
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; validates share capital calculation" time="0.335698248">
+        </testcase>
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; validates positive values for share-related fields" time="0.202369816">
+        </testcase>
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; checks name availability when typing company name" time="0.936700738">
+        </testcase>
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; shows error when company name is not available" time="0.91929813">
+        </testcase>
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; shows loading state while checking name availability" time="0.803485803">
+        </testcase>
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; handles API errors gracefully" time="0.80611276">
+        </testcase>
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; updates form fields correctly" time="0.172048627">
+            <failure message="[2mexpect([22m[31melement[39m[2m).toHaveValue([22m[32m2024-01-01[39m[2m)[22m
+
+Expected the element to have value:
+[32m  2024-01-01[39m
+Received:
+[31m  20/24/0101[39m" type="Error">
+Error: expect(element).toHaveValue(2024-01-01)
+
+Expected the element to have value:
+  2024-01-01
+Received:
+  20/24/0101
+ ❯ src/pages/__tests__/CompanyRegistration.test.tsx:298:36
+            </failure>
+        </testcase>
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; clears field errors when user starts typing" time="0.042177142">
+        </testcase>
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; disables submit button when name is not available" time="0.821399524">
+        </testcase>
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; shows loading state during form submission" time="0.878331081">
+            <failure message="Unable to find an element with the text: Registering Company.... This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+Ignored nodes: comments, script, style
+[36m&lt;body&gt;[39m
+  [36m&lt;div&gt;[39m
+    [36m&lt;div[39m
+      [33mclass[39m=[32m&quot;min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 py-12 px-4 sm:px-6 lg:px-8&quot;[39m
+    [36m&gt;[39m
+      [36m&lt;div[39m
+        [33mclass[39m=[32m&quot;max-w-3xl mx-auto&quot;[39m
+      [36m&gt;[39m
+        [36m&lt;div[39m
+          [33mclass[39m=[32m&quot;text-center mb-8&quot;[39m
+        [36m&gt;[39m
+          [36m&lt;div[39m
+            [33mclass[39m=[32m&quot;flex items-center justify-center mb-4&quot;[39m
+          [36m&gt;[39m
+            [36m&lt;div[39m
+              [33mclass[39m=[32m&quot;flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-600 to-green-600 rounded-xl shadow-lg&quot;[39m
+            [36m&gt;[39m
+              [36m&lt;svg[39m
+                [33mclass[39m=[32m&quot;h-8 w-8 text-white&quot;[39m
+                [33mdata-testid[39m=[32m&quot;building2-icon&quot;[39m
+              [36m/&gt;[39m
+            [36m&lt;/div&gt;[39m
+          [36m&lt;/div&gt;[39m
+          [36m&lt;h1[39m
+            [33mclass[39m=[32m&quot;text-3xl font-bold text-gray-900 mb-2&quot;[39m
+          [36m&gt;[39m
+            [0mRegister a New Company[0m
+          [36m&lt;/h1&gt;[39m
+          [36m&lt;p[39m
+            [33mclass[39m=[32m&quot;text-lg text-gray-600&quot;[39m
+          [36m&gt;[39m
+            [0mRegister your new company with the New Zealand Companies Office[0m
+          [36m&lt;/p&gt;[39m
+        [36m&lt;/div&gt;[39m
+        [36m&lt;div[39m
+          [33mclass[39m=[32m&quot;bg-white rounded-2xl shadow-xl p-8 border border-gray-100&quot;[39m
+        [36m&gt;[39m
+          [36m&lt;form[39m
+            [33mclass[39m=[32m&quot;space-y-6&quot;[39m
+          [36m&gt;[39m
+            [36m&lt;div&gt;[39m
+              [36m&lt;label[39m
+                [33mclass[39m=[32m&quot;block text-sm font-medium text-gray-700 mb-2&quot;[39m
+                [33mfor[39m=[32m&quot;companyName&quot;[39m
+              [36m&gt;[39m
+                [0mCompany Name *[0m
+              [36m&lt;/label&gt;[39m
+              [36m&lt;div[39m
+                [33mclass[39m=[32m&quot;relative&quot;[39m
+              [36m&gt;[39m
+                [36m&lt;input[39m
+                  [33mclass[39m=[32m&quot;w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors border-gray-300&quot;[39m
+                  [33mid[39m=[32m&quot;companyName&quot;[39m
+                  [33mname[39m=[32m&quot;companyName&quot;[39m
+                  [33mplaceholder[39m=[32m&quot;Enter company name&quot;[39m
+                  [33mrequired[39m=[32m&quot;&quot;[39m
+                  [33mtype[39m=[32m&quot;text&quot;[39m
+                  [33mvalue[39m=[32m&quot;Test Company&quot;[39m
+                [36m/&gt;[39m
+                [36m&lt;div[39m
+                  [33mclass[39m=[32m&quot;absolute right-3 top-1/2 transform -translate-y-1/2&quot;[39m
+                [36m&gt;[39m
+                  [36m&lt;svg[39m
+                    [33mclass[39m=[32m&quot;h-5 w-5 text-green-500&quot;[39m
+                    [33mdata-testid[39m=[32m&quot;check-icon&quot;[39m
+                  [36m/&gt;[39m
+                [36m&lt;/div&gt;[39m
+              [36m&lt;/div&gt;[39m
+              [36m&lt;p[39m
+                [33mclass[39m=[32m&quot;mt-2 text-sm text-green-600&quot;[39m
+              [36m&gt;[39m
+                [0m✓ Name is available[0m
+              [36m&lt;/p&gt;[39m
+            [36m&lt;/div&gt;[39m
+            [36m&lt;div&gt;[39m
+              [36m&lt;label[39m
+                [33mclass[39m=[32m&quot;block text-sm font-medium text-gray-700 mb-2&quot;[39m
+                [33mfor[39m=[32m&quot;companyType&quot;[39m
+              [36m&gt;[39m
+                [0mCompany Type *[0m
+              [36m&lt;/label&gt;[39m
+              [36m&lt;select[39m
+                [33mclass[39m=[32m&quot;w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors&quot;[39m
+                [33mid[39m=[32m&quot;companyType&quot;[39m
+                [33mname[39m=[32m&quot;companyType&quot;[39m
+                [33mrequired[39m=[32m&quot;&quot;[39m
+              [36m&gt;[39m
+                [36m&lt;option[39m
+                  [33mvalue[39m=[32m&quot;LTD&quot;[39m
+                [36m&gt;[39m
+                  [0mLimited Company (Ltd)[0m
+                [36m&lt;/option&gt;[39m
+                [36m&lt;option[39m
+                  [33mvalue[39m=[32m&quot;OVERSEAS&quot;[39m
+                [36m&gt;[39m
+                  [0mOverseas Company[0m
+                [36m&lt;/option&gt;[39m
+                [36m&lt;option[39m
+                  [33mvalue[39m=[32m&quot;UNLIMITED&quot;[39m
+                [36m&gt;[39m
+                  [0mUnlimited Company[0m
+                [36m&lt;/option&gt;[39m
+              [36m&lt;/select&gt;[39m
+            [36m&lt;/div&gt;[39m
+            [36m&lt;div&gt;[39m
+              [36m&lt;div[39m
+                [33mclass[39m=[32m&quot;relative&quot;[39m
+              [36m&gt;[39m
+                [36m&lt;label[39m
+                  [33mclass[39m=[32m&quot;block text-sm font-medium text-gray-700 mb-2&quot;[39m
+                  [33mfor[39m=[32m&quot;incorporationDate&quot;[39m
+                [36m&gt;[39m
+                  [0mIncorporation Date[0m
+                  [0m [0m
+                  [0m*[0m
+                [36m&lt;/label&gt;[39m
+                [36m&lt;div[39m
+                  [33mclass[39m=[32m&quot;relative&quot;[39m
+                [36m&gt;[39m
+                  [36m&lt;input[39m
+                    [33mautocomplete[39m=[32m&quot;off&quot;[39m
+                    [33mclass[39m=[32m&quot;w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors border-gray-300  pr-12&quot;[39m
+                    [33mid[39m=[32m&quot;incorporationDate&quot;[39m
+                    [33mmaxlength[39m=[32m&quot;10&quot;[39m
+                    [33mname[39m=[32m&quot;incorporationDate&quot;[39m
+                    [33mplaceholder[39m=[32m&quot;DD/MM/YYYY&quot;[39m
+                    [33mrequired[39m=[32m&quot;&quot;[39m
+                    [33mtype[39m=[32m&quot;text&quot;[39m
+                    [33mvalue[39m=[32m&quot;&quot;[39m
+                  [36m/&gt;[39m
+                  [36m&lt;input[39m
+                    [33maria-hidden[39m=[32m&quot;true&quot;[39m
+                    [33mclass[39m=[32m&quot;absolute top-full left-0 w-0 h-0 opacity-0 pointer-events-none&quot;[39m
+                    [33mtabindex[39m=[32m&quot;-1&quot;[39m
+                    [33mtype[39m=[32m&quot;date&quot;[39m
+                    [33mvalue[39m=[32m&quot;&quot;[39m
+                  [36m/&gt;[39m
+                  [36m&lt;button[39m
+                    [33maria-label[39m=[32m&quot;Open calendar&quot;[39m
+                    [33mclass[39m=[32m&quot;absolute inset-y-0 right-0 pr-3 flex items-center hover:bg-gray-50 rounded-r-lg&quot;[39m
+                    [33mtabindex[39m=[32m&quot;-1&quot;[39m
+                    [33mtype[39m=[32m&quot;button&quot;[39m
+                  [36m&gt;[39m
+                    [36m&lt;svg[39m
+                      [33mclass[39m=[32m&quot;h-5 w-5 text-gray-400 hover:text-gray-600&quot;[39m
+                      [33mdata-testid[39m=[32m&quot;calendar-icon&quot;[39m
+                    [36m/&gt;[39m
+                  [36m&lt;/button&gt;[39m
+                [36m&lt;/div&gt;[39m
+                [36m&lt;p[39m
+                  [33mclass[39m=[32m&quot;mt-1 text-xs text-gray-500&quot;[39m
+                [36m&gt;[39m
+                  [0mType date as DD/MM/YYYY or click calendar icon[0m
+                [36m&lt;/p&gt;[39m
+              [36m&lt;/div&gt;[39m
+            [36m&lt;/div&gt;[39m
+            [36m&lt;div&gt;[39m
+              [36m&lt;label[39m
+                [33mclass[39m=[32m&quot;block text-sm font-medium text-gray-700 mb-2&quot;[39m
+                [33mfor[39m=[32m&quot;nzbn&quot;[39m
+              [36m&gt;[39m
+                [0mNZBN (Optional)[0m
+              [36m&lt;/label&gt;[39m
+              [36m&lt;input[39m
+                [33mclass[39m=[32m&quot;w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors&quot;[39m
+                [33mid[39m=[32m&quot;nzbn&quot;[39m
+                [33mname[39m=[32m&quot;nzbn&quot;[39m
+                [33mplaceholder[39m=[32m&quot;New Zealand Business Number&quot;[39m
+                [33mtype[39m=[32m&quot;text&quot;[39m
+                [33mvalue[39m=[32m&quot;&quot;[39m
+              [36m/&gt;[39m
+            [36m&lt;/div&gt;[39m
+            [36m&lt;div&gt;[39m
+              [36m&lt;label[39m
+                [33mclass[39m=[32m&quot;block text-sm font-medium text-gray-700 mb-2&quot;[39m
+                [33mfor[39m=[32m&quot;constitutionFile&quot;[39m
+              [36m&gt;[39m
+                [0mConstitution Document (Optional)[0m
+              [36m&lt;/label&gt;[39m
+              [36m&lt;p[39m
+                [33mclass[39m=[32m&quot;text-sm text-gray-600 mb-3&quot;[39m
+              [36m&gt;[39m
+                [0mUpload the company constitution document (PDF, DOC, or DOCX format, max 5MB)[0m
+              [36m&lt;/p&gt;[39m
+              [36m&lt;div[39m
+                [33mclass[39m=[32m&quot;relative border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-blue-400 transition-colors&quot;[39m
+              [36m&gt;[39m
+                [36m&lt;div[39m
+                  [33mclass[39m=[32m&quot;flex flex-col items-center&quot;[39m
+                [36m&gt;[39m
+                  [36m&lt;svg[39m
+                    [33mclass[39m=[32m&quot;h-12 w-12 text-gray-400 mb-3&quot;[39m
+                    [33mdata-testid[39m=[32m&quot;upload-icon&quot;[39m
+                  [36m/&gt;[39m
+                  [36m&lt;p[39m
+                    [33mclass[39m=[32m&quot;text-sm text-gray-600 mb-2&quot;[39m
+                  [36m&gt;[39m
+                    [0mClick to upload or drag and drop[0m
+                  [36m&lt;/p&gt;[39m
+                  [36m&lt;p[39m
+                    [33mclass[39m=[32m&quot;text-xs text-gray-500&quot;[39m
+                  [36m&gt;[39m
+                    [0mPDF, DOC, DOCX (max 5MB)[0m
+                  [36m&lt;/p&gt;[39m
+                [36m&lt;/div&gt;[39m
+                [36m&lt;input[39m
+                  [33maccept[39m=[32m&quot;.pdf,.doc,.docx&quot;[39m
+                  [33mclass[39m=[32m&quot;absolute inset-0 w-full h-full opacity-0 cursor-pointer&quot;[39m
+                  [33mid[39m=[32m&quot;constitutionFile&quot;[39m
+                  [33mname[39m=[32m&quot;constitutionFile&quot;[39m
+                  [33mtype[39m=[32m&quot;file&quot;[39m
+                [36m/&gt;[39m
+              [36m&lt;/div&gt;[39m
+            [36m&lt;/div&gt;[39m
+            [36m&lt;div[39m
+              [33mclass[39m=[32m&quot;border-t pt-6&quot;[39m
+            [36m&gt;[39m
+              [36m&lt;h3[39m
+                [33mclass[39m=[32m&quot;text-lg font-medium text-gray-900 mb-4&quot;[39m
+              [36m&gt;[39m
+                [0mShare Capital[0m
+              [36m&lt;/h3&gt;[39m
+              [36m&lt;div[39m
+                [33mclass[39m=[32m&quot;grid grid-cols-1 md:grid-cols-3 gap-4&quot;[39m
+              [36m&gt;[39m
+                [36m&lt;div&gt;[39m
+                  [36m&lt;label[39m
+                    [33mclass[39m=[32m&quot;block text-sm font-medium text-gray-700 mb-2&quot;[39m
+                    [33mfor[39m=[32m&quot;shareCapital&quot;[39m
+                  [36m&gt;[39m
+                    [0mShare Capital (NZD) *[0m
+                  [36m&lt;/label&gt;[39m
+                  [36m&lt;input[39m
+                    [33mclass[39m=[32m&quot;w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors border-gray-300&quot;[39m
+                    [33mid[39m=[32m&quot;shareCapital&quot;[39m
+                    [33mmin[39m=[32m&quot;0&quot;[39m
+                    [33mname[39m=[32m&quot;shareCapital&quot;[39m
+                    [33mrequired[39m=[32m&quot;&quot;[39m
+                    [33mstep[39m=[32m&quot;0.01&quot;[39m
+                    [33mtype[39m=[32m&quot;number&quot;[39m
+                    [33mvalue[39m=[32m&quot;100&quot;[39m
+                  [36m/&gt;[39m
+                [36m&lt;/div&gt;[39m
+                [36m&lt;div&gt;[39m
+                  [36m&lt;label[39m
+                    [33mclass[39m=[32m&quot;block text-sm font-medium text-gray-700 mb-2&quot;[39m
+                    [33mfor[39m=[32m&quot;numberOfShares&quot;[39m
+                  [36m&gt;[39m
+                    [0mNumber of Shares *[0m
+                  [36m&lt;/label&gt;[39m
+                  [36m&lt;input[39m
+                    [33mclass[39m=[32m&quot;w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors border-gray-300&quot;[39m
+                    [33mid[39m=[32m&quot;numberOfShares&quot;[39m
+                    [33mmin[39m=[32m&quot;0&quot;[39m
+                    [33mname[39m=[32m&quot;numberOfShares&quot;[39m
+                    [33mrequired[39m=[32m&quot;&quot;[39m
+                    [33mtype[39m=[32m&quot;number&quot;[39m
+                    [33mvalue[39m=[32m&quot;100&quot;[39m
+                  [36m/&gt;[39m
+                [36m&lt;/div&gt;[39m
+                [36m&lt;div&gt;[39m
+                  [36m&lt;label[39m
+                    [33mclass[39m=[32m&quot;block text-sm font-medium text-gray-700 mb-2&quot;[39m
+                    [33mfor[39m=[32m&quot;shareValue&quot;[39m
+                  [36m&gt;[39m
+                    [0mValue per Share (NZD) *[0m
+                  [36m&lt;/label&gt;[39m
+                  [36m&lt;input[39m
+                    [33mclass[39m=[32m&quot;w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors border-gray-300&quot;[39m
+                    [33mid[39m=[32m&quot;shareValue&quot;[39m
+                    [33mmin[39m=[32m&quot;0&quot;[39m
+                    [33mname[39m=[32m&quot;shareValue&quot;[39m
+                    [33mrequired[39m=[32m&quot;&quot;[39m
+                    [33mstep[39m=[32m&quot;0.01&quot;[39m
+                    [33mtype[39m=[32m&quot;number&quot;[39m
+                    [33mvalue[39m=[32m&quot;1&quot;[39m
+                  [36m/&gt;[39m
+                [36m&lt;/div&gt;[39m
+              [36m&lt;/div&gt;[39m
+            [36m&lt;/div&gt;[39m
+            [36m&lt;div[39m
+              [33mclass[39m=[32m&quot;pt-6&quot;[39m
+            [36m&gt;[39m
+              [36m&lt;button[39m
+                [33mclass[39m=[32m&quot;w-full py-3 px-6 rounded-lg font-medium text-white transition-all duration-200 bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 shadow-lg hover:shadow-xl&quot;[39m
+                [33mtype[39m=[32m&quot;submit&quot;[39m
+              [36m&gt;[39m
+                [0mRegister Company[0m
+              [36m&lt;/button&gt;[39m
+            [36m&lt;/div&gt;[39m
+          [36m&lt;/form&gt;[39m
+        [36m&lt;/div&gt;[39m
+      [36m&lt;/div&gt;[39m
+    [36m&lt;/div&gt;[39m
+  [36m&lt;/div&gt;[39m
+[36m&lt;/body&gt;[39m" type="TestingLibraryElementError">
+TestingLibraryElementError: Unable to find an element with the text: Registering Company.... This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+Ignored nodes: comments, script, style
+&lt;body&gt;
+  &lt;div&gt;
+    &lt;div
+      class=&quot;min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 py-12 px-4 sm:px-6 lg:px-8&quot;
+    &gt;
+      &lt;div
+        class=&quot;max-w-3xl mx-auto&quot;
+      &gt;
+        &lt;div
+          class=&quot;text-center mb-8&quot;
+        &gt;
+          &lt;div
+            class=&quot;flex items-center justify-center mb-4&quot;
+          &gt;
+            &lt;div
+              class=&quot;flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-600 to-green-600 rounded-xl shadow-lg&quot;
+            &gt;
+              &lt;svg
+                class=&quot;h-8 w-8 text-white&quot;
+                data-testid=&quot;building2-icon&quot;
+              /&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;h1
+            class=&quot;text-3xl font-bold text-gray-900 mb-2&quot;
+          &gt;
+            Register a New Company
+          &lt;/h1&gt;
+          &lt;p
+            class=&quot;text-lg text-gray-600&quot;
+          &gt;
+            Register your new company with the New Zealand Companies Office
+          &lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div
+          class=&quot;bg-white rounded-2xl shadow-xl p-8 border border-gray-100&quot;
+        &gt;
+          &lt;form
+            class=&quot;space-y-6&quot;
+          &gt;
+            &lt;div&gt;
+              &lt;label
+                class=&quot;block text-sm font-medium text-gray-700 mb-2&quot;
+                for=&quot;companyName&quot;
+              &gt;
+                Company Name *
+              &lt;/label&gt;
+              &lt;div
+                class=&quot;relative&quot;
+              &gt;
+                &lt;input
+                  class=&quot;w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors border-gray-300&quot;
+                  id=&quot;companyName&quot;
+                  name=&quot;companyName&quot;
+                  placeholder=&quot;Enter company name&quot;
+                  required=&quot;&quot;
+                  type=&quot;text&quot;
+                  value=&quot;Test Company&quot;
+                /&gt;
+                &lt;div
+                  class=&quot;absolute right-3 top-1/2 transform -translate-y-1/2&quot;
+                &gt;
+                  &lt;svg
+                    class=&quot;h-5 w-5 text-green-500&quot;
+                    data-testid=&quot;check-icon&quot;
+                  /&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+              &lt;p
+                class=&quot;mt-2 text-sm text-green-600&quot;
+              &gt;
+                ✓ Name is available
+              &lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div&gt;
+              &lt;label
+                class=&quot;block text-sm font-medium text-gray-700 mb-2&quot;
+                for=&quot;companyType&quot;
+              &gt;
+                Company Type *
+              &lt;/label&gt;
+              &lt;select
+                class=&quot;w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors&quot;
+                id=&quot;companyType&quot;
+                name=&quot;companyType&quot;
+                required=&quot;&quot;
+              &gt;
+                &lt;option
+                  value=&quot;LTD&quot;
+                &gt;
+                  Limited Company (Ltd)
+                &lt;/option&gt;
+                &lt;option
+                  value=&quot;OVERSEAS&quot;
+                &gt;
+                  Overseas Company
+                &lt;/option&gt;
+                &lt;option
+                  value=&quot;UNLIMITED&quot;
+                &gt;
+                  Unlimited Company
+                &lt;/option&gt;
+              &lt;/select&gt;
+            &lt;/div&gt;
+            &lt;div&gt;
+              &lt;div
+                class=&quot;relative&quot;
+              &gt;
+                &lt;label
+                  class=&quot;block text-sm font-medium text-gray-700 mb-2&quot;
+                  for=&quot;incorporationDate&quot;
+                &gt;
+                  Incorporation Date
+                   
+                  *
+                &lt;/label&gt;
+                &lt;div
+                  class=&quot;relative&quot;
+                &gt;
+                  &lt;input
+                    autocomplete=&quot;off&quot;
+                    class=&quot;w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors border-gray-300  pr-12&quot;
+                    id=&quot;incorporationDate&quot;
+                    maxlength=&quot;10&quot;
+                    name=&quot;incorporationDate&quot;
+                    placeholder=&quot;DD/MM/YYYY&quot;
+                    required=&quot;&quot;
+                    type=&quot;text&quot;
+                    value=&quot;&quot;
+                  /&gt;
+                  &lt;input
+                    aria-hidden=&quot;true&quot;
+                    class=&quot;absolute top-full left-0 w-0 h-0 opacity-0 pointer-events-none&quot;
+                    tabindex=&quot;-1&quot;
+                    type=&quot;date&quot;
+                    value=&quot;&quot;
+                  /&gt;
+                  &lt;button
+                    aria-label=&quot;Open calendar&quot;
+                    class=&quot;absolute inset-y-0 right-0 pr-3 flex items-center hover:bg-gray-50 rounded-r-lg&quot;
+                    tabindex=&quot;-1&quot;
+                    type=&quot;button&quot;
+                  &gt;
+                    &lt;svg
+                      class=&quot;h-5 w-5 text-gray-400 hover:text-gray-600&quot;
+                      data-testid=&quot;calendar-icon&quot;
+                    /&gt;
+                  &lt;/button&gt;
+                &lt;/div&gt;
+                &lt;p
+                  class=&quot;mt-1 text-xs text-gray-500&quot;
+                &gt;
+                  Type date as DD/MM/YYYY or click calendar icon
+                &lt;/p&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div&gt;
+              &lt;label
+                class=&quot;block text-sm font-medium text-gray-700 mb-2&quot;
+                for=&quot;nzbn&quot;
+              &gt;
+                NZBN (Optional)
+              &lt;/label&gt;
+              &lt;input
+                class=&quot;w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors&quot;
+                id=&quot;nzbn&quot;
+                name=&quot;nzbn&quot;
+                placeholder=&quot;New Zealand Business Number&quot;
+                type=&quot;text&quot;
+                value=&quot;&quot;
+              /&gt;
+            &lt;/div&gt;
+            &lt;div&gt;
+              &lt;label
+                class=&quot;block text-sm font-medium text-gray-700 mb-2&quot;
+                for=&quot;constitutionFile&quot;
+              &gt;
+                Constitution Document (Optional)
+              &lt;/label&gt;
+              &lt;p
+                class=&quot;text-sm text-gray-600 mb-3&quot;
+              &gt;
+                Upload the company constitution document (PDF, DOC, or DOCX format, max 5MB)
+              &lt;/p&gt;
+              &lt;div
+                class=&quot;relative border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-blue-400 transition-colors&quot;
+              &gt;
+                &lt;div
+                  class=&quot;flex flex-col items-center&quot;
+                &gt;
+                  &lt;svg
+                    class=&quot;h-12 w-12 text-gray-400 mb-3&quot;
+                    data-testid=&quot;upload-icon&quot;
+                  /&gt;
+                  &lt;p
+                    class=&quot;text-sm text-gray-600 mb-2&quot;
+                  &gt;
+                    Click to upload or drag and drop
+                  &lt;/p&gt;
+                  &lt;p
+                    class=&quot;text-xs text-gray-500&quot;
+                  &gt;
+                    PDF, DOC, DOCX (max 5MB)
+                  &lt;/p&gt;
+                &lt;/div&gt;
+                &lt;input
+                  accept=&quot;.pdf,.doc,.docx&quot;
+                  class=&quot;absolute inset-0 w-full h-full opacity-0 cursor-pointer&quot;
+                  id=&quot;constitutionFile&quot;
+                  name=&quot;constitutionFile&quot;
+                  type=&quot;file&quot;
+                /&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div
+              class=&quot;border-t pt-6&quot;
+            &gt;
+              &lt;h3
+                class=&quot;text-lg font-medium text-gray-900 mb-4&quot;
+              &gt;
+                Share Capital
+              &lt;/h3&gt;
+              &lt;div
+                class=&quot;grid grid-cols-1 md:grid-cols-3 gap-4&quot;
+              &gt;
+                &lt;div&gt;
+                  &lt;label
+                    class=&quot;block text-sm font-medium text-gray-700 mb-2&quot;
+                    for=&quot;shareCapital&quot;
+                  &gt;
+                    Share Capital (NZD) *
+                  &lt;/label&gt;
+                  &lt;input
+                    class=&quot;w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors border-gray-300&quot;
+                    id=&quot;shareCapital&quot;
+                    min=&quot;0&quot;
+                    name=&quot;shareCapital&quot;
+                    required=&quot;&quot;
+                    step=&quot;0.01&quot;
+                    type=&quot;number&quot;
+                    value=&quot;100&quot;
+                  /&gt;
+                &lt;/div&gt;
+                &lt;div&gt;
+                  &lt;label
+                    class=&quot;block text-sm font-medium text-gray-700 mb-2&quot;
+                    for=&quot;numberOfShares&quot;
+                  &gt;
+                    Number of Shares *
+                  &lt;/label&gt;
+                  &lt;input
+                    class=&quot;w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors border-gray-300&quot;
+                    id=&quot;numberOfShares&quot;
+                    min=&quot;0&quot;
+                    name=&quot;numberOfShares&quot;
+                    required=&quot;&quot;
+                    type=&quot;number&quot;
+                    value=&quot;100&quot;
+                  /&gt;
+                &lt;/div&gt;
+                &lt;div&gt;
+                  &lt;label
+                    class=&quot;block text-sm font-medium text-gray-700 mb-2&quot;
+                    for=&quot;shareValue&quot;
+                  &gt;
+                    Value per Share (NZD) *
+                  &lt;/label&gt;
+                  &lt;input
+                    class=&quot;w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors border-gray-300&quot;
+                    id=&quot;shareValue&quot;
+                    min=&quot;0&quot;
+                    name=&quot;shareValue&quot;
+                    required=&quot;&quot;
+                    step=&quot;0.01&quot;
+                    type=&quot;number&quot;
+                    value=&quot;1&quot;
+                  /&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div
+              class=&quot;pt-6&quot;
+            &gt;
+              &lt;button
+                class=&quot;w-full py-3 px-6 rounded-lg font-medium text-white transition-all duration-200 bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 shadow-lg hover:shadow-xl&quot;
+                type=&quot;submit&quot;
+              &gt;
+                Register Company
+              &lt;/button&gt;
+            &lt;/div&gt;
+          &lt;/form&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+ ❯ Object.getElementError node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ src/pages/__tests__/CompanyRegistration.test.tsx:415:19
+            </failure>
+        </testcase>
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; has proper accessibility attributes" time="0.030013523">
+        </testcase>
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; renders file upload area with correct styling" time="0.025913342">
+        </testcase>
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; accepts valid PDF file" time="0.02796649">
+        </testcase>
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; accepts valid DOC file" time="0.018428076">
+        </testcase>
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; accepts valid DOCX file" time="0.024884044">
+        </testcase>
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; rejects invalid file type" time="0.014860951">
+        </testcase>
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; rejects file larger than 5MB" time="0.352379556">
+        </testcase>
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; allows removing uploaded file" time="0.055869147">
+        </testcase>
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; clears file error when valid file is uploaded" time="0.031296337">
+        </testcase>
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; displays file size in MB correctly" time="0.134325214">
+        </testcase>
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; handles file upload without selecting file" time="0.014285962">
+        </testcase>
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; shows upload area when no file is selected" time="0.007442931">
+        </testcase>
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; File Upload Functionality &gt; shows file details when file is selected" time="0.013587878">
+        </testcase>
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; Form Integration with File Upload &gt; submits form successfully with constitution file" time="1.717459468">
+            <failure message="expected &quot;spy&quot; to be called with arguments: [ ObjectContaining{…}, …(1) ][90m
+
+Number of calls: [1m0[22m
+[39m
+
+Ignored nodes: comments, script, style
+[36m&lt;html&gt;[39m
+  [36m&lt;head /&gt;[39m
+  [36m&lt;body&gt;[39m
+    [36m&lt;div&gt;[39m
+      [36m&lt;div[39m
+        [33mclass[39m=[32m&quot;min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 py-12 px-4 sm:px-6 lg:px-8&quot;[39m
+      [36m&gt;[39m
+        [36m&lt;div[39m
+          [33mclass[39m=[32m&quot;max-w-3xl mx-auto&quot;[39m
+        [36m&gt;[39m
+          [36m&lt;div[39m
+            [33mclass[39m=[32m&quot;text-center mb-8&quot;[39m
+          [36m&gt;[39m
+            [36m&lt;div[39m
+              [33mclass[39m=[32m&quot;flex items-center justify-center mb-4&quot;[39m
+            [36m&gt;[39m
+              [36m&lt;div[39m
+                [33mclass[39m=[32m&quot;flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-600 to-green-600 rounded-xl shadow-lg&quot;[39m
+              [36m&gt;[39m
+                [36m&lt;svg[39m
+                  [33mclass[39m=[32m&quot;h-8 w-8 text-white&quot;[39m
+                  [33mdata-testid[39m=[32m&quot;building2-icon&quot;[39m
+                [36m/&gt;[39m
+              [36m&lt;/div&gt;[39m
+            [36m&lt;/div&gt;[39m
+            [36m&lt;h1[39m
+              [33mclass[39m=[32m&quot;text-3xl font-bold text-gray-900 mb-2&quot;[39m
+            [36m&gt;[39m
+              [0mRegister a New Company[0m
+            [36m&lt;/h1&gt;[39m
+            [36m&lt;p[39m
+              [33mclass[39m=[32m&quot;text-lg text-gray-600&quot;[39m
+            [36m&gt;[39m
+              [0mRegister your new company with the New Zealand Companies Office[0m
+            [36m&lt;/p&gt;[39m
+          [36m&lt;/div&gt;[39m
+          [36m&lt;div[39m
+            [33mclass[39m=[32m&quot;bg-white rounded-2xl shadow-xl p-8 border border-gray-100&quot;[39m
+          [36m&gt;[39m
+            [36m&lt;form[39m
+              [33mclass[39m=[32m&quot;space-y-6&quot;[39m
+            [36m&gt;[39m
+              [36m&lt;div&gt;[39m
+                [36m&lt;label[39m
+                  [33mclass[39m=[32m&quot;block text-sm font-medium text-gray-700 mb-2&quot;[39m
+                  [33mfor[39m=[32m&quot;companyName&quot;[39m
+                [36m&gt;[39m
+                  [0mCompany Name *[0m
+                [36m&lt;/label&gt;[39m
+                [36m&lt;div[39m
+                  [33mclass[39m=[32m&quot;relative&quot;[39m
+                [36m&gt;[39m
+                  [36m&lt;input[39m
+                    [33mclass[39m=[32m&quot;w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors border-gray-300&quot;[39m
+                    [33mid[39m=[32m&quot;companyName&quot;[39m
+                    [33mname[39m=[32m&quot;companyName&quot;[39m
+                    [33mplaceholder[39m=[32m&quot;Enter company name&quot;[39m
+                    [33mrequired[39m=[32m&quot;&quot;[39m
+                    [33mtype[39m=[32m&quot;text&quot;[39m
+                    [33mvalue[39m=[32m&quot;Test Company Ltd&quot;[39m
+                  [36m/&gt;[39m
+                  [36m&lt;div[39m
+                    [33mclass[39m=[32m&quot;absolute right-3 top-1/2 transform -translate-y-1/2&quot;[39m
+                  [36m&gt;[39m
+                    [36m&lt;svg[39m
+                      [33mclass[39m=[32m&quot;h-5 w-5 text-green-500&quot;[39m
+                      [33mdata-testid[39m=[32m&quot;check-icon&quot;[39m
+                    [36m/&gt;[39m
+                  [36m&lt;/div&gt;[39m
+                [36m&lt;/div&gt;[39m
+                [36m&lt;p[39m
+                  [33mclass[39m=[32m&quot;mt-2 text-sm text-green-600&quot;[39m
+                [36m&gt;[39m
+                  [0m✓ Name is available[0m
+                [36m&lt;/p&gt;[39m
+              [36m&lt;/div&gt;[39m
+              [36m&lt;div&gt;[39m
+                [36m&lt;label[39m
+                  [33mclass[39m=[32m&quot;block text-sm font-medium text-gray-700 mb-2&quot;[39m
+                  [33mfor[39m=[32m&quot;companyType&quot;[39m
+                [36m&gt;[39m
+                  [0mCompany Type *[0m
+                [36m&lt;/label&gt;[39m
+                [36m&lt;select[39m
+                  [33mclass[39m=[32m&quot;w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors&quot;[39m
+                  [33mid[39m=[32m&quot;companyType&quot;[39m
+                  [33mname[39m=[32m&quot;companyType&quot;[39m
+                  [33mrequired[39m=[32m&quot;&quot;[39m
+                [36m&gt;[39m
+                  [36m&lt;option[39m
+                    [33mvalue[39m=[32m&quot;LTD&quot;[39m
+                  [36m&gt;[39m
+                    [0mLimited Company (Ltd)[0m
+                  [36m&lt;/option&gt;[39m
+                  [36m&lt;option[39m
+                    [33mvalue[39m=[32m&quot;OVERSEAS&quot;[39m
+                  [36m&gt;[39m
+                    [0mOverseas Company[0m
+                  [36m&lt;/option&gt;[39m
+                  [36m&lt;option[39m
+                    [33mvalue[39m=[32m&quot;UNLIMITED&quot;[39m
+                  [36m&gt;[39m
+                    [0mUnlimited Company[0m
+                  [36m&lt;/option&gt;[39m
+                [36m&lt;/select&gt;[39m
+              [36m&lt;/div&gt;[39m
+              [36m&lt;div&gt;[39m
+                [36m&lt;div[39m
+                  [33mclass[39m=[32m&quot;relative&quot;[39m
+                [36m&gt;[39m
+                  [36m&lt;label[39m
+                    [33mclass[39m=[32m&quot;block text-sm font-medium text-gray-700 mb-2&quot;[39m
+                    [33mfor[39m=[32m&quot;incorporationDate&quot;[39m
+                  [36m&gt;[39m
+                    [0mIncorporation Date[0m
+                    [0m [0m
+                    [0m*[0m
+                  [36m&lt;/label&gt;[39m
+                  [36m&lt;div[39m
+                    [33mclass[39m=[32m&quot;relative&quot;[39m
+                  [36m&gt;[39m
+                    [36m&lt;input[39m
+                      [33mautocomplete[39m=[32m&quot;off&quot;[39m
+                      [33mclass[39m=[32m&quot;w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors border-gray-300  pr-12&quot;[39m
+                      [33mid[39m=[32m&quot;incorporationDate&quot;[39m
+                      [33mmaxlength[39m=[32m&quot;10&quot;[39m
+                      [33mname[39m=[32m&quot;incorporationDate&quot;[39m
+                      [33mplaceholder[39m=[32m&quot;DD/MM/YYYY&quot;[39m
+                      [33mrequired[39m=[32m&quot;&quot;[39m
+                      [33mtype[39m=[32m&quot;text&quot;[39m
+                      [33mvalue[39m=[32m&quot;&quot;[39m
+                    [36m/&gt;[39m
+                    [36m&lt;input[39m
+                      [33maria-hidden[39m=[32m&quot;true&quot;[39m
+                      [33mclass[39m=[32m&quot;absolute top-full left-0 w-0 h-0 opacity-0 pointer-events-none&quot;[39m
+                      [33mtabindex[39m=[32m&quot;-1&quot;[39m
+                      [33mtype[39m=[32m&quot;date&quot;[39m
+                      [33mvalue[39m=[32m&quot;&quot;[39m
+                    [36m/&gt;[39m
+                    [36m&lt;button[39m
+                      [33maria-label[39m=[32m&quot;Open calendar&quot;[39m
+                      [33mclass[39m=[32m&quot;absolute inset-y-0 right-0 pr-3 flex items-center hover:bg-gray-50 rounded-r-lg&quot;[39m
+                      [33mtabindex[39m=[32m&quot;-1&quot;[39m
+                      [33mtype[39m=[32m&quot;button&quot;[39m
+                    [36m&gt;[39m
+                      [36m&lt;svg[39m
+                        [33mclass[39m=[32m&quot;h-5 w-5 text-gray-400 hover:text-gray-600&quot;[39m
+                        [33mdata-testid[39m=[32m&quot;calendar-icon&quot;[39m
+                      [36m/&gt;[39m
+                    [36m&lt;/button&gt;[39m
+                  [36m&lt;/div&gt;[39m
+                  [36m&lt;p[39m
+                    [33mclass[39m=[32m&quot;mt-1 text-xs text-gray-500&quot;[39m
+                  [36m&gt;[39m
+                    [0mType date as DD/MM/YYYY or click calendar icon[0m
+                  [36m&lt;/p&gt;[39m
+                [36m&lt;/div&gt;[39m
+              [36m&lt;/div&gt;[39m
+              [36m&lt;div&gt;[39m
+                [36m&lt;label[39m
+                  [33mclass[39m=[32m&quot;block text-sm font-medium text-gray-700 mb-2&quot;[39m
+                  [33mfor[39m=[32m&quot;nzbn&quot;[39m
+                [36m&gt;[39m
+                  [0mNZBN (Optional)[0m
+                [36m&lt;/label&gt;[39m
+                [36m&lt;input[39m
+                  [33mclass[39m=[32m&quot;w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors&quot;[39m
+                  [33mid[39m=[32m&quot;nzbn&quot;[39m
+                  [33mname[39m=[32m&quot;nzbn&quot;[39m
+                  [33mplaceholder[39m=[32m&quot;New Zealand Business Number&quot;[39m
+                  [33mtype[39m=[32m&quot;text&quot;[39m
+                  [33mvalue[39m=[32m&quot;&quot;[39m
+                [36m/&gt;[39m
+              [36m&lt;/div&gt;[39m
+              [36m&lt;div&gt;[39m
+                [36m&lt;label[39m
+                  [33mclass[39m=[32m&quot;block text-sm font-medium text-gray-700 mb-2&quot;[39m
+                  [33mfor[39m=[32m&quot;constitutionFile&quot;[39m
+                [36m&gt;[39m
+                  [0mConstitution Document (Optional)[0m
+                [36m&lt;/label&gt;[39m
+                [36m&lt;p[39m
+                  [33mclass[39m=[32m&quot;text-sm text-gray-600 mb-3&quot;[39m
+                [36m&gt;[39m
+                  [0mUpload the company constitution document (PDF, DOC, or DOCX format, max 5MB)[0m
+                [36m&lt;/p&gt;[39m
+                [36m&lt;div[39m
+                  [33mclass[39m=[32m&quot;bg-green-50 border border-green-200 rounded-lg p-4 flex items-center justify-between&quot;[39m
+                [36m&gt;[39m
+                  [36m&lt;div[39m
+                    [33mclass[39m=[32m&quot;flex items-center&quot;[39m
+                  [36m&gt;[39m
+                    [36m&lt;svg[39m
+                      [33mclass[39m=[32m&quot;h-5 w-5 text-green-600 mr-3&quot;[39m
+                      [33mdata-testid[39m=[32m&quot;file-text-icon&quot;[39m
+                    [36m/&gt;[39m
+                    [36m&lt;div&gt;[39m
+                      [36m&lt;p[39m
+                        [33mclass[39m=[32m&quot;text-sm font-medium text-green-800&quot;[39m
+                      [36m&gt;[39m
+                        [0mconstitution.pdf[0m
+                      [36m&lt;/p&gt;[39m
+                      [36m&lt;p[39m
+                        [33mclass[39m=[32m&quot;text-xs text-green-600&quot;[39m
+                      [36m&gt;[39m
+                        [0m0.00[0m
+                        [0m MB[0m
+                      [36m&lt;/p&gt;[39m
+                    [36m&lt;/div&gt;[39m
+                  [36m&lt;/div&gt;[39m
+                  [36m&lt;button[39m
+                    [33mclass[39m=[32m&quot;text-red-600 hover:text-red-700 p-1 rounded-full hover:bg-red-50 transition-colors&quot;[39m
+                    [33mtype[39m=[32m&quot;button&quot;[39m
+                  [36m&gt;[39m
+                    [36m&lt;svg[39m
+                      [33mclass[39m=[32m&quot;h-4 w-4&quot;[39m
+                      [33mdata-testid[39m=[32m&quot;x-icon&quot;[39m
+                    [36m/&gt;[39m
+                  [36m&lt;/button&gt;[39m
+                [36m&lt;/div&gt;[39m
+              [36m&lt;/div&gt;[39m
+              [36m&lt;div[39m
+                [33mclass[39m=[32m&quot;border-t pt-6&quot;[39m
+              [36m&gt;[39m
+                [36m&lt;h3[39m
+                  [33mclass[39m=[32m&quot;text-lg font-medium text-gray-900 mb-4&quot;[39m
+                [36m&gt;[39m
+                  [0mShare Capital[0m
+                [36m&lt;/h3&gt;[39m
+                [36m&lt;div[39m
+                  [33mclass[39m=[32m&quot;grid grid-cols-1 md:grid-cols-3 gap-4&quot;[39m
+                [36m&gt;[39m
+                  [36m&lt;div&gt;[39m
+                    [36m&lt;label[39m
+                      [33mclass[39m=[32m&quot;block text-sm font-medium text-gray-700 mb-2&quot;[39m
+                      [33mfor[39m=[32m&quot;shareCapital&quot;[39m
+                    [36m&gt;[39m
+                      [0mShare Capital (NZD) *[0m
+                    [36m&lt;/label&gt;[39m
+                    [36m&lt;input[39m
+                      [33mclass[39m=[32m&quot;w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors border-gray-300&quot;[39m
+                      [33mid[39m=[32m&quot;shareCapital&quot;[39m
+                      [33mmin[39m=[32m&quot;0&quot;[39m
+                      [33mname[39m=[32m&quot;shareCapital&quot;[39m
+                      [33mrequired[39m=[32m&quot;&quot;[39m
+                      [33mstep[39m=[32m&quot;0.01&quot;[39m
+                      [33mtype[39m=[32m&quot;number&quot;[39m
+                      [33mvalue[39m=[32m&quot;100&quot;[39m
+                    [36m/&gt;[39m
+                  [36m&lt;/div&gt;[39m
+                  [36m&lt;div&gt;[39m
+                    [36m&lt;label[39m
+                      [33mclass[39m=[32m&quot;block text-sm font-medium text-gray-700 mb-2&quot;[39m
+                      [33mfor[39m=[32m&quot;numberOfShares&quot;[39m
+                    [36m&gt;[39m
+                      [0mNumber of Shares *[0m
+                    [36m&lt;/label&gt;[39m
+                    [36m&lt;input[39m
+                      [33mclass[39m=[32m&quot;w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors border-gray-300&quot;[39m
+                      [33mid[39m=[32m&quot;numberOfShares&quot;[39m
+                      [33mmin[39m=[32m&quot;0&quot;[39m
+                      [33mname[39m=[32m&quot;numberOfShares&quot;[39m
+                      [33mrequired[39m=[32m&quot;&quot;[39m
+                      [33mtype[39m=[32m&quot;number&quot;[39m
+                      [33mvalue[39m=[32m&quot;100&quot;[39m
+                    [36m/&gt;[39m
+                  [36m&lt;/div&gt;[39m
+                  [36m&lt;div&gt;[39m
+                    [36m&lt;label[39m
+                      [33mclass[39m=[32m&quot;block text-sm font-medium text-gray-700 mb-2&quot;[39m
+                      [33mfor[39m=[32m&quot;shareValue&quot;[39m
+                    [36m&gt;[39m
+                      [0mValue per Share (NZD) *[0m
+                    [36m&lt;/label&gt;[39m
+                    [36m&lt;input[39m
+                      [33mclass[39m=[32m&quot;w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors border-gray-300&quot;[39m
+                      [33mid[39m=[32m&quot;shareValue&quot;[39m
+                      [33mmin[39m=[32m&quot;0&quot;[39m
+                      [33mname[39m=[32m&quot;shareValue&quot;[39m
+                      [33mrequired[39m=[32m&quot;&quot;[39m
+                      [33mstep[39m=[32m&quot;0.01&quot;[39m
+                      [33mtype[39m=[32m&quot;number&quot;[39m
+                      [33mvalue[39m=[32m&quot;1&quot;[39m
+                    [36m/&gt;[39m
+                  [36m&lt;/div&gt;[39m
+                [36m&lt;/div&gt;[39m
+              [36m&lt;/div&gt;[39m
+              [36m&lt;div[39m
+                [33mclass[39m=[32m&quot;pt-6&quot;[39m
+              [36m&gt;[39m
+                [36m&lt;button[39m
+                  [33mclass[39m=[32m&quot;w-full py-3 px-6 rounded-lg font-medium text-white transition-all duration-200 bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 shadow-lg hover:shadow-xl&quot;[39m
+                  [33mtype[39m=[32m&quot;submit&quot;[39m
+                [36m&gt;[39m
+                  [0mRegister Company[0m
+                [36m&lt;/button&gt;[39m
+              [36m&lt;/div&gt;[39m
+            [36m&lt;/form&gt;[39m
+          [36m&lt;/div&gt;[39m
+        [36m&lt;/div&gt;[39m
+      [36m&lt;/div&gt;[39m
+    [36m&lt;/div&gt;[39m
+  [36m&lt;/body&gt;[39m
+[36m&lt;/html&gt;[39m" type="AssertionError">
+AssertionError: expected &quot;spy&quot; to be called with arguments: [ ObjectContaining{…}, …(1) ]
+
+Number of calls: 0
+
+
+Ignored nodes: comments, script, style
+&lt;html&gt;
+  &lt;head /&gt;
+  &lt;body&gt;
+    &lt;div&gt;
+      &lt;div
+        class=&quot;min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 py-12 px-4 sm:px-6 lg:px-8&quot;
+      &gt;
+        &lt;div
+          class=&quot;max-w-3xl mx-auto&quot;
+        &gt;
+          &lt;div
+            class=&quot;text-center mb-8&quot;
+          &gt;
+            &lt;div
+              class=&quot;flex items-center justify-center mb-4&quot;
+            &gt;
+              &lt;div
+                class=&quot;flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-600 to-green-600 rounded-xl shadow-lg&quot;
+              &gt;
+                &lt;svg
+                  class=&quot;h-8 w-8 text-white&quot;
+                  data-testid=&quot;building2-icon&quot;
+                /&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;h1
+              class=&quot;text-3xl font-bold text-gray-900 mb-2&quot;
+            &gt;
+              Register a New Company
+            &lt;/h1&gt;
+            &lt;p
+              class=&quot;text-lg text-gray-600&quot;
+            &gt;
+              Register your new company with the New Zealand Companies Office
+            &lt;/p&gt;
+          &lt;/div&gt;
+          &lt;div
+            class=&quot;bg-white rounded-2xl shadow-xl p-8 border border-gray-100&quot;
+          &gt;
+            &lt;form
+              class=&quot;space-y-6&quot;
+            &gt;
+              &lt;div&gt;
+                &lt;label
+                  class=&quot;block text-sm font-medium text-gray-700 mb-2&quot;
+                  for=&quot;companyName&quot;
+                &gt;
+                  Company Name *
+                &lt;/label&gt;
+                &lt;div
+                  class=&quot;relative&quot;
+                &gt;
+                  &lt;input
+                    class=&quot;w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors border-gray-300&quot;
+                    id=&quot;companyName&quot;
+                    name=&quot;companyName&quot;
+                    placeholder=&quot;Enter company name&quot;
+                    required=&quot;&quot;
+                    type=&quot;text&quot;
+                    value=&quot;Test Company Ltd&quot;
+                  /&gt;
+                  &lt;div
+                    class=&quot;absolute right-3 top-1/2 transform -translate-y-1/2&quot;
+                  &gt;
+                    &lt;svg
+                      class=&quot;h-5 w-5 text-green-500&quot;
+                      data-testid=&quot;check-icon&quot;
+                    /&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;p
+                  class=&quot;mt-2 text-sm text-green-600&quot;
+                &gt;
+                  ✓ Name is available
+                &lt;/p&gt;
+              &lt;/div&gt;
+              &lt;div&gt;
+                &lt;label
+                  class=&quot;block text-sm font-medium text-gray-700 mb-2&quot;
+                  for=&quot;companyType&quot;
+                &gt;
+                  Company Type *
+                &lt;/label&gt;
+                &lt;select
+                  class=&quot;w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors&quot;
+                  id=&quot;companyType&quot;
+                  name=&quot;companyType&quot;
+                  required=&quot;&quot;
+                &gt;
+                  &lt;option
+                    value=&quot;LTD&quot;
+                  &gt;
+                    Limited Company (Ltd)
+                  &lt;/option&gt;
+                  &lt;option
+                    value=&quot;OVERSEAS&quot;
+                  &gt;
+                    Overseas Company
+                  &lt;/option&gt;
+                  &lt;option
+                    value=&quot;UNLIMITED&quot;
+                  &gt;
+                    Unlimited Company
+                  &lt;/option&gt;
+                &lt;/select&gt;
+              &lt;/div&gt;
+              &lt;div&gt;
+                &lt;div
+                  class=&quot;relative&quot;
+                &gt;
+                  &lt;label
+                    class=&quot;block text-sm font-medium text-gray-700 mb-2&quot;
+                    for=&quot;incorporationDate&quot;
+                  &gt;
+                    Incorporation Date
+                     
+                    *
+                  &lt;/label&gt;
+                  &lt;div
+                    class=&quot;relative&quot;
+                  &gt;
+                    &lt;input
+                      autocomplete=&quot;off&quot;
+                      class=&quot;w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors border-gray-300  pr-12&quot;
+                      id=&quot;incorporationDate&quot;
+                      maxlength=&quot;10&quot;
+                      name=&quot;incorporationDate&quot;
+                      placeholder=&quot;DD/MM/YYYY&quot;
+                      required=&quot;&quot;
+                      type=&quot;text&quot;
+                      value=&quot;&quot;
+                    /&gt;
+                    &lt;input
+                      aria-hidden=&quot;true&quot;
+                      class=&quot;absolute top-full left-0 w-0 h-0 opacity-0 pointer-events-none&quot;
+                      tabindex=&quot;-1&quot;
+                      type=&quot;date&quot;
+                      value=&quot;&quot;
+                    /&gt;
+                    &lt;button
+                      aria-label=&quot;Open calendar&quot;
+                      class=&quot;absolute inset-y-0 right-0 pr-3 flex items-center hover:bg-gray-50 rounded-r-lg&quot;
+                      tabindex=&quot;-1&quot;
+                      type=&quot;button&quot;
+                    &gt;
+                      &lt;svg
+                        class=&quot;h-5 w-5 text-gray-400 hover:text-gray-600&quot;
+                        data-testid=&quot;calendar-icon&quot;
+                      /&gt;
+                    &lt;/button&gt;
+                  &lt;/div&gt;
+                  &lt;p
+                    class=&quot;mt-1 text-xs text-gray-500&quot;
+                  &gt;
+                    Type date as DD/MM/YYYY or click calendar icon
+                  &lt;/p&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+              &lt;div&gt;
+                &lt;label
+                  class=&quot;block text-sm font-medium text-gray-700 mb-2&quot;
+                  for=&quot;nzbn&quot;
+                &gt;
+                  NZBN (Optional)
+                &lt;/label&gt;
+                &lt;input
+                  class=&quot;w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors&quot;
+                  id=&quot;nzbn&quot;
+                  name=&quot;nzbn&quot;
+                  placeholder=&quot;New Zealand Business Number&quot;
+                  type=&quot;text&quot;
+                  value=&quot;&quot;
+                /&gt;
+              &lt;/div&gt;
+              &lt;div&gt;
+                &lt;label
+                  class=&quot;block text-sm font-medium text-gray-700 mb-2&quot;
+                  for=&quot;constitutionFile&quot;
+                &gt;
+                  Constitution Document (Optional)
+                &lt;/label&gt;
+                &lt;p
+                  class=&quot;text-sm text-gray-600 mb-3&quot;
+                &gt;
+                  Upload the company constitution document (PDF, DOC, or DOCX format, max 5MB)
+                &lt;/p&gt;
+                &lt;div
+                  class=&quot;bg-green-50 border border-green-200 rounded-lg p-4 flex items-center justify-between&quot;
+                &gt;
+                  &lt;div
+                    class=&quot;flex items-center&quot;
+                  &gt;
+                    &lt;svg
+                      class=&quot;h-5 w-5 text-green-600 mr-3&quot;
+                      data-testid=&quot;file-text-icon&quot;
+                    /&gt;
+                    &lt;div&gt;
+                      &lt;p
+                        class=&quot;text-sm font-medium text-green-800&quot;
+                      &gt;
+                        constitution.pdf
+                      &lt;/p&gt;
+                      &lt;p
+                        class=&quot;text-xs text-green-600&quot;
+                      &gt;
+                        0.00
+                         MB
+                      &lt;/p&gt;
+                    &lt;/div&gt;
+                  &lt;/div&gt;
+                  &lt;button
+                    class=&quot;text-red-600 hover:text-red-700 p-1 rounded-full hover:bg-red-50 transition-colors&quot;
+                    type=&quot;button&quot;
+                  &gt;
+                    &lt;svg
+                      class=&quot;h-4 w-4&quot;
+                      data-testid=&quot;x-icon&quot;
+                    /&gt;
+                  &lt;/button&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+              &lt;div
+                class=&quot;border-t pt-6&quot;
+              &gt;
+                &lt;h3
+                  class=&quot;text-lg font-medium text-gray-900 mb-4&quot;
+                &gt;
+                  Share Capital
+                &lt;/h3&gt;
+                &lt;div
+                  class=&quot;grid grid-cols-1 md:grid-cols-3 gap-4&quot;
+                &gt;
+                  &lt;div&gt;
+                    &lt;label
+                      class=&quot;block text-sm font-medium text-gray-700 mb-2&quot;
+                      for=&quot;shareCapital&quot;
+                    &gt;
+                      Share Capital (NZD) *
+                    &lt;/label&gt;
+                    &lt;input
+                      class=&quot;w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors border-gray-300&quot;
+                      id=&quot;shareCapital&quot;
+                      min=&quot;0&quot;
+                      name=&quot;shareCapital&quot;
+                      required=&quot;&quot;
+                      step=&quot;0.01&quot;
+                      type=&quot;number&quot;
+                      value=&quot;100&quot;
+                    /&gt;
+                  &lt;/div&gt;
+                  &lt;div&gt;
+                    &lt;label
+                      class=&quot;block text-sm font-medium text-gray-700 mb-2&quot;
+                      for=&quot;numberOfShares&quot;
+                    &gt;
+                      Number of Shares *
+                    &lt;/label&gt;
+                    &lt;input
+                      class=&quot;w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors border-gray-300&quot;
+                      id=&quot;numberOfShares&quot;
+                      min=&quot;0&quot;
+                      name=&quot;numberOfShares&quot;
+                      required=&quot;&quot;
+                      type=&quot;number&quot;
+                      value=&quot;100&quot;
+                    /&gt;
+                  &lt;/div&gt;
+                  &lt;div&gt;
+                    &lt;label
+                      class=&quot;block text-sm font-medium text-gray-700 mb-2&quot;
+                      for=&quot;shareValue&quot;
+                    &gt;
+                      Value per Share (NZD) *
+                    &lt;/label&gt;
+                    &lt;input
+                      class=&quot;w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors border-gray-300&quot;
+                      id=&quot;shareValue&quot;
+                      min=&quot;0&quot;
+                      name=&quot;shareValue&quot;
+                      required=&quot;&quot;
+                      step=&quot;0.01&quot;
+                      type=&quot;number&quot;
+                      value=&quot;1&quot;
+                    /&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+              &lt;div
+                class=&quot;pt-6&quot;
+              &gt;
+                &lt;button
+                  class=&quot;w-full py-3 px-6 rounded-lg font-medium text-white transition-all duration-200 bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 shadow-lg hover:shadow-xl&quot;
+                  type=&quot;submit&quot;
+                &gt;
+                  Register Company
+                &lt;/button&gt;
+              &lt;/div&gt;
+            &lt;/form&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+ ❯ src/pages/__tests__/CompanyRegistration.test.tsx:660:37
+ ❯ runWithExpensiveErrorDiagnosticsDisabled node_modules/@testing-library/dom/dist/config.js:47:12
+ ❯ checkCallback node_modules/@testing-library/dom/dist/wait-for.js:124:77
+ ❯ Timeout.checkRealTimersCallback node_modules/@testing-library/dom/dist/wait-for.js:118:16
+            </failure>
+        </testcase>
+        <testcase classname="src/pages/__tests__/CompanyRegistration.test.tsx" name="CompanyRegistration &gt; Form Integration with File Upload &gt; maintains file selection during form validation" time="0.021800796">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/pages/__tests__/DirectorAppointment.test.tsx" timestamp="2025-07-18T00:14:07.923Z" hostname="FMNZ-C02D5HB1ML7H.local" tests="21" failures="5" errors="0" skipped="1" time="6.633693952">
+        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; renders the director appointment form with all required fields" time="0.615984663">
+        </testcase>
+        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; has correct default values" time="0.127534504">
             <failure message="[2mexpect([22m[31melement[39m[2m).toHaveValue([22m[32m2025-07-18[39m[2m)[22m
 
 Expected the element to have value:
@@ -856,12 +1397,12 @@ Expected the element to have value:
   2025-07-18
 Received:
   18/07/2025
- ❯ src/pages/__tests__/DirectorAppointment.test.tsx:143:34
+ ❯ src/pages/__tests__/DirectorAppointment.test.tsx:130:34
             </failure>
         </testcase>
-        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; validates required fields on form submission" time="0.261382917">
+        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; validates required fields on form submission" time="0.119139082">
         </testcase>
-        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; validates age requirement (must be 18+)" time="1.359949103">
+        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; validates age requirement (must be 18+)" time="1.246021979">
             <failure message="Unable to find an element with the text: Director must be at least 18 years old. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
 
 Ignored nodes: comments, script, style
@@ -882,7 +1423,8 @@ Ignored nodes: comments, script, style
             [36m&lt;div[39m
               [33mclass[39m=[32m&quot;flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-600 to-green-600 rounded-xl shadow-lg&quot;[39m
             [36m&gt;[39m
-              [36m&lt;div[39m
+              [36m&lt;svg[39m
+                [33mclass[39m=[32m&quot;h-8 w-8 text-white&quot;[39m
                 [33mdata-testid[39m=[32m&quot;user-plus-icon&quot;[39m
               [36m/&gt;[39m
             [36m&lt;/div&gt;[39m
@@ -911,7 +1453,8 @@ Ignored nodes: comments, script, style
               [36m&lt;h2[39m
                 [33mclass[39m=[32m&quot;text-xl font-semibold text-gray-900 mb-6 flex items-center&quot;[39m
               [36m&gt;[39m
-                [36m&lt;div[39m
+                [36m&lt;svg[39m
+                  [33mclass[39m=[32m&quot;h-5 w-5 mr-2&quot;[39m
                   [33mdata-testid[39m=[32m&quot;user-plus-icon&quot;[39m
                 [36m/&gt;[39m
                 [0mPersonal Information[0m
@@ -1007,9 +1550,7 @@ Ignored nodes: comments, script, style
                         [33mplaceholder[39m=[32m&quot;DD/MM/YYYY&quot;[39m
                         [33mrequired[39m=[32m&quot;&quot;[39m
                         [33mtype[39m=[32m&quot;text&quot;[39m
-                        [33mvalue[39m=[32m&quot;20/08/0718&quot;[39m
-                      [36m/&gt;[39m
-                      [36m&lt;input[...
+           ...
 
 Ignored nodes: comments, script, style
 [36m&lt;html&gt;[39m
@@ -1031,7 +1572,8 @@ Ignored nodes: comments, script, style
               [36m&lt;div[39m
                 [33mclass[39m=[32m&quot;flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-600 to-green-600 rounded-xl shadow-lg&quot;[39m
               [36m&gt;[39m
-                [36m&lt;div[39m
+                [36m&lt;svg[39m
+                  [33mclass[39m=[32m&quot;h-8 w-8 text-white&quot;[39m
                   [33mdata-testid[39m=[32m&quot;user-plus-icon&quot;[39m
                 [36m/&gt;[39m
               [36m&lt;/div&gt;[39m
@@ -1060,7 +1602,8 @@ Ignored nodes: comments, script, style
                 [36m&lt;h2[39m
                   [33mclass[39m=[32m&quot;text-xl font-semibold text-gray-900 mb-6 flex items-center&quot;[39m
                 [36m&gt;[39m
-                  [36m&lt;div[39m
+                  [36m&lt;svg[39m
+                    [33mclass[39m=[32m&quot;h-5 w-5 mr-2&quot;[39m
                     [33mdata-testid[39m=[32m&quot;user-plus-icon&quot;[39m
                   [36m/&gt;[39m
                   [0mPersonal Information[0m
@@ -1150,9 +1693,7 @@ Ignored nodes: comments, script, style
                         [36m&lt;input[39m
                           [33mautocomplete[39m=[32m&quot;off&quot;[39m
                           [33mclass[39m=[32m&quot;w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors border-red-500  pr-12&quot;[39m
-                          [33mid[39m=[32m&quot;dateOfBirth&quot;[39m
-                          [33mmaxlength[39m=[32m&quot;10&quot;[39m
-                          [33mname[39m=[32m&quot;dateOfBirth&quot;[39..." type="TestingLibraryElementError">
+                          [33mid[39m=[32m&quot;dateOfBirth&quot;[39..." type="TestingLibraryElementError">
 TestingLibraryElementError: Unable to find an element with the text: Director must be at least 18 years old. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
 
 Ignored nodes: comments, script, style
@@ -1173,7 +1714,8 @@ Ignored nodes: comments, script, style
             &lt;div
               class=&quot;flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-600 to-green-600 rounded-xl shadow-lg&quot;
             &gt;
-              &lt;div
+              &lt;svg
+                class=&quot;h-8 w-8 text-white&quot;
                 data-testid=&quot;user-plus-icon&quot;
               /&gt;
             &lt;/div&gt;
@@ -1202,7 +1744,8 @@ Ignored nodes: comments, script, style
               &lt;h2
                 class=&quot;text-xl font-semibold text-gray-900 mb-6 flex items-center&quot;
               &gt;
-                &lt;div
+                &lt;svg
+                  class=&quot;h-5 w-5 mr-2&quot;
                   data-testid=&quot;user-plus-icon&quot;
                 /&gt;
                 Personal Information
@@ -1298,9 +1841,7 @@ Ignored nodes: comments, script, style
                         placeholder=&quot;DD/MM/YYYY&quot;
                         required=&quot;&quot;
                         type=&quot;text&quot;
-                        value=&quot;20/08/0718&quot;
-                      /&gt;
-                      &lt;input[...
+           ...
 
 Ignored nodes: comments, script, style
 &lt;html&gt;
@@ -1322,7 +1863,8 @@ Ignored nodes: comments, script, style
               &lt;div
                 class=&quot;flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-600 to-green-600 rounded-xl shadow-lg&quot;
               &gt;
-                &lt;div
+                &lt;svg
+                  class=&quot;h-8 w-8 text-white&quot;
                   data-testid=&quot;user-plus-icon&quot;
                 /&gt;
               &lt;/div&gt;
@@ -1351,7 +1893,8 @@ Ignored nodes: comments, script, style
                 &lt;h2
                   class=&quot;text-xl font-semibold text-gray-900 mb-6 flex items-center&quot;
                 &gt;
-                  &lt;div
+                  &lt;svg
+                    class=&quot;h-5 w-5 mr-2&quot;
                     data-testid=&quot;user-plus-icon&quot;
                   /&gt;
                   Personal Information
@@ -1441,24 +1984,22 @@ Ignored nodes: comments, script, style
                         &lt;input
                           autocomplete=&quot;off&quot;
                           class=&quot;w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors border-red-500  pr-12&quot;
-                          id=&quot;dateOfBirth&quot;
-                          maxlength=&quot;10&quot;
-                          name=&quot;dateOfBirth&quot;...
+                          id=&quot;dateOfBirth&quot;...
  ❯ Proxy.waitForWrapper node_modules/@testing-library/dom/dist/wait-for.js:163:27
- ❯ src/pages/__tests__/DirectorAppointment.test.tsx:182:11
+ ❯ src/pages/__tests__/DirectorAppointment.test.tsx:169:11
             </failure>
         </testcase>
-        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; shows residency warning for non-NZ/AU residents" time="0.120127297">
+        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; shows residency warning for non-NZ/AU residents" time="0.089570641">
         </testcase>
-        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; toggles service address fields when checkbox is unchecked" time="0.127878402">
+        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; toggles service address fields when checkbox is unchecked" time="0.079491153">
         </testcase>
-        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; validates service address when not using residential address" time="1.334986257">
+        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; validates service address when not using residential address" time="1.062148044">
         </testcase>
-        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; updates form fields correctly" time="0.461783685">
+        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; updates form fields correctly" time="0.365989897">
         </testcase>
-        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; clears field errors when user starts typing" time="0.105781892">
+        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; clears field errors when user starts typing" time="0.099876242">
         </testcase>
-        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; shows loading state during form submission" time="0.869812988">
+        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; shows loading state during form submission" time="0.66741395">
             <failure message="Unable to find an element with the text: Appointing Director.... This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
 
 Ignored nodes: comments, script, style
@@ -1479,7 +2020,8 @@ Ignored nodes: comments, script, style
             [36m&lt;div[39m
               [33mclass[39m=[32m&quot;flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-600 to-green-600 rounded-xl shadow-lg&quot;[39m
             [36m&gt;[39m
-              [36m&lt;div[39m
+              [36m&lt;svg[39m
+                [33mclass[39m=[32m&quot;h-8 w-8 text-white&quot;[39m
                 [33mdata-testid[39m=[32m&quot;user-plus-icon&quot;[39m
               [36m/&gt;[39m
             [36m&lt;/div&gt;[39m
@@ -1508,7 +2050,8 @@ Ignored nodes: comments, script, style
               [36m&lt;h2[39m
                 [33mclass[39m=[32m&quot;text-xl font-semibold text-gray-900 mb-6 flex items-center&quot;[39m
               [36m&gt;[39m
-                [36m&lt;div[39m
+                [36m&lt;svg[39m
+                  [33mclass[39m=[32m&quot;h-5 w-5 mr-2&quot;[39m
                   [33mdata-testid[39m=[32m&quot;user-plus-icon&quot;[39m
                 [36m/&gt;[39m
                 [0mPersonal Information[0m
@@ -1601,10 +2144,7 @@ Ignored nodes: comments, script, style
                         [33mclass[39m=[32m&quot;absolute top-full left-0 w-0 h-0 opacity-0 pointer-events-none&quot;[39m
                         [33mtabindex[39m=[32m&quot;-1&quot;[39m
                         [33mtype[39m=[32m&quot;date&quot;[39m
-                        [33mvalue[39m=[32m&quot;&quot;[39m
-                      [36m/&gt;[39m
-                      [36m&lt;button[39m
-              ..." type="TestingLibraryElementError">
+                    ..." type="TestingLibraryElementError">
 TestingLibraryElementError: Unable to find an element with the text: Appointing Director.... This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
 
 Ignored nodes: comments, script, style
@@ -1625,7 +2165,8 @@ Ignored nodes: comments, script, style
             &lt;div
               class=&quot;flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-600 to-green-600 rounded-xl shadow-lg&quot;
             &gt;
-              &lt;div
+              &lt;svg
+                class=&quot;h-8 w-8 text-white&quot;
                 data-testid=&quot;user-plus-icon&quot;
               /&gt;
             &lt;/div&gt;
@@ -1654,7 +2195,8 @@ Ignored nodes: comments, script, style
               &lt;h2
                 class=&quot;text-xl font-semibold text-gray-900 mb-6 flex items-center&quot;
               &gt;
-                &lt;div
+                &lt;svg
+                  class=&quot;h-5 w-5 mr-2&quot;
                   data-testid=&quot;user-plus-icon&quot;
                 /&gt;
                 Personal Information
@@ -1747,26 +2289,23 @@ Ignored nodes: comments, script, style
                         class=&quot;absolute top-full left-0 w-0 h-0 opacity-0 pointer-events-none&quot;
                         tabindex=&quot;-1&quot;
                         type=&quot;date&quot;
-                        value=&quot;&quot;
-                      /&gt;
-                      &lt;button
-              ...
+                    ...
  ❯ Object.getElementError node_modules/@testing-library/dom/dist/config.js:37:19
  ❯ node_modules/@testing-library/dom/dist/query-helpers.js:76:38
  ❯ node_modules/@testing-library/dom/dist/query-helpers.js:52:17
  ❯ node_modules/@testing-library/dom/dist/query-helpers.js:95:19
- ❯ src/pages/__tests__/DirectorAppointment.test.tsx:335:19
+ ❯ src/pages/__tests__/DirectorAppointment.test.tsx:322:19
             </failure>
         </testcase>
-        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; handles checkbox interactions correctly" time="0.153279298">
+        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; handles checkbox interactions correctly" time="0.114362092">
         </testcase>
-        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; has proper accessibility attributes" time="0.096406021">
+        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; has proper accessibility attributes" time="0.059667535">
         </testcase>
-        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; handles middle name field correctly" time="0.194912723">
+        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; handles middle name field correctly" time="0.148498779">
         </testcase>
-        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; handles director role field correctly" time="0.447705943">
+        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; handles director role field correctly" time="0.202148948">
         </testcase>
-        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; validates appointment date field" time="1.437367159">
+        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; validates appointment date field" time="1.076454744">
             <failure message="Unable to find an element with the text: Appointment date is required. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
 
 Ignored nodes: comments, script, style
@@ -1787,7 +2326,8 @@ Ignored nodes: comments, script, style
             [36m&lt;div[39m
               [33mclass[39m=[32m&quot;flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-600 to-green-600 rounded-xl shadow-lg&quot;[39m
             [36m&gt;[39m
-              [36m&lt;div[39m
+              [36m&lt;svg[39m
+                [33mclass[39m=[32m&quot;h-8 w-8 text-white&quot;[39m
                 [33mdata-testid[39m=[32m&quot;user-plus-icon&quot;[39m
               [36m/&gt;[39m
             [36m&lt;/div&gt;[39m
@@ -1816,7 +2356,8 @@ Ignored nodes: comments, script, style
               [36m&lt;h2[39m
                 [33mclass[39m=[32m&quot;text-xl font-semibold text-gray-900 mb-6 flex items-center&quot;[39m
               [36m&gt;[39m
-                [36m&lt;div[39m
+                [36m&lt;svg[39m
+                  [33mclass[39m=[32m&quot;h-5 w-5 mr-2&quot;[39m
                   [33mdata-testid[39m=[32m&quot;user-plus-icon&quot;[39m
                 [36m/&gt;[39m
                 [0mPersonal Information[0m
@@ -1912,10 +2453,7 @@ Ignored nodes: comments, script, style
                         [33mplaceholder[39m=[32m&quot;DD/MM/YYYY&quot;[39m
                         [33mrequired[39m=[32m&quot;&quot;[39m
                         [33mtype[39m=[32m&quot;text&quot;[39m
-                        [33mvalue[39m=[32m&quot;&quot;[39m
-                      [36m/&gt;[39m
-                      [36m&lt;input[39m
-      ...
+           ...
 
 Ignored nodes: comments, script, style
 [36m&lt;html&gt;[39m
@@ -1937,7 +2475,8 @@ Ignored nodes: comments, script, style
               [36m&lt;div[39m
                 [33mclass[39m=[32m&quot;flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-600 to-green-600 rounded-xl shadow-lg&quot;[39m
               [36m&gt;[39m
-                [36m&lt;div[39m
+                [36m&lt;svg[39m
+                  [33mclass[39m=[32m&quot;h-8 w-8 text-white&quot;[39m
                   [33mdata-testid[39m=[32m&quot;user-plus-icon&quot;[39m
                 [36m/&gt;[39m
               [36m&lt;/div&gt;[39m
@@ -1966,7 +2505,8 @@ Ignored nodes: comments, script, style
                 [36m&lt;h2[39m
                   [33mclass[39m=[32m&quot;text-xl font-semibold text-gray-900 mb-6 flex items-center&quot;[39m
                 [36m&gt;[39m
-                  [36m&lt;div[39m
+                  [36m&lt;svg[39m
+                    [33mclass[39m=[32m&quot;h-5 w-5 mr-2&quot;[39m
                     [33mdata-testid[39m=[32m&quot;user-plus-icon&quot;[39m
                   [36m/&gt;[39m
                   [0mPersonal Information[0m
@@ -2056,9 +2596,7 @@ Ignored nodes: comments, script, style
                         [36m&lt;input[39m
                           [33mautocomplete[39m=[32m&quot;off&quot;[39m
                           [33mclass[39m=[32m&quot;w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors border-red-500  pr-12&quot;[39m
-                          [33mid[39m=[32m&quot;dateOfBirth&quot;[39m
-                          [33mmaxlength[39m=[32m&quot;10&quot;[39m
-                          [33mname[39m=[32m&quot;dateOfBirth&quot;[39..." type="TestingLibraryElementError">
+                          [33mid[39m=[32m&quot;dateOfBirth&quot;[39..." type="TestingLibraryElementError">
 TestingLibraryElementError: Unable to find an element with the text: Appointment date is required. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
 
 Ignored nodes: comments, script, style
@@ -2079,7 +2617,8 @@ Ignored nodes: comments, script, style
             &lt;div
               class=&quot;flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-600 to-green-600 rounded-xl shadow-lg&quot;
             &gt;
-              &lt;div
+              &lt;svg
+                class=&quot;h-8 w-8 text-white&quot;
                 data-testid=&quot;user-plus-icon&quot;
               /&gt;
             &lt;/div&gt;
@@ -2108,7 +2647,8 @@ Ignored nodes: comments, script, style
               &lt;h2
                 class=&quot;text-xl font-semibold text-gray-900 mb-6 flex items-center&quot;
               &gt;
-                &lt;div
+                &lt;svg
+                  class=&quot;h-5 w-5 mr-2&quot;
                   data-testid=&quot;user-plus-icon&quot;
                 /&gt;
                 Personal Information
@@ -2204,10 +2744,7 @@ Ignored nodes: comments, script, style
                         placeholder=&quot;DD/MM/YYYY&quot;
                         required=&quot;&quot;
                         type=&quot;text&quot;
-                        value=&quot;&quot;
-                      /&gt;
-                      &lt;input
-      ...
+           ...
 
 Ignored nodes: comments, script, style
 &lt;html&gt;
@@ -2229,7 +2766,8 @@ Ignored nodes: comments, script, style
               &lt;div
                 class=&quot;flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-600 to-green-600 rounded-xl shadow-lg&quot;
               &gt;
-                &lt;div
+                &lt;svg
+                  class=&quot;h-8 w-8 text-white&quot;
                   data-testid=&quot;user-plus-icon&quot;
                 /&gt;
               &lt;/div&gt;
@@ -2258,7 +2796,8 @@ Ignored nodes: comments, script, style
                 &lt;h2
                   class=&quot;text-xl font-semibold text-gray-900 mb-6 flex items-center&quot;
                 &gt;
-                  &lt;div
+                  &lt;svg
+                    class=&quot;h-5 w-5 mr-2&quot;
                     data-testid=&quot;user-plus-icon&quot;
                   /&gt;
                   Personal Information
@@ -2348,30 +2887,31 @@ Ignored nodes: comments, script, style
                         &lt;input
                           autocomplete=&quot;off&quot;
                           class=&quot;w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors border-red-500  pr-12&quot;
-                          id=&quot;dateOfBirth&quot;
-                          maxlength=&quot;10&quot;
-                          name=&quot;dateOfBirth&quot;...
+                          id=&quot;dateOfBirth&quot;...
  ❯ Proxy.waitForWrapper node_modules/@testing-library/dom/dist/wait-for.js:163:27
- ❯ src/pages/__tests__/DirectorAppointment.test.tsx:426:11
+ ❯ src/pages/__tests__/DirectorAppointment.test.tsx:413:11
             </failure>
         </testcase>
-        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; displays correct section headers and icons" time="0.042340785">
+        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; displays correct section headers and icons" time="0.028808441">
             <failure message="Found multiple elements by: [data-testid=&quot;calendar-icon&quot;]
 
 Here are the matching elements:
 
 Ignored nodes: comments, script, style
-[36m&lt;div[39m
+[36m&lt;svg[39m
+  [33mclass[39m=[32m&quot;h-5 w-5 text-gray-400 hover:text-gray-600&quot;[39m
   [33mdata-testid[39m=[32m&quot;calendar-icon&quot;[39m
 [36m/&gt;[39m
 
 Ignored nodes: comments, script, style
-[36m&lt;div[39m
+[36m&lt;svg[39m
+  [33mclass[39m=[32m&quot;h-5 w-5 mr-2&quot;[39m
   [33mdata-testid[39m=[32m&quot;calendar-icon&quot;[39m
 [36m/&gt;[39m
 
 Ignored nodes: comments, script, style
-[36m&lt;div[39m
+[36m&lt;svg[39m
+  [33mclass[39m=[32m&quot;h-5 w-5 text-gray-400 hover:text-gray-600&quot;[39m
   [33mdata-testid[39m=[32m&quot;calendar-icon&quot;[39m
 [36m/&gt;[39m
 
@@ -2395,7 +2935,8 @@ Ignored nodes: comments, script, style
             [36m&lt;div[39m
               [33mclass[39m=[32m&quot;flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-600 to-green-600 rounded-xl shadow-lg&quot;[39m
             [36m&gt;[39m
-              [36m&lt;div[39m
+              [36m&lt;svg[39m
+                [33mclass[39m=[32m&quot;h-8 w-8 text-white&quot;[39m
                 [33mdata-testid[39m=[32m&quot;user-plus-icon&quot;[39m
               [36m/&gt;[39m
             [36m&lt;/div&gt;[39m
@@ -2424,7 +2965,8 @@ Ignored nodes: comments, script, style
               [36m&lt;h2[39m
                 [33mclass[39m=[32m&quot;text-xl font-semibold text-gray-900 mb-6 flex items-center&quot;[39m
               [36m&gt;[39m
-                [36m&lt;div[39m
+                [36m&lt;svg[39m
+                  [33mclass[39m=[32m&quot;h-5 w-5 mr-2&quot;[39m
                   [33mdata-testid[39m=[32m&quot;user-plus-icon&quot;[39m
                 [36m/&gt;[39m
                 [0mPersonal Information[0m
@@ -2517,26 +3059,26 @@ Ignored nodes: comments, script, style
                         [33mclass[39m=[32m&quot;absolute top-full left-0 w-0 h-0 opacity-0 pointer-events-none&quot;[39m
                         [33mtabindex[39m=[32m&quot;-1&quot;[39m
                         [33mtype[39m=[32m&quot;date&quot;[39m
-                        [33mvalue[39m=[32m&quot;&quot;[39m
-                      [36m/&gt;[39m
-                      [36m&lt;button[39m
-                    ..." type="TestingLibraryElementError">
+                        [..." type="TestingLibraryElementError">
 TestingLibraryElementError: Found multiple elements by: [data-testid=&quot;calendar-icon&quot;]
 
 Here are the matching elements:
 
 Ignored nodes: comments, script, style
-&lt;div
+&lt;svg
+  class=&quot;h-5 w-5 text-gray-400 hover:text-gray-600&quot;
   data-testid=&quot;calendar-icon&quot;
 /&gt;
 
 Ignored nodes: comments, script, style
-&lt;div
+&lt;svg
+  class=&quot;h-5 w-5 mr-2&quot;
   data-testid=&quot;calendar-icon&quot;
 /&gt;
 
 Ignored nodes: comments, script, style
-&lt;div
+&lt;svg
+  class=&quot;h-5 w-5 text-gray-400 hover:text-gray-600&quot;
   data-testid=&quot;calendar-icon&quot;
 /&gt;
 
@@ -2560,7 +3102,8 @@ Ignored nodes: comments, script, style
             &lt;div
               class=&quot;flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-600 to-green-600 rounded-xl shadow-lg&quot;
             &gt;
-              &lt;div
+              &lt;svg
+                class=&quot;h-8 w-8 text-white&quot;
                 data-testid=&quot;user-plus-icon&quot;
               /&gt;
             &lt;/div&gt;
@@ -2589,7 +3132,8 @@ Ignored nodes: comments, script, style
               &lt;h2
                 class=&quot;text-xl font-semibold text-gray-900 mb-6 flex items-center&quot;
               &gt;
-                &lt;div
+                &lt;svg
+                  class=&quot;h-5 w-5 mr-2&quot;
                   data-testid=&quot;user-plus-icon&quot;
                 /&gt;
                 Personal Information
@@ -2682,36 +3226,33 @@ Ignored nodes: comments, script, style
                         class=&quot;absolute top-full left-0 w-0 h-0 opacity-0 pointer-events-none&quot;
                         tabindex=&quot;-1&quot;
                         type=&quot;date&quot;
-                        value=&quot;&quot;
-                      /&gt;
-                      &lt;button
-                    ...
+                        [...
  ❯ Object.getElementError node_modules/@testing-library/dom/dist/config.js:37:19
  ❯ getElementError node_modules/@testing-library/dom/dist/query-helpers.js:20:35
  ❯ getMultipleElementsFoundError node_modules/@testing-library/dom/dist/query-helpers.js:23:10
  ❯ node_modules/@testing-library/dom/dist/query-helpers.js:55:13
  ❯ node_modules/@testing-library/dom/dist/query-helpers.js:95:19
- ❯ src/pages/__tests__/DirectorAppointment.test.tsx:445:19
+ ❯ src/pages/__tests__/DirectorAppointment.test.tsx:432:19
             </failure>
         </testcase>
-        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; handles consent document upload" time="0.049397449">
+        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; handles consent document upload" time="0.043910731">
         </testcase>
-        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; handles identification document upload" time="0.05277739">
+        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; handles identification document upload" time="0.042717911">
         </testcase>
         <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; validates file types for document uploads" time="0">
             <skipped/>
         </testcase>
-        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; validates file size for document uploads" time="0.486165802">
+        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; validates file size for document uploads" time="0.360728716">
         </testcase>
-        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; allows removing uploaded documents" time="0.073774022">
+        <testcase classname="src/pages/__tests__/DirectorAppointment.test.tsx" name="DirectorAppointment &gt; allows removing uploaded documents" time="0.076505648">
         </testcase>
     </testsuite>
-    <testsuite name="src/pages/__tests__/DirectorResignation.test.tsx" timestamp="2025-07-18T00:10:22.914Z" hostname="FMNZ-C02D5HB1ML7H.local" tests="9" failures="2" errors="0" skipped="0" time="2.793552307">
-        <testcase classname="src/pages/__tests__/DirectorResignation.test.tsx" name="DirectorResignation &gt; renders the director resignation form" time="0.330308111">
+    <testsuite name="src/pages/__tests__/DirectorResignation.test.tsx" timestamp="2025-07-18T00:14:07.932Z" hostname="FMNZ-C02D5HB1ML7H.local" tests="9" failures="2" errors="0" skipped="0" time="2.830652096">
+        <testcase classname="src/pages/__tests__/DirectorResignation.test.tsx" name="DirectorResignation &gt; renders the director resignation form" time="0.402781655">
         </testcase>
-        <testcase classname="src/pages/__tests__/DirectorResignation.test.tsx" name="DirectorResignation &gt; pre-fills director ID when provided" time="0.049381588">
+        <testcase classname="src/pages/__tests__/DirectorResignation.test.tsx" name="DirectorResignation &gt; pre-fills director ID when provided" time="0.036547668">
         </testcase>
-        <testcase classname="src/pages/__tests__/DirectorResignation.test.tsx" name="DirectorResignation &gt; validates required fields" time="1.092517337">
+        <testcase classname="src/pages/__tests__/DirectorResignation.test.tsx" name="DirectorResignation &gt; validates required fields" time="1.106375967">
             <failure message="Unable to find an element with the text: Resignation date is required. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
 
 Ignored nodes: comments, script, style
@@ -2795,7 +3336,7 @@ Ignored nodes: comments, script, style
               [36m&gt;[39m
                 [36m&lt;svg[39m
                   [33mclass[39m=[32m&quot;h-5 w-5 text-gray-400 hover:text-gray-600&quot;[39m
-                  [33mdata-testid[39m=[32m&quot;mock-icon&quot;[39m
+                  [33mdata-testid[39m=[32m&quot;calendar-icon&quot;[39m
                 [36m/&gt;[39m
               [36m&lt;/button&gt;[39m
             [36m&lt;/div&gt;[39m
@@ -2993,7 +3534,7 @@ Ignored nodes: comments, script, style
                 [36m&gt;[39m
                   [36m&lt;svg[39m
                     [33mclass[39m=[32m&quot;h-5 w-5 text-gray-400 hover:text-gray-600&quot;[39m
-                    [33mdata-testid[39m=[32m&quot;mock-icon&quot;[39m
+                    [33mdata-testid[39m=[32m&quot;calendar-icon&quot;[39m
                   [36m/&gt;[39m
                 [36m&lt;/button&gt;[39m
               [36m&lt;/div&gt;[39m
@@ -3191,7 +3732,7 @@ Ignored nodes: comments, script, style
               &gt;
                 &lt;svg
                   class=&quot;h-5 w-5 text-gray-400 hover:text-gray-600&quot;
-                  data-testid=&quot;mock-icon&quot;
+                  data-testid=&quot;calendar-icon&quot;
                 /&gt;
               &lt;/button&gt;
             &lt;/div&gt;
@@ -3389,7 +3930,7 @@ Ignored nodes: comments, script, style
                 &gt;
                   &lt;svg
                     class=&quot;h-5 w-5 text-gray-400 hover:text-gray-600&quot;
-                    data-testid=&quot;mock-icon&quot;
+                    data-testid=&quot;calendar-icon&quot;
                   /&gt;
                 &lt;/button&gt;
               &lt;/div&gt;
@@ -3508,9 +4049,9 @@ Ignored nodes: comments, script, style
  ❯ src/pages/__tests__/DirectorResignation.test.tsx:70:11
             </failure>
         </testcase>
-        <testcase classname="src/pages/__tests__/DirectorResignation.test.tsx" name="DirectorResignation &gt; validates confirmation checkbox" time="0.07743912">
+        <testcase classname="src/pages/__tests__/DirectorResignation.test.tsx" name="DirectorResignation &gt; validates confirmation checkbox" time="0.059017371">
         </testcase>
-        <testcase classname="src/pages/__tests__/DirectorResignation.test.tsx" name="DirectorResignation &gt; submits form successfully" time="1.04662285">
+        <testcase classname="src/pages/__tests__/DirectorResignation.test.tsx" name="DirectorResignation &gt; submits form successfully" time="1.047576414">
             <failure message="expected &quot;spy&quot; to be called with arguments: [ 1, &apos;2024-01-01&apos;, &apos;mock-token&apos; ][90m
 
 Received: 
@@ -3643,7 +4184,7 @@ Ignored nodes: comments, script, style
                 [36m&gt;[39m
                   [36m&lt;svg[39m
                     [33mclass[39m=[32m&quot;h-5 w-5 text-gray-400 hover:text-gray-600&quot;[39m
-                    [33mdata-testid[39m=[32m&quot;mock-icon&quot;[39m
+                    [33mdata-testid[39m=[32m&quot;calendar-icon&quot;[39m
                   [36m/&gt;[39m
                 [36m&lt;/button&gt;[39m
               [36m&lt;/div&gt;[39m
@@ -3885,7 +4426,7 @@ Ignored nodes: comments, script, style
                 &gt;
                   &lt;svg
                     class=&quot;h-5 w-5 text-gray-400 hover:text-gray-600&quot;
-                    data-testid=&quot;mock-icon&quot;
+                    data-testid=&quot;calendar-icon&quot;
                   /&gt;
                 &lt;/button&gt;
               &lt;/div&gt;
@@ -4001,29 +4542,87 @@ Ignored nodes: comments, script, style
  ❯ Timeout.checkRealTimersCallback node_modules/@testing-library/dom/dist/wait-for.js:118:16
             </failure>
         </testcase>
-        <testcase classname="src/pages/__tests__/DirectorResignation.test.tsx" name="DirectorResignation &gt; handles submission errors" time="0.052699252">
+        <testcase classname="src/pages/__tests__/DirectorResignation.test.tsx" name="DirectorResignation &gt; handles submission errors" time="0.047611441">
         </testcase>
-        <testcase classname="src/pages/__tests__/DirectorResignation.test.tsx" name="DirectorResignation &gt; shows loading state during submission" time="0.064441106">
+        <testcase classname="src/pages/__tests__/DirectorResignation.test.tsx" name="DirectorResignation &gt; shows loading state during submission" time="0.059607209">
         </testcase>
-        <testcase classname="src/pages/__tests__/DirectorResignation.test.tsx" name="DirectorResignation &gt; resets form when reset button is clicked" time="0.051961064">
+        <testcase classname="src/pages/__tests__/DirectorResignation.test.tsx" name="DirectorResignation &gt; resets form when reset button is clicked" time="0.042800159">
         </testcase>
-        <testcase classname="src/pages/__tests__/DirectorResignation.test.tsx" name="DirectorResignation &gt; displays important notice about resignation requirements" time="0.02076988">
+        <testcase classname="src/pages/__tests__/DirectorResignation.test.tsx" name="DirectorResignation &gt; displays important notice about resignation requirements" time="0.020751005">
         </testcase>
     </testsuite>
-    <testsuite name="src/pages/__tests__/HomePage.test.tsx" timestamp="2025-07-18T00:10:22.917Z" hostname="FMNZ-C02D5HB1ML7H.local" tests="7" failures="0" errors="0" skipped="0" time="0.516056599">
-        <testcase classname="src/pages/__tests__/HomePage.test.tsx" name="HomePage &gt; renders the main page content" time="0.264768478">
+    <testsuite name="src/pages/__tests__/HomePage.test.tsx" timestamp="2025-07-18T00:14:07.939Z" hostname="FMNZ-C02D5HB1ML7H.local" tests="7" failures="0" errors="0" skipped="0" time="0.386577977">
+        <testcase classname="src/pages/__tests__/HomePage.test.tsx" name="HomePage &gt; renders the main page content" time="0.194536703">
         </testcase>
-        <testcase classname="src/pages/__tests__/HomePage.test.tsx" name="HomePage &gt; displays success message when provided in location state" time="0.038858567">
+        <testcase classname="src/pages/__tests__/HomePage.test.tsx" name="HomePage &gt; displays success message when provided in location state" time="0.043109139">
         </testcase>
-        <testcase classname="src/pages/__tests__/HomePage.test.tsx" name="HomePage &gt; does not display success message when not provided" time="0.046480885">
+        <testcase classname="src/pages/__tests__/HomePage.test.tsx" name="HomePage &gt; does not display success message when not provided" time="0.035727115">
         </testcase>
-        <testcase classname="src/pages/__tests__/HomePage.test.tsx" name="HomePage &gt; displays success message with proper styling" time="0.044604011">
+        <testcase classname="src/pages/__tests__/HomePage.test.tsx" name="HomePage &gt; displays success message with proper styling" time="0.023608152">
         </testcase>
-        <testcase classname="src/pages/__tests__/HomePage.test.tsx" name="HomePage &gt; renders all feature sections" time="0.054190611">
+        <testcase classname="src/pages/__tests__/HomePage.test.tsx" name="HomePage &gt; renders all feature sections" time="0.034867124">
         </testcase>
-        <testcase classname="src/pages/__tests__/HomePage.test.tsx" name="HomePage &gt; handles empty success message" time="0.023392024">
+        <testcase classname="src/pages/__tests__/HomePage.test.tsx" name="HomePage &gt; handles empty success message" time="0.025249785">
         </testcase>
-        <testcase classname="src/pages/__tests__/HomePage.test.tsx" name="HomePage &gt; handles undefined success message" time="0.035029638">
+        <testcase classname="src/pages/__tests__/HomePage.test.tsx" name="HomePage &gt; handles undefined success message" time="0.020419565">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/services/__tests__/directorService.test.ts" timestamp="2025-07-18T00:14:07.942Z" hostname="FMNZ-C02D5HB1ML7H.local" tests="9" failures="0" errors="0" skipped="0" time="0.02776945">
+        <testcase classname="src/services/__tests__/directorService.test.ts" name="DirectorService &gt; getCountryCode &gt; should convert New Zealand to NZ" time="0.003310996">
+        </testcase>
+        <testcase classname="src/services/__tests__/directorService.test.ts" name="DirectorService &gt; getCountryCode &gt; should convert Australia to AU" time="0.000971784">
+        </testcase>
+        <testcase classname="src/services/__tests__/directorService.test.ts" name="DirectorService &gt; getCountryCode &gt; should convert United States variants to US" time="0.000709511">
+        </testcase>
+        <testcase classname="src/services/__tests__/directorService.test.ts" name="DirectorService &gt; getCountryCode &gt; should convert United Kingdom to GB" time="0.000538987">
+        </testcase>
+        <testcase classname="src/services/__tests__/directorService.test.ts" name="DirectorService &gt; getCountryCode &gt; should convert Canada to CA" time="0.000392258">
+        </testcase>
+        <testcase classname="src/services/__tests__/directorService.test.ts" name="DirectorService &gt; getCountryCode &gt; should default to NZ for unrecognized countries" time="0.000481886">
+        </testcase>
+        <testcase classname="src/services/__tests__/directorService.test.ts" name="DirectorService &gt; getCountryCode &gt; should handle edge cases" time="0.000395748">
+        </testcase>
+        <testcase classname="src/services/__tests__/directorService.test.ts" name="DirectorService &gt; getCountryCode &gt; should ensure all returned codes are exactly 2 characters" time="0.006723363">
+        </testcase>
+        <testcase classname="src/services/__tests__/directorService.test.ts" name="DirectorService &gt; getCountryCode &gt; should comply with database VARCHAR(2) constraint" time="0.001009321">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/services/__tests__/registrationService.test.ts" timestamp="2025-07-18T00:14:07.946Z" hostname="FMNZ-C02D5HB1ML7H.local" tests="18" failures="0" errors="0" skipped="0" time="0.031649991">
+        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; checkNameAvailability &gt; returns availability status for valid name" time="0.005320144">
+        </testcase>
+        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; checkNameAvailability &gt; handles special characters in company name" time="0.001147415">
+        </testcase>
+        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; checkNameAvailability &gt; throws error on HTTP error response" time="0.002999166">
+        </testcase>
+        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; checkNameAvailability &gt; throws error on network failure" time="0.000837934">
+        </testcase>
+        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; checkNumberAvailability &gt; returns availability status for valid number" time="0.001201693">
+        </testcase>
+        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; checkNumberAvailability &gt; handles special characters in company number" time="0.000719634">
+        </testcase>
+        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; checkNumberAvailability &gt; throws error on HTTP error response" time="0.000667287">
+        </testcase>
+        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; registerCompany &gt; registers company successfully with authentication" time="0.002397178">
+        </testcase>
+        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; registerCompany &gt; registers company successfully without authentication" time="0.001326205">
+        </testcase>
+        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; registerCompany &gt; registers company without optional NZBN" time="0.001061672">
+        </testcase>
+        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; registerCompany &gt; throws error on HTTP error response" time="0.000645954">
+        </testcase>
+        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; registerCompany &gt; throws error on network failure" time="0.000528768">
+        </testcase>
+        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; registerCompany &gt; handles unauthorized access" time="0.001083315">
+        </testcase>
+        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; generateCompanyNumber &gt; generates a 9-digit company number" time="0.00047762">
+        </testcase>
+        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; generateCompanyNumber &gt; generates unique company numbers" time="0.001191656">
+        </testcase>
+        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; generateCompanyNumber &gt; generates numbers with timestamp component" time="0.000429288">
+        </testcase>
+        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; error handling &gt; handles malformed JSON response" time="0.000567491">
+        </testcase>
+        <testcase classname="src/services/__tests__/registrationService.test.ts" name="RegistrationService &gt; error handling &gt; handles empty response" time="0.000376686">
         </testcase>
     </testsuite>
 </testsuites>

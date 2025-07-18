@@ -126,8 +126,9 @@ describe('DirectorAppointment', () => {
     
     // Check appointment date is today
     const appointmentDateInput = screen.getByLabelText(/appointment date/i);
-    const today = new Date().toISOString().split('T')[0];
-    expect(appointmentDateInput).toHaveValue(today);
+    const today = new Date();
+    const todayFormatted = `${today.getDate().toString().padStart(2, '0')}/${(today.getMonth() + 1).toString().padStart(2, '0')}/${today.getFullYear()}`;
+    expect(appointmentDateInput).toHaveValue(todayFormatted);
   });
 
   it('validates required fields on form submission', async () => {
@@ -161,7 +162,8 @@ describe('DirectorAppointment', () => {
     const dateOfBirthInput = screen.getByLabelText(/date of birth/i);
     const underageDate = new Date();
     underageDate.setFullYear(underageDate.getFullYear() - 17);
-    await user.type(dateOfBirthInput, underageDate.toISOString().split('T')[0]);
+    const underageDateFormatted = `${underageDate.getDate().toString().padStart(2, '0')}/${(underageDate.getMonth() + 1).toString().padStart(2, '0')}/${underageDate.getFullYear()}`;
+    await user.type(dateOfBirthInput, underageDateFormatted);
     
     const submitButton = screen.getByRole('button', { name: /appoint director/i });
     fireEvent.click(submitButton);
@@ -216,7 +218,8 @@ describe('DirectorAppointment', () => {
     const dateInput = screen.getByLabelText(/date of birth/i);
     const adultDate = new Date();
     adultDate.setFullYear(adultDate.getFullYear() - 30);
-    await user.type(dateInput, adultDate.toISOString().split('T')[0]);
+    const adultDateFormatted = `${adultDate.getDate().toString().padStart(2, '0')}/${(adultDate.getMonth() + 1).toString().padStart(2, '0')}/${adultDate.getFullYear()}`;
+    await user.type(dateInput, adultDateFormatted);
     
     await user.type(screen.getByLabelText(/occupation/i), 'Manager');
     
@@ -300,7 +303,8 @@ describe('DirectorAppointment', () => {
     const dateInput = screen.getByLabelText(/date of birth/i);
     const adultDate = new Date();
     adultDate.setFullYear(adultDate.getFullYear() - 30);
-    await user.type(dateInput, adultDate.toISOString().split('T')[0]);
+    const adultDateFormatted = `${adultDate.getDate().toString().padStart(2, '0')}/${(adultDate.getMonth() + 1).toString().padStart(2, '0')}/${adultDate.getFullYear()}`;
+    await user.type(dateInput, adultDateFormatted);
     
     await user.type(screen.getByLabelText(/occupation/i), 'Manager');
     

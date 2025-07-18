@@ -68,31 +68,36 @@ global.console = {
 
 // Mock lucide-react icons
 vi.mock('lucide-react', () => {
-  const MockIcon = ({ className, ...props }: { className?: string; [key: string]: unknown }) => {
-    return React.createElement('svg', { className, ...props, 'data-testid': 'mock-icon' });
-  };
+  const createMockIcon = (testId: string) => 
+    ({ className, ...props }: { className?: string; [key: string]: unknown }) => {
+      return React.createElement('svg', { 
+        className, 
+        ...props, 
+        'data-testid': props['data-testid'] || testId 
+      });
+    };
   
   return {
-    Building2: MockIcon,
-    Search: MockIcon,
-    Shield: MockIcon,
-    Users: MockIcon,
-    FileText: MockIcon,
-    TrendingUp: MockIcon,
-    Plus: MockIcon,
-    CheckCircle: MockIcon,
-    XCircle: MockIcon,
-    AlertCircle: MockIcon,
-    Loader2: MockIcon,
-    Upload: MockIcon,
-    X: MockIcon,
-    UserPlus: MockIcon,
-    Check: MockIcon,
-    Calendar: MockIcon,
-    MapPin: MockIcon,
-    LogIn: MockIcon,
-    LogOut: MockIcon,
-    User: MockIcon,
+    Building2: createMockIcon('building2-icon'),
+    Search: createMockIcon('search-icon'),
+    Shield: createMockIcon('shield-icon'),
+    Users: createMockIcon('users-icon'),
+    FileText: createMockIcon('file-text-icon'),
+    TrendingUp: createMockIcon('trending-up-icon'),
+    Plus: createMockIcon('plus-icon'),
+    CheckCircle: createMockIcon('check-circle-icon'),
+    XCircle: createMockIcon('x-circle-icon'),
+    AlertCircle: createMockIcon('alert-circle-icon'),
+    Loader2: createMockIcon('loader2-icon'),
+    Upload: createMockIcon('upload-icon'),
+    X: createMockIcon('x-icon'),
+    UserPlus: createMockIcon('user-plus-icon'),
+    Check: createMockIcon('check-icon'),
+    Calendar: createMockIcon('calendar-icon'),
+    MapPin: createMockIcon('map-pin-icon'),
+    LogIn: createMockIcon('login-icon'),
+    LogOut: createMockIcon('logout-icon'),
+    User: createMockIcon('user-icon'),
   };
 });
 
