@@ -5,11 +5,13 @@ import { vi, describe, it, expect, beforeEach, type Mock } from 'vitest';
 import { CompanyDetails } from '../CompanyDetails';
 import { companyService } from '../../services/companyService';
 import { DirectorService } from '../../services/directorService';
+import { ShareholderService } from '../../services/shareholderService';
 
 // Mock the dependencies
 vi.mock('@auth0/auth0-react');
 vi.mock('../../services/companyService');
 vi.mock('../../services/directorService');
+vi.mock('../../services/shareholderService');
 
 // Mock react-router-dom
 const mockNavigate = vi.fn();
@@ -61,6 +63,67 @@ describe('CompanyDetails', () => {
     },
   ];
 
+  const mockShareholders = [
+    {
+      id: 1,
+      fullName: 'John Smith',
+      addressLine1: '123 Main Street',
+      addressLine2: 'Unit 1',
+      city: 'Auckland',
+      region: 'Auckland',
+      postcode: '1010',
+      country: 'New Zealand',
+      isIndividual: true,
+      createdAt: '2020-01-01T00:00:00Z',
+      updatedAt: '2020-01-01T00:00:00Z',
+    },
+    {
+      id: 2,
+      fullName: 'ABC Holdings Ltd',
+      addressLine1: '456 Business Ave',
+      city: 'Wellington',
+      region: 'Wellington',
+      postcode: '6011',
+      country: 'New Zealand',
+      isIndividual: false,
+      createdAt: '2020-01-01T00:00:00Z',
+      updatedAt: '2020-01-01T00:00:00Z',
+    },
+  ];
+
+  const mockShareAllocations = [
+    {
+      id: 1,
+      company: mockCompany,
+      shareholder: mockShareholders[0],
+      shareClass: 'ORDINARY',
+      numberOfShares: 750,
+      nominalValue: 1.00,
+      amountPaid: 750.00,
+      allocationDate: '2020-01-01',
+      status: 'ACTIVE' as const,
+      certificateNumber: 'CERT001',
+      isFullyPaid: true,
+      createdAt: '2020-01-01T00:00:00Z',
+      updatedAt: '2020-01-01T00:00:00Z',
+    },
+    {
+      id: 2,
+      company: mockCompany,
+      shareholder: mockShareholders[1],
+      shareClass: 'ORDINARY',
+      numberOfShares: 250,
+      nominalValue: 1.00,
+      amountPaid: 125.00,
+      allocationDate: '2020-01-01',
+      status: 'ACTIVE' as const,
+      certificateNumber: 'CERT002',
+      isFullyPaid: false,
+      createdAt: '2020-01-01T00:00:00Z',
+      updatedAt: '2020-01-01T00:00:00Z',
+    },
+  ];
+
   beforeEach(() => {
     vi.clearAllMocks();
     
@@ -80,6 +143,10 @@ describe('CompanyDetails', () => {
       getDirectorsByCompany: vi.fn().mockResolvedValue(mockDirectors),
     };
     vi.mocked(DirectorService).mockImplementation(() => mockDirectorService as unknown as DirectorService);
+
+    // Mock ShareholderService static methods
+    vi.mocked(ShareholderService.getShareholdersByCompany).mockResolvedValue(mockShareholders);
+    vi.mocked(ShareholderService.getCompanyAllocations).mockResolvedValue(mockShareAllocations);
   });
 
   const renderComponent = (props = {}) => {
@@ -272,6 +339,195 @@ describe('CompanyDetails', () => {
       // This scenario is handled by the component's logic when companyId is falsy
       // The test for this condition is covered by the loading state and error handling tests
       expect(true).toBe(true); // Placeholder to keep the test structure
+    });
+  });
+
+  describe('Shareholders Section', () => {
+    it('should display shareholders list correctly', async () => {
+      renderComponent();
+
+      await waitFor(() => {
+        expect(screen.getByText('John Smith')).toBeInTheDocument();
+      });
+
+      expect(screen.getByText('ABC Holdings Ltd')).toBeInTheDocument();
+      
+      // Check shareholder types
+      expect(screen.getByText('Individual')).toBeInTheDocument();
+      expect(screen.getByText('Corporate')).toBeInTheDocument();
+
+      // Check ownership percentages
+      expect(screen.getByText('75.00% ownership')).toBeInTheDocument();
+      expect(screen.getByText('25.00% ownership')).toBeInTheDocument();
+    });
+
+    it('should display shareholder addresses correctly', async () => {
+      renderComponent();
+
+      await waitFor(() => {
+        expect(screen.getByText('John Smith')).toBeInTheDocument();
+      });
+
+      // Check formatted addresses
+      expect(screen.getByText('123 Main Street, Unit 1, Auckland, Auckland, 1010, New Zealand')).toBeInTheDocument();
+      expect(screen.getByText('456 Business Ave, Wellington, Wellington, 6011, New Zealand')).toBeInTheDocument();
+    });
+
+    it('should display share allocations with correct details', async () => {
+      renderComponent();
+
+      await waitFor(() => {
+        expect(screen.getByText('John Smith')).toBeInTheDocument();
+      });
+
+      // Check share holdings by searching for each part
+      expect(screen.getAllByText('Class ORDINARY:')).toHaveLength(2);
+      expect(screen.getByText('750 shares')).toBeInTheDocument();
+      expect(screen.getByText('250 shares')).toBeInTheDocument();
+
+      // Check certificate numbers
+      expect(screen.getByText('(Cert: CERT001)')).toBeInTheDocument();
+      expect(screen.getByText('(Cert: CERT002)')).toBeInTheDocument();
+
+      // Check share values and payment status
+      expect(screen.getByText('$750.00 value')).toBeInTheDocument();
+      expect(screen.getByText('$250.00 value')).toBeInTheDocument();
+      expect(screen.getByText('$750.00 paid')).toBeInTheDocument();
+      expect(screen.getByText('$125.00 paid')).toBeInTheDocument();
+      expect(screen.getByText('($125.00 unpaid)')).toBeInTheDocument();
+    });
+
+    it('should show register shareholder button when authenticated', async () => {
+      renderComponent();
+
+      await waitFor(() => {
+        expect(screen.getByText('John Smith')).toBeInTheDocument();
+      });
+
+      expect(screen.getByRole('button', { name: /register shareholder/i })).toBeInTheDocument();
+    });
+
+    it('should not show register shareholder button when not authenticated', async () => {
+      (useAuth0 as Mock).mockReturnValue({
+        getAccessTokenSilently: mockGetAccessTokenSilently,
+        isAuthenticated: false,
+      });
+
+      renderComponent();
+
+      await waitFor(() => {
+        expect(screen.getByText('John Smith')).toBeInTheDocument();
+      });
+
+      expect(screen.queryByRole('button', { name: /register shareholder/i })).not.toBeInTheDocument();
+    });
+
+    it('should show transfer buttons for authenticated users', async () => {
+      renderComponent();
+
+      await waitFor(() => {
+        expect(screen.getByText('John Smith')).toBeInTheDocument();
+      });
+
+      const transferButtons = screen.getAllByRole('button', { name: /transfer/i });
+      expect(transferButtons).toHaveLength(2);
+    });
+
+    it('should not show transfer buttons when not authenticated', async () => {
+      (useAuth0 as Mock).mockReturnValue({
+        getAccessTokenSilently: mockGetAccessTokenSilently,
+        isAuthenticated: false,
+      });
+
+      renderComponent();
+
+      await waitFor(() => {
+        expect(screen.getByText('John Smith')).toBeInTheDocument();
+      });
+
+      expect(screen.queryByRole('button', { name: /transfer/i })).not.toBeInTheDocument();
+    });
+
+    it('should display "no shareholders" message when no shareholders exist', async () => {
+      vi.mocked(ShareholderService.getShareholdersByCompany).mockResolvedValue([]);
+      vi.mocked(ShareholderService.getCompanyAllocations).mockResolvedValue([]);
+
+      renderComponent();
+
+      await waitFor(() => {
+        expect(screen.getByText('No shareholders found for this company.')).toBeInTheDocument();
+      });
+    });
+
+    it('should handle navigation to register shareholder page', async () => {
+      renderComponent();
+
+      await waitFor(() => {
+        expect(screen.getByText('John Smith')).toBeInTheDocument();
+      });
+
+      const registerButton = screen.getByRole('button', { name: /register shareholder/i });
+      registerButton.click();
+
+      expect(mockNavigate).toHaveBeenCalledWith('/companies/1/shareholders/register');
+    });
+
+    it('should handle navigation to share transfer page', async () => {
+      renderComponent();
+
+      await waitFor(() => {
+        expect(screen.getByText('John Smith')).toBeInTheDocument();
+      });
+
+      const transferButtons = screen.getAllByRole('button', { name: /transfer/i });
+      transferButtons[0].click();
+
+      expect(mockNavigate).toHaveBeenCalledWith('/companies/1/share-allocations/1/transfer');
+    });
+
+    it('should handle shareholders loading error gracefully', async () => {
+      vi.mocked(ShareholderService.getShareholdersByCompany).mockRejectedValue(new Error('Failed to load shareholders'));
+
+      renderComponent();
+
+      await waitFor(() => {
+        expect(screen.getByText('Failed to load shareholders')).toBeInTheDocument();
+      });
+    });
+
+    it('should calculate ownership percentages correctly with multiple allocations', async () => {
+      // Mock multiple allocations for the same shareholder
+      const multipleAllocations = [
+        ...mockShareAllocations,
+        {
+          id: 3,
+          company: mockCompany,
+          shareholder: mockShareholders[0], // Same shareholder as first allocation
+          shareClass: 'PREFERENCE',
+          numberOfShares: 100,
+          nominalValue: 2.00,
+          amountPaid: 200.00,
+          allocationDate: '2020-01-01',
+          status: 'ACTIVE' as const,
+          certificateNumber: 'CERT003',
+          isFullyPaid: true,
+          createdAt: '2020-01-01T00:00:00Z',
+          updatedAt: '2020-01-01T00:00:00Z',
+        },
+      ];
+
+      vi.mocked(ShareholderService.getCompanyAllocations).mockResolvedValue(multipleAllocations);
+
+      renderComponent();
+
+      await waitFor(() => {
+        expect(screen.getByText('John Smith')).toBeInTheDocument();
+      });
+
+      // John Smith: (750 + 100) / (750 + 250 + 100) = 850/1100 = 77.27%
+      // ABC Holdings: 250 / 1100 = 22.73%
+      expect(screen.getByText('77.27% ownership')).toBeInTheDocument();
+      expect(screen.getByText('22.73% ownership')).toBeInTheDocument();
     });
   });
 

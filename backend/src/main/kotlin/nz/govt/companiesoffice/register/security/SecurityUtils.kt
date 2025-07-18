@@ -61,4 +61,20 @@ object SecurityUtils {
     fun canModifyCompanyData(): Boolean {
         return hasManagementAccess()
     }
+
+    /**
+     * Check if the user has a specific role by string name
+     */
+    fun hasRole(roleName: String): Boolean {
+        val role = UserRole.fromString(roleName)
+        return role?.let { hasRole(it) } ?: false
+    }
+
+    /**
+     * Check if the user is authenticated
+     */
+    fun isAuthenticated(): Boolean {
+        val authentication = getCurrentAuthentication()
+        return authentication != null && authentication.isAuthenticated
+    }
 }
