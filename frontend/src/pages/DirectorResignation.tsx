@@ -38,6 +38,7 @@ export function DirectorResignation({
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors },
     reset,
   } = useForm<DirectorResignationFormData>({
