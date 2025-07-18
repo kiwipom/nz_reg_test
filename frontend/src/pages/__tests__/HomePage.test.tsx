@@ -36,17 +36,6 @@ vi.mock('react-router-dom', async () => {
   };
 });
 
-// Mock Lucide React icons
-vi.mock('lucide-react', () => ({
-  Building2: () => <div data-testid="building2-icon" />,
-  Search: () => <div data-testid="search-icon" />,
-  Shield: () => <div data-testid="shield-icon" />,
-  Users: () => <div data-testid="users-icon" />,
-  FileText: () => <div data-testid="file-text-icon" />,
-  TrendingUp: () => <div data-testid="trending-up-icon" />,
-  Plus: () => <div data-testid="plus-icon" />,
-  CheckCircle: () => <div data-testid="check-circle-icon" />,
-}));
 
 const renderComponent = (locationState = {}) => {
   mockUseLocation.mockReturnValue({
