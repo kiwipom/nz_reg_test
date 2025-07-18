@@ -365,7 +365,7 @@ export const ShareAllocation: React.FC<ShareAllocationProps> = ({
                 id="allocationDate"
                 name="allocationDate"
                 value={formData.allocationDate || ''}
-                onChange={(value) => handleInputChange({ target: { name: 'allocationDate', value } } as any)}
+                onChange={(value) => handleInputChange({ target: { name: 'allocationDate', value } } as React.ChangeEvent<HTMLInputElement>)}
                 label="Allocation Date"
               />
             </div>

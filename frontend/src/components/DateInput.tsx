@@ -50,8 +50,8 @@ const DateInput: React.FC<DateInputProps> = ({
     const parts = cleaned.split('/');
     
     if (parts.length === 3) {
-      let day = parts[0].padStart(2, '0');
-      let month = parts[1].padStart(2, '0');
+      const day = parts[0].padStart(2, '0');
+      const month = parts[1].padStart(2, '0');
       let year = parts[2];
       
       // Handle 2-digit years (assume 20xx for 00-30, 19xx for 31-99)

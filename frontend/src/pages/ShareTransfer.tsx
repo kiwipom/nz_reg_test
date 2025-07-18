@@ -279,7 +279,7 @@ export const ShareTransfer: React.FC<ShareTransferProps> = ({ allocationId: prop
                 id="transferDate"
                 name="transferDate"
                 value={formData.transferDate || ''}
-                onChange={(value) => handleInputChange({ target: { name: 'transferDate', value } } as any)}
+                onChange={(value) => handleInputChange({ target: { name: 'transferDate', value } } as React.ChangeEvent<HTMLInputElement>)}
                 label="Transfer Date"
               />
             </div>
