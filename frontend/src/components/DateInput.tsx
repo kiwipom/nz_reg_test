@@ -24,88 +24,111 @@ const DateInput: React.FC<DateInputProps> = ({
   label,
   error
 }) => {
-  const [inputValue, setInputValue] = useState(value);
-  const [isCalendarOpen, setIsCalendarOpen] = useState(false);
+  const [inputValue, setInputValue] = useState('');
+  const [isFocused, setIsFocused] = useState(false);
   const textInputRef = useRef<HTMLInputElement>(null);
   const dateInputRef = useRef<HTMLInputElement>(null);
 
   // Convert between display format (DD/MM/YYYY) and ISO format (YYYY-MM-DD)
   const formatDateForDisplay = (isoDate: string): string => {
     if (!isoDate) return '';
-    const [year, month, day] = isoDate.split('-');
-    return `${day}/${month}/${year}`;
+    try {
+      const [year, month, day] = isoDate.split('-');
+      return `${day}/${month}/${year}`;
+    } catch {
+      return '';
+    }
   };
 
-  const formatDateForISO = (displayDate: string): string => {
-    // Handle various input formats
-    const cleaned = displayDate.replace(/[^\d]/g, '');
+  const parseDisplayDate = (displayDate: string): string => {
+    if (!displayDate || displayDate.trim() === '') return '';
     
-    if (cleaned.length === 8) {
-      // DDMMYYYY
-      const day = cleaned.slice(0, 2);
-      const month = cleaned.slice(2, 4);
-      const year = cleaned.slice(4, 8);
+    // Remove any non-digit characters except slashes
+    const cleaned = displayDate.replace(/[^\d/]/g, '');
+    
+    // Split by slash and handle different formats
+    const parts = cleaned.split('/');
+    
+    if (parts.length === 3) {
+      let day = parts[0].padStart(2, '0');
+      let month = parts[1].padStart(2, '0');
+      let year = parts[2];
       
-      // Validate date
-      const date = new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
-      if (
-        date.getFullYear() === parseInt(year) &&
-        date.getMonth() === parseInt(month) - 1 &&
-        date.getDate() === parseInt(day)
-      ) {
-        return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
+      // Handle 2-digit years (assume 20xx for 00-30, 19xx for 31-99)
+      if (year.length === 2) {
+        const yearNum = parseInt(year);
+        year = (yearNum <= 30 ? '20' : '19') + year;
+      }
+      
+      // Validate the date
+      if (year.length === 4) {
+        const dayNum = parseInt(day);
+        const monthNum = parseInt(month);
+        const yearNum = parseInt(year);
+        
+        const date = new Date(yearNum, monthNum - 1, dayNum);
+        if (
+          date.getFullYear() === yearNum &&
+          date.getMonth() === monthNum - 1 &&
+          date.getDate() === dayNum &&
+          dayNum >= 1 && dayNum <= 31 &&
+          monthNum >= 1 && monthNum <= 12
+        ) {
+          return `${year}-${month}-${day}`;
+        }
       }
     }
     
     return '';
   };
 
-  const validateAndFormatInput = (input: string): string => {
-    // Remove non-digit characters except slashes
-    let cleaned = input.replace(/[^\d/]/g, '');
+  const formatAsUserTypes = (input: string): string => {
+    // Remove all non-digits
+    const digitsOnly = input.replace(/\D/g, '');
     
-    // Auto-add slashes
-    if (cleaned.length >= 2 && !cleaned.includes('/')) {
-      cleaned = cleaned.slice(0, 2) + '/' + cleaned.slice(2);
-    }
-    if (cleaned.length >= 5 && cleaned.split('/').length === 2) {
-      const parts = cleaned.split('/');
-      cleaned = parts[0] + '/' + parts[1].slice(0, 2) + '/' + parts[1].slice(2);
-    }
-    
-    // Limit length
-    if (cleaned.length > 10) {
-      cleaned = cleaned.slice(0, 10);
+    // Format as DD/MM/YYYY while typing
+    let formatted = '';
+    for (let i = 0; i < digitsOnly.length && i < 8; i++) {
+      if (i === 2 || i === 4) {
+        formatted += '/';
+      }
+      formatted += digitsOnly[i];
     }
     
-    return cleaned;
+    return formatted;
   };
 
+  // Update display when value prop changes
   useEffect(() => {
-    setInputValue(formatDateForDisplay(value));
-  }, [value]);
+    if (!isFocused) {
+      setInputValue(formatDateForDisplay(value));
+    }
+  }, [value, isFocused]);
 
   const handleTextInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const rawValue = e.target.value;
-    const formattedValue = validateAndFormatInput(rawValue);
+    const formattedValue = formatAsUserTypes(rawValue);
     setInputValue(formattedValue);
-    
-    // Try to convert to ISO format and update parent
-    const isoDate = formatDateForISO(formattedValue);
-    if (isoDate || formattedValue === '') {
-      onChange(isoDate);
-    }
+  };
+
+  const handleTextInputFocus = () => {
+    setIsFocused(true);
   };
 
   const handleTextInputBlur = () => {
-    // Final validation on blur
-    const isoDate = formatDateForISO(inputValue);
+    setIsFocused(false);
+    
+    // Try to parse and validate the input
+    const isoDate = parseDisplayDate(inputValue);
     if (isoDate) {
-      setInputValue(formatDateForDisplay(isoDate));
       onChange(isoDate);
-    } else if (inputValue && inputValue.length > 0) {
-      // Invalid date, reset to empty
+      setInputValue(formatDateForDisplay(isoDate));
+    } else if (inputValue.trim() !== '') {
+      // Invalid date entered, clear it
       setInputValue('');
+      onChange('');
+    } else {
+      // Empty input
       onChange('');
     }
   };
@@ -114,15 +137,14 @@ const DateInput: React.FC<DateInputProps> = ({
     const isoDate = e.target.value;
     onChange(isoDate);
     setInputValue(formatDateForDisplay(isoDate));
-    setIsCalendarOpen(false);
   };
 
-  const toggleCalendar = () => {
-    setIsCalendarOpen(!isCalendarOpen);
-    if (!isCalendarOpen && dateInputRef.current) {
-      // Focus the hidden date input to open native picker
+  const handleCalendarClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (dateInputRef.current) {
       dateInputRef.current.focus();
-      dateInputRef.current.click();
+      dateInputRef.current.showPicker?.();
     }
   };
 
@@ -139,7 +161,7 @@ const DateInput: React.FC<DateInputProps> = ({
       )}
       
       <div className="relative">
-        {/* Text input for typing */}
+        {/* Text input for typing - this is the main input */}
         <input
           ref={textInputRef}
           type="text"
@@ -147,20 +169,22 @@ const DateInput: React.FC<DateInputProps> = ({
           name={name}
           value={inputValue}
           onChange={handleTextInputChange}
+          onFocus={handleTextInputFocus}
           onBlur={handleTextInputBlur}
           className={`${baseInputClasses} pr-12`}
           placeholder={placeholder}
           required={required}
           autoComplete="off"
+          maxLength={10}
         />
         
-        {/* Hidden date input for calendar picker */}
+        {/* Hidden date input for calendar picker - positioned below to avoid interference */}
         <input
           ref={dateInputRef}
           type="date"
           value={value}
           onChange={handleDateInputChange}
-          className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+          className="absolute top-full left-0 w-0 h-0 opacity-0 pointer-events-none"
           tabIndex={-1}
           aria-hidden="true"
         />
@@ -168,9 +192,10 @@ const DateInput: React.FC<DateInputProps> = ({
         {/* Calendar icon button */}
         <button
           type="button"
-          onClick={toggleCalendar}
-          className="absolute inset-y-0 right-0 pr-3 flex items-center"
+          onClick={handleCalendarClick}
+          className="absolute inset-y-0 right-0 pr-3 flex items-center hover:bg-gray-50 rounded-r-lg"
           aria-label="Open calendar"
+          tabIndex={-1}
         >
           <Calendar className="h-5 w-5 text-gray-400 hover:text-gray-600" />
         </button>
