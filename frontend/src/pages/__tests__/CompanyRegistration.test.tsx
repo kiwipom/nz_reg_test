@@ -30,16 +30,6 @@ vi.mock('react-router-dom', async () => {
   };
 });
 
-// Mock Lucide React icons
-vi.mock('lucide-react', () => ({
-  Building2: () => <div data-testid="building2-icon" />,
-  Check: () => <div data-testid="check-icon" />,
-  AlertCircle: () => <div data-testid="alert-circle-icon" />,
-  Loader2: (props: { 'data-testid'?: string }) => <div data-testid={props['data-testid'] || 'loader2-icon'} />,
-  Upload: () => <div data-testid="upload-icon" />,
-  X: () => <div data-testid="x-icon" />,
-  FileText: () => <div data-testid="file-text-icon" />,
-}));
 
 const renderComponent = () => {
   return render(
@@ -140,7 +130,7 @@ describe('CompanyRegistration', () => {
     fireEvent.change(shareCapitalInput, { target: { name: 'shareCapital', value: '200' } });
     
     const incorporationDateInput = screen.getByLabelText(/incorporation date/i);
-    await user.type(incorporationDateInput, '2024-01-01');
+    await user.type(incorporationDateInput, '01/01/2024');
     
     const form = document.querySelector('form');
     if (form) {
@@ -227,7 +217,7 @@ describe('CompanyRegistration', () => {
     
     // Try to submit
     const incorporationDateInput = screen.getByLabelText(/incorporation date/i);
-    await user.type(incorporationDateInput, '2024-01-01');
+    await user.type(incorporationDateInput, '01/01/2024');
     
     const form = document.querySelector('form');
     if (form) {
@@ -304,8 +294,8 @@ describe('CompanyRegistration', () => {
     expect(companyTypeSelect).toHaveValue('OVERSEAS');
     
     const incorporationDateInput = screen.getByLabelText(/incorporation date/i);
-    await user.type(incorporationDateInput, '2024-01-01');
-    expect(incorporationDateInput).toHaveValue('2024-01-01');
+    await user.type(incorporationDateInput, '01/01/2024');
+    expect(incorporationDateInput).toHaveValue('01/01/2024');
     
     const nzbnInput = screen.getByLabelText(/nzbn/i);
     await user.type(nzbnInput, '1234567890123');
@@ -407,7 +397,7 @@ describe('CompanyRegistration', () => {
     await user.type(companyNameInput, 'Test Company');
     
     const incorporationDateInput = screen.getByLabelText(/incorporation date/i);
-    await user.type(incorporationDateInput, '2024-01-01');
+    await user.type(incorporationDateInput, '01/01/2024');
     
     // Wait for the debounce timeout (500ms) plus buffer
     await new Promise(resolve => setTimeout(resolve, 700));
@@ -651,7 +641,7 @@ describe('CompanyRegistration', () => {
       });
       
       const incorporationDateInput = screen.getByLabelText('Incorporation Date *');
-      await user.type(incorporationDateInput, '2024-01-01');
+      await user.type(incorporationDateInput, '01/01/2024');
       
       // Upload constitution file
       const fileInput = screen.getByLabelText('Constitution Document (Optional)');

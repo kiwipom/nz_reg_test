@@ -4,6 +4,7 @@ import { z } from 'zod';
 import { ShareholderService } from '../services/shareholderService';
 import { useAuth } from '../auth/useAuth';
 import type { ShareAllocation, Shareholder, ShareTransferRequest } from '../types/company';
+import DateInput from '../components/DateInput';
 
 const shareTransferSchema = z.object({
   toShareholderId: z.number().min(1, 'Please select a recipient shareholder'),
@@ -274,16 +275,12 @@ export const ShareTransfer: React.FC<ShareTransferProps> = ({ allocationId: prop
             )}
 
             <div>
-              <label htmlFor="transferDate" className="block text-sm font-medium text-gray-700 mb-1">
-                Transfer Date
-              </label>
-              <input
-                type="date"
+              <DateInput
                 id="transferDate"
                 name="transferDate"
                 value={formData.transferDate || ''}
-                onChange={handleInputChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                onChange={(value) => handleInputChange({ target: { name: 'transferDate', value } } as React.ChangeEvent<HTMLInputElement>)}
+                label="Transfer Date"
               />
             </div>
 

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuites name="vitest tests" tests="2" failures="0" errors="0" time="0.916648341">
-    <testsuite name="src/components/__tests__/CompanySearch.integration.test.tsx" timestamp="2025-07-17T21:45:32.383Z" hostname="FMNZ-C02D5HB1ML7H.local" tests="2" failures="0" errors="0" skipped="0" time="0.916648341">
-        <testcase classname="src/components/__tests__/CompanySearch.integration.test.tsx" name="CompanySearch Integration Tests &gt; should integrate with store and service for end-to-end search flow" time="0.525291008">
+<testsuites name="vitest tests" tests="2" failures="0" errors="0" time="0.843924719">
+    <testsuite name="src/components/__tests__/CompanySearch.integration.test.tsx" timestamp="2025-07-18T00:23:55.259Z" hostname="FMNZ-C02D5HB1ML7H.local" tests="2" failures="0" errors="0" skipped="0" time="0.843924719">
+        <testcase classname="src/components/__tests__/CompanySearch.integration.test.tsx" name="CompanySearch Integration Tests &gt; should integrate with store and service for end-to-end search flow" time="0.342915215">
         </testcase>
-        <testcase classname="src/components/__tests__/CompanySearch.integration.test.tsx" name="CompanySearch Integration Tests &gt; should handle full search workflow with error recovery" time="0.383607419">
+        <testcase classname="src/components/__tests__/CompanySearch.integration.test.tsx" name="CompanySearch Integration Tests &gt; should handle full search workflow with error recovery" time="0.494723409">
         </testcase>
     </testsuite>
 </testsuites>

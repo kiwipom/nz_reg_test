@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { UserPlus, Check, Loader2, Calendar, MapPin, FileText, Upload, X } from 'lucide-react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { DirectorService } from '../services/directorService';
+import DateInput from '../components/DateInput';
 
 export interface DirectorFormData {
   firstName: string;
@@ -158,6 +159,19 @@ export const DirectorAppointment: React.FC = () => {
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
+  };
+
+  const handleDateChange = (name: string, value: string) => {
+    setFormData(prev => ({
+      ...prev,
+      [name]: value,
+    }));
+    if (errors[name as keyof DirectorFormData]) {
+      setErrors(prev => ({
+        ...prev,
+        [name]: '',
+      }));
+    }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -337,23 +351,15 @@ export const DirectorAppointment: React.FC = () => {
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
                 <div>
-                  <label htmlFor="dateOfBirth" className="block text-sm font-medium text-gray-700 mb-2">
-                    Date of Birth *
-                  </label>
-                  <input
-                    type="date"
+                  <DateInput
                     id="dateOfBirth"
                     name="dateOfBirth"
                     value={formData.dateOfBirth}
-                    onChange={handleInputChange}
-                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors ${
-                      errors.dateOfBirth ? 'border-red-500' : 'border-gray-300'
-                    }`}
+                    onChange={(value) => handleDateChange('dateOfBirth', value)}
+                    label="Date of Birth"
                     required
+                    error={errors.dateOfBirth}
                   />
-                  {errors.dateOfBirth && (
-                    <p className="mt-2 text-sm text-red-600">{errors.dateOfBirth}</p>
-                  )}
                 </div>
 
                 <div>
@@ -781,23 +787,15 @@ export const DirectorAppointment: React.FC = () => {
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="appointmentDate" className="block text-sm font-medium text-gray-700 mb-2">
-                    Appointment Date *
-                  </label>
-                  <input
-                    type="date"
+                  <DateInput
                     id="appointmentDate"
                     name="appointmentDate"
                     value={formData.appointmentDate}
-                    onChange={handleInputChange}
-                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors ${
-                      errors.appointmentDate ? 'border-red-500' : 'border-gray-300'
-                    }`}
+                    onChange={(value) => handleDateChange('appointmentDate', value)}
+                    label="Appointment Date"
                     required
+                    error={errors.appointmentDate}
                   />
-                  {errors.appointmentDate && (
-                    <p className="mt-2 text-sm text-red-600">{errors.appointmentDate}</p>
-                  )}
                 </div>
 
                 <div>

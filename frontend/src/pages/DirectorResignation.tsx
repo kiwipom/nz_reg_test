@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { DirectorService } from '../services/directorService';
 import { useAuth0 } from '@auth0/auth0-react';
+import DateInput from '../components/DateInput';
 
 // Zod schema for director resignation form
 const directorResignationSchema = z.object({
@@ -37,6 +38,7 @@ export function DirectorResignation({
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors },
     reset,
   } = useForm<DirectorResignationFormData>({
@@ -151,18 +153,20 @@ export function DirectorResignation({
         </div>
 
         <div>
-          <label htmlFor="resignationDate" className="block text-sm font-medium text-gray-700 mb-1">
-            Resignation Date
-          </label>
-          <input
-            type="date"
-            id="resignationDate"
-            {...register('resignationDate')}
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+          <Controller
+            name="resignationDate"
+            control={control}
+            render={({ field }) => (
+              <DateInput
+                id="resignationDate"
+                name="resignationDate"
+                value={field.value || ''}
+                onChange={field.onChange}
+                label="Resignation Date"
+                error={errors.resignationDate?.message}
+              />
+            )}
           />
-          {errors.resignationDate && (
-            <p className="mt-1 text-sm text-red-600">{errors.resignationDate.message}</p>
-          )}
         </div>
 
         <div className="flex items-start">
