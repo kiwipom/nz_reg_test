@@ -103,6 +103,120 @@ export interface ShareholderPortfolio {
   activeAllocations: number;
 }
 
+export interface ShareClass {
+  id: number;
+  companyId: number;
+  className: string;
+  classCode: string;
+  description?: string;
+  isRedeemable: boolean;
+  isConvertible: boolean;
+  parValue?: number;
+  isNoParValue: boolean;
+  currency: string;
+  
+  // Voting Rights
+  votingRights: 'NONE' | 'ORDINARY' | 'WEIGHTED' | 'RESTRICTED';
+  votesPerShare: number;
+  votingRestrictions?: string;
+  
+  // Dividend Rights
+  dividendRights: 'NONE' | 'ORDINARY' | 'PREFERRED' | 'CUMULATIVE';
+  dividendRate?: number;
+  isCumulativeDividend: boolean;
+  dividendPriority: number;
+  
+  // Capital Distribution Rights
+  capitalDistributionRights: 'ORDINARY' | 'PREFERRED' | 'NONE';
+  liquidationPreferenceMultiple?: number;
+  liquidationPriority: number;
+  
+  // Transfer Restrictions
+  isTransferable: boolean;
+  transferRestrictions?: string;
+  requiresBoardApproval: boolean;
+  hasPreemptiveRights: boolean;
+  hasTagAlongRights: boolean;
+  hasDragAlongRights: boolean;
+  
+  // Administrative
+  isActive: boolean;
+  createdAt: string;
+  updatedAt: string;
+  
+  // Computed fields
+  hasVotingRights: boolean;
+  hasDividendRights: boolean;
+  hasLiquidationPreference: boolean;
+  effectiveVotesPerShare: number;
+  canTransferFreely: boolean;
+  displayName: string;
+  rightsSummary: string;
+}
+
+export interface CreateShareClassRequest {
+  className: string;
+  classCode: string;
+  description?: string;
+  isRedeemable?: boolean;
+  isConvertible?: boolean;
+  parValue?: number;
+  isNoParValue?: boolean;
+  currency?: string;
+  
+  // Voting Rights
+  votingRights?: 'NONE' | 'ORDINARY' | 'WEIGHTED' | 'RESTRICTED';
+  votesPerShare?: number;
+  votingRestrictions?: string;
+  
+  // Dividend Rights
+  dividendRights?: 'NONE' | 'ORDINARY' | 'PREFERRED' | 'CUMULATIVE';
+  dividendRate?: number;
+  isCumulativeDividend?: boolean;
+  dividendPriority?: number;
+  
+  // Capital Distribution Rights
+  capitalDistributionRights?: 'ORDINARY' | 'PREFERRED' | 'NONE';
+  liquidationPreferenceMultiple?: number;
+  liquidationPriority?: number;
+  
+  // Transfer Restrictions
+  isTransferable?: boolean;
+  transferRestrictions?: string;
+  requiresBoardApproval?: boolean;
+  hasPreemptiveRights?: boolean;
+  hasTagAlongRights?: boolean;
+  hasDragAlongRights?: boolean;
+}
+
+export interface UpdateShareClassRequest {
+  className?: string;
+  description?: string;
+  votingRights?: 'NONE' | 'ORDINARY' | 'WEIGHTED' | 'RESTRICTED';
+  votesPerShare?: number;
+  dividendRights?: 'NONE' | 'ORDINARY' | 'PREFERRED' | 'CUMULATIVE';
+  dividendRate?: number;
+  isCumulativeDividend?: boolean;
+  dividendPriority?: number;
+  capitalDistributionRights?: 'ORDINARY' | 'PREFERRED' | 'NONE';
+  liquidationPreferenceMultiple?: number;
+  liquidationPriority?: number;
+  transferRestrictions?: string;
+  requiresBoardApproval?: boolean;
+  hasPreemptiveRights?: boolean;
+  hasTagAlongRights?: boolean;
+  hasDragAlongRights?: boolean;
+}
+
+export interface ShareClassStatistics {
+  shareClassId: number;
+  className: string;
+  classCode: string;
+  allocationCount: number;
+  totalShares: number;
+  totalValue: number;
+}
+
 export interface Address {
   id: number;
   addressType: 'REGISTERED' | 'SERVICE' | 'COMMUNICATION';

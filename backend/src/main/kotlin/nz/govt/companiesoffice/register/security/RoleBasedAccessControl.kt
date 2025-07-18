@@ -35,4 +35,20 @@ class RoleBasedAccessControl {
         // Additional business logic for company modification access
         return SecurityUtils.canModifyCompanyData()
     }
+
+    /**
+     * Check if the current user can manage share classes for a company
+     * Share class management requires ADMIN or REGISTRAR role
+     */
+    fun canManageCompanyShares(companyId: Long): Boolean {
+        return SecurityUtils.hasRole("ADMIN") || SecurityUtils.hasRole("REGISTRAR")
+    }
+
+    /**
+     * Check if the current user can view share class information for a company
+     * Share class viewing is allowed for all authenticated users
+     */
+    fun canViewCompanyShares(companyId: Long): Boolean {
+        return SecurityUtils.isAuthenticated()
+    }
 }
