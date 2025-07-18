@@ -65,5 +65,35 @@ global.console = {
   error: vi.fn(),
 };
 
+// Mock lucide-react icons
+vi.mock('lucide-react', () => {
+  const MockIcon = ({ className, ...props }: { className?: string; [key: string]: unknown }) => (
+    <svg className={className} {...props} data-testid="mock-icon" />
+  );
+  
+  return {
+    Building2: MockIcon,
+    Search: MockIcon,
+    Shield: MockIcon,
+    Users: MockIcon,
+    FileText: MockIcon,
+    TrendingUp: MockIcon,
+    Plus: MockIcon,
+    CheckCircle: MockIcon,
+    XCircle: MockIcon,
+    AlertCircle: MockIcon,
+    Loader2: MockIcon,
+    Upload: MockIcon,
+    X: MockIcon,
+    UserPlus: MockIcon,
+    Check: MockIcon,
+    Calendar: MockIcon,
+    MapPin: MockIcon,
+    LogIn: MockIcon,
+    LogOut: MockIcon,
+    User: MockIcon,
+  };
+});
+
 // Global test utilities
 (global as typeof global & { mockAuth0: typeof mockAuth0 }).mockAuth0 = mockAuth0;
