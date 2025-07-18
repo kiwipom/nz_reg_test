@@ -214,12 +214,14 @@ export class ShareClassService {
         return 'No dividend rights';
       case 'ORDINARY':
         return 'Ordinary dividend rights';
-      case 'PREFERRED':
+      case 'PREFERRED': {
         const rate = shareClass.dividendRate ? (shareClass.dividendRate * 100).toFixed(2) : '0';
         return `${rate}% preferred dividend`;
-      case 'CUMULATIVE':
+      }
+      case 'CUMULATIVE': {
         const cumulativeRate = shareClass.dividendRate ? (shareClass.dividendRate * 100).toFixed(2) : '0';
         return `${cumulativeRate}% cumulative dividend`;
+      }
       default:
         return 'Unknown';
     }

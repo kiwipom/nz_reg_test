@@ -1,15 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { ShareClassService } from '../services/shareClassService';
 import type { ShareClass, CreateShareClassRequest } from '../types/company';
 
 interface ShareClassManagementProps {
   companyId: number;
-  companyName: string;
   isAuthenticated: boolean;
 }
 
-export function ShareClassManagement({ companyId, companyName, isAuthenticated }: ShareClassManagementProps) {
+export function ShareClassManagement({ companyId, isAuthenticated }: ShareClassManagementProps) {
   const { getAccessTokenSilently } = useAuth0();
   const [shareClasses, setShareClasses] = useState<ShareClass[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -29,23 +28,24 @@ export function ShareClassManagement({ companyId, companyName, isAuthenticated }
     hasPreemptiveRights: true
   });
 
-  useEffect(() => {
-    loadShareClasses();
-  }, [companyId]);
-
-  const loadShareClasses = async () => {
+  const loadShareClasses = useCallback(async () => {
     try {
       setIsLoading(true);
       setError('');
       const classes = await ShareClassService.getActiveShareClassesByCompany(companyId);
       setShareClasses(classes);
-    } catch (err) {
+    } catch (err: unknown) {
       console.error('Error loading share classes:', err);
-      setError('Failed to load share classes');
+      setError(err instanceof Error ? err.message : 'Failed to load share classes');
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [companyId]);
+
+  useEffect(() => {
+    loadShareClasses();
+  }, [loadShareClasses]);
+
 
   const handleCreateShareClass = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -70,9 +70,9 @@ export function ShareClassManagement({ companyId, companyName, isAuthenticated }
       setShowCreateForm(false);
       resetCreateForm();
       
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error('Error creating share class:', err);
-      setError(err?.response?.data?.error || 'Failed to create share class');
+      setError(err instanceof Error ? err.message : 'Failed to create share class');
     } finally {
       setIsCreating(false);
     }
@@ -103,9 +103,9 @@ export function ShareClassManagement({ companyId, companyName, isAuthenticated }
       await getAccessTokenSilently();
       await ShareClassService.deactivateShareClass(companyId, shareClassId);
       setShareClasses(prev => prev.filter(sc => sc.id !== shareClassId));
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error('Error deactivating share class:', err);
-      setError(err?.response?.data?.error || 'Failed to deactivate share class');
+      setError(err instanceof Error ? err.message : 'Failed to deactivate share class');
     }
   };
 
@@ -299,7 +299,7 @@ export function ShareClassManagement({ companyId, companyName, isAuthenticated }
                         value={createForm.votingRights}
                         onChange={(e) => setCreateForm(prev => ({ 
                           ...prev, 
-                          votingRights: e.target.value as any,
+                          votingRights: e.target.value as 'NONE' | 'ORDINARY' | 'WEIGHTED' | 'RESTRICTED',
                           votesPerShare: e.target.value === 'NONE' ? 0 : prev.votesPerShare || 1
                         }))}
                         className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500"
@@ -334,7 +334,7 @@ export function ShareClassManagement({ companyId, companyName, isAuthenticated }
                       </label>
                       <select
                         value={createForm.dividendRights}
-                        onChange={(e) => setCreateForm(prev => ({ ...prev, dividendRights: e.target.value as any }))}
+                        onChange={(e) => setCreateForm(prev => ({ ...prev, dividendRights: e.target.value as 'NONE' | 'ORDINARY' | 'PREFERRED' | 'CUMULATIVE' }))}
                         className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500"
                       >
                         <option value="NONE">No dividend rights</option>
