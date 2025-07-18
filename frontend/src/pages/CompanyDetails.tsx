@@ -436,7 +436,6 @@ export function CompanyDetails({ companyId: propCompanyId }: CompanyDetailsProps
       {/* Share Classes Section */}
       <ShareClassManagement 
         companyId={Number(companyId)}
-        companyName={company.companyName}
         isAuthenticated={isAuthenticated}
       />
     </div>
