@@ -1,4 +1,5 @@
 import '@testing-library/jest-dom';
+import React from 'react';
 import { beforeAll, afterEach, afterAll, vi } from 'vitest';
 import { cleanup } from '@testing-library/react';
 import { server } from './mocks/server';
@@ -67,9 +68,9 @@ global.console = {
 
 // Mock lucide-react icons
 vi.mock('lucide-react', () => {
-  const MockIcon = ({ className, ...props }: { className?: string; [key: string]: unknown }) => (
-    <svg className={className} {...props} data-testid="mock-icon" />
-  );
+  const MockIcon = ({ className, ...props }: { className?: string; [key: string]: unknown }) => {
+    return React.createElement('svg', { className, ...props, 'data-testid': 'mock-icon' });
+  };
   
   return {
     Building2: MockIcon,
